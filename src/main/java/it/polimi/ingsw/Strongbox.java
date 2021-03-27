@@ -21,14 +21,14 @@ public class Strongbox {
             System.out.println("Risorsa: " + resource + " ,Quantità: " + resourcesContained.get(resource));
         }
 
-        /*    for testing...
+         /*   //for testing...
     public String viewAllResources(){
         for (ResourceType resource : resourcesContained.keySet()) {
             printTest = printTest + ("Risorsa: " + resource + " ,Quantità: " + resourcesContained.get(resource));
         }
         return printTest;
     }
-         */
+        */
     }
 
     public int getVictoryPoints(){
