@@ -19,7 +19,7 @@ public class Level {
     }
 
     boolean getResources(int quantity){
-        if(quantity>this.numResources) return false;
+        if(quantity>this.numResources || quantity <0) return false;
         this.numResources-=quantity;
         if(this.numResources==0) this.currentResourceType=null;
         return true;

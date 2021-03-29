@@ -10,16 +10,16 @@ class LevelTest {
     public void constructionLevelTest(){
         ResourceType res;
         Level level = new Level(3);
-        assertEquals(level.getMaxNumResources(),3);
+        assertEquals(3,level.getMaxNumResources());
     }
 
     @Test
     public void getResourceLevelTest(){
         Level level = new Level(3);
         level.addResources(ResourceType.COINS, 2);
-        assertEquals(level.getCurrNumResources(), 2);
-        assertNotEquals(level.getResourceType(), ResourceType.SHIELDS);
-        assertEquals(level.getResourceType(), ResourceType.COINS);
+        assertEquals(2, level.getCurrNumResources());
+        assertNotEquals(ResourceType.SHIELDS, level.getResourceType());
+        assertEquals(ResourceType.COINS, level.getResourceType());
     }
 
     @Test
@@ -28,18 +28,18 @@ class LevelTest {
         Level level = new Level(2);
         testCondition  = level.addResources(ResourceType.SHIELDS, 3);
         assertFalse(testCondition);
-        assertEquals(level.getCurrNumResources(),0);
+        assertEquals(0,level.getCurrNumResources());
     }
 
     @Test
     public void changeLevelComposition(){
         Level level = new Level(2);
         level.addResources(ResourceType.SHIELDS,1);
-        assertEquals(level.getResourceType(),ResourceType.SHIELDS);
-        assertEquals(level.getCurrNumResources(),1);
+        assertEquals(ResourceType.SHIELDS,level.getResourceType());
+        assertEquals(1,level.getCurrNumResources());
         level.addResources(ResourceType.COINS,2);
-        assertEquals(level.getResourceType(),ResourceType.COINS);
-        assertEquals(level.getCurrNumResources(),2);
+        assertEquals(ResourceType.COINS,level.getResourceType());
+        assertEquals(2,level.getCurrNumResources());
     }
 
     @Test
@@ -48,7 +48,7 @@ class LevelTest {
         level.addResources(ResourceType.COINS,2);
         assertFalse(level.getResources(3));
         assertTrue(level.getResources(2));
-        assertEquals(level.getCurrNumResources(),0);
+        assertEquals(0,level.getCurrNumResources());
         assertNull(level.getResourceType());
     }
 
