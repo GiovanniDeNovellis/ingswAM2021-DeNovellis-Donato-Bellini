@@ -4,10 +4,22 @@ import java.util.TreeMap;
 
 public class Strongbox {
 
-    TreeMap<ResourceType, Integer> resourcesContained = new TreeMap<>();
-    String printTest;
-    int faithPoints;
 
+    /** The TreeMap resourceContained is used to keep in memory number anf type of resources contained in the strongbox */
+    private TreeMap<ResourceType, Integer> resourcesContained = new TreeMap<>();
+    //for testing...
+    // private String printTest;
+    /** arrtibute victoryPoints is referred to vicoty points obtained throw resources in the strogbox, when the game ends.*/
+    private int victoryPoints;
+    /** arrtibute numOf is used to return the number of a specific resource contained in the strongbox.*/
+    private int numOf;
+
+    public Strongbox(){
+        victoryPoints = 0;
+        numOf = 0;
+    }
+
+    /** addResources method allows the player to add a certain quantity of one type of resource to the strongbox. */
     public void addResources(ResourceType resource, int quantity){
         if(quantity<0)
             quantity=0;
@@ -16,6 +28,8 @@ public class Strongbox {
         resourcesContained.put(resource, quantity);
     }
 
+    /** viewAllResources method allows the player to see the totality of resources (number and type of resources)
+     *  contained in its own strongbox. */
     public void viewAllResources(){
         for (ResourceType resource : resourcesContained.keySet()) {
             System.out.println("Risorsa: " + resource + " ,Quantità: " + resourcesContained.get(resource));
@@ -31,14 +45,18 @@ public class Strongbox {
         */
     }
 
+    /** getVictoryPoints method is called when game ends. This method calculate the total amount of victory points
+     *  earned in base of the total number of resources contained in the strongbox. */
     public int getVictoryPoints(){
         for (ResourceType resource : resourcesContained.keySet()) {
-            faithPoints += resourcesContained.get(resource);
+            victoryPoints += resourcesContained.get(resource);
         }
-        faithPoints /= 5;
-    return faithPoints;
+        victoryPoints /= 5;
+    return victoryPoints;
     }
 
+    /** removeResources method allows to remove a specific quantity of a one type resource contained in the strongbox.
+     * The player can't remove more resources than resources contained in the strongbox. */
     public boolean removeResources(ResourceType resource, int quantity){
         if(quantity<0)
             quantity=0;
@@ -53,5 +71,11 @@ public class Strongbox {
         }
         else
             return false;
+    }
+
+    /** getNumOf allows the player to know the number of a specific resource contained int he strongbox. */
+    public int getNumOf( ResourceType resource ){
+        numOf = resourcesContained.get(resource);
+        return numOf;
     }
 }

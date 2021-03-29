@@ -11,17 +11,17 @@ class StrongboxTest{
     public void addResourceTest(){
         Strongbox strongbox = new Strongbox();
         strongbox.addResources(SHIELDS, 3);
-        assertEquals(3, strongbox.resourcesContained.get(SHIELDS));
+        assertEquals(3, strongbox.getNumOf(SHIELDS));
         strongbox.addResources(SHIELDS, 0);
-        assertEquals(3, strongbox.resourcesContained.get(SHIELDS));
+        assertEquals(3, strongbox.getNumOf(SHIELDS));
         strongbox.addResources(SHIELDS, 2);
-        assertEquals(5, strongbox.resourcesContained.get(SHIELDS));
+        assertEquals(5, strongbox.getNumOf(SHIELDS));
         strongbox.addResources(SERVANTS, 9);
-        assertEquals(9, strongbox.resourcesContained.get(SERVANTS));
+        assertEquals(9, strongbox.getNumOf(SERVANTS));
         strongbox.addResources(SHIELDS, 0);
-        assertEquals(5, strongbox.resourcesContained.get(SHIELDS));
+        assertEquals(5, strongbox.getNumOf(SHIELDS));
         strongbox.addResources(SHIELDS, -1);
-        assertEquals(5, strongbox.resourcesContained.get(SHIELDS));
+        assertEquals(5, strongbox.getNumOf(SHIELDS));
 
 
     }
@@ -39,7 +39,7 @@ class StrongboxTest{
         strongbox.addResources(STONES, 3);
         strongbox.addResources(STONES, 3);
         strongbox.addResources(COINS, 0);
-        //must uncomment viewAllResource method with return statement to work
+        //must uncomment viewAllResource method with return statement and the following assertEquals method to work
         //assertEquals(printResult, strongbox.viewAllResources());
     }
 
@@ -60,16 +60,16 @@ class StrongboxTest{
         Strongbox strongbox = new Strongbox();
         strongbox.addResources(SHIELDS, 3);
         assertTrue( strongbox.removeResources(SHIELDS, 3) );
-        assertEquals(0, strongbox.resourcesContained.get(SHIELDS));
+        assertEquals(0, strongbox.getNumOf(SHIELDS));
         assertFalse( strongbox.removeResources(SHIELDS, 5) );
-        assertEquals(0, strongbox.resourcesContained.get(SHIELDS));
+        assertEquals(0, strongbox.getNumOf(SHIELDS));
         strongbox.addResources(SHIELDS, 30);
         assertFalse( strongbox.removeResources(SHIELDS, 31) );
-        assertEquals(30, strongbox.resourcesContained.get(SHIELDS));
+        assertEquals(30, strongbox.getNumOf(SHIELDS));
         assertTrue( strongbox.removeResources(SHIELDS, 29) );
-        assertEquals(1, strongbox.resourcesContained.get(SHIELDS));
+        assertEquals(1, strongbox.getNumOf(SHIELDS));
         assertTrue( strongbox.removeResources(SHIELDS, -5) );
-        assertEquals(1, strongbox.resourcesContained.get(SHIELDS));
+        assertEquals(1, strongbox.getNumOf(SHIELDS));
         assertFalse( strongbox.removeResources(COINS, 2) );
     }
 }
