@@ -4,5 +4,6 @@ public enum ResourceType {
     SHIELDS,
     COINS,
     SERVANTS,
-    STONES
+    STONES,
+    FAITHPOINTS
 }

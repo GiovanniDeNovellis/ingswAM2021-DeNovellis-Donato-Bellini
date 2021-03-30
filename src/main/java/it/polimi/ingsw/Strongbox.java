@@ -5,13 +5,13 @@ import java.util.TreeMap;
 public class Strongbox {
 
 
-    /** The TreeMap resourceContained is used to keep in memory number anf type of resources contained in the strongbox */
+    /** The TreeMap resourceContained is used to keep in memory number and type of resources contained in the strongbox */
     private TreeMap<ResourceType, Integer> resourcesContained = new TreeMap<>();
     //for testing...
     // private String printTest;
-    /** arrtibute victoryPoints is referred to vicoty points obtained throw resources in the strogbox, when the game ends.*/
+    /** attribute victoryPoints is referred to victory points obtained throw resources in the strongbox, when the game ends.*/
     private int victoryPoints;
-    /** arrtibute numOf is used to return the number of a specific resource contained in the strongbox.*/
+    /** attribute numOf is used to return the number of a specific resource contained in the strongbox.*/
     private int numOf;
 
     public Strongbox(){
@@ -19,7 +19,7 @@ public class Strongbox {
         numOf = 0;
     }
 
-    /** addResources method allows the player to add a certain quantity of one type of resource to the strongbox. */
+    /** addResources method allows the player to add a certain quantity of one type of resource into the strongbox. */
     public void addResources(ResourceType resource, int quantity){
         if(quantity<0)
             quantity=0;
@@ -73,7 +73,7 @@ public class Strongbox {
             return false;
     }
 
-    /** getNumOf allows the player to know the number of a specific resource contained int he strongbox. */
+    /** getNumOf allows the player to know the number of a specific resource contained in the strongbox. */
     public int getNumOf( ResourceType resource ){
         numOf = resourcesContained.get(resource);
         return numOf;

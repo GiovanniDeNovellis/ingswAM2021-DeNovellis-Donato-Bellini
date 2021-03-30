@@ -1,0 +1,900 @@
+[
+  {
+    "level": 1,
+    "type": "GREEN",
+    "victoryPoints": 1,
+    "cost":
+    {
+      "SHIELDS": 2
+    },
+    "productionCost":
+    {
+      "COINS": 1
+    },
+    "earnedResources":
+    {
+      "FAITHPOINTS": 1
+    }
+  },
+  {
+    "level": 1,
+    "type": "PURPLE",
+    "victoryPoints": 1,
+    "cost":
+    {
+      "SERVANTS": 2
+    },
+    "productionCost":
+    {
+      "STONES": 1
+    },
+    "earnedResources":
+    {
+      "FAITHPOINTS": 1
+    }
+  },
+  {
+    "level": 1,
+    "type": "BLUE",
+    "victoryPoints": 1,
+    "cost":
+    {
+      "COINS": 2
+    },
+    "productionCost":
+    {
+      "SHIELDS": 1
+    },
+    "earnedResources":
+    {
+      "FAITHPOINTS": 1
+    }
+  },
+  {
+    "level": 1,
+    "type": "YELLOW",
+    "victoryPoints": 1,
+    "cost":
+    {
+      "STONES": 2
+    },
+    "productionCost":
+    {
+      "SERVANTS": 1
+    },
+    "earnedResources":
+    {
+      "FAITHPOINTS": 1
+    }
+  },
+  {
+    "level": 1,
+    "type": "GREEN",
+    "victoryPoints": 2,
+    "cost":
+    {
+      "SHIELDS": 1,
+      "STONES": 1,
+      "SERVANTS": 1
+    },
+    "productionCost":
+    {
+      "STONES": 1
+    },
+    "earnedResources":
+    {
+      "SERVANTS": 1
+    }
+  },
+  {
+    "level": 1,
+    "type": "PURPLE",
+    "victoryPoints": 2,
+    "cost":
+    {
+      "SHIELDS": 1,
+      "COINS": 1,
+      "SERVANTS": 1
+    },
+    "productionCost":
+    {
+      "COINS": 1
+    },
+    "earnedResources":
+    {
+      "SHIELDS": 1
+    }
+  },
+  {
+    "level": 1,
+    "type": "BLUE",
+    "victoryPoints": 2,
+    "cost":
+    {
+      "COINS": 1,
+      "STONES": 1,
+      "SERVANTS": 1
+    },
+    "productionCost":
+    {
+      "SERVANTS": 1
+    },
+    "earnedResources":
+    {
+      "STONES": 1
+    }
+  },
+  {
+    "level": 1,
+    "type": "YELLOW",
+    "victoryPoints": 2,
+    "cost":
+    {
+      "SHIELDS": 1,
+      "COINS": 1,
+      "STONES": 1
+    },
+    "productionCost":
+    {
+      "SHIELDS": 1
+    },
+    "earnedResources":
+    {
+      "COINS": 1
+    }
+  },
+  {
+    "level": 1,
+    "type": "GREEN",
+    "victoryPoints": 3,
+    "cost":
+    {
+      "SHIELDS": 3
+    },
+    "productionCost":
+    {
+      "SERVANTS": 2
+    },
+    "earnedResources":
+    {
+      "COINS": 1,
+      "SHIELDS": 1,
+      "STONES" : 1
+    }
+  },
+  {
+    "level": 1,
+    "type": "PURPLE",
+    "victoryPoints": 3,
+    "cost":
+    {
+      "SERVANTS": 3
+    },
+    "productionCost":
+    {
+      "COINS": 2
+    },
+    "earnedResources":
+    {
+      "SERVANTS": 1,
+      "SHIELDS": 1,
+      "STONES" : 1
+    }
+  },
+  {
+    "level": 1,
+    "type": "BLUE",
+    "victoryPoints": 3,
+    "cost":
+    {
+      "COINS": 3
+    },
+    "productionCost":
+    {
+      "STONES": 2
+    },
+    "earnedResources":
+    {
+      "COINS": 1,
+      "SERVANTS": 1,
+      "SHIELDS" : 1
+    }
+  },
+  {
+    "level": 1,
+    "type": "YELLOW",
+    "victoryPoints": 3,
+    "cost":
+    {
+      "STONES": 3
+    },
+    "productionCost":
+    {
+      "SHIELDS": 2
+    },
+    "earnedResources":
+    {
+      "COINS": 1,
+      "SERVANTS": 1,
+      "STONES" : 1
+    }
+  },
+  {
+    "level": 1,
+    "type": "GREEN",
+    "victoryPoints": 4,
+    "cost":
+    {
+      "SHIELDS": 2,
+      "COINS" : 2
+    },
+    "productionCost":
+    {
+      "STONES": 1,
+      "SERVANTS": 1
+    },
+    "earnedResources":
+    {
+      "COINS": 2,
+      "FAITHPOINTS": 1
+    }
+  },
+  {
+    "level": 1,
+    "type": "PURPLE",
+    "victoryPoints": 4,
+    "cost":
+    {
+      "SERVANTS": 2,
+      "STONES" : 2
+    },
+    "productionCost":
+    {
+      "COINS": 1,
+      "SHIELDS": 1
+    },
+    "earnedResources":
+    {
+      "STONES": 2,
+      "FAITHPOINTS": 1
+    }
+  },
+  {
+    "level": 1,
+    "type": "BLUE",
+    "victoryPoints": 4,
+    "cost":
+    {
+      "COINS": 2,
+      "SERVANTS" : 2
+    },
+    "productionCost":
+    {
+      "SHIELDS": 1,
+      "STONES": 1
+    },
+    "earnedResources":
+    {
+      "SERVANTS": 2,
+      "FAITHPOINTS": 1
+    }
+  },
+  {
+    "level": 1,
+    "type": "YELLOW",
+    "victoryPoints": 4,
+    "cost":
+    {
+      "STONES": 2,
+      "SHIELDS" : 2
+    },
+    "productionCost":
+    {
+      "COINS": 1,
+      "SERVANTS": 1
+    },
+    "earnedResources":
+    {
+      "SHIELDS": 2,
+      "FAITHPOINTS": 1
+    }
+  },
+  {
+    "level": 2,
+    "type": "GREEN",
+    "victoryPoints": 5,
+    "cost":
+    {
+      "SHIELDS": 4
+    },
+    "productionCost":
+    {
+      "STONES": 1
+    },
+    "earnedResources":
+    {
+      "FAITHPOINTS": 2
+    }
+  },
+  {
+    "level": 2,
+    "type": "PURPLE",
+    "victoryPoints": 5,
+    "cost":
+    {
+      "SERVANTS": 4
+    },
+    "productionCost":
+    {
+      "COINS": 1
+    },
+    "earnedResources":
+    {
+      "FAITHPOINTS": 2
+    }
+  },
+  {
+    "level": 2,
+    "type": "BLUE",
+    "victoryPoints": 5,
+    "cost":
+    {
+      "COINS": 4
+    },
+    "productionCost":
+    {
+      "SERVANTS": 1
+    },
+    "earnedResources":
+    {
+      "FAITHPOINTS": 2
+    }
+  },
+  {
+    "level": 2,
+    "type": "YELLOW",
+    "victoryPoints": 5,
+    "cost":
+    {
+      "STONES": 4
+    },
+    "productionCost":
+    {
+      "SHIELDS": 1
+    },
+    "earnedResources":
+    {
+      "FAITHPOINTS": 2
+    }
+  },
+  {
+    "level": 2,
+    "type": "GREEN",
+    "victoryPoints": 6,
+    "cost":
+    {
+      "SHIELDS": 3,
+      "SERVANTS": 2
+    },
+    "productionCost":
+    {
+      "SHIELDS": 1,
+      "SERVANTS": 1
+    },
+    "earnedResources":
+    {
+      "STONES": 3
+    }
+  },
+  {
+    "level": 2,
+    "type": "PURPLE",
+    "victoryPoints": 6,
+    "cost":
+    {
+      "SERVANTS": 3,
+      "COINS": 2
+    },
+    "productionCost":
+    {
+      "COINS": 1,
+      "SERVANTS": 1
+    },
+    "earnedResources":
+    {
+      "SHIELDS": 3
+    }
+  },
+  {
+    "level": 2,
+    "type": "BLUE",
+    "victoryPoints": 6,
+    "cost":
+    {
+      "COINS": 3,
+      "STONES": 2
+    },
+    "productionCost":
+    {
+      "COINS": 1,
+      "STONES": 1
+    },
+    "earnedResources":
+    {
+      "SERVANTS": 3
+    }
+  },
+  {
+    "level": 2,
+    "type": "YELLOW",
+    "victoryPoints": 6,
+    "cost":
+    {
+      "STONES": 3,
+      "SHIELDS": 2
+    },
+    "productionCost":
+    {
+      "STONES": 1,
+      "SHIELDS": 1
+    },
+    "earnedResources":
+    {
+      "COINS": 3
+    }
+  },
+  {
+    "level": 2,
+    "type": "GREEN",
+    "victoryPoints": 7,
+    "cost":
+    {
+      "SHIELDS": 5
+    },
+    "productionCost":
+    {
+      "COINS": 2
+    },
+    "earnedResources":
+    {
+      "STONES": 2,
+      "FAITHPOINTS": 2
+    }
+  },
+  {
+    "level": 2,
+    "type": "PURPLE",
+    "victoryPoints": 7,
+    "cost":
+    {
+      "SERVANTS": 5
+    },
+    "productionCost":
+    {
+      "STONES": 2
+    },
+    "earnedResources":
+    {
+      "COINS": 2,
+      "FAITHPOINTS": 2
+    }
+  },
+  {
+    "level": 2,
+    "type": "BLUE",
+    "victoryPoints": 7,
+    "cost":
+    {
+      "COINS": 5
+    },
+    "productionCost":
+    {
+      "SERVANTS": 2
+    },
+    "earnedResources":
+    {
+      "SHIELDS": 2,
+      "FAITHPOINTS": 2
+    }
+  },
+  {
+    "level": 2,
+    "type": "YELLOW",
+    "victoryPoints": 7,
+    "cost": {
+      "STONES": 5
+    },
+    "productionCost": {
+      "SHIELDS": 2
+    },
+    "earnedResources": {
+      "SERVANTS": 2,
+      "FAITHPOINTS": 2
+    }
+  },
+  {
+    "level": 2,
+    "type": "GREEN",
+    "victoryPoints": 8,
+    "cost":
+    {
+      "SHIELDS": 3,
+      "COINS": 3
+    },
+    "productionCost":
+    {
+      "COINS": 1
+    },
+    "earnedResources":
+    {
+      "SHIELDS": 2,
+      "FAITHPOINTS": 1
+    }
+  },
+  {
+    "level": 2,
+    "type": "PURPLE",
+    "victoryPoints": 8,
+    "cost":
+    {
+      "SERVANTS": 3,
+      "SHIELDS": 3
+    },
+    "productionCost":
+    {
+      "STONES": 1
+    },
+    "earnedResources":
+    {
+      "SERVANTS": 2,
+      "FAITHPOINTS": 1
+    }
+  },
+  {
+    "level": 2,
+    "type": "BLUE",
+    "victoryPoints": 8,
+    "cost":
+    {
+      "COINS": 3,
+      "STONES": 3
+    },
+    "productionCost":
+    {
+      "SERVANTS": 1
+    },
+    "earnedResources":
+    {
+      "STONES": 2,
+      "FAITHPOINTS": 1
+    }
+  },
+  {
+    "level": 2,
+    "type": "YELLOW",
+    "victoryPoints": 8,
+    "cost":
+    {
+      "STONES": 3,
+      "SERVANTS": 3
+    },
+    "productionCost":
+    {
+      "SHIELDS": 1
+    },
+    "earnedResources":
+    {
+      "COINS": 2,
+      "FAITHPOINTS": 1
+    }
+  },
+  {
+    "level": 3,
+    "type": "GREEN",
+    "victoryPoints": 9,
+    "cost":
+    {
+      "SHIELDS": 6
+    },
+    "productionCost":
+    {
+      "COINS": 2
+    },
+    "earnedResources":
+    {
+      "STONES": 3,
+      "FAITHPOINTS": 2
+    }
+  },
+  {
+    "level": 3,
+    "type": "PURPLE",
+    "victoryPoints": 9,
+    "cost":
+    {
+      "SERVANTS": 6
+    },
+    "productionCost":
+    {
+      "STONES": 2
+    },
+    "earnedResources":
+    {
+      "COINS": 3,
+      "FAITHPOINTS": 2
+    }
+  },
+  {
+    "level": 3,
+    "type": "BLUE",
+    "victoryPoints": 9,
+    "cost":
+    {
+      "COINS": 6
+    },
+    "productionCost":
+    {
+      "SERVANTS": 2
+    },
+    "earnedResources":
+    {
+      "SHIELDS": 3,
+      "FAITHPOINTS": 2
+    }
+  },
+  {
+    "level": 3,
+    "type": "YELLOW",
+    "victoryPoints": 9,
+    "cost":
+    {
+      "STONES": 6
+    },
+    "productionCost":
+    {
+      "SHIELDS": 2
+    },
+    "earnedResources":
+    {
+      "SERVANTS": 3,
+      "FAITHPOINTS": 2
+    }
+  },
+  {
+    "level": 3,
+    "type": "GREEN",
+    "victoryPoints": 10,
+    "cost":
+    {
+      "SHIELDS": 5,
+      "SERVANTS": 2
+    },
+    "productionCost":
+    {
+      "COINS": 1,
+      "SERVANTS": 1
+    },
+    "earnedResources":
+    {
+      "SHIELDS": 2,
+      "STONES": 2,
+      "FAITHPOINTS": 1
+    }
+  },
+  {
+    "level": 3,
+    "type": "PURPLE",
+    "victoryPoints": 10,
+    "cost":
+    {
+      "SERVANTS": 5,
+      "COINS": 2
+    },
+    "productionCost":
+    {
+      "STONES": 1,
+      "SHIELDS": 1
+    },
+    "earnedResources":
+    {
+      "COINS": 2,
+      "SERVANTS": 2,
+      "FAITHPOINTS": 1
+    }
+  },
+  {
+    "level": 3,
+    "type": "BLUE",
+    "victoryPoints": 10,
+    "cost":
+    {
+      "COINS": 5,
+      "STONES": 2
+    },
+    "productionCost":
+    {
+      "COINS": 1,
+      "SHIELDS": 1
+    },
+    "earnedResources":
+    {
+      "SERVANTS": 2,
+      "STONES": 2,
+      "FAITHPOINTS": 1
+    }
+  },
+  {
+    "level": 3,
+    "type": "YELLOW",
+    "victoryPoints": 10,
+    "cost":
+    {
+      "STONES": 5,
+      "SERVANTS": 2
+    },
+    "productionCost":
+    {
+      "STONES": 1,
+      "SERVANTS": 1
+    },
+    "earnedResources":
+    {
+      "COINS": 2,
+      "SHIELDS": 2,
+      "FAITHPOINTS": 1
+    }
+  },
+  {
+    "level": 3,
+    "type": "GREEN",
+    "victoryPoints": 11,
+    "cost":
+    {
+      "SHIELDS": 7
+    },
+    "productionCost":
+    {
+      "SERVANTS": 1
+    },
+    "earnedResources":
+    {
+      "COINS": 1,
+      "FAITHPOINTS": 3
+    }
+  },
+  {
+    "level": 3,
+    "type": "PURPLE",
+    "victoryPoints": 11,
+    "cost":
+    {
+      "SERVANTS": 7
+    },
+    "productionCost":
+    {
+      "COINS": 1
+    },
+    "earnedResources":
+    {
+      "STONES": 1,
+      "FAITHPOINTS": 3
+    }
+  },
+  {
+    "level": 3,
+    "type": "BLUE",
+    "victoryPoints": 11,
+    "cost":
+    {
+      "COINS": 7
+    },
+    "productionCost":
+    {
+      "STONES": 1
+    },
+    "earnedResources":
+    {
+      "SHIELDS": 1,
+      "FAITHPOINTS": 3
+    }
+  },
+  {
+    "level": 3,
+    "type": "YELLOW",
+    "victoryPoints": 11,
+    "cost":
+    {
+      "STONES": 7
+    },
+    "productionCost":
+    {
+      "SHIELDS": 1
+    },
+    "earnedResources":
+    {
+      "SERVANTS": 1,
+      "FAITHPOINTS": 3
+    }
+  },
+  {
+    "level": 3,
+    "type": "GREEN",
+    "victoryPoints": 12,
+    "cost":
+    {
+      "SHIELDS": 4,
+      "COINS": 4
+    },
+    "productionCost":
+    {
+      "STONES": 1
+    },
+    "earnedResources":
+    {
+      "COINS": 3,
+      "SHIELDS": 1
+    }
+  },
+  {
+    "level": 3,
+    "type": "GREEN",
+    "victoryPoints": 12,
+    "cost":
+    {
+      "SERVANTS": 4,
+      "SHIELDS": 4
+    },
+    "productionCost":
+    {
+      "COINS": 1
+    },
+    "earnedResources":
+    {
+      "STONES": 3,
+      "SERVANTS": 1
+    }
+  },
+  {
+    "level": 3,
+    "type": "BLUE",
+    "victoryPoints": 12,
+    "cost":
+    {
+      "COINS": 4,
+      "STONES": 4
+    },
+    "productionCost":
+    {
+      "SERVANTS": 1
+    },
+    "earnedResources":
+    {
+      "SHIELDS": 3,
+      "COINS": 1
+    }
+  },
+  {
+    "level": 3,
+    "type": "YELLOW",
+    "victoryPoints": 12,
+    "cost":
+    {
+      "STONES": 4,
+      "SERVANTS": 4
+    },
+    "productionCost":
+    {
+      "SHIELDS": 1
+    },
+    "earnedResources":
+    {
+      "SERVANTS": 3,
+      "STONES": 1
+    }
+  }
+
+
+
+
+
+]
