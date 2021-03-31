@@ -33,7 +33,6 @@
       <artifactId>gson</artifactId>
       <version>RELEASE</version>
     </dependency>
-
   </dependencies>
 
 

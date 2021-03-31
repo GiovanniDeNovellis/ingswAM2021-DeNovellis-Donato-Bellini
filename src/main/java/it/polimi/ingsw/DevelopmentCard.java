@@ -1,7 +1,4 @@
 package it.polimi.ingsw;
-
-
-import java.util.HashMap;
 import java.util.TreeMap;
 
 public class DevelopmentCard {
@@ -9,7 +6,6 @@ public class DevelopmentCard {
     private TreeMap<ResourceType, Integer> cost = new TreeMap<>();
     private TreeMap<ResourceType, Integer> earnedResources = new TreeMap<>();
     private TreeMap<ResourceType, Integer> productionCost = new TreeMap<>();
-
     private Colour type;
     private int victoryPoints;
 
@@ -27,6 +23,13 @@ public class DevelopmentCard {
 
     }
 
+    /**
+     * Returns the colour of the card.
+     * @return Color
+     */
+    public Colour getColour(){return this.type;}
+
+    public int getLevel(){return this.level;}
 
     public void printCards(){
         System.out.println("Colour: " + type);

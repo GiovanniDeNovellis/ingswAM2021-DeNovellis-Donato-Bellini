@@ -3,7 +3,6 @@ package it.polimi.ingsw;
 import java.util.TreeMap;
 
 public class WareHouseDepot {
-
     private final TreeMap<Integer, Level> warehouseLevels;
 
     public WareHouseDepot(){
@@ -16,5 +15,10 @@ public class WareHouseDepot {
         warehouseLevels.put(3, level3);
     }
 
+    /**
+     * Method used by the GameBoard to interact with any level.
+     * @param maxSlots The size of the level selected.
+     * @return The level selected.
+     */
     public Level getLevel(int maxSlots){return warehouseLevels.get(maxSlots);}
 }
