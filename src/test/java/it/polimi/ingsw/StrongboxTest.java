@@ -72,4 +72,5 @@ class StrongboxTest{
         assertEquals(1, strongbox.getNumOf(SHIELDS));
         assertFalse( strongbox.removeResources(COINS, 2) );
     }
+
 }

@@ -46,8 +46,8 @@ class LevelTest {
     public void fillAndEmptyLevel(){
         Level level = new Level(3);
         level.addResources(ResourceType.COINS,2);
-        assertFalse(level.getResources(3));
-        assertTrue(level.getResources(2));
+        assertFalse(level.removeResources(3));
+        assertTrue(level.removeResources(2));
         assertEquals(0,level.getCurrNumResources());
         assertNull(level.getResourceType());
     }

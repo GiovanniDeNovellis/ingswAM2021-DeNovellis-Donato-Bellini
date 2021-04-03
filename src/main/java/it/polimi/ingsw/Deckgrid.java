@@ -17,6 +17,8 @@ public class Deckgrid {
     private final TreeMap<Colour, Integer> deckColumn = new TreeMap<>();
     private ArrayList<DevelopmentCard> cards = new ArrayList<>();
 
+
+
     public Deckgrid() throws FileNotFoundException {
         uploadCards();
         deckColumn.put(Colour.GREEN,0);
@@ -32,6 +34,11 @@ public class Deckgrid {
         for(Deck d: decks){
             d.shuffle();
         }
+    }
+
+    //for testing activateProductionFromDevCard() in PersonalBoardTest class.
+    public ArrayList<DevelopmentCard> getCards() {
+        return cards;
     }
 
     /**

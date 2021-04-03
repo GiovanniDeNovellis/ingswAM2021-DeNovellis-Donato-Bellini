@@ -19,10 +19,10 @@ public class Level {
      * @return True or false if the request is correct.
      */
     boolean addResources(ResourceType type, int quantity){
-        if(quantity>maxDimension ) return false;
+        //Todo( ogni risorsa che non può essere aggiunta si trasforma in un punto fede per tutti gli altri giocatori)
+        if(quantity>maxDimension) return false;
         this.currentResourceType=type;
         this.numResources=quantity;
-        //TODO add points to the other players if discarding resources
         return true;
     }
 
@@ -33,7 +33,7 @@ public class Level {
      * @param quantity Quantity to get.
      * @return  True or false if the request is correct.
      */
-    boolean getResources(int quantity){
+    boolean removeResources(int quantity){
         if(quantity>this.numResources || quantity <0) return false;
         this.numResources-=quantity;
         if(this.numResources==0) this.currentResourceType=null;

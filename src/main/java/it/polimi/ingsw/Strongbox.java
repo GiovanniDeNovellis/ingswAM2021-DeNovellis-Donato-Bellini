@@ -23,8 +23,9 @@ public class Strongbox {
     public void addResources(ResourceType resource, int quantity){
         if(quantity<0)
             quantity=0;
-        if( resourcesContained.get(resource)!= null )
+        if( resourcesContained.get(resource)!= null && resource != ResourceType.FAITHPOINTS)
             quantity += resourcesContained.get(resource);
+        if( resource != ResourceType.FAITHPOINTS )
         resourcesContained.put(resource, quantity);
     }
 
@@ -75,7 +76,12 @@ public class Strongbox {
 
     /** getNumOf allows the player to know the number of a specific resource contained in the strongbox. */
     public int getNumOf( ResourceType resource ){
-        numOf = resourcesContained.get(resource);
-        return numOf;
+
+        if( resourcesContained.get(resource) != null ) {
+            numOf = resourcesContained.get(resource);
+            return numOf;
+        }
+        else
+            return 0;
     }
 }

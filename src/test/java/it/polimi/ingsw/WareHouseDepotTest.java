@@ -30,10 +30,10 @@ class WareHouseDepotTest {
         whouse.getLevel(1).addResources(ResourceType.SHIELDS,1);
         whouse.getLevel(2).addResources(ResourceType.COINS,1);
         whouse.getLevel(3).addResources(ResourceType.STONES,3);
-        whouse.getLevel(1).getResources(1);
+        whouse.getLevel(1).removeResources(1);
         assertEquals(0,whouse.getLevel(1).getCurrNumResources());
         assertNull(whouse.getLevel(1).getResourceType());
-        whouse.getLevel(3).getResources(0);
+        whouse.getLevel(3).removeResources(0);
         assertEquals(3, whouse.getLevel(3).getCurrNumResources());
         assertEquals(ResourceType.STONES,whouse.getLevel(3).getResourceType());
     }
