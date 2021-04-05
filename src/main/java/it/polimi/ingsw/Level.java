@@ -1,10 +1,30 @@
 package it.polimi.ingsw;
 
+/**
+ * This class represents a level of the game's warehouse.
+ * It contains only one type of resource and it's
+ * capacity is fixed.
+ */
 public class Level {
+    /**
+     * The current resource type
+     * contained int the level.
+     */
     private ResourceType currentResourceType;
+    /**
+     * The maximum capacity of the level.
+     */
     private int maxDimension;
+    /**
+     * Current number of resources
+     * stored in the level.
+     */
     private int numResources;
 
+    /**
+     * Builds the level of the specified dimension.
+     * @param maxDimension Level's dimension.
+     */
     public Level(int maxDimension) {
         this.numResources=0;
         this.maxDimension=maxDimension;
@@ -18,7 +38,7 @@ public class Level {
      * @param quantity Quantity of resource
      * @return True or false if the request is correct.
      */
-    boolean addResources(ResourceType type, int quantity){
+    public boolean addResources(ResourceType type, int quantity){
         //Todo( ogni risorsa che non può essere aggiunta si trasforma in un punto fede per tutti gli altri giocatori)
         if(quantity>maxDimension) return false;
         this.currentResourceType=type;
@@ -33,7 +53,7 @@ public class Level {
      * @param quantity Quantity to get.
      * @return  True or false if the request is correct.
      */
-    boolean removeResources(int quantity){
+    public boolean removeResources(int quantity){
         if(quantity>this.numResources || quantity <0) return false;
         this.numResources-=quantity;
         if(this.numResources==0) this.currentResourceType=null;
@@ -45,14 +65,14 @@ public class Level {
      * stored into the level.
      * @return Number of resources.
      */
-    int getCurrNumResources(){return this.numResources; }
+    public int getCurrNumResources(){return this.numResources; }
 
     /**
      * Returns the maximum number of resources storable
      * into the level.
      * @return Max num of resources.
      */
-    int getMaxNumResources(){return this.maxDimension;}
+    public int getMaxNumResources(){return this.maxDimension;}
 
     /** Returns the current type of resource
      * stored into the level.

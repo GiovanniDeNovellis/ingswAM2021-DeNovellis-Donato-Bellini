@@ -24,16 +24,22 @@ class PersonalBoardTest {
     }
 
     @Test
-    void insertResources() {
+    void insertResourcesAndSwitchLevelsTest() {
         PersonalBoard personalBoard = new PersonalBoard();
         assertFalse(personalBoard.insertResources(ResourceType.SHIELDS, 1, 2));
         assertTrue(personalBoard.insertResources(ResourceType.SHIELDS, 1, 1));
         assertFalse(personalBoard.insertResources(ResourceType.COINS, 2, 3));
-        assertTrue(personalBoard.insertResources(ResourceType.SHIELDS, 2, 1));
+        assertFalse(personalBoard.insertResources(ResourceType.SHIELDS, 2, 1));
         //TOREVIEW    assertFalse( personalBoard.insertResources(ResourceType.SERVANTS, 2 , 1));
-        assertTrue(personalBoard.insertResources(ResourceType.SHIELDS, 2, 1));
         assertFalse(personalBoard.insertResources(ResourceType.SERVANTS, 3, 4));
-        assertTrue(personalBoard.insertResources(ResourceType.SHIELDS, 3, 3));
+        assertTrue(personalBoard.insertResources(ResourceType.COINS, 3, 1));
+        assertTrue(personalBoard.insertResources(ResourceType.COINS, 3, 2));
+        assertFalse(personalBoard.insertResources(ResourceType.COINS, 3, 3));
+        assertTrue(personalBoard.insertResources(ResourceType.STONES, 2, 1));
+        assertTrue(personalBoard.switchLevels(1,2));
+        assertEquals(ResourceType.STONES,personalBoard.getWarehouseDepot().getLevel(1).getResourceType());
+        assertEquals(ResourceType.SHIELDS,personalBoard.getWarehouseDepot().getLevel(2).getResourceType());
+        assertEquals(ResourceType.COINS,personalBoard.getWarehouseDepot().getLevel(3).getResourceType());
     }
 
 

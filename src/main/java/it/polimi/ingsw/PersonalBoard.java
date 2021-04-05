@@ -91,7 +91,14 @@ public class PersonalBoard {
      * and the method add the resources chosen into the level chosen by the player.
      */
     public boolean insertResources(ResourceType resource, int level, int quantity) {
-        return warehouseDepot.getLevel(level).addResources(resource, quantity);
+        for(int i=1; i<=3; i++){
+            if(warehouseDepot.getLevel(i).getResourceType()==null){}
+            else if(i!=level && warehouseDepot.getLevel(i).getResourceType().equals(resource)) return false;
+        }
+        if(warehouseDepot.getLevel(level).getResourceType()!=resource && warehouseDepot.getLevel(level)
+            .getResourceType()!=null) return false;
+        int oldQuantity=warehouseDepot.getLevel(level).getCurrNumResources();
+        return warehouseDepot.getLevel(level).addResources(resource, oldQuantity+quantity);
     }
 
     /**
@@ -307,6 +314,24 @@ public class PersonalBoard {
                 strongbox.addResources(resource, resourcesToAddToStrongbox.get(resource));
         }
         resourcesToAddToStrongbox.clear();
+    }
+
+    /**
+     * Method called to swap the resources from two levels.
+     * @param maxSlotsFirst The first level to swap.
+     * @param maxSlotsSecond The second level to swap.
+     * @return True if the swap is possible, false if not.
+     */
+    public boolean switchLevels(int maxSlotsFirst, int maxSlotsSecond){
+        return this.warehouseDepot.switchLevels(maxSlotsFirst, maxSlotsSecond);
+    }
+
+    /**
+     * For whitebox testing
+     * @return the board's warehouse depot
+     */
+    public WareHouseDepot getWarehouseDepot() {
+        return warehouseDepot;
     }
 }
 

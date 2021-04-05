@@ -2,9 +2,24 @@ package it.polimi.ingsw;
 
 import java.util.TreeMap;
 
+/**
+ * Represents the warehouse depot. Through this
+ * class, every player can interact with three levels
+ * where he can store resources. Different levels of
+ * this class, can't have the same type of resource.
+ */
 public class WareHouseDepot {
+    /**
+     * Map associating an integer representing
+     * the maximum capacity to the corresponding level.
+     */
     private final TreeMap<Integer, Level> warehouseLevels;
     //Todo( ogni risorsa che non può essere aggiunta si trasforma in un punto fede per tutti gli altri giocatori)
+
+    /**
+     * Build the warehouse with three levels capable
+     * of storing 1,2 and 3 resources.
+     */
     public WareHouseDepot(){
         this.warehouseLevels = new TreeMap<>();
         Level level1 = new Level(1);
@@ -21,4 +36,25 @@ public class WareHouseDepot {
      * @return The level selected.
      */
     public Level getLevel(int maxSlots){return warehouseLevels.get(maxSlots);}
+
+    /**
+     * Method called to swap the resources from two levels.
+     * @param maxSlotsFirst The first level to swap.
+     * @param maxSlotsSecond The second level to swap.
+     * @return True if the swap is possible, false if not.
+     */
+    public boolean switchLevels(int maxSlotsFirst, int maxSlotsSecond){
+        int firstLvlSize = warehouseLevels.get(maxSlotsFirst).getMaxNumResources();
+        int firstLvlCurr = warehouseLevels.get(maxSlotsFirst).getCurrNumResources();
+        int secondLvlSize = warehouseLevels.get(maxSlotsSecond).getMaxNumResources();
+        int secondLvlCurr = warehouseLevels.get(maxSlotsSecond).getCurrNumResources();
+        if(firstLvlCurr>secondLvlSize || secondLvlCurr > firstLvlSize){
+            return false;
+        }
+        ResourceType res1 = warehouseLevels.get(maxSlotsFirst).getResourceType();
+        ResourceType res2 = warehouseLevels.get(maxSlotsSecond).getResourceType();
+        warehouseLevels.get(maxSlotsFirst).addResources(res2,secondLvlCurr);
+        warehouseLevels.get(maxSlotsSecond).addResources(res1,firstLvlCurr);
+        return true;
+    }
 }
