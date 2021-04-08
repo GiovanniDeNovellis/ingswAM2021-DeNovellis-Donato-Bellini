@@ -29,7 +29,7 @@ public class Deck {
      * if the Deck is empty.
      * @return Card returned.
      */
-    public DevelopmentCard getCard(){
+    public DevelopmentCard removeCard(){
         try {
             DevelopmentCard d = cards.get(0);
             cards.remove(0);
@@ -37,6 +37,17 @@ public class Deck {
         }
         catch(IndexOutOfBoundsException e){return null;}
     }
+
+
+    public DevelopmentCard readCard(){
+        try {
+            return cards.get(0);
+        }
+        catch(IndexOutOfBoundsException e){return null;}
+    }
+
+
+
 
     /**
      * Method used for whitebox testing.

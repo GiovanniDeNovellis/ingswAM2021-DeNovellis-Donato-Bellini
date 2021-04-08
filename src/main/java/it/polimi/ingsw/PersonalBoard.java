@@ -4,9 +4,15 @@ import java.util.TreeMap;
 
 public class PersonalBoard {
 
+    public PersonalBoard(Player player){
+        this.player = player;
+    }
+    private Player player;
+
+    private int totDevCards = 0;
+
     private Strongbox strongbox = new Strongbox();
     private WareHouseDepot warehouseDepot = new WareHouseDepot();
-    private Level level;
     /**
      * developmentCard[] attribute represent the three slots located in the personal board where developmentCards
      * can be positioned
@@ -32,15 +38,21 @@ public class PersonalBoard {
                 if (card.getLevel() == 1) {
                     if (card.buyCard(this)) {
                         developmentCard[position] = card;
+                        totDevCards++;
+                        if( totDevCards>=7 )
+                            player.getGame().setEndGame(true);
                         return true;
                     }
                     else return false;
                 }
             } else if (developmentCard[position].getLevel() == 1) {
                 if (card.getLevel() == 2) {
-                    //Todo( aggiungere ai victoryPoints del player i victory points della carta coperta )
                     if (card.buyCard(this)) {
+                        player.addVictoryPoints( developmentCard[position].getVictoryPoints() );
                         developmentCard[position] = card;
+                        totDevCards++;
+                        if( totDevCards>=7 )
+                            player.getGame().setEndGame(true);
                         return true;
                     }
                     else return false;
@@ -48,7 +60,11 @@ public class PersonalBoard {
             } else if (developmentCard[position].getLevel() == 2) {
                 if (card.getLevel() == 3) {
                     if (card.buyCard(this)) {
+                        player.addVictoryPoints( developmentCard[position].getVictoryPoints() );
                         developmentCard[position] = card;
+                        totDevCards++;
+                        if( totDevCards>=7 )
+                            player.getGame().setEndGame(true);
                         return true;
                     }
                     else return false;
@@ -122,6 +138,8 @@ public class PersonalBoard {
      */
     public boolean activateProductionFromPersonalBoard( ResourceType resourceType1, ResourceType resourceType2,
                                                         ResourceType obtainedResource ){
+        if( obtainedResource == ResourceType.FAITHPOINTS )
+            return false;
         if( checkResourcesIntoWarehouse(resourceType1, 1) ){
             takeResourcesFromWarehouse(resourceType1, 1);
         }
@@ -140,7 +158,6 @@ public class PersonalBoard {
 
         addResourceToStrongboxTemp(obtainedResource, 1);
         return true;
-        //Todo( se la risorsa è FAITHPOINTS non va aggiunta alla strongbox ma va aggiunto un punto fede al player! )
 
     }
 
@@ -300,8 +317,6 @@ public class PersonalBoard {
         resourcesToAddToStrongbox.put(resource, quantity);
     }
 
-    //Todo( se la risorsa è FAITHPOINTS non va aggiunta alla strongbox ma va aggiunto un punto fede al player! )
-
 
     /**
      * fromStrongboxTempToStrongbox method puts into the strongbox's player all the resources earned with all the
@@ -309,9 +324,10 @@ public class PersonalBoard {
      */
     public void fromStrongboxTempToStrongbox(){
         for (ResourceType resource : resourcesToAddToStrongbox.keySet()) {
-            //Todo( se la risorsa è FAITHPOINTS non va aggiunta alla strongbox ma va aggiunto un punto fede al player! )
             if( resource!= ResourceType.FAITHPOINTS )
                 strongbox.addResources(resource, resourcesToAddToStrongbox.get(resource));
+            else
+                player.addFaithPointsAndCallAudience(resourcesToAddToStrongbox.get(resource));
         }
         resourcesToAddToStrongbox.clear();
     }
@@ -332,6 +348,16 @@ public class PersonalBoard {
      */
     public WareHouseDepot getWarehouseDepot() {
         return warehouseDepot;
+    }
+
+    public int getTopCardsVictoryPoints(){
+        int tot = 0;
+        for( int i=0; i<3; i++ ) {
+            if( developmentCard[i] != null ) {
+               tot += developmentCard[i].getVictoryPoints();
+            }
+        }
+        return tot;
     }
 }
 

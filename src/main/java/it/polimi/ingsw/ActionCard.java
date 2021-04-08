@@ -43,7 +43,7 @@ class RemoveDevCard extends ActionCard {
             int counter=0;
             int l = 1;
             while (counter<2 && l<4){
-                if(deck.getCard(l,colour)!=null) {
+                if(deck.removeCard(l,colour)!=null) {
                     counter++;
                 }else{
                     l++;

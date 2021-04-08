@@ -61,8 +61,8 @@ public class Deckgrid {
      * @param colour Colour of the card.
      * @return The card selected.
      */
-    public DevelopmentCard getCard(int level, Colour colour){
-        return decks[deckColumn.get(colour) + level-1].getCard();
+    public DevelopmentCard removeCard(int level, Colour colour){
+        return decks[deckColumn.get(colour) + level-1].removeCard();
     }
 
     /*
@@ -72,4 +72,8 @@ public class Deckgrid {
         for( DevelopmentCard c : d.cards)
             c.printCards();
     }*/
+
+    public DevelopmentCard readCard(int level, Colour colour){
+        return decks[deckColumn.get(colour) + level-1].readCard();
+    }
 }

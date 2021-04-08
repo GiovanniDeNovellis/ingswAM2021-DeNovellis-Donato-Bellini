@@ -28,46 +28,46 @@ class ActionCardTest{
         RemoveDevCard rd = new RemoveDevCard(Colour.PURPLE,d);
         rd.activate();
         rd.activate();
-        assertNull(d.getCard(1,Colour.PURPLE));
+        assertNull(d.removeCard(1,Colour.PURPLE));
         rd.activate();
         rd.activate();
-        assertNull(d.getCard(2,Colour.PURPLE));
+        assertNull(d.removeCard(2,Colour.PURPLE));
         rd.activate();
         rd.activate();
-        assertNull(d.getCard(3,Colour.PURPLE));
+        assertNull(d.removeCard(3,Colour.PURPLE));
 
         rd = new RemoveDevCard(Colour.GREEN,d);
         rd.activate();
         rd.activate();
-        assertNull(d.getCard(1,Colour.GREEN));
+        assertNull(d.removeCard(1,Colour.GREEN));
         rd.activate();
         rd.activate();
-        assertNull(d.getCard(2,Colour.GREEN));
+        assertNull(d.removeCard(2,Colour.GREEN));
         rd.activate();
         rd.activate();
-        assertNull(d.getCard(3,Colour.GREEN));
+        assertNull(d.removeCard(3,Colour.GREEN));
 
         rd = new RemoveDevCard(Colour.BLUE,d);
         rd.activate();
         rd.activate();
-        assertNull(d.getCard(1,Colour.BLUE));
+        assertNull(d.removeCard(1,Colour.BLUE));
         rd.activate();
         rd.activate();
-        assertNull(d.getCard(2,Colour.BLUE));
+        assertNull(d.removeCard(2,Colour.BLUE));
         rd.activate();
         rd.activate();
-        assertNull(d.getCard(3,Colour.BLUE));
+        assertNull(d.removeCard(3,Colour.BLUE));
 
         rd = new RemoveDevCard(Colour.YELLOW,d);
         rd.activate();
-        assertEquals(Colour.YELLOW,d.getCard(1,Colour.YELLOW).getColour());
-        assertEquals(Colour.YELLOW,d.getCard(1,Colour.YELLOW).getColour());
-        assertNull(d.getCard(1,Colour.YELLOW));
+        assertEquals(Colour.YELLOW,d.removeCard(1,Colour.YELLOW).getColour());
+        assertEquals(Colour.YELLOW,d.removeCard(1,Colour.YELLOW).getColour());
+        assertNull(d.removeCard(1,Colour.YELLOW));
         rd.activate();
         rd.activate();
-        assertNull(d.getCard(2,Colour.YELLOW));
+        assertNull(d.removeCard(2,Colour.YELLOW));
         rd.activate();
         rd.activate();
-        assertNull(d.getCard(3,Colour.YELLOW));
+        assertNull(d.removeCard(3,Colour.YELLOW));
     }
 }

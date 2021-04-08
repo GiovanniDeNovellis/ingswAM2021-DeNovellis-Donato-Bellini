@@ -52,7 +52,6 @@ public class Strongbox {
         for (ResourceType resource : resourcesContained.keySet()) {
             victoryPoints += resourcesContained.get(resource);
         }
-        victoryPoints /= 5;
     return victoryPoints;
     }
 

@@ -10,7 +10,8 @@ class PersonalBoardTest {
     @Test
     void insertCard() throws FileNotFoundException {
         Deckgrid deckgrid = new Deckgrid();
-        PersonalBoard personalBoard = new PersonalBoard();
+        Player player = new Player();
+        PersonalBoard personalBoard = new PersonalBoard(player);
         assertTrue(personalBoard.insertResources(ResourceType.SHIELDS, 3, 3));
         personalBoard.getStrongbox().addResources(ResourceType.SHIELDS, 1);
         assertFalse(personalBoard.insertCard(deckgrid.getCards().get(16), 0));
@@ -25,12 +26,12 @@ class PersonalBoardTest {
 
     @Test
     void insertResourcesAndSwitchLevelsTest() {
-        PersonalBoard personalBoard = new PersonalBoard();
+        Player player = new Player();
+        PersonalBoard personalBoard = new PersonalBoard(player);
         assertFalse(personalBoard.insertResources(ResourceType.SHIELDS, 1, 2));
         assertTrue(personalBoard.insertResources(ResourceType.SHIELDS, 1, 1));
         assertFalse(personalBoard.insertResources(ResourceType.COINS, 2, 3));
         assertFalse(personalBoard.insertResources(ResourceType.SHIELDS, 2, 1));
-        //TOREVIEW    assertFalse( personalBoard.insertResources(ResourceType.SERVANTS, 2 , 1));
         assertFalse(personalBoard.insertResources(ResourceType.SERVANTS, 3, 4));
         assertTrue(personalBoard.insertResources(ResourceType.COINS, 3, 1));
         assertTrue(personalBoard.insertResources(ResourceType.COINS, 3, 2));
@@ -45,7 +46,8 @@ class PersonalBoardTest {
 
     @Test
     void activateProductionFromDevCard() throws FileNotFoundException {
-        PersonalBoard personalBoard = new PersonalBoard();
+        Player player = new Player();
+        PersonalBoard personalBoard = new PersonalBoard(player);
         Deckgrid deckgrid = new Deckgrid();
         assertTrue( personalBoard.insertResources(ResourceType.COINS, 1, 1) );
         assertTrue( personalBoard.insertResources(ResourceType.SHIELDS, 2, 2) );
@@ -70,7 +72,8 @@ class PersonalBoardTest {
 
     @Test
     void chekResourcesIntoWarehouse(){
-        PersonalBoard personalBoard = new PersonalBoard();
+        Player player = new Player();
+        PersonalBoard personalBoard = new PersonalBoard(player);
         assertTrue( personalBoard.insertResources(ResourceType.COINS, 1, 1) );
         assertTrue( personalBoard.checkResourcesIntoWarehouse(ResourceType.COINS, 1));
         assertTrue( personalBoard.insertResources(ResourceType.SHIELDS, 2, 1) );
@@ -84,7 +87,8 @@ class PersonalBoardTest {
 
     @Test
     void checkResourcesIntoStrongbox(){
-        PersonalBoard personalBoard = new PersonalBoard();
+        Player player = new Player();
+        PersonalBoard personalBoard = new PersonalBoard(player);
         personalBoard.getStrongbox().addResources(ResourceType.COINS, 1);
         assertTrue( personalBoard.checkResourcesIntoStrongbox(ResourceType.COINS, 1));
         personalBoard.getStrongbox().addResources(ResourceType.SHIELDS, 1);
@@ -102,7 +106,8 @@ class PersonalBoardTest {
 
     @Test
     void takeResourcesFromStrongbox(){
-        PersonalBoard personalBoard = new PersonalBoard();
+        Player player = new Player();
+        PersonalBoard personalBoard = new PersonalBoard(player);
         personalBoard.getStrongbox().addResources(ResourceType.COINS, 1);
         assertTrue( personalBoard.takeResourcesFromStrongbox(ResourceType.COINS, 1));
         personalBoard.getStrongbox().addResources(ResourceType.SHIELDS, 1);
@@ -117,7 +122,8 @@ class PersonalBoardTest {
 
     @Test
     void takeResourcesFromWarehouse(){
-        PersonalBoard personalBoard = new PersonalBoard();
+        Player player = new Player();
+        PersonalBoard personalBoard = new PersonalBoard(player);
         personalBoard.insertResources(ResourceType.COINS, 1, 1);
         assertTrue( personalBoard.takeResourcesFromWarehouse(ResourceType.COINS, 1));
         personalBoard.insertResources(ResourceType.SHIELDS, 1, 1);
@@ -132,7 +138,8 @@ class PersonalBoardTest {
 
     @Test
     void missingResourcesIntoWarehouse(){
-        PersonalBoard personalBoard = new PersonalBoard();
+        Player player = new Player();
+        PersonalBoard personalBoard = new PersonalBoard(player);
         assertTrue(personalBoard.insertResources(ResourceType.SHIELDS, 3, 3));
         personalBoard.getStrongbox().addResources(ResourceType.SHIELDS, 1);
         assertEquals( 1, personalBoard.missingResourcesIntoWarehouse(ResourceType.SHIELDS, 4));
@@ -154,7 +161,8 @@ class PersonalBoardTest {
 
     @Test
     void missingResourcesIntoWarehouseWithoutRemove(){
-        PersonalBoard personalBoard = new PersonalBoard();
+        Player player = new Player();
+        PersonalBoard personalBoard = new PersonalBoard(player);
         assertTrue(personalBoard.insertResources(ResourceType.SHIELDS, 3, 3));
         personalBoard.getStrongbox().addResources(ResourceType.SHIELDS, 1);
         assertEquals( 1, personalBoard.missingResourcesIntoWarehouseWithoutRemove(ResourceType.SHIELDS, 4));
@@ -163,7 +171,8 @@ class PersonalBoardTest {
 
     @Test
     void finishProduction() throws FileNotFoundException {
-        PersonalBoard personalBoard = new PersonalBoard();
+        Player player = new Player();
+        PersonalBoard personalBoard = new PersonalBoard(player);
         Deckgrid deckgrid = new Deckgrid();
         assertTrue( personalBoard.insertResources(ResourceType.COINS, 1, 1) );
         assertTrue( personalBoard.insertResources(ResourceType.SHIELDS, 2, 2) );
@@ -213,7 +222,8 @@ class PersonalBoardTest {
 
     @Test
     void activateProductionFromPersonalBoard(){
-        PersonalBoard personalBoard = new PersonalBoard();
+        Player player = new Player();
+        PersonalBoard personalBoard = new PersonalBoard(player);
         assertTrue( personalBoard.insertResources(ResourceType.COINS, 1, 1) );
         assertTrue( personalBoard.insertResources(ResourceType.SHIELDS, 2, 2) );
         assertTrue( personalBoard.activateProductionFromPersonalBoard(ResourceType.COINS, ResourceType.SHIELDS, ResourceType.STONES) );

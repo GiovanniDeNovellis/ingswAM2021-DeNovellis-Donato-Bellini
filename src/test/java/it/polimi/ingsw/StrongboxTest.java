@@ -52,7 +52,7 @@ class StrongboxTest{
         strongbox.addResources(STONES, 3);
         strongbox.addResources(STONES, 3);
         strongbox.addResources(COINS, 0);
-        assertEquals(1, strongbox.getVictoryPoints());
+        assertEquals(9, strongbox.getVictoryPoints());
     }
 
     @Test

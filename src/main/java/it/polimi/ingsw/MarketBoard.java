@@ -15,6 +15,7 @@ import java.util.TreeMap;
  * or discard.
  */
 public class MarketBoard {
+
     /**
      * The grid of the marbles.
      */
@@ -30,6 +31,7 @@ public class MarketBoard {
      * a resource, all the other players will get one FaithPoint.
      */
     private TreeMap<ResourceType, Integer> temporaryResources = new TreeMap<>();
+
 
     /**
      * Builds the marketBoard with all the Marbles
@@ -111,17 +113,17 @@ public class MarketBoard {
         return temporaryResources;
     }
 
+    /*
     /**
      * Discards the resources left in the TemporaryResources list.
-     */
+
     public void discardTemporaryResources(){
         for(ResourceType r: temporaryResources.keySet()){
             //TODO AGGIUNGI PUNTI FEDE A TUTTI I GIOCATORI TRANNE IL CORRENTE
         }
         temporaryResources.clear();
     }
-
-    //TODO store resources selected by the player.
+    */
 
     /**
      * Testing method used for printing the MarketGrid.
