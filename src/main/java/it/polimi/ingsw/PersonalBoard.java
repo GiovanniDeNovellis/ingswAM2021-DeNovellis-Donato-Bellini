@@ -81,24 +81,32 @@ public class PersonalBoard {
      * else it takes all the possible resources from the warehouse and it takes the remaining resources from the strongbox.
      * If the player hasn't got the necessary resources summing resources in his strongbox plus resources in his warehouse
      * to pay the card, the method returns false and it doesn't take any resources from warehouse and strongbox.
-     * @param resourceType is one of the resource type to pay the card
-     * @param quantity is the quantity of that resource type
+     * @param cost contains resource types to pay the card and relatives quantity
      * @return boolean
      */
-    public boolean payDevelopmentCard( ResourceType resourceType, int quantity ) {
-        if( checkResourcesIntoWarehouse(resourceType, quantity) ){
-            takeResourcesFromWarehouse(resourceType, quantity);
-            return true;
-        }
-        else{
-            int missingQuantity = missingResourcesIntoWarehouseWithoutRemove(resourceType, quantity);
-            if (checkResourcesIntoStrongbox(resourceType, missingQuantity)) {
-                missingQuantity = missingResourcesIntoWarehouse(resourceType, quantity);
-                takeResourcesFromStrongbox(resourceType, missingQuantity);
-                return true;
+    public boolean payDevelopmentCard( TreeMap<ResourceType, Integer> cost ) {
+        boolean check = true;
+        for( ResourceType resourceType: cost.keySet() ) {
+            check = checkResourcesIntoWarehouse(resourceType, cost.get(resourceType));
+            if (!check) {
+                int missingQuantity = missingResourcesIntoWarehouseWithoutRemove(resourceType, cost.get(resourceType));
+                if (!checkResourcesIntoStrongbox(resourceType, missingQuantity)) {
+                    return false;
+                }
             }
         }
-        return false;
+        for( ResourceType resourceType: cost.keySet() ) {
+            if (checkResourcesIntoWarehouse(resourceType, cost.get(resourceType))) {
+                takeResourcesFromWarehouse(resourceType, cost.get(resourceType));
+            } else {
+                int missingQuantity = missingResourcesIntoWarehouseWithoutRemove(resourceType, cost.get(resourceType));
+                if (checkResourcesIntoStrongbox(resourceType, missingQuantity)) {
+                    missingQuantity = missingResourcesIntoWarehouse(resourceType, cost.get(resourceType));
+                    takeResourcesFromStrongbox(resourceType, missingQuantity);
+                }
+            }
+        }
+        return true;
     }
 
     /**

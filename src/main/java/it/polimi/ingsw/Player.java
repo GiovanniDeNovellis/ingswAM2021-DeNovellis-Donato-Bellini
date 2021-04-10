@@ -12,18 +12,22 @@ public class Player {
     private int[] faithCards = {2, 3, 4};
     private boolean inkwell = false;
     private int playerNumber;
-    private int victoryPoints;
+    private int victoryPoints = 0;
     private String nickname;
     private boolean isAFK = false;
     private boolean canEndTurn = false;
     private boolean initialDistribution = false;
     private int totNumOfRes = 0;
 
+    private Game game;
+
+    public void setGame(Game game){
+        this.game = game;
+    }
+
     public Game getGame() {
         return game;
     }
-
-    private Game game;
     //Todo( private LeaderCard[] choosableLeaderCards = new LeaderCard[](); )
 
 
@@ -169,12 +173,6 @@ public class Player {
     }
 
 
-
-
-        public void discardFaithCard(int whichCard){
-        faithCards[whichCard] = 0;
-    }
-
     //STRONGBOX, DEVCARDS, LEADERCARDS, POSITION(TRACCIATO)
     public void calculateVictoryPoints(){
         //Todo( a fine partita guarda i victory points delle leader cards rimaste al player e sommali ai victory points del player)
@@ -188,9 +186,7 @@ public class Player {
             numOfResWarehouse += warehouse.getLevel(i).getCurrNumResources();
         }
         //Todo( int numOfResSpecialDept = ... )
-        for( int j=0; j<3; j++){
-            numOfResTopDevCards += personalBoard.getTopCardsVictoryPoints();
-        }
+        numOfResTopDevCards += personalBoard.getTopCardsVictoryPoints();
         totNumOfRes = ( numOfResWarehouse + numOfResStrongbox ); //Todo(+ numOfResSpecialDept )
         depotsPoints =( numOfResWarehouse + numOfResStrongbox )/5; //Todo(+ numOfResSpecialDept )
         if( faithPoints >= 3 && faithPoints < 6 )

@@ -19,6 +19,14 @@ public class Game {
     private boolean gameStarted = false;
     private int WinnerPlayerNumber;
 
+    public Game getGame() {
+        return this;
+    }
+
+    public ArrayList<Player> getPlayers() {
+        return players;
+    }
+
     public void setEndGame(boolean endGame) {
         isEndGame = endGame;
     }
@@ -43,6 +51,7 @@ public class Game {
         }
         Player p = new Player();
         p.setNickname(nickname);
+        p.setGame(this);
         players.add(p);
         return true;
     }
@@ -158,7 +167,7 @@ public class Game {
         boolean canBuy = false;
         if( deckgrid.readCard(level, colour) == null )
             return false;
-        canBuy = ( currentPlayer.getPersonalBoard().insertCard(deckgrid.readCard(level, colour), slot) );
+        canBuy = ( currentPlayer.insertCard(deckgrid.readCard(level, colour), slot) );
         if( canBuy ){
             deckgrid.removeCard(level, colour);
             currentPlayer.setCanEndTurn(true);

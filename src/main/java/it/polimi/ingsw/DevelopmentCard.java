@@ -112,11 +112,10 @@ public class DevelopmentCard {
      * @return true if player can add that card
      */
     public boolean buyCard(PersonalBoard personalBoard){
-        for( ResourceType resource : cost.keySet()) {
-           if( !personalBoard.payDevelopmentCard(resource, cost.get(resource)) )
-               return false;
-        }
+
+            if( !personalBoard.payDevelopmentCard(cost) )
+                return false;
+
         return true;
     }
-
 }
