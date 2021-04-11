@@ -209,7 +209,4 @@ public class Player {
         int toSet = numOfResTopDevCards + depotsPoints + positionPoints; //Todo( + leaderCardsPoints )
         this.addVictoryPoints(toSet);
     }
-
-
-
 }

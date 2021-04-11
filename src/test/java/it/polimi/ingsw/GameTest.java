@@ -86,4 +86,158 @@ class GameTest {
         assertFalse(game.thirdAudience());
         assertFalse(game.thirdAudience());
     }
+
+    @Test
+    public void buyDevTest() throws FileNotFoundException {
+        Game game = new Game();
+        assertTrue( game.addPlayer("FirstPlayer"));
+        assertTrue( game.addPlayer("SecondPlayer"));
+        game.startMultiplayer();
+        game.getCurrentPlayer().insertResources(ResourceType.SHIELDS,2,2);
+        assertEquals(ResourceType.SHIELDS,game.getCurrentPlayer().getPersonalBoard().getWarehouseDepot().getLevel(2).getResourceType());
+        assertEquals(2,game.getCurrentPlayer().getPersonalBoard().getWarehouseDepot().getLevel(2).getCurrNumResources());
+        assertTrue(game.endTurn());
+        game.distributionResourceSecondThird(ResourceType.COINS);
+        game.getCurrentPlayer().setCanEndTurn(true);
+        assertTrue(game.endTurn());
+        if(!game.buyDevelopmentCard(1,Colour.GREEN,1)){
+            assertEquals(ResourceType.SHIELDS,game.getCurrentPlayer().getPersonalBoard().getWarehouseDepot().getLevel(2).getResourceType());
+            assertEquals(2,game.getCurrentPlayer().getPersonalBoard().getWarehouseDepot().getLevel(2).getCurrNumResources());
+            assertEquals(2,game.getCurrentPlayer().getPersonalBoard().getWarehouseDepot().getLevel(2).getMaxNumResources());
+            System.out.println("Carta non comprata");
+        }
+        else{
+            assertNull(game.getCurrentPlayer().getPersonalBoard().getWarehouseDepot().getLevel(2).getResourceType());
+            assertEquals(0,game.getCurrentPlayer().getPersonalBoard().getWarehouseDepot().getLevel(2).getCurrNumResources());
+            System.out.println("Carta comprata");
+        }
+    }
+
+    @Test
+    public void distributionSecondThirdTest() throws FileNotFoundException {
+        Game game = new Game();
+        game.addPlayer("First player");
+        game.addPlayer("Second player");
+        game.addPlayer("Third player");
+        assertTrue(game.startMultiplayer());
+        assertTrue(game.endTurn());
+        assertFalse(game.endTurn());
+        assertFalse(game.distributionResourceFourthPlayer(ResourceType.COINS,ResourceType.COINS));
+        assertTrue(game.distributionResourceSecondThird(ResourceType.SHIELDS));
+        assertEquals(ResourceType.SHIELDS,game.getCurrentPlayer().getPersonalBoard().getWarehouseDepot().getLevel(1).getResourceType());
+        assertEquals(1,game.getCurrentPlayer().getPersonalBoard().getWarehouseDepot().getLevel(1).getCurrNumResources());
+        assertEquals(1,game.getCurrentPlayer().getPersonalBoard().getWarehouseDepot().getLevel(1).getMaxNumResources());
+        assertTrue(game.endTurn());
+        assertTrue(game.distributionResourceSecondThird(ResourceType.STONES));
+        assertTrue(game.endTurn());
+        assertFalse(game.distributionResourceSecondThird(ResourceType.SERVANTS));
+    }
+
+    @Test
+    public void distributionFourthDiffTest() throws FileNotFoundException {
+        Game game = new Game();
+        game.addPlayer("First player");
+        game.addPlayer("Second player");
+        game.addPlayer("Third player");
+        game.addPlayer("Fourth player");
+        assertTrue(game.startMultiplayer());
+        assertTrue(game.endTurn());
+        assertTrue(game.distributionResourceSecondThird(ResourceType.STONES));
+        assertTrue(game.endTurn());
+        assertTrue(game.distributionResourceSecondThird(ResourceType.STONES));
+        assertTrue(game.endTurn());
+        assertEquals(4,game.getCurrentPlayer().getPlayerNumber());
+        assertFalse(game.endTurn());
+        assertFalse(game.distributionResourceSecondThird(ResourceType.SERVANTS));
+        assertTrue(game.distributionResourceFourthPlayer(ResourceType.STONES,ResourceType.SHIELDS));
+        assertEquals(ResourceType.STONES,game.getCurrentPlayer().getPersonalBoard().getWarehouseDepot().getLevel(1).getResourceType());
+        assertEquals(1,game.getCurrentPlayer().getPersonalBoard().getWarehouseDepot().getLevel(1).getCurrNumResources());
+        assertEquals(1,game.getCurrentPlayer().getPersonalBoard().getWarehouseDepot().getLevel(1).getMaxNumResources());
+        assertEquals(ResourceType.SHIELDS,game.getCurrentPlayer().getPersonalBoard().getWarehouseDepot().getLevel(2).getResourceType());
+        assertEquals(1,game.getCurrentPlayer().getPersonalBoard().getWarehouseDepot().getLevel(2).getCurrNumResources());
+        assertEquals(2,game.getCurrentPlayer().getPersonalBoard().getWarehouseDepot().getLevel(2).getMaxNumResources());
+        assertTrue(game.endTurn());
+        assertEquals(1,game.getCurrentPlayer().getPlayerNumber());
+        game.getCurrentPlayer().setCanEndTurn(true);
+        assertTrue(game.endTurn());
+        assertFalse(game.distributionResourceSecondThird(ResourceType.SERVANTS));
+        assertFalse(game.endTurn());
+    }
+
+    @Test
+    public void endGameDiffVictoryPointsTest() throws FileNotFoundException {
+        Game game = new Game();
+        game.addPlayer("First player");
+        game.addPlayer("Second player");
+        game.addPlayer("Third player");
+        game.addPlayer("Fourth player");
+        assertTrue(game.startMultiplayer());
+        game.getCurrentPlayer().addVictoryPoints(20);
+        assertTrue(game.endTurn());
+        assertTrue(game.distributionResourceSecondThird(ResourceType.COINS));
+        assertTrue(game.endTurn());
+        assertTrue(game.distributionResourceSecondThird(ResourceType.COINS));
+        assertTrue(game.endTurn());
+        assertFalse(game.distributionResourceSecondThird(ResourceType.COINS));
+        assertTrue(game.distributionResourceFourthPlayer(ResourceType.STONES,ResourceType.SHIELDS));
+        assertNull(game.getWinnerPlayer());
+        game.setEndGame(true);
+        assertTrue(game.endTurn());
+        assertEquals(1,game.getCurrentPlayer().getPlayerNumber());
+        assertNotNull(game.getWinnerPlayer());
+        assertEquals(1,game.getWinnerPlayerNumber());
+        assertEquals(1,game.getWinnerPlayer().getPlayerNumber());
+    }
+
+    @Test
+    public void endGameSameVictoryPointsTest() throws FileNotFoundException {
+        Game game = new Game();
+        game.addPlayer("First player");
+        game.addPlayer("Second player");
+        game.addPlayer("Third player");
+        assertTrue(game.startMultiplayer());
+        assertTrue(game.endTurn());
+        assertFalse(game.endTurn());
+        assertTrue(game.distributionResourceSecondThird(ResourceType.STONES));
+        assertFalse(game.distributionResourceSecondThird(ResourceType.SHIELDS));
+        assertEquals(ResourceType.STONES, game.getCurrentPlayer().getPersonalBoard().getWarehouseDepot().getLevel(1).getResourceType());
+        assertEquals(1, game.getCurrentPlayer().getPersonalBoard().getWarehouseDepot().getLevel(1).getCurrNumResources());
+        assertEquals(1, game.getCurrentPlayer().getPersonalBoard().getWarehouseDepot().getLevel(1).getMaxNumResources());
+        assertNull(game.getWinnerPlayer());
+        assertTrue(game.endTurn());
+        game.distributionResourceSecondThird(ResourceType.STONES);
+        game.setEndGame(true);
+        assertEquals(3,game.getCurrentPlayer().getPlayerNumber());
+        assertTrue(game.endTurn());
+        assertEquals(1,game.getCurrentPlayer().getPlayerNumber());
+        assertEquals(2,game.getWinnerPlayerNumber());
+        assertNotNull(game.getWinnerPlayer());
+    }
+
+    @Test
+    public void activateProductionPersonalBoardTest() throws FileNotFoundException {
+        Game game = new Game();
+        game.addPlayer("First player");
+        game.addPlayer("Second player");
+        game.startMultiplayer();
+        assertTrue(game.endTurn());
+        assertTrue(game.distributionResourceSecondThird(ResourceType.COINS));
+        assertTrue(game.endTurn());
+        game.getCurrentPlayer().insertResources(ResourceType.STONES,2,2);
+        boolean[] dev  = {false,false,false};
+        boolean[] lead  = {false,false};
+        assertTrue(game.activateProduction(dev, true, lead,ResourceType.STONES,ResourceType.STONES,ResourceType.SHIELDS ));
+        assertEquals(1,game.getCurrentPlayer().getPersonalBoard().getStrongbox().getNumOf(ResourceType.SHIELDS));
+        assertNull(game.getCurrentPlayer().getPersonalBoard().getWarehouseDepot().getLevel(2).getResourceType());
+        assertEquals(0,game.getCurrentPlayer().getPersonalBoard().getWarehouseDepot().getLevel(2).getCurrNumResources());
+        assertEquals(2,game.getCurrentPlayer().getPersonalBoard().getWarehouseDepot().getLevel(2).getMaxNumResources());
+        assertFalse(game.activateProduction(dev, true, lead,ResourceType.STONES,ResourceType.STONES,ResourceType.SHIELDS ));
+        assertTrue(game.endTurn());
+        boolean[] dev1  = {false,false,false};
+        boolean[] lead1  = {false,false};
+        assertTrue(game.activateProduction(dev1,true,lead1,ResourceType.COINS,ResourceType.STONES,ResourceType.SERVANTS));
+        assertEquals(0,game.getCurrentPlayer().getPersonalBoard().getStrongbox().getNumOf(ResourceType.SERVANTS));
+        assertEquals(1,game.getCurrentPlayer().getPersonalBoard().getWarehouseDepot().getLevel(1).getCurrNumResources());
+        assertEquals(ResourceType.COINS,game.getCurrentPlayer().getPersonalBoard().getWarehouseDepot().getLevel(1).getResourceType());
+    }
 }

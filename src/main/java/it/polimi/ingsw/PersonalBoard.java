@@ -148,21 +148,19 @@ public class PersonalBoard {
                                                         ResourceType obtainedResource ){
         if( obtainedResource == ResourceType.FAITHPOINTS )
             return false;
-        if( checkResourcesIntoWarehouse(resourceType1, 1) ){
-            takeResourcesFromWarehouse(resourceType1, 1);
-        }
-        else if( checkResourcesIntoStrongbox(resourceType1, 1) ){
-            takeResourcesFromStrongbox(resourceType1, 1);
-        }
+        boolean foundWare1=false,foundWare2=false;
+        if( checkResourcesIntoWarehouse(resourceType1, 1) )foundWare1=true;
+        else if( checkResourcesIntoStrongbox(resourceType1, 1) ) ;
         else return false;
 
-        if( checkResourcesIntoWarehouse(resourceType2, 1) ){
-            takeResourcesFromWarehouse(resourceType2, 1);
-        }
-        else if( checkResourcesIntoStrongbox(resourceType2, 1) ){
-            takeResourcesFromStrongbox(resourceType2, 1);
-        }
+        if( checkResourcesIntoWarehouse(resourceType2, 1) )foundWare2=true;
+        else if( checkResourcesIntoStrongbox(resourceType2, 1) );
         else return false;
+
+        if(foundWare1) takeResourcesFromWarehouse(resourceType1, 1);
+        else takeResourcesFromStrongbox(resourceType1, 1);
+        if(foundWare2) takeResourcesFromWarehouse(resourceType2, 1);
+        else takeResourcesFromStrongbox(resourceType2, 1);
 
         addResourceToStrongboxTemp(obtainedResource, 1);
         return true;

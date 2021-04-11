@@ -18,6 +18,13 @@ public class Game {
     private LorenzoSingleton lorenzo;
     private boolean gameStarted = false;
     private int WinnerPlayerNumber;
+    private Player winnerPlayer;
+    private boolean isEndGame = false;
+    private boolean actionCardDone = false;
+
+    public Player getCurrentPlayer() {
+        return currentPlayer;
+    }
 
     public Game getGame() {
         return this;
@@ -31,14 +38,9 @@ public class Game {
         isEndGame = endGame;
     }
 
-
     public MarketBoard getMarketBoard() {
         return marketBoard;
     }
-
-
-    private boolean isEndGame = false;
-
 
     //Todo( LeaderCardDeck leaderDeck; )
 
@@ -68,6 +70,8 @@ public class Game {
         return true;
     }
 
+
+
     public boolean startMultiplayer(){
         if( players.size()<=1 || players.size()>4 || gameStarted ) {
             return false;
@@ -80,6 +84,7 @@ public class Game {
             players.get(i).setPlayerNumber(i+1);
             if( i==0 ){
                 players.get(i).setInitialDistribution(true);
+                players.get(i).setCanEndTurn(true);
             }
             if( i==2){
                 players.get(i).addFaithPointsAndCallAudience(1);
@@ -96,6 +101,8 @@ public class Game {
         if( !currentPlayer.isInitialDistribution() || !currentPlayer.isCanEndTurn() ){
             return false;
         }
+        if(players.size()==1&&!actionCardDone) return false;
+        actionCardDone=false;
         if( !marketBoard.getTemporaryResources().isEmpty() ){
             discardRemainingResources();
         }
@@ -114,17 +121,19 @@ public class Game {
     }
 
 
-    public boolean distributionResourceType( ResourceType resourceType ){
-        if( currentPlayer.getPlayerNumber() == 2 || currentPlayer.getPlayerNumber() == 3 ) {
+    public boolean distributionResourceSecondThird( ResourceType resourceType ){
+        if( (currentPlayer.getPlayerNumber() == 2 || currentPlayer.getPlayerNumber() == 3)
+            && !currentPlayer.isInitialDistribution()) {
             currentPlayer.insertResources(resourceType, 1, 1);
             currentPlayer.setInitialDistribution(true);
+            currentPlayer.setCanEndTurn(true);
             return true;
         }
         return false;
     }
 
-    public boolean distributionResourceTypeFourthPlayer( ResourceType resourceType1, ResourceType resourceType2 ){
-        if( currentPlayer.getPlayerNumber() == 4 ) {
+    public boolean distributionResourceFourthPlayer( ResourceType resourceType1, ResourceType resourceType2 ){
+        if( currentPlayer.getPlayerNumber() == 4 && !currentPlayer.isInitialDistribution()) {
             if( resourceType1.equals(resourceType2) ) {
                 currentPlayer.insertResources(resourceType1, 2, 2);
             }
@@ -133,6 +142,7 @@ public class Game {
                 currentPlayer.insertResources(resourceType2, 2, 1);
             }
             currentPlayer.setInitialDistribution(true);
+            currentPlayer.setCanEndTurn(true);
             return true;
         }
         return false;
@@ -140,18 +150,22 @@ public class Game {
 
     public boolean endGame(){
         int maxPoints = 0;
-        int WinnerPlayerNumber = 0;
+        int WinnerPlayerNumber = 1;
 
         for( int i=0; i<players.size(); i++ ){
             players.get(i).calculateVictoryPoints();
             if( players.get(i).getVictoryPoints() == maxPoints ) {
-                if(players.get(WinnerPlayerNumber).getTotNumOfRes() <= players.get(i).getTotNumOfRes()) {
+                if(players.get(WinnerPlayerNumber-1).getTotNumOfRes() < players.get(i).getTotNumOfRes()) {
                     WinnerPlayerNumber = players.get(i).getPlayerNumber();
+                    this.WinnerPlayerNumber=WinnerPlayerNumber;
+                    winnerPlayer=players.get(WinnerPlayerNumber-1);
                 }
             }
             if ( players.get(i).getVictoryPoints() > maxPoints ) {
                 maxPoints = players.get(i).getVictoryPoints();
                 WinnerPlayerNumber = players.get(i).getPlayerNumber();
+                this.WinnerPlayerNumber=WinnerPlayerNumber;
+                winnerPlayer=players.get(WinnerPlayerNumber-1);
             }
         }
         return true;
@@ -191,6 +205,7 @@ public class Game {
                 obtainedResource!=null && obtainedResource!=ResourceType.FAITHPOINTS ){
             currentPlayer.getPersonalBoard().activateProductionFromPersonalBoard(resourceType1, resourceType2, obtainedResource);
         }
+        currentPlayer.getPersonalBoard().fromStrongboxTempToStrongbox();
         //TODO( WHICHlEADERcARDS.....
         currentPlayer.setCanEndTurn(true);
         return true;
@@ -208,6 +223,7 @@ public class Game {
     }
 
     public boolean insertResourcesIntoWarehouse( ResourceType resourceType, int quantityToAdd ){
+        if(marketBoard.getTemporaryResources().get(resourceType)==null) return false;
         int maxAddable = marketBoard.getTemporaryResources().get(resourceType);
         if( quantityToAdd > maxAddable || quantityToAdd <= 0 )
             return false;
@@ -234,16 +250,21 @@ public class Game {
         map = marketBoard.getTemporaryResources();
         for( ResourceType r: map.keySet() ){
             int pointsToAdd = map.get(r);
-            for (Player player : players) {
-                if (player.getPlayerNumber() != currentPlayer.getPlayerNumber()) {
-                    player.addFaithPointsWithoutCallingAudience(pointsToAdd);
-                }
+            if(players.size()==1){
+                lorenzo.addFaithPoints(pointsToAdd);
             }
-            for (Player player : players) {
-                if (player.getPlayerNumber() != currentPlayer.getPlayerNumber()) {
-                    player.endGameFaithPoints();
-                    if( !doneAudience ) {
-                        doneAudience = player.callAudience();
+            else {
+                for (Player player : players) {
+                    if (player.getPlayerNumber() != currentPlayer.getPlayerNumber()) {
+                        player.addFaithPointsWithoutCallingAudience(pointsToAdd);
+                    }
+                }
+                for (Player player : players) {
+                    if (player.getPlayerNumber() != currentPlayer.getPlayerNumber()) {
+                        player.endGameFaithPoints();
+                        if (!doneAudience) {
+                            doneAudience = player.callAudience();
+                        }
                     }
                 }
             }
@@ -285,6 +306,21 @@ public class Game {
             }
             player.setFaithCardsZero(2);
         }
+        return true;
+    }
+
+    public Player getWinnerPlayer() {
+        return winnerPlayer;
+    }
+
+    public int getWinnerPlayerNumber() {
+        return WinnerPlayerNumber;
+    }
+
+    public boolean activateActionCard(){
+        if(players.size()!=1 || !currentPlayer.isCanEndTurn()) return false;
+        actionCardStack.activateCard();
+        actionCardDone=true;
         return true;
     }
 }

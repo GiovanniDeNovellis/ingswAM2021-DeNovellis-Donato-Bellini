@@ -51,6 +51,7 @@ class RemoveDevCard extends ActionCard {
             }
             //if (l==4){
                 //TODO = implementare eccezione del fine partita
+
             //}
     }
 }

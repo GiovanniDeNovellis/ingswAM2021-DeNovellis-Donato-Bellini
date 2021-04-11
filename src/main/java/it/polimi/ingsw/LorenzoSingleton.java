@@ -21,5 +21,4 @@ public class LorenzoSingleton {
         return blackFaithPoints;
     }
 
-
 }

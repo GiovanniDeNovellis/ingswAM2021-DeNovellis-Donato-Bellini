@@ -23,6 +23,7 @@ public class ActionCardStack {
             cards [5] = new RemoveDevCard (Colour.GREEN,deck);
             cards [6] = new RemoveDevCard (Colour.YELLOW,deck);
     }
+
     /** Shuffle the index of the ActionCard array and randomize the drawing of the cards */
     public void Shuffle(){
         Random rnd = new Random();
@@ -32,5 +33,14 @@ public class ActionCardStack {
             this.cards[index] = this.cards[i];
             this.cards[i] = temp;
         }
+    }
+
+    public void activateCard(){
+        ActionCard c = cards[0];
+        for(int i=0; i< cards.length-1; i++){
+            cards[i]=cards[i+1];
+        }
+        cards[6]=c;
+        c.activate();
     }
 }
