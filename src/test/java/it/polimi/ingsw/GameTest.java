@@ -8,6 +8,69 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class GameTest {
 
+    @Test
+    void singlePlayerTest() throws FileNotFoundException{
+        Game game = new Game();
+        assertFalse(game.startSingleplayer());
+        game.addPlayer("Player 1");
+        assertTrue(game.startSingleplayer());
+        assertEquals(1,game.getPlayers().size());
+        game.addPlayer("Player 1");
+        assertFalse(game.startSingleplayer());
+        game.addPlayer("Player 2");
+        assertFalse(game.startSingleplayer());
+    }
+
+    @Test
+    void multiPlayerTest() throws FileNotFoundException{
+        Game game = new Game();
+        assertFalse(game.startMultiplayer());
+        assertTrue(game.addPlayer("Player 1"));
+        assertTrue(game.addPlayer("Player 2"));
+        assertTrue(game.addPlayer("Player 3"));
+        assertTrue(game.addPlayer("Player 4"));
+        assertTrue(game.startMultiplayer());
+        //Player 1 turn
+        assertEquals(0,game.getCurrentPlayer().getFaithPoints());
+        assertTrue(game.endTurn());
+        //Player 2 turn
+        assertEquals(0,game.getCurrentPlayer().getFaithPoints());
+        game.distributionResourceSecondThird(ResourceType.SHIELDS);
+        assertTrue(game.endTurn());
+        //Player 3 turn
+        assertEquals(1,game.getCurrentPlayer().getFaithPoints());
+        game.distributionResourceSecondThird(ResourceType.SHIELDS);
+        assertTrue(game.endTurn());
+        //Player 4 turn
+        assertEquals(1,game.getCurrentPlayer().getFaithPoints());
+        game.distributionResourceFourthPlayer(ResourceType.SHIELDS,ResourceType.COINS);
+        assertTrue(game.endTurn());
+
+        assertFalse(game.addPlayer("Player 5"));
+        assertFalse(game.startMultiplayer());
+    }
+
+    @Test
+    void insertResourcesIntoWarehouse () throws FileNotFoundException{
+        Game game = new Game();
+        game.addPlayer("Player 1");
+        game.addPlayer("Player 2");
+        game.addPlayer("Player 3");
+        game.startMultiplayer();
+        game.endTurn();
+        game.distributionResourceSecondThird(ResourceType.SHIELDS);
+        game.endTurn();
+        game.distributionResourceSecondThird(ResourceType.SHIELDS);
+        game.endTurn();
+        assertTrue(game.takeResourcesFromMarket(3,1));
+        ResourceType res = game.getMarketBoard().getTemporaryResources().firstKey();
+        int numOfThatRes = game.getMarketBoard().getTemporaryResources().get(res);
+        assertTrue(game.insertResourcesIntoWarehouse(res,numOfThatRes));
+        assertFalse(game.insertResourcesIntoWarehouse(res,numOfThatRes));
+        assertFalse(game.insertResourcesIntoWarehouse(res,numOfThatRes+10));
+        assertFalse(game.insertResourcesIntoWarehouse(res,numOfThatRes-10));
+    }
+
 
     @Test
     void addPlayer() throws FileNotFoundException {

@@ -21,6 +21,8 @@ public class Game {
     private Player winnerPlayer;
     private boolean isEndGame = false;
     private boolean actionCardDone = false;
+    private LeaderCardDeck leaderCardDeck = new LeaderCardDeck();
+
 
     public Player getCurrentPlayer() {
         return currentPlayer;
@@ -41,8 +43,6 @@ public class Game {
     public MarketBoard getMarketBoard() {
         return marketBoard;
     }
-
-    //Todo( LeaderCardDeck leaderDeck; )
 
     public Game() throws FileNotFoundException {
     }
@@ -82,6 +82,7 @@ public class Game {
         currentPlayer = players.get(0);
         for( int i = 0; i<players.size(); i++ ){
             players.get(i).setPlayerNumber(i+1);
+            leaderCardDeck.randomDistribute(players.get(i));
             if( i==0 ){
                 players.get(i).setInitialDistribution(true);
                 players.get(i).setCanEndTurn(true);

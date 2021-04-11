@@ -1,5 +1,7 @@
 package it.polimi.ingsw;
 
+import java.util.ArrayList;
+
 public class Player {
 
     private PersonalBoard personalBoard = new PersonalBoard(this);
@@ -18,8 +20,23 @@ public class Player {
     private boolean canEndTurn = false;
     private boolean initialDistribution = false;
     private int totNumOfRes = 0;
-
+    private ArrayList<LeaderCard> leaderCards = new ArrayList<>();
+    private boolean discardedLeaderCards = false;
     private Game game;
+
+    public boolean discardLeaderCards (int pos1,int pos2){
+        if (pos1<0 || pos1>=4 || pos2<0 || pos2>=4){
+            return false;
+        }
+        return true;
+    }
+    public void setDiscardedLeaderCards(boolean discardedLeaderCards) {
+        this.discardedLeaderCards = discardedLeaderCards;
+    }
+
+    public boolean hasDiscardedLeaderCards() {
+        return discardedLeaderCards;
+    }
 
     public void setGame(Game game){
         this.game = game;
@@ -28,8 +45,10 @@ public class Player {
     public Game getGame() {
         return game;
     }
-    //Todo( private LeaderCard[] choosableLeaderCards = new LeaderCard[](); )
 
+    public void addLeaderCards(LeaderCard leaderCard){
+        this.leaderCards.add(leaderCard);
+    }
 
     public boolean isCanEndTurn() {
         return canEndTurn;
