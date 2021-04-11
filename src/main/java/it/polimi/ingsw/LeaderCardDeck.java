@@ -27,7 +27,7 @@ public class LeaderCardDeck {
     }
     public void randomDistribute(Player player){
        for (int i=0;i<4;i++){
-           player.addLeaderCards(leaderCards.get(0));
+           player.addChoosableLeaderCards(leaderCards.get(0));
            leaderCards.remove(0);
        }
     }

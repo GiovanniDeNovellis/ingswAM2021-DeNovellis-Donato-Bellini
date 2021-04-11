@@ -1,12 +1,28 @@
 package it.polimi.ingsw;
 
 public abstract class LeaderCard {
-    private boolean isActive = false;
+    protected boolean active = false;
     private int victoryPoints;
     ResourceType resourceType;
+    Player owner;
 
-    public boolean setActive (){ return true; }
-    public boolean activateAbility(){ return true; }
+    public boolean setActive (){
+        return true; }
+
+    public boolean activateAbility(){
+        return true; }
+
+    public boolean isActive(){
+        return active;
+    }
+
+    public int getVictoryPoints() {
+        return victoryPoints;
+    }
+
+    public void setOwner(Player owner) {
+        this.owner = owner;
+    }
 }
 
 class LeaderCardDiscount extends LeaderCard{
@@ -20,6 +36,11 @@ class LeaderCardDiscount extends LeaderCard{
     }
     @Override
     public boolean setActive(){
+        if(owner.getCardColours().get(singleColour1)==null||owner.getCardColours().get(singleColour2)==null)
+            return false;
+        if(owner.getCardColours().get(singleColour1)<1||owner.getCardColours().get(singleColour2)<1||active)
+            return false;
+        active=true;
         return true;
     }
     @Override
@@ -38,7 +59,15 @@ class LeaderCardDeposit extends LeaderCard{
 
     @Override
     public boolean setActive(){
-        return true;
+        if(active)
+            return false;
+        int missing;
+        missing=owner.getPersonalBoard().missingResourcesIntoWarehouseWithoutRemove(resourceRequired,5);
+        if(owner.getPersonalBoard().checkResourcesIntoStrongbox(resourceRequired,missing)){
+            active=true;
+            return true;
+        }
+        return false;
     }
     @Override
     public boolean activateAbility(){
@@ -56,7 +85,13 @@ class LeaderCardProduction extends LeaderCard{
 
     @Override
     public boolean setActive(){
-        return true;
+        for(DevelopmentCard d: owner.getInsertedDevCards()){
+            if(d.getLevel()==2 && d.getColour().equals(level2CardColour)){
+                active=true;
+                return true;
+            }
+        }
+        return false;
     }
     @Override
     public boolean activateAbility(){
@@ -76,6 +111,9 @@ class LeaderCardTransformation extends LeaderCard{
 
     @Override
     public boolean setActive(){
+        if(owner.getCardColours().get(singleCardColour)==null || owner.getCardColours().get(singleCardColour)==null) return false;
+        if(owner.getCardColours().get(singleCardColour)<1||owner.getCardColours().get(doubleCardColour)<2||active) return false;
+        active=true;
         return true;
     }
     @Override

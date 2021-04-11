@@ -1,6 +1,8 @@
 package it.polimi.ingsw;
 
+
 import java.util.ArrayList;
+import java.util.TreeMap;
 
 public class Player {
 
@@ -9,8 +11,6 @@ public class Player {
      * 0<= faithPoints <= 24
      */
     private int faithPoints = 0;
-
-
     private int[] faithCards = {2, 3, 4};
     private boolean inkwell = false;
     private int playerNumber;
@@ -20,22 +20,36 @@ public class Player {
     private boolean canEndTurn = false;
     private boolean initialDistribution = false;
     private int totNumOfRes = 0;
-    private ArrayList<LeaderCard> leaderCards = new ArrayList<>();
-    private boolean discardedLeaderCards = false;
+    private ArrayList<LeaderCard> choosableLeaderCards = new ArrayList<>();
+    private ArrayList<LeaderCard> choosedLeaderCards = new ArrayList<>();
+    private boolean chosenLeaderCards = false;
     private Game game;
+    private boolean leaderActionDone=false;
 
-    public boolean discardLeaderCards (int pos1,int pos2){
+    public void setLeaderActionDone(boolean leaderActionDone) {
+        this.leaderActionDone = leaderActionDone;
+    }
+
+    public boolean isLeaderActionDone() {
+        return leaderActionDone;
+    }
+
+    public boolean chooseLeaderCards (int pos1, int pos2){
         if (pos1<0 || pos1>=4 || pos2<0 || pos2>=4){
             return false;
         }
+        choosedLeaderCards.add(choosableLeaderCards.get(pos1));
+        choosedLeaderCards.add(choosableLeaderCards.get(pos2));
+        choosedLeaderCards.get(0).setOwner(this);
+        choosedLeaderCards.get(1).setOwner(this);
         return true;
     }
-    public void setDiscardedLeaderCards(boolean discardedLeaderCards) {
-        this.discardedLeaderCards = discardedLeaderCards;
+    public void setChosenLeaderCards(boolean chosenLeaderCards) {
+        this.chosenLeaderCards = chosenLeaderCards;
     }
 
-    public boolean hasDiscardedLeaderCards() {
-        return discardedLeaderCards;
+    public boolean hasChosenLeaderCards() {
+        return chosenLeaderCards;
     }
 
     public void setGame(Game game){
@@ -46,8 +60,8 @@ public class Player {
         return game;
     }
 
-    public void addLeaderCards(LeaderCard leaderCard){
-        this.leaderCards.add(leaderCard);
+    public void addChoosableLeaderCards(LeaderCard leaderCard){
+        this.choosableLeaderCards.add(leaderCard);
     }
 
     public boolean isCanEndTurn() {
@@ -194,7 +208,7 @@ public class Player {
 
     //STRONGBOX, DEVCARDS, LEADERCARDS, POSITION(TRACCIATO)
     public void calculateVictoryPoints(){
-        //Todo( a fine partita guarda i victory points delle leader cards rimaste al player e sommali ai victory points del player)
+        int leaderCardsPoints=0;
         int depotsPoints;
         int positionPoints = 0;
         int numOfResTopDevCards = 0;
@@ -203,6 +217,10 @@ public class Player {
         WareHouseDepot warehouse = personalBoard.getWarehouseDepot();
         for( int i=1; i<4; i++ ){
             numOfResWarehouse += warehouse.getLevel(i).getCurrNumResources();
+        }
+        for(LeaderCard l: choosedLeaderCards){
+            if(l.isActive())
+                leaderCardsPoints+=l.getVictoryPoints();
         }
         //Todo( int numOfResSpecialDept = ... )
         numOfResTopDevCards += personalBoard.getTopCardsVictoryPoints();
@@ -225,7 +243,35 @@ public class Player {
         else if( faithPoints >= 24 )
             positionPoints = 20;
 
-        int toSet = numOfResTopDevCards + depotsPoints + positionPoints; //Todo( + leaderCardsPoints )
+        int toSet = numOfResTopDevCards + depotsPoints + positionPoints+ leaderCardsPoints;
         this.addVictoryPoints(toSet);
+    }
+
+    public boolean discardLeaderCard(int pos){
+        if(pos<0 || pos>=choosedLeaderCards.size())
+            return false;
+        choosedLeaderCards.remove(pos);
+        leaderActionDone = true;
+        return true;
+    }
+
+    public boolean activateLeaderCard(int pos){
+        if(pos<0 || pos>=choosedLeaderCards.size())
+            return false;
+        if(choosableLeaderCards.get(pos).isActive())
+            return false;
+        if(choosedLeaderCards.get(pos).setActive()){
+            leaderActionDone=true;
+            return true;
+        }
+        return false;
+    }
+
+    public TreeMap<Colour, Integer> getCardColours(){
+        return this.personalBoard.getCardsColours();
+    }
+
+    public ArrayList<DevelopmentCard> getInsertedDevCards(){
+        return personalBoard.getInsertedDevelopmentCards();
     }
 }

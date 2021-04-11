@@ -63,6 +63,7 @@ public class Game {
         if( players.size()!=1 || gameStarted ) {
             return false;
         }
+        leaderCardDeck.randomDistribute(players.get(0));
         this.actionCardStack = new ActionCardStack(deckgrid);
         this.lorenzo = LorenzoSingleton.getLorenzo();
         gameStarted = true;
@@ -99,7 +100,7 @@ public class Game {
     }
 
     public boolean endTurn(){
-        if( !currentPlayer.isInitialDistribution() || !currentPlayer.isCanEndTurn() ){
+        if( !currentPlayer.isInitialDistribution() || !currentPlayer.isCanEndTurn() || !currentPlayer.hasChosenLeaderCards()){
             return false;
         }
         if(players.size()==1&&!actionCardDone) return false;
@@ -117,6 +118,7 @@ public class Game {
             nextPlayer = currentPlayer.getPlayerNumber();
             currentPlayer = players.get(nextPlayer);
         }
+        currentPlayer.setLeaderActionDone(false);
         currentPlayer.setCanEndTurn(false);
         return true;
     }
@@ -177,7 +179,7 @@ public class Game {
     }
 
     public boolean buyDevelopmentCard( int level, Colour colour, int slot ){
-        if( !currentPlayer.isInitialDistribution() || currentPlayer.isCanEndTurn() )
+        if( !currentPlayer.isInitialDistribution() || currentPlayer.isCanEndTurn() || !currentPlayer.hasChosenLeaderCards())
             return false;
         boolean canBuy = false;
         if( deckgrid.readCard(level, colour) == null )
@@ -195,7 +197,7 @@ public class Game {
     public boolean activateProduction(boolean[] whichDevCardSlot, boolean fromPersonalBoard, boolean[] whichLeaderCard,
                                       ResourceType resourceType1, ResourceType resourceType2, ResourceType obtainedResource){
 
-        if( !currentPlayer.isInitialDistribution() || currentPlayer.isCanEndTurn() )
+        if( !currentPlayer.isInitialDistribution() || currentPlayer.isCanEndTurn() || !currentPlayer.hasChosenLeaderCards()  )
             return false;
         for( int i=0; i<3; i++ ){
             if( whichDevCardSlot[i] ){
@@ -213,7 +215,7 @@ public class Game {
     }
 
     public boolean takeResourcesFromMarket( int row, int column ){
-        if( !currentPlayer.isInitialDistribution() || currentPlayer.isCanEndTurn() )
+        if( !currentPlayer.isInitialDistribution() || currentPlayer.isCanEndTurn() || !currentPlayer.hasChosenLeaderCards())
             return false;
         if( marketBoard.getResourcesFromMarket(row, column) ) {
             currentPlayer.setCanEndTurn(true);
@@ -323,5 +325,27 @@ public class Game {
         actionCardStack.activateCard();
         actionCardDone=true;
         return true;
+    }
+
+    public boolean chooseLeaderCards(int pos1, int pos2){
+        if(currentPlayer.hasChosenLeaderCards())
+            return false;
+        if(currentPlayer.chooseLeaderCards(pos1, pos2)){
+            currentPlayer.setChosenLeaderCards(true);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean discardLeaderCard(int pos){
+        if(currentPlayer.isLeaderActionDone())
+            return false;
+        return currentPlayer.discardLeaderCard(pos);
+    }
+
+    public boolean activateLeaderCard(int pos){
+        if(currentPlayer.isLeaderActionDone())
+            return false;
+        return currentPlayer.activateLeaderCard(pos);
     }
 }

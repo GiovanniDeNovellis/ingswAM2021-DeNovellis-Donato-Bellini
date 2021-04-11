@@ -1,5 +1,6 @@
 package it.polimi.ingsw;
 
+import java.util.ArrayList;
 import java.util.TreeMap;
 
 public class PersonalBoard {
@@ -8,9 +9,9 @@ public class PersonalBoard {
         this.player = player;
     }
     private Player player;
-
+    private TreeMap<Colour,Integer> cardsColours = new TreeMap<>();
     private int totDevCards = 0;
-
+    private ArrayList<DevelopmentCard> insertedDevelopmentCards = new ArrayList<>();
     private Strongbox strongbox = new Strongbox();
     private WareHouseDepot warehouseDepot = new WareHouseDepot();
     /**
@@ -39,6 +40,14 @@ public class PersonalBoard {
                     if (card.buyCard(this)) {
                         developmentCard[position] = card;
                         totDevCards++;
+                        insertedDevelopmentCards.add(card);
+                        if(cardsColours.get(card.getColour())==null){
+                            cardsColours.put(card.getColour(),1);
+                        }
+                        else{
+                            int oldval=cardsColours.get(card.getColour());
+                            cardsColours.put(card.getColour(),oldval+1);
+                        }
                         if( totDevCards>=7 )
                             player.getGame().setEndGame(true);
                         return true;
@@ -51,6 +60,14 @@ public class PersonalBoard {
                         player.addVictoryPoints( developmentCard[position].getVictoryPoints() );
                         developmentCard[position] = card;
                         totDevCards++;
+                        insertedDevelopmentCards.add(card);
+                        if(cardsColours.get(card.getColour())==null){
+                            cardsColours.put(card.getColour(),1);
+                        }
+                        else{
+                            int oldval=cardsColours.get(card.getColour());
+                            cardsColours.put(card.getColour(),oldval+1);
+                        }
                         if( totDevCards>=7 )
                             player.getGame().setEndGame(true);
                         return true;
@@ -63,6 +80,14 @@ public class PersonalBoard {
                         player.addVictoryPoints( developmentCard[position].getVictoryPoints() );
                         developmentCard[position] = card;
                         totDevCards++;
+                        insertedDevelopmentCards.add(card);
+                        if(cardsColours.get(card.getColour())==null){
+                            cardsColours.put(card.getColour(),1);
+                        }
+                        else{
+                            int oldval=cardsColours.get(card.getColour());
+                            cardsColours.put(card.getColour(),oldval+1);
+                        }
                         if( totDevCards>=7 )
                             player.getGame().setEndGame(true);
                         return true;
@@ -364,6 +389,14 @@ public class PersonalBoard {
             }
         }
         return tot;
+    }
+
+    public TreeMap<Colour, Integer> getCardsColours(){
+        return cardsColours;
+    }
+
+    public ArrayList<DevelopmentCard> getInsertedDevelopmentCards() {
+        return insertedDevelopmentCards;
     }
 }
 
