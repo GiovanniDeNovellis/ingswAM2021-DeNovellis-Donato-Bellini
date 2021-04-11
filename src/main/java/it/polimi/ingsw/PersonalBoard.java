@@ -25,6 +25,27 @@ public class PersonalBoard {
      */
     private TreeMap<ResourceType, Integer> resourcesToAddToStrongbox = new TreeMap<>();
 
+    private ResourceType discount1;
+    private ResourceType discount2;
+
+
+    public ResourceType getDiscount1() {
+        return discount1;
+    }
+
+
+    public ResourceType getDiscount2() {
+        return discount2;
+    }
+
+    public void setDiscount1(ResourceType discount1) {
+        this.discount1 = discount1;
+    }
+
+    public void setDiscount2(ResourceType discount2) {
+        this.discount2 = discount2;
+    }
+
     //for testing..
     public Strongbox getStrongbox() {
         return strongbox;
@@ -99,6 +120,7 @@ public class PersonalBoard {
     }
 
 
+
     /**
      * payDevelopmentCard method is called by DevelopmentCard when a player wants to insert that DevelopmentCard in his
      * own personalBoard. This method checks if the player has got the necessary resources in the warehouse. If he has
@@ -111,28 +133,42 @@ public class PersonalBoard {
      */
     public boolean payDevelopmentCard( TreeMap<ResourceType, Integer> cost ) {
         boolean check = true;
-        for( ResourceType resourceType: cost.keySet() ) {
-            check = checkResourcesIntoWarehouse(resourceType, cost.get(resourceType));
+        TreeMap<ResourceType, Integer> discountedCost = new TreeMap<>();
+        discountedCost.putAll(cost);
+
+        if( discount1!=null || discount2!= null ){
+            for( ResourceType res: discountedCost.keySet() ) {
+                if (res == discount1 || res == discount2) {
+                    discountedCost.put(res, (discountedCost.get(res) - 1));
+                }
+            }
+            discount1=null;
+            discount2=null;
+        }
+        for( ResourceType resourceType: discountedCost.keySet() ) {
+            check = checkResourcesIntoWarehouse(resourceType, discountedCost.get(resourceType));
             if (!check) {
-                int missingQuantity = missingResourcesIntoWarehouseWithoutRemove(resourceType, cost.get(resourceType));
+                int missingQuantity = missingResourcesIntoWarehouseWithoutRemove(resourceType, discountedCost.get(resourceType));
                 if (!checkResourcesIntoStrongbox(resourceType, missingQuantity)) {
                     return false;
                 }
             }
         }
-        for( ResourceType resourceType: cost.keySet() ) {
-            if (checkResourcesIntoWarehouse(resourceType, cost.get(resourceType))) {
-                takeResourcesFromWarehouse(resourceType, cost.get(resourceType));
+        for( ResourceType resourceType: discountedCost.keySet() ) {
+            if (checkResourcesIntoWarehouse(resourceType, discountedCost.get(resourceType))) {
+                takeResourcesFromWarehouse(resourceType, discountedCost.get(resourceType));
             } else {
-                int missingQuantity = missingResourcesIntoWarehouseWithoutRemove(resourceType, cost.get(resourceType));
+                int missingQuantity = missingResourcesIntoWarehouseWithoutRemove(resourceType, discountedCost.get(resourceType));
                 if (checkResourcesIntoStrongbox(resourceType, missingQuantity)) {
-                    missingQuantity = missingResourcesIntoWarehouse(resourceType, cost.get(resourceType));
+                    missingQuantity = missingResourcesIntoWarehouse(resourceType, discountedCost.get(resourceType));
                     takeResourcesFromStrongbox(resourceType, missingQuantity);
                 }
             }
         }
         return true;
     }
+
+
 
     /**
      * insertResources method is called when a player takes resources form market: the player chooses what type of resource

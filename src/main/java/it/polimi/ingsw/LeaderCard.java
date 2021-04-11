@@ -1,10 +1,12 @@
 package it.polimi.ingsw;
 
 public abstract class LeaderCard {
+
     protected boolean active = false;
     private int victoryPoints;
     ResourceType resourceType;
     Player owner;
+
 
     public boolean setActive (){
         return true; }
@@ -45,7 +47,16 @@ class LeaderCardDiscount extends LeaderCard{
     }
     @Override
     public boolean activateAbility(){
-        return true;
+        if( owner.getPersonalBoard().getDiscount1()==null ) {
+            owner.getPersonalBoard().setDiscount1(resourceType);
+            return true;
+        }
+        else if( owner.getPersonalBoard().getDiscount2()==null ) {
+            owner.getPersonalBoard().setDiscount2(resourceType);
+            return true;
+        }
+        else
+            return false;
     }
 }
 

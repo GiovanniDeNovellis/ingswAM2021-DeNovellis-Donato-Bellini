@@ -26,6 +26,7 @@ public class Player {
     private Game game;
     private boolean leaderActionDone=false;
 
+
     public void setLeaderActionDone(boolean leaderActionDone) {
         this.leaderActionDone = leaderActionDone;
     }
@@ -265,6 +266,16 @@ public class Player {
             return true;
         }
         return false;
+    }
+
+    public boolean activateLeaderAbility(int whichLeaderCard){
+        if( choosedLeaderCards.get(whichLeaderCard) == null )
+            return false;
+        if ( !choosedLeaderCards.get(whichLeaderCard).isActive() )
+            return false;
+        else
+            choosedLeaderCards.get(whichLeaderCard).activateAbility();
+        return true;
     }
 
     public TreeMap<Colour, Integer> getCardColours(){

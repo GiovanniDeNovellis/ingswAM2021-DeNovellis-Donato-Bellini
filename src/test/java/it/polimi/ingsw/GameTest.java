@@ -32,18 +32,22 @@ class GameTest {
         assertTrue(game.startMultiplayer());
         //Player 1 turn
         assertEquals(0,game.getCurrentPlayer().getFaithPoints());
+        game.chooseLeaderCards(1,2);
         assertTrue(game.endTurn());
         //Player 2 turn
         assertEquals(0,game.getCurrentPlayer().getFaithPoints());
         game.distributionResourceSecondThird(ResourceType.SHIELDS);
+        game.chooseLeaderCards(1,2);
         assertTrue(game.endTurn());
         //Player 3 turn
         assertEquals(1,game.getCurrentPlayer().getFaithPoints());
         game.distributionResourceSecondThird(ResourceType.SHIELDS);
+        game.chooseLeaderCards(1,2);
         assertTrue(game.endTurn());
         //Player 4 turn
         assertEquals(1,game.getCurrentPlayer().getFaithPoints());
         game.distributionResourceFourthPlayer(ResourceType.SHIELDS,ResourceType.COINS);
+        game.chooseLeaderCards(1,2);
         assertTrue(game.endTurn());
 
         assertFalse(game.addPlayer("Player 5"));
@@ -57,10 +61,13 @@ class GameTest {
         game.addPlayer("Player 2");
         game.addPlayer("Player 3");
         game.startMultiplayer();
+        game.chooseLeaderCards(1,2);
         game.endTurn();
         game.distributionResourceSecondThird(ResourceType.SHIELDS);
+        game.chooseLeaderCards(1,2);
         game.endTurn();
         game.distributionResourceSecondThird(ResourceType.SHIELDS);
+        game.chooseLeaderCards(1,2);
         game.endTurn();
         assertTrue(game.takeResourcesFromMarket(3,1));
         ResourceType res = game.getMarketBoard().getTemporaryResources().firstKey();
@@ -159,9 +166,11 @@ class GameTest {
         game.getCurrentPlayer().insertResources(ResourceType.SHIELDS,2,2);
         assertEquals(ResourceType.SHIELDS,game.getCurrentPlayer().getPersonalBoard().getWarehouseDepot().getLevel(2).getResourceType());
         assertEquals(2,game.getCurrentPlayer().getPersonalBoard().getWarehouseDepot().getLevel(2).getCurrNumResources());
+        game.chooseLeaderCards(1,2);
         assertTrue(game.endTurn());
         game.distributionResourceSecondThird(ResourceType.COINS);
         game.getCurrentPlayer().setCanEndTurn(true);
+        game.chooseLeaderCards(1,2);
         assertTrue(game.endTurn());
         if(!game.buyDevelopmentCard(1,Colour.GREEN,1)){
             assertEquals(ResourceType.SHIELDS,game.getCurrentPlayer().getPersonalBoard().getWarehouseDepot().getLevel(2).getResourceType());
@@ -183,15 +192,19 @@ class GameTest {
         game.addPlayer("Second player");
         game.addPlayer("Third player");
         assertTrue(game.startMultiplayer());
+        game.chooseLeaderCards(1,2);
         assertTrue(game.endTurn());
+        game.chooseLeaderCards(1,2);
         assertFalse(game.endTurn());
         assertFalse(game.distributionResourceFourthPlayer(ResourceType.COINS,ResourceType.COINS));
         assertTrue(game.distributionResourceSecondThird(ResourceType.SHIELDS));
         assertEquals(ResourceType.SHIELDS,game.getCurrentPlayer().getPersonalBoard().getWarehouseDepot().getLevel(1).getResourceType());
         assertEquals(1,game.getCurrentPlayer().getPersonalBoard().getWarehouseDepot().getLevel(1).getCurrNumResources());
         assertEquals(1,game.getCurrentPlayer().getPersonalBoard().getWarehouseDepot().getLevel(1).getMaxNumResources());
+        game.chooseLeaderCards(1,2);
         assertTrue(game.endTurn());
         assertTrue(game.distributionResourceSecondThird(ResourceType.STONES));
+        game.chooseLeaderCards(1,2);
         assertTrue(game.endTurn());
         assertFalse(game.distributionResourceSecondThird(ResourceType.SERVANTS));
     }
@@ -204,12 +217,16 @@ class GameTest {
         game.addPlayer("Third player");
         game.addPlayer("Fourth player");
         assertTrue(game.startMultiplayer());
+        game.chooseLeaderCards(1,2);
         assertTrue(game.endTurn());
         assertTrue(game.distributionResourceSecondThird(ResourceType.STONES));
+        game.chooseLeaderCards(1,2);
         assertTrue(game.endTurn());
         assertTrue(game.distributionResourceSecondThird(ResourceType.STONES));
+        game.chooseLeaderCards(1,2);
         assertTrue(game.endTurn());
         assertEquals(4,game.getCurrentPlayer().getPlayerNumber());
+        game.chooseLeaderCards(1,2);
         assertFalse(game.endTurn());
         assertFalse(game.distributionResourceSecondThird(ResourceType.SERVANTS));
         assertTrue(game.distributionResourceFourthPlayer(ResourceType.STONES,ResourceType.SHIELDS));
@@ -236,15 +253,19 @@ class GameTest {
         game.addPlayer("Fourth player");
         assertTrue(game.startMultiplayer());
         game.getCurrentPlayer().addVictoryPoints(20);
+        game.chooseLeaderCards(1,2);
         assertTrue(game.endTurn());
         assertTrue(game.distributionResourceSecondThird(ResourceType.COINS));
+        game.chooseLeaderCards(1,2);
         assertTrue(game.endTurn());
         assertTrue(game.distributionResourceSecondThird(ResourceType.COINS));
+        game.chooseLeaderCards(1,2);
         assertTrue(game.endTurn());
         assertFalse(game.distributionResourceSecondThird(ResourceType.COINS));
         assertTrue(game.distributionResourceFourthPlayer(ResourceType.STONES,ResourceType.SHIELDS));
         assertNull(game.getWinnerPlayer());
         game.setEndGame(true);
+        game.chooseLeaderCards(1,2);
         assertTrue(game.endTurn());
         assertEquals(1,game.getCurrentPlayer().getPlayerNumber());
         assertNotNull(game.getWinnerPlayer());
@@ -259,6 +280,7 @@ class GameTest {
         game.addPlayer("Second player");
         game.addPlayer("Third player");
         assertTrue(game.startMultiplayer());
+        game.chooseLeaderCards(1,2);
         assertTrue(game.endTurn());
         assertFalse(game.endTurn());
         assertTrue(game.distributionResourceSecondThird(ResourceType.STONES));
@@ -267,10 +289,12 @@ class GameTest {
         assertEquals(1, game.getCurrentPlayer().getPersonalBoard().getWarehouseDepot().getLevel(1).getCurrNumResources());
         assertEquals(1, game.getCurrentPlayer().getPersonalBoard().getWarehouseDepot().getLevel(1).getMaxNumResources());
         assertNull(game.getWinnerPlayer());
+        game.chooseLeaderCards(1,2);
         assertTrue(game.endTurn());
         game.distributionResourceSecondThird(ResourceType.STONES);
         game.setEndGame(true);
         assertEquals(3,game.getCurrentPlayer().getPlayerNumber());
+        game.chooseLeaderCards(1,2);
         assertTrue(game.endTurn());
         assertEquals(1,game.getCurrentPlayer().getPlayerNumber());
         assertEquals(2,game.getWinnerPlayerNumber());
@@ -283,8 +307,10 @@ class GameTest {
         game.addPlayer("First player");
         game.addPlayer("Second player");
         game.startMultiplayer();
+        game.chooseLeaderCards(1,2);
         assertTrue(game.endTurn());
         assertTrue(game.distributionResourceSecondThird(ResourceType.COINS));
+        game.chooseLeaderCards(1,2);
         assertTrue(game.endTurn());
         game.getCurrentPlayer().insertResources(ResourceType.STONES,2,2);
         boolean[] dev  = {false,false,false};
