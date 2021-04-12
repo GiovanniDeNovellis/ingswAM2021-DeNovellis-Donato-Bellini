@@ -106,7 +106,16 @@ class LeaderCardProduction extends LeaderCard{
     }
     @Override
     public boolean activateAbility(){
-        return true;
+        if( owner.getPersonalBoard().getRequirementForLeaderProduction1()==null ) {
+            owner.getPersonalBoard().setRequirementForLeaderProduction1(resourceType);
+            return true;
+        }
+        else if( owner.getPersonalBoard().getRequirementForLeaderProduction2()==null ) {
+            owner.getPersonalBoard().setRequirementForLeaderProduction2(resourceType);
+            return true;
+        }
+        else
+            return false;
     }
 }
 

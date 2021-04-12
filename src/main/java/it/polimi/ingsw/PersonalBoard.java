@@ -28,23 +28,27 @@ public class PersonalBoard {
     private ResourceType discount1;
     private ResourceType discount2;
 
+    private ResourceType requirementForLeaderProduction1;
+    private ResourceType requirementForLeaderProduction2;
 
     public ResourceType getDiscount1() {
         return discount1;
     }
-
-
     public ResourceType getDiscount2() {
         return discount2;
     }
-
     public void setDiscount1(ResourceType discount1) {
         this.discount1 = discount1;
     }
-
     public void setDiscount2(ResourceType discount2) {
         this.discount2 = discount2;
     }
+
+    public ResourceType getRequirementForLeaderProduction1(){ return requirementForLeaderProduction1; }
+    public ResourceType getRequirementForLeaderProduction2(){ return requirementForLeaderProduction2; }
+    public void setRequirementForLeaderProduction1(ResourceType required){ requirementForLeaderProduction1 = required; }
+    public void setRequirementForLeaderProduction2(ResourceType required){ requirementForLeaderProduction2 = required; }
+
 
     //for testing..
     public Strongbox getStrongbox() {
@@ -139,12 +143,14 @@ public class PersonalBoard {
         if( discount1!=null || discount2!= null ){
             for( ResourceType res: discountedCost.keySet() ) {
                 if (res == discount1 || res == discount2) {
-                    discountedCost.put(res, (discountedCost.get(res) - 1));
+                    discountedCost.put(res, (discountedCost.get(res)-1) );
                 }
             }
             discount1=null;
             discount2=null;
         }
+
+
         for( ResourceType resourceType: discountedCost.keySet() ) {
             check = checkResourcesIntoWarehouse(resourceType, discountedCost.get(resourceType));
             if (!check) {
@@ -210,7 +216,7 @@ public class PersonalBoard {
         if( obtainedResource == ResourceType.FAITHPOINTS )
             return false;
         boolean foundWare1=false,foundWare2=false;
-        if( checkResourcesIntoWarehouse(resourceType1, 1) )foundWare1=true;
+        if( checkResourcesIntoWarehouse(resourceType1, 1) ) foundWare1=true;
         else if( checkResourcesIntoStrongbox(resourceType1, 1) ) ;
         else return false;
 
@@ -433,6 +439,40 @@ public class PersonalBoard {
 
     public ArrayList<DevelopmentCard> getInsertedDevelopmentCards() {
         return insertedDevelopmentCards;
+    }
+
+    /**
+     * Method to activate the leader card's production special ability
+     * @param obtainedResource is the resource the player wants to obtain after production.
+     * @return true if the player can effectively activate the production.
+     */
+    public boolean activateProductionFromLeaderCard(ResourceType obtainedResource ) {
+
+        if (obtainedResource == ResourceType.FAITHPOINTS)
+            return false;
+
+        ResourceType resourceType;
+
+        if (requirementForLeaderProduction1 != null) {
+            resourceType = requirementForLeaderProduction1;
+            requirementForLeaderProduction1 = null;
+        } else if (requirementForLeaderProduction2 != null) {
+            resourceType = requirementForLeaderProduction2;
+            requirementForLeaderProduction2 = null;
+        } else
+            return false;
+
+        if (checkResourcesIntoWarehouse(resourceType, 1)) {
+            takeResourcesFromWarehouse(resourceType, 1);
+        } else if (checkResourcesIntoStrongbox(resourceType, 1)) {
+            takeResourcesFromStrongbox(resourceType, 1);
+        } else
+            return false;
+        //Todo( può prendere la risorsa anche dall' extraDep )
+
+        addResourceToStrongboxTemp(obtainedResource, 1);
+        player.addFaithPointsAndCallAudience(1);
+        return true;
     }
 }
 

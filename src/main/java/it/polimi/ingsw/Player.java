@@ -8,9 +8,12 @@ public class Player {
 
     private PersonalBoard personalBoard = new PersonalBoard(this);
     /**
-     * 0<= faithPoints <= 24
+     * 0<= faithPoints <= 24. Represents Player's position on faith track
      */
     private int faithPoints = 0;
+    /**
+     *This array represents the three Pope’s Favor tile's values
+     */
     private int[] faithCards = {2, 3, 4};
     private boolean inkwell = false;
     private int playerNumber;
@@ -26,6 +29,11 @@ public class Player {
     private Game game;
     private boolean leaderActionDone=false;
 
+
+
+    public ArrayList<LeaderCard> getChoosedLeaderCards() {
+        return choosedLeaderCards;
+    }
 
     public void setLeaderActionDone(boolean leaderActionDone) {
         this.leaderActionDone = leaderActionDone;
@@ -259,7 +267,7 @@ public class Player {
     public boolean activateLeaderCard(int pos){
         if(pos<0 || pos>=choosedLeaderCards.size())
             return false;
-        if(choosableLeaderCards.get(pos).isActive())
+        if(choosedLeaderCards.get(pos).isActive())
             return false;
         if(choosedLeaderCards.get(pos).setActive()){
             leaderActionDone=true;
