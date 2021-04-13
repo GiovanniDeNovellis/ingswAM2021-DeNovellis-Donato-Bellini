@@ -17,5 +17,5 @@ public class FaithMarbleType implements Selectable {
     public void onSelection(MarketBoard marketBoard) {
         marketBoard.getGame().getCurrentPlayer().addFaithPointsAndCallAudience(1);
     }
-
+    //
 }

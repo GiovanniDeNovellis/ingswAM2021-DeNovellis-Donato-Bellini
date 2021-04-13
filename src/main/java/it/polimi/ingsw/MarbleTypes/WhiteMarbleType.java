@@ -17,4 +17,5 @@ public class WhiteMarbleType implements Selectable {
         int old = marketBoard.getWhiteMarblesSelected();
         marketBoard.setWhiteMarblesSelected(old+1);
     }
+    //
 }

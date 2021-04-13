@@ -153,4 +153,5 @@ public class MarketBoard {
         this.whiteMarblesSelected = whiteMarblesSelected;
     }
 
+    //
 }

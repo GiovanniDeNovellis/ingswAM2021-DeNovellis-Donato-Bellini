@@ -511,4 +511,5 @@ public class Player {
     public void setHasTrasformationAbility(boolean hasTrasformationAbility) {
         this.hasTrasformationAbility = hasTrasformationAbility;
     }
+    //
 }
