@@ -9,7 +9,7 @@ import java.util.TreeMap;
 public class Game {
 
     //Todo( IMPLEMENTARE RESILIENZA )
-    private MarketBoard marketBoard = new MarketBoard();
+    private MarketBoard marketBoard = new MarketBoard(this);
     private ArrayList<Player> players = new ArrayList<>();
     private int numPlayers = 0;
     private Player currentPlayer;
@@ -103,6 +103,8 @@ public class Game {
         if( !currentPlayer.isInitialDistribution() || !currentPlayer.isCanEndTurn() || !currentPlayer.hasChosenLeaderCards()){
             return false;
         }
+        if(currentPlayer.getHasTrasformationAbility()&&marketBoard.getWhiteMarblesSelected()>0) return false;
+        marketBoard.setWhiteMarblesSelected(0);
         if(players.size()==1&&!actionCardDone) return false;
         actionCardDone=false;
         if( !marketBoard.getTemporaryResources().isEmpty() ){
@@ -218,6 +220,8 @@ public class Game {
         if( !currentPlayer.isInitialDistribution() || currentPlayer.isCanEndTurn() || !currentPlayer.hasChosenLeaderCards())
             return false;
         if( marketBoard.getResourcesFromMarket(row, column) ) {
+            if(currentPlayer.getHasTrasformationAbility())
+                return true;
             currentPlayer.setCanEndTurn(true);
             return true;
         }
@@ -347,5 +351,9 @@ public class Game {
         if(currentPlayer.isLeaderActionDone())
             return false;
         return currentPlayer.activateLeaderCard(pos);
+    }
+
+    public boolean activateLeaderAbility(int whichLeaderCard){
+        return currentPlayer.activateLeaderAbility(whichLeaderCard);
     }
 }

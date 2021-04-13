@@ -70,6 +70,8 @@ class GameTest {
         game.chooseLeaderCards(1,2);
         game.endTurn();
         assertTrue(game.takeResourcesFromMarket(3,1));
+        if(game.getMarketBoard().getTemporaryResources().isEmpty())
+            return;
         ResourceType res = game.getMarketBoard().getTemporaryResources().firstKey();
         int numOfThatRes = game.getMarketBoard().getTemporaryResources().get(res);
         assertTrue(game.insertResourcesIntoWarehouse(res,numOfThatRes));

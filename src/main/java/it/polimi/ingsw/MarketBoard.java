@@ -31,13 +31,14 @@ public class MarketBoard {
      * a resource, all the other players will get one FaithPoint.
      */
     private TreeMap<ResourceType, Integer> temporaryResources = new TreeMap<>();
-
+    private Game game;
+    private int whiteMarblesSelected=0;
 
     /**
      * Builds the marketBoard with all the Marbles
      * in a random position.
      */
-    public MarketBoard(){
+    public MarketBoard(Game game){
         ArrayList<Marble> marbles = createMarbles();
         for(int i=0; i<3; i++){
             for(int j=0; j<4; j++){
@@ -45,6 +46,7 @@ public class MarketBoard {
                 marbles.remove(0);
             }
         }
+        this.game=game;
         marbleOut = marbles.get(0);
     }
 
@@ -78,6 +80,7 @@ public class MarketBoard {
      * @return False if the coordinates given are invalid.
      */
     public boolean getResourcesFromMarket(int startrow, int startcol){
+        whiteMarblesSelected=0;
         temporaryResources.clear();
         if(startrow!=3 && startcol!=4) return false;
         else if(startrow==3 && startcol==4) return false;
@@ -137,4 +140,17 @@ public class MarketBoard {
         }
         System.out.println("Out: " + marbleOut.getColour());
     }
+
+    public Game getGame() {
+        return game;
+    }
+
+    public int getWhiteMarblesSelected() {
+        return whiteMarblesSelected;
+    }
+
+    public void setWhiteMarblesSelected(int whiteMarblesSelected) {
+        this.whiteMarblesSelected = whiteMarblesSelected;
+    }
+
 }

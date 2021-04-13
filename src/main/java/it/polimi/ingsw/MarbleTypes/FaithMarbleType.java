@@ -15,7 +15,7 @@ public class FaithMarbleType implements Selectable {
      */
     @Override
     public void onSelection(MarketBoard marketBoard) {
-        //TODO Deve chiamare il currentPlayer e aggiungere il faith point.
+        marketBoard.getGame().getCurrentPlayer().addFaithPointsAndCallAudience(1);
     }
 
 }

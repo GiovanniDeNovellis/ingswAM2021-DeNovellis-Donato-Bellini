@@ -125,10 +125,23 @@ class LeaderCardTransformation extends LeaderCard{
         if(owner.getCardColours().get(singleCardColour)==null || owner.getCardColours().get(singleCardColour)==null) return false;
         if(owner.getCardColours().get(singleCardColour)<1||owner.getCardColours().get(doubleCardColour)<2||active) return false;
         active=true;
+        owner.setHasTrasformationAbility(true);
         return true;
     }
+
     @Override
     public boolean activateAbility(){
+        int whiteMarbles = owner.getGame().getMarketBoard().getWhiteMarblesSelected();
+        if(whiteMarbles<=0) return false;
+        if(owner.getGame().getMarketBoard().getTemporaryResources().isEmpty()||!owner.getGame().getMarketBoard().getTemporaryResources()
+            .containsKey(this.resourceType)){
+            owner.getGame().getMarketBoard().getTemporaryResources().put(this.resourceType,1);
+        }
+        else{
+            int oldval = owner.getGame().getMarketBoard().getTemporaryResources().get(this.resourceType);
+            owner.getGame().getMarketBoard().getTemporaryResources().put(this.resourceType,oldval+1);
+        }
+        owner.getGame().getMarketBoard().setWhiteMarblesSelected(whiteMarbles-1);
         return true;
     }
 }

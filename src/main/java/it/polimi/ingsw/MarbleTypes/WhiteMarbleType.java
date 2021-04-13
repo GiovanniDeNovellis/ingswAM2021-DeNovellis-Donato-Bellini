@@ -14,6 +14,7 @@ public class WhiteMarbleType implements Selectable {
      */
     @Override
     public void onSelection(MarketBoard marketBoard) {
-        //TODO have to implement the trasformation leaderAbility
+        int old = marketBoard.getWhiteMarblesSelected();
+        marketBoard.setWhiteMarblesSelected(old+1);
     }
 }
