@@ -82,6 +82,12 @@ public class Player {
      */
     private boolean hasTrasformationAbility=false;
 
+
+
+    public ArrayList<LeaderCard> getChoosedLeaderCards() {
+        return choosedLeaderCards;
+    }
+
     /**
      * Set true if the player has done a leader action.
      * @param leaderActionDone True if the player has already done a leader action

@@ -6,21 +6,61 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.TreeMap;
 
+
+/**
+ * Main class: Users actions are managed by Game class.
+ */
 public class Game {
 
     //Todo( IMPLEMENTARE RESILIENZA )
+    /**
+     * Reference to market board, unique in the game and shared by all players.
+     */
     private MarketBoard marketBoard = new MarketBoard(this);
+    /**
+     * Contains all the Game's players.
+     */
     private ArrayList<Player> players = new ArrayList<>();
-    private int numPlayers = 0;
+    /**
+     * It represents the player who is playing in this turn.
+     */
     private Player currentPlayer;
+    /**
+     * Represents the 12 decks of development cards.
+     */
     private Deckgrid deckgrid = new Deckgrid();
+    /**
+     * Represents the deck of Solo Action tokens, used in single player mode.
+     */
     private ActionCardStack actionCardStack;
+    /**
+     * Represents Lorenzo il Magnifico: the virtual opponent in single player mode.
+     */
     private LorenzoSingleton lorenzo;
+    /**
+     * True if game has already started.
+     */
     private boolean gameStarted = false;
+    /**
+     * Represents through the player number(first player, second player.. ordered by tourn order) which of all
+     * players is the winner of the game.
+     */
     private int WinnerPlayerNumber;
+    /**
+     * The Player who wins the game.
+     */
     private Player winnerPlayer;
+    /**
+     * It is true if a player reaches the end of faith track or buy the 7'th development cards.
+     */
     private boolean isEndGame = false;
+    /**
+     * True if the player has already done one of the necessary actions to end the turn.
+     */
     private boolean actionCardDone = false;
+    /**
+     * Represent the initial leader card's deck that contains all the leader cards of the game.
+     */
     private LeaderCardDeck leaderCardDeck = new LeaderCardDeck();
 
 
@@ -47,6 +87,11 @@ public class Game {
     public Game() throws FileNotFoundException {
     }
 
+    /**
+     * Add a player in the game, if game has less then 4 players.
+     * @param nickname is the player's nickname in the game
+     * @return true if has correctly added a player in the game
+     */
     public boolean addPlayer( String nickname ){
         if( players.size() >= 4 || gameStarted ) {
             return false;
@@ -58,6 +103,10 @@ public class Game {
         return true;
     }
 
+    /**
+     * Starts the single player mode, only if there is 1 player in game.
+     * @return true if game correctly starts in single player mode.
+     */
     public boolean startSingleplayer(){
         //Todo( distribuire 4 leaderCards a testa e ogni player ne sceglie 2 )
         if( players.size()!=1 || gameStarted ) {
@@ -72,7 +121,10 @@ public class Game {
     }
 
 
-
+    /**
+     * Starts the multiplayer mode, only if there at least 2 players in the game(maximum 4 players).
+     * @return true if the game correctly starts in multiplayer mode.
+     */
     public boolean startMultiplayer(){
         if( players.size()<=1 || players.size()>4 || gameStarted ) {
             return false;
@@ -99,6 +151,10 @@ public class Game {
         return true;
     }
 
+    /**
+     * Makes turn ends for the current player and starts the turn for the next player.
+     * @return true if the player can end the turn.
+     */
     public boolean endTurn(){
         if( !currentPlayer.isInitialDistribution() || !currentPlayer.isCanEndTurn() || !currentPlayer.hasChosenLeaderCards()){
             return false;
@@ -126,6 +182,11 @@ public class Game {
     }
 
 
+    /**
+     * Does the initial distribution of one resource for the second and third players.
+     * @param resourceType is the resource type chosen by the player.
+     * @return true if it is called on the second or third player.
+     */
     public boolean distributionResourceSecondThird( ResourceType resourceType ){
         if( (currentPlayer.getPlayerNumber() == 2 || currentPlayer.getPlayerNumber() == 3)
             && !currentPlayer.isInitialDistribution()) {
@@ -137,6 +198,11 @@ public class Game {
         return false;
     }
 
+    /** Does the initial distribution of two resources for the fourth player.
+     * @param resourceType1 is the first resource type chosen by the player.
+     * @param resourceType2 is the second resource type chosen by the player.
+     * @return true if it is called on the fourth player.
+     */
     public boolean distributionResourceFourthPlayer( ResourceType resourceType1, ResourceType resourceType2 ){
         if( currentPlayer.getPlayerNumber() == 4 && !currentPlayer.isInitialDistribution()) {
             if( resourceType1.equals(resourceType2) ) {
@@ -153,6 +219,10 @@ public class Game {
         return false;
     }
 
+    /**
+     * Founds the winner player on base of victory points of all players and sets the winner player.
+     * @return true when has found the winner player.
+     */
     public boolean endGame(){
         int maxPoints = 0;
         int WinnerPlayerNumber = 1;
@@ -176,10 +246,23 @@ public class Game {
         return true;
     }
 
+    /**
+     * Allows the player to switch resources through warehouse's levels, if it is permitted by the rules.
+     * @param maxSlotsFirst represents the first level to switch with the second.
+     * @param maxSlotsSecond represents the second level to switch with the first.
+     * @return true if the level switch is legal.
+     */
     public boolean switchLevels(int maxSlotsFirst, int maxSlotsSecond){
         return currentPlayer.switchLevels(maxSlotsFirst, maxSlotsSecond);
     }
 
+    /**
+     * Allows the player to buy a development card from the deckgrid and insert that card into one of his personal board's slots.
+     * @param level is the level of the card wanted by the player.
+     * @param colour is the colour of the card wanted by the player.
+     * @param slot is the personal board's slot where te player wants to insert the card
+     * @return true if the player can buy that card and if the player can insert that card into the chosen slot
+     */
     public boolean buyDevelopmentCard( int level, Colour colour, int slot ){
         if( !currentPlayer.isInitialDistribution() || currentPlayer.isCanEndTurn() || !currentPlayer.hasChosenLeaderCards())
             return false;
@@ -196,26 +279,57 @@ public class Game {
     }
 
 
+    /**
+     * Allows the player to activate production from development cards, base production power, leader cards. The player
+     * can choose all the possible productions or only some of those.
+     * @param whichDevCardSlot says from which development cards the player wants to activate the production.
+     * @param fromPersonalBoard says if the player wants to activate production from personal board.
+     * @param whichLeaderCard says from which leader cards the player wants to activate the production.
+     * @param resourceType1 is the first resource type of resource the player wants to pay to activate the base production power.
+     *                      It is null if the player doesn't want to use the base production power.
+     * @param resourceType2 is the second resource type of resource the player wants to pay to activate the base production power.
+     *      *                      It is null if the player doesn't want to use the base production power.
+     * @param obtainedResource is the resource type of resource received by base production power.
+     *                         It is null if the player doesn't want to use the base production power.
+     * @param resourceObtainedFromLeader is the resource type of resources received by leader card's production power.
+     *      *                         It is null if the player doesn't want to use any leader card's production power or
+     *                                   if the player hasn't got any leader card with a production ability
+     * @return true if the productions can be done.
+     */
     public boolean activateProduction(boolean[] whichDevCardSlot, boolean fromPersonalBoard, boolean[] whichLeaderCard,
-                                      ResourceType resourceType1, ResourceType resourceType2, ResourceType obtainedResource){
+                                      ResourceType resourceType1, ResourceType resourceType2, ResourceType obtainedResource,
+                                      ResourceType[] resourceObtainedFromLeader ){
 
         if( !currentPlayer.isInitialDistribution() || currentPlayer.isCanEndTurn() || !currentPlayer.hasChosenLeaderCards()  )
             return false;
+
         for( int i=0; i<3; i++ ){
             if( whichDevCardSlot[i] ){
                 currentPlayer.getPersonalBoard().activateProductionFromDevCard(i);
             }
         }
+
         if( fromPersonalBoard && resourceType1!=null && resourceType2!=null &&
                 obtainedResource!=null && obtainedResource!=ResourceType.FAITHPOINTS ){
             currentPlayer.getPersonalBoard().activateProductionFromPersonalBoard(resourceType1, resourceType2, obtainedResource);
         }
         currentPlayer.getPersonalBoard().fromStrongboxTempToStrongbox();
-        //TODO( WHICHlEADERcARDS.....
+
+        for( int j=0; j<2; j++ ){
+            if( whichLeaderCard[j] && currentPlayer.getChoosedLeaderCards().get(j).isActive() && resourceObtainedFromLeader[j]!=null ){
+                currentPlayer.getPersonalBoard().activateProductionFromLeaderCard(resourceObtainedFromLeader[j]);
+            }
+        }
         currentPlayer.setCanEndTurn(true);
         return true;
     }
 
+    /**
+     * Allows the player to select a row or a column in the resource market to take the resources contained in that row or column.
+     * @param row index of selection for row.
+     * @param column index of selection for column.
+     * @return true if player selects a correct row or column.
+     */
     public boolean takeResourcesFromMarket( int row, int column ){
         if( !currentPlayer.isInitialDistribution() || currentPlayer.isCanEndTurn() || !currentPlayer.hasChosenLeaderCards())
             return false;
@@ -229,11 +343,23 @@ public class Game {
             return false;
     }
 
-    public boolean insertResourcesIntoWarehouse( ResourceType resourceType, int quantityToAdd ){
+    /**
+     * Allows the player to insert into his warehouse the resources he wants to insert, once he toke those resources from market.
+     * @param resourceType is the resource type of resource that the player wants to insert
+     * @param quantityToAdd is the quantity of resource that the player wants to insert.
+     * @return true if the player can effectively insert than number of that type of resource.
+     */
+    public boolean insertResourcesIntoWarehouse( ResourceType resourceType, int quantityToAdd, boolean intoExtraDeposit ){
         if(marketBoard.getTemporaryResources().get(resourceType)==null) return false;
         int maxAddable = marketBoard.getTemporaryResources().get(resourceType);
         if( quantityToAdd > maxAddable || quantityToAdd <= 0 )
             return false;
+        if (intoExtraDeposit){
+            if (currentPlayer.getPersonalBoard().addToExtraDeposit1(resourceType,quantityToAdd)){
+                return true;
+            }
+            else return currentPlayer.getPersonalBoard().addToExtraDeposit2(resourceType, quantityToAdd);
+        }
         if( currentPlayer.getPersonalBoard().insertResources(resourceType, 1, quantityToAdd) ) {
             marketBoard.getTemporaryResources().put(resourceType, maxAddable - quantityToAdd);
             return true;
@@ -246,11 +372,14 @@ public class Game {
             marketBoard.getTemporaryResources().put(resourceType, maxAddable - quantityToAdd);
             return true;
         }
-
         return false;
     }
 
 
+    /**
+     * After the insertion of resources into warehouse, the player has to discard all the resources taken from market
+     * that he has not inserted into his warehouse. For every discarded resource, the other players earn one faith point.
+     */
     private void discardRemainingResources(){
         TreeMap<ResourceType, Integer>map;
         boolean doneAudience = false;
@@ -280,6 +409,11 @@ public class Game {
     }
 
 
+    /**
+     * When a Faith Marker reaches (or goes beyond) a Pope space, a Vatican Report occurs. All the players in that Pope space
+     * earn 2 victory points.
+     * @return false and it does nothing if firsAudience() method was already called.
+     */
     public boolean firstAudience(){
         for(Player player: players){
             if( player.getFaithCards()[0] == 0 )
@@ -292,6 +426,11 @@ public class Game {
         return true;
     }
 
+    /**
+     * When a Faith Marker reaches (or goes beyond) a Pope space, a Vatican Report occurs. All the players in that Pope space
+     * earn 3 victory points.
+     * @return false and it does nothing if secondAudience() method was already called.
+     */
     public boolean secondAudience(){
         for(Player player: players){
             if( player.getFaithCards()[1] == 0 )
@@ -304,6 +443,11 @@ public class Game {
         return true;
     }
 
+    /**
+     * When a Faith Marker reaches (or goes beyond) a Pope space, a Vatican Report occurs. All the players in that Pope space
+     * earn 3 victory points.
+     * @return false and it does nothing if thirdAudience() method was already called.
+     */
     public boolean thirdAudience() {
         for (Player player : players) {
             if (player.getFaithCards()[2] == 0)
@@ -324,6 +468,10 @@ public class Game {
         return WinnerPlayerNumber;
     }
 
+    /**
+     * In single player mode, it takes the first action token from action card deck and activates the effect.
+     * @return true if it can be done.
+     */
     public boolean activateActionCard(){
         if(players.size()!=1 || !currentPlayer.isCanEndTurn()) return false;
         actionCardStack.activateCard();
@@ -331,6 +479,12 @@ public class Game {
         return true;
     }
 
+    /**
+     * Make the player choose 2 leader cards from the 4 leader cards he got when game starts.
+     * @param pos1
+     * @param pos2
+     * @return false if the current player has already chosen the two leader cards
+     */
     public boolean chooseLeaderCards(int pos1, int pos2){
         if(currentPlayer.hasChosenLeaderCards())
             return false;
@@ -347,6 +501,12 @@ public class Game {
         return currentPlayer.discardLeaderCard(pos);
     }
 
+    /**
+     * Allows the player to activate the leader card's special ability.
+     * @param pos //TODO
+     * @return false if the player has already done his move in this turn.
+     */
+    //TODO( il player può attivare entrambe le leader cards, osì invece può attivarne una sola )
     public boolean activateLeaderCard(int pos){
         if(currentPlayer.isLeaderActionDone())
             return false;
@@ -357,3 +517,5 @@ public class Game {
         return currentPlayer.activateLeaderAbility(whichLeaderCard);
     }
 }
+
+
