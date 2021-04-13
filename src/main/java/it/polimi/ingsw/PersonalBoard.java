@@ -14,8 +14,10 @@ public class PersonalBoard {
     private ArrayList<DevelopmentCard> insertedDevelopmentCards = new ArrayList<>();
     private Strongbox strongbox = new Strongbox();
     private WareHouseDepot warehouseDepot = new WareHouseDepot();
-    private ExtraDeposit extraDeposit1;
-    private ExtraDeposit extraDeposit2;
+    private ExtraDeposit extraDeposit1 = null;
+    private ExtraDeposit extraDeposit2 = null;
+    private int payUsingExtraDep1 = 0;
+    private int payUsingExtraDep2 = 0;
 
     /**
      * developmentCard[] attribute represent the three slots located in the personal board where developmentCards
@@ -153,6 +155,38 @@ public class PersonalBoard {
             discount2=null;
         }
 
+        if( payUsingExtraDep1!=0 || payUsingExtraDep2!=0 ){
+            if( payUsingExtraDep1!=0 ){
+                if( checkFromExtraDep( 1, payUsingExtraDep1) ){
+                    if( !discountedCost.containsKey(extraDeposit1.getResourceType()) || discountedCost.get(extraDeposit1.getResourceType())==0 )
+                        return false;
+                    else{
+                        int oldValue = discountedCost.get(extraDeposit1.getResourceType());
+                        oldValue-=payUsingExtraDep1;
+                        if( oldValue<0 ) {
+                            payUsingExtraDep1 += oldValue;
+                            oldValue = 0;
+                        }
+                        discountedCost.put(extraDeposit1.getResourceType(), oldValue );
+                    }
+                }
+            }
+            if( payUsingExtraDep2!=0 ){
+                if( checkFromExtraDep( 2, payUsingExtraDep2) ){
+                    if( !discountedCost.containsKey(extraDeposit2.getResourceType()) || discountedCost.get(extraDeposit2.getResourceType())==0 )
+                        return false;
+                    else{
+                        int oldValue = discountedCost.get(extraDeposit2.getResourceType());
+                        oldValue-=payUsingExtraDep2;
+                        if( oldValue<0 ) {
+                            payUsingExtraDep2 += oldValue;
+                            oldValue = 0;
+                        }
+                        discountedCost.put(extraDeposit2.getResourceType(), oldValue );
+                    }
+                }
+            }
+        }
 
         for( ResourceType resourceType: discountedCost.keySet() ) {
             check = checkResourcesIntoWarehouse(resourceType, discountedCost.get(resourceType));
@@ -173,8 +207,38 @@ public class PersonalBoard {
                     takeResourcesFromStrongbox(resourceType, missingQuantity);
                 }
             }
+            if( payUsingExtraDep1>0 ) {
+                payFromExtraDep(1, payUsingExtraDep1);
+                payUsingExtraDep1=0;
+            }
+            if( payUsingExtraDep2>0 ) {
+                payFromExtraDep(2, payUsingExtraDep2);
+                payUsingExtraDep2=0;
+            }
         }
         return true;
+    }
+
+    public boolean checkFromExtraDep(int whichExtraDep, int quantityToCheck){
+        if( whichExtraDep == 1 && extraDeposit1!=null ){
+            return quantityToCheck <= extraDeposit1.getCurrentQuantity();
+        }
+        else if( whichExtraDep == 2 && extraDeposit2!=null ){
+            return quantityToCheck <= extraDeposit2.getCurrentQuantity();
+        }
+        return false;
+    }
+
+    public boolean payFromExtraDep( int whichExtraDep, int quantityToPay ){
+        if( quantityToPay<=0 )
+            return false;
+        if( whichExtraDep == 1 && extraDeposit1!=null ){
+            return extraDeposit1.removeResources(quantityToPay);
+        }
+        else if( whichExtraDep == 2 && extraDeposit2!=null ){
+            return extraDeposit2.removeResources(quantityToPay);
+        }
+        return false;
     }
 
 
@@ -245,17 +309,11 @@ public class PersonalBoard {
      */
     public boolean takeResourcesFromWarehouse(ResourceType resource, int quantity) {
         if (resource == warehouseDepot.getLevel(1).getResourceType()) {
-            if (warehouseDepot.getLevel(1).removeResources(quantity)) {
-                return true;
-            }
+            return warehouseDepot.getLevel(1).removeResources(quantity);
         } else if (resource == warehouseDepot.getLevel(2).getResourceType()) {
-            if (warehouseDepot.getLevel(2).removeResources(quantity)) {
-                return true;
-            }
+            return warehouseDepot.getLevel(2).removeResources(quantity);
         } else if (resource == warehouseDepot.getLevel(3).getResourceType()) {
-            if (warehouseDepot.getLevel(3).removeResources(quantity)) {
-                return true;
-            }
+            return warehouseDepot.getLevel(3).removeResources(quantity);
         }
         return false;
     }
@@ -504,6 +562,31 @@ public class PersonalBoard {
         }
         return extraDeposit2.addResource(resourceType,quantity);
     }
+
+    public ExtraDeposit getExtraDeposit1() {
+        return extraDeposit1;
+    }
+
+    public ExtraDeposit getExtraDeposit2() {
+        return extraDeposit2;
+    }
+
+    public void setPayUsingExtraDep1(int payUsingExtraDep1) {
+        this.payUsingExtraDep1 = payUsingExtraDep1;
+    }
+
+    public void setPayUsingExtraDep2(int payUsingExtraDep2) {
+        this.payUsingExtraDep2 = payUsingExtraDep2;
+    }
+
+    public int getPayUsingExtraDep1() {
+        return payUsingExtraDep1;
+    }
+
+    public int getPayUsingExtraDep2() {
+        return payUsingExtraDep2;
+    }
+
 
 }
 

@@ -54,13 +54,56 @@ public class DevelopmentCard {
         boolean doneWarehouse;
         boolean doneStrongbox;
         boolean canPay = false;
+        int quantityExtraDep1 = 0;
+        ResourceType resTypeExtraDep1 = null;
+        int quantityExtraDep2 = 0;
+        ResourceType resTypeExtraDep2 = null;
+        int secondQuantityExtraDep1 = 0;
+        ResourceType secondResTypeExtraDep1 = null;
+        int secondQuantityExtraDep2 = 0;
+        ResourceType secondResTypeExtraDep2 = null;
+        int oldQuantity1 = 0;
+        int oldQuantity2 = 0;
+
+        if( personalBoard.getPayUsingExtraDep1()!=0 && personalBoard.getExtraDeposit1()!=null ){
+            quantityExtraDep1 = personalBoard.getPayUsingExtraDep1();
+            oldQuantity1 = personalBoard.getPayUsingExtraDep1();
+            resTypeExtraDep1 = personalBoard.getExtraDeposit1().getResourceType();
+        }
+        if( personalBoard.getPayUsingExtraDep2()!=0 && personalBoard.getExtraDeposit2()!=null ){
+            quantityExtraDep2 = personalBoard.getPayUsingExtraDep2();
+            oldQuantity2 = personalBoard.getPayUsingExtraDep2();
+            resTypeExtraDep2 = personalBoard.getExtraDeposit2().getResourceType();
+        }
 
         for( ResourceType resource : productionCost.keySet()) {
-            doneWarehouse = personalBoard.checkResourcesIntoWarehouse(resource, productionCost.get(resource));
+            int value = productionCost.get(resource);
+            if( resTypeExtraDep1!= null && quantityExtraDep1!=0 && resTypeExtraDep1==resource ){
+                boolean allUsed = false;
+                if( value==quantityExtraDep1 ){
+                    allUsed=true;
+                }
+                value-=quantityExtraDep1;
+                if( value<0 ){
+                    quantityExtraDep1+=value;
+                    value=0;
+                }
+                if( allUsed=true ){
+                    quantityExtraDep1=0;
+                }
+            }
+            if( resTypeExtraDep2!= null && quantityExtraDep2!=0 && resTypeExtraDep2==resource ){
+                value-=quantityExtraDep2;
+                if( value<0 ){
+                    quantityExtraDep2+=value;
+                    value=0;
+                }
+            }
+            doneWarehouse = personalBoard.checkResourcesIntoWarehouse(resource, value);
             if( doneWarehouse )
                 canPay = true;
             else {
-                int missing = personalBoard.missingResourcesIntoWarehouseWithoutRemove(resource, productionCost.get(resource));
+                int missing = personalBoard.missingResourcesIntoWarehouseWithoutRemove(resource, value);
                 doneStrongbox = personalBoard.checkResourcesIntoStrongbox(resource, missing);
                 if (!doneStrongbox) {
                     canPay = false;
@@ -69,11 +112,40 @@ public class DevelopmentCard {
                     canPay = true;
             }
         }
+
         if( canPay ) {
+            if( personalBoard.getPayUsingExtraDep1()!=0 && personalBoard.getExtraDeposit1()!=null ){
+                secondQuantityExtraDep1 = personalBoard.getPayUsingExtraDep1();
+                secondResTypeExtraDep1 = personalBoard.getExtraDeposit1().getResourceType();
+            }
+            if( personalBoard.getPayUsingExtraDep2()!=0 && personalBoard.getExtraDeposit2()!=null ){
+                secondQuantityExtraDep2 = personalBoard.getPayUsingExtraDep2();
+                secondResTypeExtraDep2 = personalBoard.getExtraDeposit2().getResourceType();
+            }
+            personalBoard.payFromExtraDep(1, (oldQuantity1-quantityExtraDep1) );
+            personalBoard.payFromExtraDep(2, (oldQuantity2-quantityExtraDep2) );
+            personalBoard.setPayUsingExtraDep1(quantityExtraDep1);
+            personalBoard.setPayUsingExtraDep2(quantityExtraDep2);
+
             for( ResourceType resource : productionCost.keySet()) {
-                doneWarehouse = personalBoard.takeResourcesFromWarehouse(resource, productionCost.get(resource));
+                int value = productionCost.get(resource);
+                if( secondResTypeExtraDep1!= null && secondQuantityExtraDep1!=0 && secondResTypeExtraDep1==resource ){
+                    value-=secondQuantityExtraDep1;
+                    if( value<0 ){
+                        secondQuantityExtraDep1+=value;
+                        value=0;
+                    }
+                }
+                if( secondResTypeExtraDep2!= null && secondQuantityExtraDep2!=0 && secondResTypeExtraDep2==resource ){
+                    value-=quantityExtraDep2;
+                    if( value<0 ){
+                        secondQuantityExtraDep2+=value;
+                        value=0;
+                    }
+                }
+                doneWarehouse = personalBoard.takeResourcesFromWarehouse(resource, value);
                 if( !doneWarehouse ) {
-                    int missing = personalBoard.missingResourcesIntoWarehouse(resource, productionCost.get(resource));
+                    int missing = personalBoard.missingResourcesIntoWarehouse(resource, value);
                     doneStrongbox = personalBoard.takeResourcesFromStrongbox(resource, missing);
                     if (!doneStrongbox) {
                         return false;

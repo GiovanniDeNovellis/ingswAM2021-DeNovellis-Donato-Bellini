@@ -116,18 +116,6 @@ public class MarketBoard {
         return temporaryResources;
     }
 
-    /*
-    /**
-     * Discards the resources left in the TemporaryResources list.
-
-    public void discardTemporaryResources(){
-        for(ResourceType r: temporaryResources.keySet()){
-            //TODO AGGIUNGI PUNTI FEDE A TUTTI I GIOCATORI TRANNE IL CORRENTE
-        }
-        temporaryResources.clear();
-    }
-    */
-
     /**
      * Testing method used for printing the MarketGrid.
      */

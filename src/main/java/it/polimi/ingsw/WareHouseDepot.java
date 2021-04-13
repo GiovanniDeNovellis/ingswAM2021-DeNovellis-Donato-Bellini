@@ -14,7 +14,6 @@ public class WareHouseDepot {
      * the maximum capacity to the corresponding level.
      */
     private final TreeMap<Integer, Level> warehouseLevels;
-    //Todo( ogni risorsa che non può essere aggiunta si trasforma in un punto fede per tutti gli altri giocatori)
 
     /**
      * Build the warehouse with three levels capable

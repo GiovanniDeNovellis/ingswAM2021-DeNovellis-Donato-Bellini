@@ -174,7 +174,7 @@ class GameTest {
         game.getCurrentPlayer().setCanEndTurn(true);
         game.chooseLeaderCards(1,2);
         assertTrue(game.endTurn());
-        if(!game.buyDevelopmentCard(1,Colour.GREEN,1)){
+        if(!game.buyDevelopmentCard(1,Colour.GREEN,1,0, 0)){
             assertEquals(ResourceType.SHIELDS,game.getCurrentPlayer().getPersonalBoard().getWarehouseDepot().getLevel(2).getResourceType());
             assertEquals(2,game.getCurrentPlayer().getPersonalBoard().getWarehouseDepot().getLevel(2).getCurrNumResources());
             assertEquals(2,game.getCurrentPlayer().getPersonalBoard().getWarehouseDepot().getLevel(2).getMaxNumResources());
@@ -318,16 +318,16 @@ class GameTest {
         boolean[] dev  = {false,false,false};
         boolean[] lead  = {false,false};
         ResourceType[] obtainedFromLeader = {null, null};
-        assertTrue(game.activateProduction(dev, true, lead,ResourceType.STONES,ResourceType.STONES,ResourceType.SHIELDS, obtainedFromLeader ));
+        assertTrue(game.activateProduction(dev, true, lead,ResourceType.STONES,ResourceType.STONES,ResourceType.SHIELDS, obtainedFromLeader ,0,0));
         assertEquals(1,game.getCurrentPlayer().getPersonalBoard().getStrongbox().getNumOf(ResourceType.SHIELDS));
         assertNull(game.getCurrentPlayer().getPersonalBoard().getWarehouseDepot().getLevel(2).getResourceType());
         assertEquals(0,game.getCurrentPlayer().getPersonalBoard().getWarehouseDepot().getLevel(2).getCurrNumResources());
         assertEquals(2,game.getCurrentPlayer().getPersonalBoard().getWarehouseDepot().getLevel(2).getMaxNumResources());
-        assertFalse(game.activateProduction(dev, true, lead,ResourceType.STONES,ResourceType.STONES,ResourceType.SHIELDS, obtainedFromLeader ));
+        assertFalse(game.activateProduction(dev, true, lead,ResourceType.STONES,ResourceType.STONES,ResourceType.SHIELDS, obtainedFromLeader,0,0 ));
         assertTrue(game.endTurn());
         boolean[] dev1  = {false,false,false};
         boolean[] lead1  = {false,false};
-        assertTrue(game.activateProduction(dev1,true,lead1,ResourceType.COINS,ResourceType.STONES,ResourceType.SERVANTS, obtainedFromLeader));
+        assertTrue(game.activateProduction(dev1,true,lead1,ResourceType.COINS,ResourceType.STONES,ResourceType.SERVANTS, obtainedFromLeader,0,0));
         assertEquals(0,game.getCurrentPlayer().getPersonalBoard().getStrongbox().getNumOf(ResourceType.SERVANTS));
         assertEquals(1,game.getCurrentPlayer().getPersonalBoard().getWarehouseDepot().getLevel(1).getCurrNumResources());
         assertEquals(ResourceType.COINS,game.getCurrentPlayer().getPersonalBoard().getWarehouseDepot().getLevel(1).getResourceType());

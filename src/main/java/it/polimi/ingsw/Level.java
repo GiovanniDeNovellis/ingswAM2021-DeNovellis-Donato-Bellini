@@ -39,7 +39,6 @@ public class Level {
      * @return True or false if the request is correct.
      */
     public boolean addResources(ResourceType type, int quantity){
-        //Todo( ogni risorsa che non può essere aggiunta si trasforma in un punto fede per tutti gli altri giocatori)
         if(quantity>maxDimension) return false;
         this.currentResourceType=type;
         this.numResources=quantity;

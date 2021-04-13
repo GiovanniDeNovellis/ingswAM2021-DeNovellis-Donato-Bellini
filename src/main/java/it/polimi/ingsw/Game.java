@@ -2,7 +2,6 @@ package it.polimi.ingsw;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.TreeMap;
 
@@ -129,7 +128,6 @@ public class Game {
         if( players.size()<=1 || players.size()>4 || gameStarted ) {
             return false;
         }
-        //Todo( distribuire 4 leaderCards a testa e ogni player ne sceglie 2 )
         Collections.shuffle(players);
         players.get(0).setInkwell(true);
         currentPlayer = players.get(0);
@@ -263,14 +261,24 @@ public class Game {
      * @param slot is the personal board's slot where te player wants to insert the card
      * @return true if the player can buy that card and if the player can insert that card into the chosen slot
      */
-    public boolean buyDevelopmentCard( int level, Colour colour, int slot ){
-        if( !currentPlayer.isInitialDistribution() || currentPlayer.isCanEndTurn() || !currentPlayer.hasChosenLeaderCards())
+    public boolean buyDevelopmentCard( int level, Colour colour, int slot , int payUsingExtraDep1, int payUsingExtraDep2 ) {
+        if (!currentPlayer.isInitialDistribution() || currentPlayer.isCanEndTurn() || !currentPlayer.hasChosenLeaderCards())
             return false;
-        boolean canBuy = false;
-        if( deckgrid.readCard(level, colour) == null )
+        if (payUsingExtraDep1 < 0 || payUsingExtraDep1 > 2 || (payUsingExtraDep1 > 0 && currentPlayer.getPersonalBoard().getExtraDeposit1() == null))
             return false;
-        canBuy = ( currentPlayer.insertCard(deckgrid.readCard(level, colour), slot) );
-        if( canBuy ){
+        if (payUsingExtraDep2 < 0 || payUsingExtraDep2 > 2 || (payUsingExtraDep2 > 0 && currentPlayer.getPersonalBoard().getExtraDeposit2() == null))
+            return false;
+
+        if (payUsingExtraDep1 != 0 || payUsingExtraDep2 != 0) {
+            currentPlayer.getPersonalBoard().setPayUsingExtraDep1(payUsingExtraDep1);
+            currentPlayer.getPersonalBoard().setPayUsingExtraDep2(payUsingExtraDep2);
+        }
+
+        boolean canBuy;
+        if (deckgrid.readCard(level, colour) == null)
+            return false;
+        canBuy = (currentPlayer.insertCard(deckgrid.readCard(level, colour), slot));
+        if (canBuy) {
             deckgrid.removeCard(level, colour);
             currentPlayer.setCanEndTurn(true);
             return true;
@@ -298,29 +306,45 @@ public class Game {
      */
     public boolean activateProduction(boolean[] whichDevCardSlot, boolean fromPersonalBoard, boolean[] whichLeaderCard,
                                       ResourceType resourceType1, ResourceType resourceType2, ResourceType obtainedResource,
-                                      ResourceType[] resourceObtainedFromLeader ){
+                                      ResourceType[] resourceObtainedFromLeader, int payUsingExtraDep1, int payUsingExtraDep2 ){
 
         if( !currentPlayer.isInitialDistribution() || currentPlayer.isCanEndTurn() || !currentPlayer.hasChosenLeaderCards()  )
             return false;
 
+        if (payUsingExtraDep1 < 0 || payUsingExtraDep1 > 2 || (payUsingExtraDep1 > 0 && currentPlayer.getPersonalBoard().getExtraDeposit1() == null))
+            return false;
+        if (payUsingExtraDep2 < 0 || payUsingExtraDep2 > 2 || (payUsingExtraDep2 > 0 && currentPlayer.getPersonalBoard().getExtraDeposit2() == null))
+            return false;
+
+        if (payUsingExtraDep1 != 0 || payUsingExtraDep2 != 0) {
+            currentPlayer.getPersonalBoard().setPayUsingExtraDep1(payUsingExtraDep1);
+            currentPlayer.getPersonalBoard().setPayUsingExtraDep2(payUsingExtraDep2);
+        }
+
+        //DEV CARDS
         for( int i=0; i<3; i++ ){
             if( whichDevCardSlot[i] ){
                 currentPlayer.getPersonalBoard().activateProductionFromDevCard(i);
             }
         }
 
+        //BASE PRODUCTION
         if( fromPersonalBoard && resourceType1!=null && resourceType2!=null &&
                 obtainedResource!=null && obtainedResource!=ResourceType.FAITHPOINTS ){
             currentPlayer.getPersonalBoard().activateProductionFromPersonalBoard(resourceType1, resourceType2, obtainedResource);
         }
         currentPlayer.getPersonalBoard().fromStrongboxTempToStrongbox();
 
+        //LEADER CARDS
         for( int j=0; j<2; j++ ){
             if( whichLeaderCard[j] && currentPlayer.getChoosedLeaderCards().get(j).isActive() && resourceObtainedFromLeader[j]!=null ){
                 currentPlayer.getPersonalBoard().activateProductionFromLeaderCard(resourceObtainedFromLeader[j]);
             }
         }
         currentPlayer.setCanEndTurn(true);
+
+        currentPlayer.getPersonalBoard().setPayUsingExtraDep1(0);
+        currentPlayer.getPersonalBoard().setPayUsingExtraDep2(0);
         return true;
     }
 
@@ -516,7 +540,6 @@ public class Game {
     public boolean activateLeaderAbility(int whichLeaderCard){
         return currentPlayer.activateLeaderAbility(whichLeaderCard);
     }
-    //
 }
 
 

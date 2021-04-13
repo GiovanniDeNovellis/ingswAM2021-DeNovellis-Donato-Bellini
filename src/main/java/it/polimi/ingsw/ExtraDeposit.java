@@ -23,4 +23,13 @@ public class ExtraDeposit {
         currentQuantity += quantity;
         return true;
     }
+
+    public boolean removeResources( int quantityToRemove ){
+        if( currentQuantity-quantityToRemove<0 )
+            return false;
+        else{
+            currentQuantity-=quantityToRemove;
+            return true;
+        }
+    }
 }
