@@ -14,6 +14,9 @@ public class PersonalBoard {
     private ArrayList<DevelopmentCard> insertedDevelopmentCards = new ArrayList<>();
     private Strongbox strongbox = new Strongbox();
     private WareHouseDepot warehouseDepot = new WareHouseDepot();
+    private ExtraDeposit extraDeposit1;
+    private ExtraDeposit extraDeposit2;
+
     /**
      * developmentCard[] attribute represent the three slots located in the personal board where developmentCards
      * can be positioned
@@ -474,6 +477,34 @@ public class PersonalBoard {
         player.addFaithPointsAndCallAudience(1);
         return true;
     }
+
+
+    public boolean createExtraDeposit(ResourceType resourceType){
+        if(extraDeposit1 == null){
+            extraDeposit1 = new ExtraDeposit(resourceType);
+            return true;
+        }
+        else if (extraDeposit2 == null){
+            extraDeposit2 = new ExtraDeposit(resourceType);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean addToExtraDeposit1(ResourceType resourceType, int quantity){
+        if (extraDeposit1==null){
+            return false;
+        }
+        return extraDeposit1.addResource(resourceType,quantity);
+
+    }
+    public boolean addToExtraDeposit2(ResourceType resourceType, int quantity){
+        if (extraDeposit2 == null){
+            return false;
+        }
+        return extraDeposit2.addResource(resourceType,quantity);
+    }
 }
+
 
 

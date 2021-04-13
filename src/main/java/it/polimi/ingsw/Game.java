@@ -345,11 +345,17 @@ public class Game {
      * @param quantityToAdd is the quantity of resource that the player wants to insert.
      * @return true if the player can effectively insert than number of that type of resource.
      */
-    public boolean insertResourcesIntoWarehouse( ResourceType resourceType, int quantityToAdd ){
+    public boolean insertResourcesIntoWarehouse( ResourceType resourceType, int quantityToAdd, boolean intoExtraDeposit ){
         if(marketBoard.getTemporaryResources().get(resourceType)==null) return false;
         int maxAddable = marketBoard.getTemporaryResources().get(resourceType);
         if( quantityToAdd > maxAddable || quantityToAdd <= 0 )
             return false;
+        if (intoExtraDeposit){
+            if (currentPlayer.getPersonalBoard().addToExtraDeposit1(resourceType,quantityToAdd)){
+                return true;
+            }
+            else return currentPlayer.getPersonalBoard().addToExtraDeposit2(resourceType, quantityToAdd);
+        }
         if( currentPlayer.getPersonalBoard().insertResources(resourceType, 1, quantityToAdd) ) {
             marketBoard.getTemporaryResources().put(resourceType, maxAddable - quantityToAdd);
             return true;
@@ -362,7 +368,6 @@ public class Game {
             marketBoard.getTemporaryResources().put(resourceType, maxAddable - quantityToAdd);
             return true;
         }
-
         return false;
     }
 

@@ -72,10 +72,10 @@ class GameTest {
         assertTrue(game.takeResourcesFromMarket(3,1));
         ResourceType res = game.getMarketBoard().getTemporaryResources().firstKey();
         int numOfThatRes = game.getMarketBoard().getTemporaryResources().get(res);
-        assertTrue(game.insertResourcesIntoWarehouse(res,numOfThatRes));
-        assertFalse(game.insertResourcesIntoWarehouse(res,numOfThatRes));
-        assertFalse(game.insertResourcesIntoWarehouse(res,numOfThatRes+10));
-        assertFalse(game.insertResourcesIntoWarehouse(res,numOfThatRes-10));
+        assertTrue(game.insertResourcesIntoWarehouse(res,numOfThatRes,false));
+        assertFalse(game.insertResourcesIntoWarehouse(res,numOfThatRes,false));
+        assertFalse(game.insertResourcesIntoWarehouse(res,numOfThatRes+10,false));
+        assertFalse(game.insertResourcesIntoWarehouse(res,numOfThatRes-10,false));
     }
 
 
