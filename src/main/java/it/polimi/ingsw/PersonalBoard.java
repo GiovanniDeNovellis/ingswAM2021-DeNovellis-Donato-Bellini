@@ -399,6 +399,7 @@ public class PersonalBoard {
             addResourceToStrongboxTemp(obtainedResource, 1);
             return true;
         }
+
     }
 
     /**
