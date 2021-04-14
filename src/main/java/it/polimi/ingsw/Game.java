@@ -106,7 +106,7 @@ public class Game {
      * Starts the single player mode, only if there is 1 player in game.
      * @return true if game correctly starts in single player mode.
      */
-    public boolean startSingleplayer(){
+    public boolean startSinglePlayer(){
         if( players.size()!=1 || gameStarted ) {
             return false;
         }
@@ -201,7 +201,7 @@ public class Game {
     public boolean distributionResourceSecondThird( ResourceType resourceType ){
         if( (currentPlayer.getPlayerNumber() == 2 || currentPlayer.getPlayerNumber() == 3)
             && currentPlayer.doneInitialDistribution()) {
-            currentPlayer.insertResources(resourceType, 1, 1);
+            currentPlayer.insertResourcesIntoWarehouse(resourceType, 1, 1);
             currentPlayer.setInitialDistribution(true);
             currentPlayer.setCanEndTurn(true);
             return true;
@@ -217,11 +217,11 @@ public class Game {
     public boolean distributionResourceFourthPlayer( ResourceType resourceType1, ResourceType resourceType2 ){
         if( currentPlayer.getPlayerNumber() == 4 && currentPlayer.doneInitialDistribution()) {
             if( resourceType1.equals(resourceType2) ) {
-                currentPlayer.insertResources(resourceType1, 2, 2);
+                currentPlayer.insertResourcesIntoWarehouse(resourceType1, 2, 2);
             }
             else {
-                currentPlayer.insertResources(resourceType1, 1, 1);
-                currentPlayer.insertResources(resourceType2, 2, 1);
+                currentPlayer.insertResourcesIntoWarehouse(resourceType1, 1, 1);
+                currentPlayer.insertResourcesIntoWarehouse(resourceType2, 2, 1);
             }
             currentPlayer.setInitialDistribution(true);
             currentPlayer.setCanEndTurn(true);

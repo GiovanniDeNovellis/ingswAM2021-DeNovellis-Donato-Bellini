@@ -8,12 +8,12 @@ public class PersonalBoard {
     public PersonalBoard(Player player){
         this.player = player;
     }
-    private Player player;
-    private TreeMap<Colour,Integer> cardsColours = new TreeMap<>();
+    private final Player player;
+    private final TreeMap<Colour,Integer> cardsColours = new TreeMap<>();
     private int totDevCards = 0;
-    private ArrayList<DevelopmentCard> insertedDevelopmentCards = new ArrayList<>();
-    private Strongbox strongbox = new Strongbox();
-    private WareHouseDepot warehouseDepot = new WareHouseDepot();
+    private final ArrayList<DevelopmentCard> insertedDevelopmentCards = new ArrayList<>();
+    private final Strongbox strongbox = new Strongbox();
+    private final WareHouseDepot warehouseDepot = new WareHouseDepot();
     private ExtraDeposit extraDeposit1 = null;
     private ExtraDeposit extraDeposit2 = null;
     private int payUsingExtraDep1 = 0;
@@ -23,12 +23,12 @@ public class PersonalBoard {
      * developmentCard[] attribute represent the three slots located in the personal board where developmentCards
      * can be positioned
      */
-    private DevelopmentCard[] developmentCard = new DevelopmentCard[3];
+    private final DevelopmentCard[] developmentCard = new DevelopmentCard[3];
 
     /**
      * resourcesToAddToStrongbox TreeMap contains all resources obtained through production.
      */
-    private TreeMap<ResourceType, Integer> resourcesToAddToStrongbox = new TreeMap<>();
+    private final TreeMap<ResourceType, Integer> resourcesToAddToStrongbox = new TreeMap<>();
 
     private ResourceType discount1;
     private ResourceType discount2;
@@ -593,7 +593,7 @@ public class PersonalBoard {
     }
 
     /**
-     * Method to activate the leader card's production special ability
+     * Method to activate the er card's production special ability
      * @param obtainedResource is the resource the player wants to obtain after production.
      * @return true if the player can effectively activate the production.
      */

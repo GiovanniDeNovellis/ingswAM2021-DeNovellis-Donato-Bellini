@@ -17,7 +17,7 @@ public class DevelopmentCard {
     private int victoryPoints;
 
     /**
-     * Returns the colour of the card.
+     * Public method. Returns the colour of the card.
      * @return Color
      */
     public Colour getColour(){return this.type;}
@@ -64,6 +64,7 @@ public class DevelopmentCard {
         ResourceType secondResTypeExtraDep2 = null;
         int oldQuantity1 = 0;
         int oldQuantity2 = 0;
+        boolean doneExtra = false;
 
         if( personalBoard.getPayUsingExtraDep1()!=0 && personalBoard.getExtraDeposit1()!=null ){
             quantityExtraDep1 = personalBoard.getPayUsingExtraDep1();
@@ -79,6 +80,7 @@ public class DevelopmentCard {
         for( ResourceType resource : productionCost.keySet()) {
             int value = productionCost.get(resource);
             if( resTypeExtraDep1!= null && quantityExtraDep1!=0 && resTypeExtraDep1==resource ){
+                doneExtra = true;
                 boolean allUsed = false;
                 if( value==quantityExtraDep1 ){
                     allUsed=true;
@@ -91,13 +93,30 @@ public class DevelopmentCard {
                 if( allUsed=true ){
                     quantityExtraDep1=0;
                 }
+                if( value!=0 ){
+                    doneExtra=false;
+                }
             }
             if( resTypeExtraDep2!= null && quantityExtraDep2!=0 && resTypeExtraDep2==resource ){
+                doneExtra = true;
+                boolean allUsed2 = false;
+                if( value==quantityExtraDep2 ){
+                    allUsed2=true;
+                }
                 value-=quantityExtraDep2;
                 if( value<0 ){
                     quantityExtraDep2+=value;
                     value=0;
                 }
+                if( allUsed2=true ){
+                    quantityExtraDep2=0;
+                }
+                if( value!=0 ){
+                    doneExtra=false;
+                }
+            }
+            if( doneExtra ){
+                canPay = true;
             }
             doneWarehouse = personalBoard.checkResourcesIntoWarehouse(resource, value);
             if( doneWarehouse )
@@ -126,6 +145,13 @@ public class DevelopmentCard {
             personalBoard.payFromExtraDep(2, (oldQuantity2-quantityExtraDep2) );
             personalBoard.setPayUsingExtraDep1(quantityExtraDep1);
             personalBoard.setPayUsingExtraDep2(quantityExtraDep2);
+
+            if( doneExtra ){
+                for (ResourceType resource : earnedResources.keySet()) {
+                    personalBoard.addResourceToStrongboxTemp(resource, earnedResources.get(resource));
+                }
+                return true;
+            }
 
             for( ResourceType resource : productionCost.keySet()) {
                 int value = productionCost.get(resource);

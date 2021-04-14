@@ -11,14 +11,14 @@ class GameTest {
     @Test
     void singlePlayerTest() throws FileNotFoundException{
         Game game = new Game();
-        assertFalse(game.startSingleplayer());
+        assertFalse(game.startSinglePlayer());
         game.addPlayer("Player 1");
-        assertTrue(game.startSingleplayer());
+        assertTrue(game.startSinglePlayer());
         assertEquals(1,game.getPlayers().size());
         game.addPlayer("Player 1");
-        assertFalse(game.startSingleplayer());
+        assertFalse(game.startSinglePlayer());
         game.addPlayer("Player 2");
-        assertFalse(game.startSingleplayer());
+        assertFalse(game.startSinglePlayer());
     }
 
     @Test
@@ -165,7 +165,7 @@ class GameTest {
         assertTrue( game.addPlayer("FirstPlayer"));
         assertTrue( game.addPlayer("SecondPlayer"));
         game.startMultiplayer();
-        game.getCurrentPlayer().insertResources(ResourceType.SHIELDS,2,2);
+        game.getCurrentPlayer().insertResourcesIntoWarehouse(ResourceType.SHIELDS,2,2);
         assertEquals(ResourceType.SHIELDS,game.getCurrentPlayer().getPersonalBoard().getWarehouseDepot().getLevel(2).getResourceType());
         assertEquals(2,game.getCurrentPlayer().getPersonalBoard().getWarehouseDepot().getLevel(2).getCurrNumResources());
         game.chooseLeaderCards(1,2);
@@ -314,7 +314,7 @@ class GameTest {
         assertTrue(game.distributionResourceSecondThird(ResourceType.COINS));
         game.chooseLeaderCards(1,2);
         assertTrue(game.endTurn());
-        game.getCurrentPlayer().insertResources(ResourceType.STONES,2,2);
+        game.getCurrentPlayer().insertResourcesIntoWarehouse(ResourceType.STONES,2,2);
         boolean[] dev  = {false,false,false};
         boolean[] lead  = {false,false};
         ResourceType[] obtainedFromLeader = {null, null};
@@ -332,4 +332,121 @@ class GameTest {
         assertEquals(1,game.getCurrentPlayer().getPersonalBoard().getWarehouseDepot().getLevel(1).getCurrNumResources());
         assertEquals(ResourceType.COINS,game.getCurrentPlayer().getPersonalBoard().getWarehouseDepot().getLevel(1).getResourceType());
     }
+
+    //comment line 40 in LeaderCardDeck class to execute this test
+    /*
+    @Test
+    public void LeaderAbilityDiscountAndExtraDepositTest() throws FileNotFoundException {
+        Game game = new Game();
+        Deckgrid deckgrid = new Deckgrid();
+        game.addPlayer("Player1");
+        game.addPlayer("Player2");
+        game.startMultiplayer();
+        assertFalse( game.endTurn() );
+        //disabled shuffle on leaderCardDeck for a better testing
+        assertTrue( game.chooseLeaderCards(0,1) );
+        assertTrue( game.endTurn() );
+        assertTrue( game.chooseLeaderCards(0,1) );
+        assertTrue( game.distributionResourceSecondThird(ResourceType.COINS));
+        assertTrue( game.endTurn() );
+        //player n°1 turn:
+        assertEquals(1,game.getCurrentPlayer().getPlayerNumber() );
+        //manually select of Development cards for a better testing
+        //add necessary resources to buy two devCards (needed for playing the first LeaderCard )
+        game.getCurrentPlayer().getPersonalBoard().getStrongbox().addResources(ResourceType.STONES, 2);
+        game.getCurrentPlayer().getPersonalBoard().getStrongbox().addResources(ResourceType.SHIELDS, 2);
+        //add Green DevCard
+        assertTrue( game.getCurrentPlayer().insertCard(deckgrid.getCards().get(0),0) );
+        //add Yellow DevCard
+        assertTrue( game.getCurrentPlayer().insertCard(deckgrid.getCards().get(3),1) );
+        //activate first leader card: it needs one yellow DevCard and one green DevCard
+        assertTrue( game.activateLeaderCard(0) );
+        //activate first leader card ability: discount on servants
+        assertTrue( game.activateLeaderAbility(0) );
+        //let's buy DevCard n° 2 with 1 servant discount (2 servants for buying that card without discount )
+        game.getCurrentPlayer().getPersonalBoard().getStrongbox().addResources(ResourceType.SERVANTS,1);
+        assertTrue( game.getCurrentPlayer().insertCard(deckgrid.getCards().get(1),2));
+        //discount already used: let's try to buy development card n° 18 with one servant discount (4 needed). Should be false
+        game.getCurrentPlayer().getPersonalBoard().getStrongbox().addResources(ResourceType.SERVANTS,3);
+        assertFalse( game.getCurrentPlayer().insertCard(deckgrid.getCards().get(17),0));
+        game.getCurrentPlayer().getPersonalBoard().getStrongbox().addResources(ResourceType.SERVANTS,1);
+        //now should be true: player has all 4 servants resources needed
+        assertTrue( game.getCurrentPlayer().insertCard(deckgrid.getCards().get(17),0));
+        //manually setCanEndTurn: needed for testing
+        game.getCurrentPlayer().setCanEndTurn(true);
+        assertTrue( game.endTurn() );
+        assertEquals(2,game.getCurrentPlayer().getPlayerNumber() );
+        //players has no coins, leader card n° 5 can't be activated
+        assertFalse( game.activateLeaderAbility(0) );
+        assertFalse( game.activateLeaderCard(0) );
+        //insert 5 coins, needed to activate leader card n°5
+        game.getCurrentPlayer().getPersonalBoard().getStrongbox().addResources(ResourceType.COINS,5);
+        assertTrue( game.activateLeaderCard(0) );
+        //activate leader card n°5 ability: create extra dep for two stones
+        assertTrue( game.activateLeaderAbility(0) );
+        //manually adding resources to extraDep: some tests
+        assertFalse( game.getCurrentPlayer().getPersonalBoard().addToExtraDeposit1(ResourceType.STONES, 3 ) );
+        assertFalse( game.getCurrentPlayer().getPersonalBoard().addToExtraDeposit1(ResourceType.SHIELDS, 1 ) );
+        assertTrue(game.getCurrentPlayer().getPersonalBoard().addToExtraDeposit1(ResourceType.STONES, 2 ));
+        game.getCurrentPlayer().getPersonalBoard().setPayUsingExtraDep1(2);
+        //trying to buy Development card n°4(it needs 2 stones) using stones located in extraDep
+        assertTrue( game.getCurrentPlayer().getPersonalBoard().checkFromExtraDep(1,2));
+        assertEquals( ResourceType.STONES, game.getCurrentPlayer().getPersonalBoard().getExtraDeposit1().getResourceType() );
+        assertTrue(game.getCurrentPlayer().insertCard(deckgrid.getCards().get(3),1));
+        assertEquals( ResourceType.STONES, game.getCurrentPlayer().getPersonalBoard().getExtraDeposit1().getResourceType() );
+        assertEquals(0,  game.getCurrentPlayer().getPersonalBoard().getExtraDeposit1().getCurrentQuantity());
+        //adding two stones to extra dep and trying base production power using these
+        assertTrue(game.getCurrentPlayer().getPersonalBoard().addToExtraDeposit1(ResourceType.STONES, 2 ));
+        game.getCurrentPlayer().getPersonalBoard().setPayUsingExtraDep1(2);
+        assertTrue( game.getCurrentPlayer().getPersonalBoard().activateProductionFromPersonalBoard(ResourceType.STONES, ResourceType.STONES, ResourceType.SERVANTS));
+        assertEquals( ResourceType.STONES, game.getCurrentPlayer().getPersonalBoard().getExtraDeposit1().getResourceType() );
+        assertEquals(0,  game.getCurrentPlayer().getPersonalBoard().getExtraDeposit1().getCurrentQuantity());
+        //adding one stone to extra dep and trying base production power using that stone and another stone located in warehouse
+        assertTrue(game.getCurrentPlayer().getPersonalBoard().addToExtraDeposit1(ResourceType.STONES, 1 ));
+        game.getCurrentPlayer().getPersonalBoard().setPayUsingExtraDep1(1);
+        assertTrue( game.getCurrentPlayer().insertResourcesIntoWarehouse(ResourceType.STONES,2,1) );
+        assertTrue( game.getCurrentPlayer().getPersonalBoard().activateProductionFromPersonalBoard(ResourceType.STONES, ResourceType.STONES, ResourceType.SERVANTS));
+        assertEquals( ResourceType.STONES, game.getCurrentPlayer().getPersonalBoard().getExtraDeposit1().getResourceType() );
+        assertEquals(0,  game.getCurrentPlayer().getPersonalBoard().getExtraDeposit1().getCurrentQuantity());
+        //adding one stone to extra dep and trying base production power using that stone and servant located in warehouse
+        assertTrue(game.getCurrentPlayer().getPersonalBoard().addToExtraDeposit1(ResourceType.STONES, 1 ));
+        game.getCurrentPlayer().getPersonalBoard().setPayUsingExtraDep1(1);
+        assertTrue( game.getCurrentPlayer().insertResourcesIntoWarehouse(ResourceType.SERVANTS,3,1) );
+        assertTrue( game.getCurrentPlayer().getPersonalBoard().activateProductionFromPersonalBoard(ResourceType.STONES, ResourceType.SERVANTS, ResourceType.SERVANTS));
+        assertEquals( ResourceType.STONES, game.getCurrentPlayer().getPersonalBoard().getExtraDeposit1().getResourceType() );
+        assertEquals(0,  game.getCurrentPlayer().getPersonalBoard().getExtraDeposit1().getCurrentQuantity());
+        //let's active second extra dep for player2 (it contains servants):
+        //leader card n°6 needs 5 stones to be activated
+        game.getCurrentPlayer().getPersonalBoard().getStrongbox().addResources(ResourceType.STONES,5);
+        assertTrue( game.getCurrentPlayer().activateLeaderCard(1) );
+        assertTrue( game.getCurrentPlayer().activateLeaderAbility(1));
+        //let's add 2 servants into extradep2
+        assertTrue( game.getCurrentPlayer().getPersonalBoard().addToExtraDeposit2(ResourceType.SERVANTS,2));
+        game.getCurrentPlayer().getPersonalBoard().setPayUsingExtraDep2(2);
+        //try base production using the 2 servants located into extradep2
+        assertTrue( game.getCurrentPlayer().getPersonalBoard().activateProductionFromPersonalBoard(ResourceType.SERVANTS, ResourceType.SERVANTS, ResourceType.STONES));
+        assertEquals( ResourceType.SERVANTS, game.getCurrentPlayer().getPersonalBoard().getExtraDeposit2().getResourceType() );
+        assertEquals(0,  game.getCurrentPlayer().getPersonalBoard().getExtraDeposit2().getCurrentQuantity());
+        //try base production power using extradep1 and extradep2
+        assertTrue(game.getCurrentPlayer().getPersonalBoard().addToExtraDeposit1(ResourceType.STONES, 1 ));
+        game.getCurrentPlayer().getPersonalBoard().setPayUsingExtraDep1(1);
+        assertTrue( game.getCurrentPlayer().getPersonalBoard().addToExtraDeposit2(ResourceType.SERVANTS,1));
+        game.getCurrentPlayer().getPersonalBoard().setPayUsingExtraDep2(1);
+        assertTrue( game.getCurrentPlayer().getPersonalBoard().activateProductionFromPersonalBoard(ResourceType.SERVANTS, ResourceType.STONES, ResourceType.COINS));
+        assertEquals( ResourceType.SERVANTS, game.getCurrentPlayer().getPersonalBoard().getExtraDeposit2().getResourceType() );
+        assertEquals(0,  game.getCurrentPlayer().getPersonalBoard().getExtraDeposit2().getCurrentQuantity());
+        assertEquals( ResourceType.STONES, game.getCurrentPlayer().getPersonalBoard().getExtraDeposit1().getResourceType() );
+        assertEquals(0,  game.getCurrentPlayer().getPersonalBoard().getExtraDeposit1().getCurrentQuantity());
+        assertEquals(0, game.getCurrentPlayer().getPersonalBoard().getPayUsingExtraDep1() );
+        assertEquals(0, game.getCurrentPlayer().getPersonalBoard().getPayUsingExtraDep2() );
+        //trying to activate production for dev card n°4(it needs one servant) using one servant located in extradep2
+        assertTrue( game.getCurrentPlayer().getPersonalBoard().addToExtraDeposit2(ResourceType.SERVANTS,1));
+        game.getCurrentPlayer().getPersonalBoard().setPayUsingExtraDep2(1);
+        //game.getCurrentPlayer().getPersonalBoard().getStrongbox().addResources(ResourceType.SERVANTS,1);
+        assertEquals( ResourceType.SERVANTS, game.getCurrentPlayer().getPersonalBoard().getExtraDeposit2().getResourceType() );
+        assertTrue( game.getCurrentPlayer().getPersonalBoard().activateProductionFromDevCard(1));
+    }
+     */
+
+
 }

@@ -279,7 +279,7 @@ public class Player {
      * @param quantity Quantity to insert.
      * @return True if the insertion is completed successfully.
      */
-    public boolean insertResources(ResourceType resourceType, int level, int quantity ) {
+    public boolean insertResourcesIntoWarehouse(ResourceType resourceType, int level, int quantity ) {
         return (personalBoard.insertResources(resourceType, level, quantity));
     }
 
