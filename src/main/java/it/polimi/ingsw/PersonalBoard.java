@@ -623,13 +623,22 @@ public class PersonalBoard {
         } else
             return false;
 
-        if (checkResourcesIntoWarehouse(resourceType, 1)) {
+        if( payUsingExtraDep1!=0 && extraDeposit1.getResourceType()==resourceType ){
+            if( checkFromExtraDep(1,1) ){
+                payFromExtraDep(1,1 );
+                payUsingExtraDep1--;
+            }
+        } else if( payUsingExtraDep2!=0 && extraDeposit2.getResourceType()==resourceType ){
+            if( checkFromExtraDep(2,1) ){
+                payFromExtraDep(2,1 );
+                payUsingExtraDep2--;
+            }
+        } else if (checkResourcesIntoWarehouse(resourceType, 1)) {
             takeResourcesFromWarehouse(resourceType, 1);
         } else if (checkResourcesIntoStrongbox(resourceType, 1)) {
             takeResourcesFromStrongbox(resourceType, 1);
         } else
             return false;
-        //Todo( può prendere la risorsa anche dall' extraDep )
 
         addResourceToStrongboxTemp(obtainedResource, 1);
         player.addFaithPointsAndCallAudience(1);
