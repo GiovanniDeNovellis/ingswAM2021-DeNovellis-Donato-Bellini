@@ -282,23 +282,123 @@ public class PersonalBoard {
                                                         ResourceType obtainedResource ){
         if( obtainedResource == ResourceType.FAITHPOINTS )
             return false;
-        boolean foundWare1=false,foundWare2=false;
-        if( checkResourcesIntoWarehouse(resourceType1, 1) ) foundWare1=true;
-        else if( checkResourcesIntoStrongbox(resourceType1, 1) ) ;
-        else return false;
+        boolean foundWare1=false,foundWare2=false,foundExtra1=false, foundExtra2=false;
+        if(resourceType1.equals(resourceType2)) {
+            int leftToTake = 2;
+            if (payUsingExtraDep1 >= 1 && extraDeposit1.getResourceType().equals(resourceType1)) {
+                if (payUsingExtraDep1 == 2 && extraDeposit1.getCurrentQuantity() == 2) {
+                    leftToTake = 0;
+                    foundExtra1 = true;
+                } else if (payUsingExtraDep1 == 1 && extraDeposit1.getCurrentQuantity() >= 1) {
+                    leftToTake = 1;
+                    foundExtra1 = true;
+                }
+            } else if (payUsingExtraDep2 >= 1 && extraDeposit2.getResourceType().equals(resourceType1)) {
+                if (payUsingExtraDep2 == 2 && extraDeposit2.getCurrentQuantity() == 2) {
+                    leftToTake = 0;
+                    foundExtra2 = true;
+                } else if (payUsingExtraDep2 == 1 && extraDeposit2.getCurrentQuantity() >= 1) {
+                    leftToTake = 1;
+                    foundExtra2 = true;
+                }
+            }
+            if (leftToTake == 0) {
+                if (foundExtra1) {
+                    payFromExtraDep(1,2);
+                    payUsingExtraDep1 -= 2;
+                } else {
+                    payFromExtraDep(2,2);
+                    payUsingExtraDep2 -= 2;
+                }
+                addResourceToStrongboxTemp(obtainedResource, 1);
+                return true;
+            } else if (leftToTake == 1) {
+                if (checkResourcesIntoWarehouse(resourceType1, 1)) foundWare1 = true;
+                else if (checkResourcesIntoStrongbox(resourceType1, 1)) ;
+                else return false;
+                if (foundExtra1) {
+                    payUsingExtraDep1--;
+                    payFromExtraDep(1,1);
+                } else if (foundExtra2) {
+                    payUsingExtraDep2--;
+                    payFromExtraDep(2,1);
+                }
+                if (foundWare1) takeResourcesFromWarehouse(resourceType1, 1);
+                else takeResourcesFromStrongbox(resourceType1, 1);
+                addResourceToStrongboxTemp(obtainedResource, 1);
+                return true;
+            }
+            else{
+                if(checkResourcesIntoWarehouse(resourceType1,2)){
+                    takeResourcesFromWarehouse(resourceType1,2);
+                    addResourceToStrongboxTemp(obtainedResource,1);
+                    return true;
+                }
+                else if(checkResourcesIntoWarehouse(resourceType1,1)){
+                    if(checkResourcesIntoStrongbox(resourceType1,1)){
+                        takeResourcesFromWarehouse(resourceType1,1);
+                        takeResourcesFromStrongbox(resourceType1,1);
+                        addResourceToStrongboxTemp(obtainedResource,1);
+                        return true;
+                    }
+                    return false;
+                }
+                else{
+                    if(checkResourcesIntoStrongbox(resourceType1,2)){
+                        takeResourcesFromStrongbox(resourceType1,2);
+                        addResourceToStrongboxTemp(obtainedResource,1);
+                        return true;
+                    }
+                    return false;
+                }
+            }
+        }
+        else {
+            if(payUsingExtraDep1>=1 && resourceType1.equals(extraDeposit1.getResourceType()) &&
+                    checkFromExtraDep(1,1))
+                    foundExtra1=true;
+            else if(payUsingExtraDep2>=1 && resourceType1.equals(extraDeposit2.getResourceType()) &&
+                    checkFromExtraDep(2,1))
+                foundExtra2=true;
+            else if (checkResourcesIntoWarehouse(resourceType1, 1)) foundWare1 = true;
+            else if (checkResourcesIntoStrongbox(resourceType1, 1)) ;
+            else return false;
 
-        if( checkResourcesIntoWarehouse(resourceType2, 1) )foundWare2=true;
-        else if( checkResourcesIntoStrongbox(resourceType2, 1) );
-        else return false;
+            if(payUsingExtraDep1>=1 && resourceType2.equals(extraDeposit1.getResourceType()) &&
+                    checkFromExtraDep(1,1))
+                foundExtra1=true;
+            else if(payUsingExtraDep2>=1 && resourceType2.equals(extraDeposit2.getResourceType()) &&
+                    checkFromExtraDep(2,1))
+                foundExtra2=true;
+            else if (checkResourcesIntoWarehouse(resourceType2, 1)) foundWare2 = true;
+            else if (checkResourcesIntoStrongbox(resourceType2, 1)) ;
+            else return false;
 
-        if(foundWare1) takeResourcesFromWarehouse(resourceType1, 1);
-        else takeResourcesFromStrongbox(resourceType1, 1);
-        if(foundWare2) takeResourcesFromWarehouse(resourceType2, 1);
-        else takeResourcesFromStrongbox(resourceType2, 1);
+            if(foundExtra1 && resourceType1.equals(extraDeposit1.getResourceType())){
+                payUsingExtraDep1--;
+                payFromExtraDep(1,1);
+            }
+            else if(foundExtra2 && resourceType1.equals(extraDeposit2.getResourceType())){
+                payUsingExtraDep2--;
+                payFromExtraDep(2,1);
+            }
+            else if (foundWare1) takeResourcesFromWarehouse(resourceType1, 1);
+            else takeResourcesFromStrongbox(resourceType1, 1);
 
-        addResourceToStrongboxTemp(obtainedResource, 1);
-        return true;
+            if(foundExtra1 && resourceType2.equals(extraDeposit1.getResourceType())){
+                payUsingExtraDep1--;
+                payFromExtraDep(1,1);
+            }
+            else if(foundExtra2 && resourceType2.equals(extraDeposit2.getResourceType())){
+                payUsingExtraDep2--;
+                payFromExtraDep(2,1);
+            }
+            else if (foundWare2) takeResourcesFromWarehouse(resourceType2, 1);
+            else takeResourcesFromStrongbox(resourceType2, 1);
 
+            addResourceToStrongboxTemp(obtainedResource, 1);
+            return true;
+        }
     }
 
     /**
