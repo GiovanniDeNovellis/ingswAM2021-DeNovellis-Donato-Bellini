@@ -11,7 +11,6 @@ import java.util.TreeMap;
  */
 public class Game {
 
-    //Todo( IMPLEMENTARE RESILIENZA )
     /**
      * Reference to market board, unique in the game and shared by all players.
      */
@@ -61,6 +60,7 @@ public class Game {
      * Represent the initial leader card's deck that contains all the leader cards of the game.
      */
     private LeaderCardDeck leaderCardDeck = new LeaderCardDeck();
+    private int singlePlayerScore;
 
 
     public Player getCurrentPlayer() {
@@ -107,7 +107,6 @@ public class Game {
      * @return true if game correctly starts in single player mode.
      */
     public boolean startSingleplayer(){
-        //Todo( distribuire 4 leaderCards a testa e ogni player ne sceglie 2 )
         if( players.size()!=1 || gameStarted ) {
             return false;
         }
@@ -154,7 +153,20 @@ public class Game {
      * @return true if the player can end the turn.
      */
     public boolean endTurn(){
-        if( !currentPlayer.isInitialDistribution() || !currentPlayer.isCanEndTurn() || !currentPlayer.hasChosenLeaderCards()){
+        int number= currentPlayer.getPlayerNumber();
+        if((number==players.size()&&players.get(0).isAFK())){
+            currentPlayer=players.get(1);
+            return true;
+        }
+        else if(number!=players.size()&&players.get(number).isAFK()){
+            if(number+1==players.size()){
+                currentPlayer=players.get(0);
+                return true;
+            }
+            currentPlayer=players.get(number+1);
+            return true;
+        }
+        if( currentPlayer.doneInitialDistribution() || !currentPlayer.isCanEndTurn() || !currentPlayer.hasChosenLeaderCards()){
             return false;
         }
         if(currentPlayer.getHasTrasformationAbility()&&marketBoard.getWhiteMarblesSelected()>0) return false;
@@ -164,6 +176,8 @@ public class Game {
         if( !marketBoard.getTemporaryResources().isEmpty() ){
             discardRemainingResources();
         }
+        if(players.size()==1&&lorenzo!=null&&lorenzo.isLorenzoWinner())
+            isEndGame=true;
         if( currentPlayer.getPlayerNumber()==players.size() ){
             if( isEndGame )
                 endGame();
@@ -174,7 +188,6 @@ public class Game {
             nextPlayer = currentPlayer.getPlayerNumber();
             currentPlayer = players.get(nextPlayer);
         }
-        currentPlayer.setLeaderActionDone(false);
         currentPlayer.setCanEndTurn(false);
         return true;
     }
@@ -187,7 +200,7 @@ public class Game {
      */
     public boolean distributionResourceSecondThird( ResourceType resourceType ){
         if( (currentPlayer.getPlayerNumber() == 2 || currentPlayer.getPlayerNumber() == 3)
-            && !currentPlayer.isInitialDistribution()) {
+            && currentPlayer.doneInitialDistribution()) {
             currentPlayer.insertResources(resourceType, 1, 1);
             currentPlayer.setInitialDistribution(true);
             currentPlayer.setCanEndTurn(true);
@@ -202,7 +215,7 @@ public class Game {
      * @return true if it is called on the fourth player.
      */
     public boolean distributionResourceFourthPlayer( ResourceType resourceType1, ResourceType resourceType2 ){
-        if( currentPlayer.getPlayerNumber() == 4 && !currentPlayer.isInitialDistribution()) {
+        if( currentPlayer.getPlayerNumber() == 4 && currentPlayer.doneInitialDistribution()) {
             if( resourceType1.equals(resourceType2) ) {
                 currentPlayer.insertResources(resourceType1, 2, 2);
             }
@@ -227,6 +240,17 @@ public class Game {
 
         for( int i=0; i<players.size(); i++ ){
             players.get(i).calculateVictoryPoints();
+            if(players.size()==1){
+                if(lorenzo.isLorenzoWinner()){
+                    this.WinnerPlayerNumber=5; //HA VINTO LORENZO
+                    this.winnerPlayer=null;
+                }
+                else{
+                    this.WinnerPlayerNumber=1;
+                    this.winnerPlayer=currentPlayer;
+                    singlePlayerScore=currentPlayer.getVictoryPoints();
+                }
+            }
             if( players.get(i).getVictoryPoints() == maxPoints ) {
                 if(players.get(WinnerPlayerNumber-1).getTotNumOfRes() < players.get(i).getTotNumOfRes()) {
                     WinnerPlayerNumber = players.get(i).getPlayerNumber();
@@ -262,7 +286,7 @@ public class Game {
      * @return true if the player can buy that card and if the player can insert that card into the chosen slot
      */
     public boolean buyDevelopmentCard( int level, Colour colour, int slot , int payUsingExtraDep1, int payUsingExtraDep2 ) {
-        if (!currentPlayer.isInitialDistribution() || currentPlayer.isCanEndTurn() || !currentPlayer.hasChosenLeaderCards())
+        if (currentPlayer.doneInitialDistribution() || currentPlayer.isCanEndTurn() || !currentPlayer.hasChosenLeaderCards())
             return false;
         if (payUsingExtraDep1 < 0 || payUsingExtraDep1 > 2 || (payUsingExtraDep1 > 0 && currentPlayer.getPersonalBoard().getExtraDeposit1() == null))
             return false;
@@ -308,7 +332,7 @@ public class Game {
                                       ResourceType resourceType1, ResourceType resourceType2, ResourceType obtainedResource,
                                       ResourceType[] resourceObtainedFromLeader, int payUsingExtraDep1, int payUsingExtraDep2 ){
 
-        if( !currentPlayer.isInitialDistribution() || currentPlayer.isCanEndTurn() || !currentPlayer.hasChosenLeaderCards()  )
+        if( currentPlayer.doneInitialDistribution() || currentPlayer.isCanEndTurn() || !currentPlayer.hasChosenLeaderCards()  )
             return false;
 
         if (payUsingExtraDep1 < 0 || payUsingExtraDep1 > 2 || (payUsingExtraDep1 > 0 && currentPlayer.getPersonalBoard().getExtraDeposit1() == null))
@@ -355,7 +379,7 @@ public class Game {
      * @return true if player selects a correct row or column.
      */
     public boolean takeResourcesFromMarket( int row, int column ){
-        if( !currentPlayer.isInitialDistribution() || currentPlayer.isCanEndTurn() || !currentPlayer.hasChosenLeaderCards())
+        if( currentPlayer.doneInitialDistribution() || currentPlayer.isCanEndTurn() || !currentPlayer.hasChosenLeaderCards())
             return false;
         if( marketBoard.getResourcesFromMarket(row, column) ) {
             if(currentPlayer.getHasTrasformationAbility())
@@ -504,9 +528,9 @@ public class Game {
     }
 
     /**
-     * Make the player choose 2 leader cards from the 4 leader cards he got when game starts.
-     * @param pos1
-     * @param pos2
+     * Makes the player choose 2 leader cards from the 4 leader cards he got when game starts.
+     * @param pos1 Position of the first leader card.
+     * @param pos2 Position of the second leader card.
      * @return false if the current player has already chosen the two leader cards
      */
     public boolean chooseLeaderCards(int pos1, int pos2){
@@ -520,20 +544,15 @@ public class Game {
     }
 
     public boolean discardLeaderCard(int pos){
-        if(currentPlayer.isLeaderActionDone())
-            return false;
         return currentPlayer.discardLeaderCard(pos);
     }
 
     /**
      * Allows the player to activate the leader card's special ability.
-     * @param pos //TODO
+     * @param pos The position of the leaderCard to activate.
      * @return false if the player has already done his move in this turn.
      */
-    //TODO( il player può attivare entrambe le leader cards, osì invece può attivarne una sola )
     public boolean activateLeaderCard(int pos){
-        if(currentPlayer.isLeaderActionDone())
-            return false;
         return currentPlayer.activateLeaderCard(pos);
     }
 

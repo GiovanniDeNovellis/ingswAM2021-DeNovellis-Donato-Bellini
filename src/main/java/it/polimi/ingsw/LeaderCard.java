@@ -224,5 +224,4 @@ class LeaderCardTransformation extends LeaderCard{
         owner.getGame().getMarketBoard().setWhiteMarblesSelected(whiteMarbles-1);
         return true;
     }
-    //
 }

@@ -7,6 +7,7 @@ public class LorenzoSingleton {
     private static LorenzoSingleton Lorenzo = null;
     /** Black Faith points it's a counter of the Lorenzo's Cross */
     private int blackFaithPoints;
+    private boolean lorenzoWinner=false;
 
     /** Inizialize the Black Faith Points to 0 */
     private LorenzoSingleton (){
@@ -29,5 +30,11 @@ public class LorenzoSingleton {
         return blackFaithPoints;
     }
 
+    public void setLorenzoWinner(boolean lorenzoWinner) {
+        this.lorenzoWinner = lorenzoWinner;
+    }
 
+    public boolean isLorenzoWinner() {
+        return lorenzoWinner;
+    }
 }

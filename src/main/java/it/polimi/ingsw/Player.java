@@ -74,10 +74,6 @@ public class Player {
      */
     private Game game;
     /**
-     * True if the player has already done a leader action TODO Check??
-     */
-    private boolean leaderActionDone=false;
-    /**
      * True if the player has to choose how to transform his white marbles
      */
     private boolean hasTrasformationAbility=false;
@@ -86,21 +82,6 @@ public class Player {
 
     public ArrayList<LeaderCard> getChoosedLeaderCards() {
         return choosedLeaderCards;
-    }
-
-    /**
-     * Set true if the player has done a leader action.
-     * @param leaderActionDone True if the player has already done a leader action
-     */
-    public void setLeaderActionDone(boolean leaderActionDone) {
-        this.leaderActionDone = leaderActionDone;
-    }
-
-    /**
-     * @return  The current leaderActionDone status.
-     */
-    public boolean isLeaderActionDone() {
-        return leaderActionDone;
     }
 
     /**
@@ -215,8 +196,8 @@ public class Player {
     /**
      * @return True if the player has done the initial distribution.
      */
-    public boolean isInitialDistribution() {
-        return initialDistribution;
+    public boolean doneInitialDistribution() {
+        return !initialDistribution;
     }
 
     /**
@@ -399,6 +380,7 @@ public class Player {
      * every player at the end of the game.
      */
     public void calculateVictoryPoints(){
+        int numOfResSpecialDept=0;
         int leaderCardsPoints=0;
         int depotsPoints;
         int positionPoints = 0;
@@ -413,10 +395,15 @@ public class Player {
             if(l.isActive())
                 leaderCardsPoints+=l.getVictoryPoints();
         }
-        //Todo( int numOfResSpecialDept = ... )
+        if(personalBoard.getExtraDeposit1()!=null){
+            numOfResSpecialDept+=personalBoard.getExtraDeposit1().getCurrentQuantity();
+        }
+        if(personalBoard.getExtraDeposit2()!=null){
+            numOfResSpecialDept+=personalBoard.getExtraDeposit2().getCurrentQuantity();
+        }
         numOfResTopDevCards += personalBoard.getTopCardsVictoryPoints();
-        totNumOfRes = ( numOfResWarehouse + numOfResStrongbox ); //Todo(+ numOfResSpecialDept )
-        depotsPoints =( numOfResWarehouse + numOfResStrongbox )/5; //Todo(+ numOfResSpecialDept )
+        totNumOfRes = ( numOfResWarehouse + numOfResStrongbox + numOfResSpecialDept );
+        depotsPoints =( numOfResWarehouse + numOfResStrongbox + numOfResSpecialDept )/5;
         if( faithPoints >= 3 && faithPoints < 6 )
             positionPoints = 1;
         else if( faithPoints >= 6 && faithPoints < 9 )
@@ -448,7 +435,6 @@ public class Player {
             return false;
         choosedLeaderCards.remove(pos);
         addFaithPointsAndCallAudience(1);
-        leaderActionDone = true;
         return true;
     }
 
@@ -462,11 +448,7 @@ public class Player {
             return false;
         if(choosedLeaderCards.get(pos).isActive())
             return false;
-        if(choosedLeaderCards.get(pos).setActive()){
-            leaderActionDone=true;
-            return true;
-        }
-        return false;
+        return choosedLeaderCards.get(pos).setActive();
     }
 
     /**
@@ -511,5 +493,8 @@ public class Player {
     public void setHasTrasformationAbility(boolean hasTrasformationAbility) {
         this.hasTrasformationAbility = hasTrasformationAbility;
     }
-    //
+
+    public boolean isAFK() {
+        return isAFK;
+    }
 }

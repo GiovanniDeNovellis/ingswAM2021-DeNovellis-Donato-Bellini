@@ -2,13 +2,13 @@ package it.polimi.ingsw;
 
 /** Abstracted class that represent the three different types of ActionCard */
 public abstract class ActionCard {
-    abstract void activate();
+    public abstract void activate();
 }
 
 /** Move the Black Cross token forward by 2 spaces. */
 class Move extends ActionCard {
     @Override
-    void activate() {
+    public void activate() {
         LorenzoSingleton.getLorenzo().addFaithPoints(2);
     }
 }
@@ -22,7 +22,7 @@ class MoveAndShuffle extends ActionCard {
     }
 
     @Override
-    void activate() {
+    public void activate() {
         LorenzoSingleton.getLorenzo().addFaithPoints(1);
         this.cards.Shuffle();
     }
@@ -39,7 +39,7 @@ class RemoveDevCard extends ActionCard {
     }
 
     @Override
-    void activate() {
+    public void activate() {
             int counter=0;
             int l = 1;
             while (counter<2 && l<4){
@@ -49,9 +49,8 @@ class RemoveDevCard extends ActionCard {
                     l++;
                 }
             }
-            //if (l==4){
-                //TODO = implementare eccezione del fine partita
-
-            //}
+            if (l==4){
+                LorenzoSingleton.getLorenzo().setLorenzoWinner(true);
+            }
     }
 }

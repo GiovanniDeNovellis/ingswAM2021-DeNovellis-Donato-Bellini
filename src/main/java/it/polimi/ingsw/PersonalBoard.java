@@ -141,7 +141,7 @@ public class PersonalBoard {
      * @return boolean
      */
     public boolean payDevelopmentCard( TreeMap<ResourceType, Integer> cost ) {
-        boolean check = true;
+        boolean check;
         TreeMap<ResourceType, Integer> discountedCost = new TreeMap<>();
         discountedCost.putAll(cost);
 
@@ -250,8 +250,7 @@ public class PersonalBoard {
      */
     public boolean insertResources(ResourceType resource, int level, int quantity) {
         for(int i=1; i<=3; i++){
-            if(warehouseDepot.getLevel(i).getResourceType()==null){}
-            else if(i!=level && warehouseDepot.getLevel(i).getResourceType().equals(resource)) return false;
+            if(i!=level && warehouseDepot.getLevel(i).getResourceType()!=null && warehouseDepot.getLevel(i).getResourceType().equals(resource)) return false;
         }
         if(warehouseDepot.getLevel(level).getResourceType()!=resource && warehouseDepot.getLevel(level)
             .getResourceType()!=null) return false;
@@ -296,10 +295,8 @@ public class PersonalBoard {
             } else if (payUsingExtraDep2 >= 1 && extraDeposit2.getResourceType().equals(resourceType1)) {
                 if (payUsingExtraDep2 == 2 && extraDeposit2.getCurrentQuantity() == 2) {
                     leftToTake = 0;
-                    foundExtra2 = true;
                 } else if (payUsingExtraDep2 == 1 && extraDeposit2.getCurrentQuantity() >= 1) {
                     leftToTake = 1;
-                    foundExtra2 = true;
                 }
             }
             if (leftToTake == 0) {
@@ -314,12 +311,12 @@ public class PersonalBoard {
                 return true;
             } else if (leftToTake == 1) {
                 if (checkResourcesIntoWarehouse(resourceType1, 1)) foundWare1 = true;
-                else if (checkResourcesIntoStrongbox(resourceType1, 1)) ;
-                else return false;
+                else if (!checkResourcesIntoStrongbox(resourceType1, 1)) return false;
+
                 if (foundExtra1) {
                     payUsingExtraDep1--;
                     payFromExtraDep(1,1);
-                } else if (foundExtra2) {
+                } else {
                     payUsingExtraDep2--;
                     payFromExtraDep(2,1);
                 }
@@ -361,8 +358,7 @@ public class PersonalBoard {
                     checkFromExtraDep(2,1))
                 foundExtra2=true;
             else if (checkResourcesIntoWarehouse(resourceType1, 1)) foundWare1 = true;
-            else if (checkResourcesIntoStrongbox(resourceType1, 1)) ;
-            else return false;
+            else if (!checkResourcesIntoStrongbox(resourceType1, 1)) return false;
 
             if(payUsingExtraDep1>=1 && resourceType2.equals(extraDeposit1.getResourceType()) &&
                     checkFromExtraDep(1,1))
@@ -371,8 +367,7 @@ public class PersonalBoard {
                     checkFromExtraDep(2,1))
                 foundExtra2=true;
             else if (checkResourcesIntoWarehouse(resourceType2, 1)) foundWare2 = true;
-            else if (checkResourcesIntoStrongbox(resourceType2, 1)) ;
-            else return false;
+            else if (!checkResourcesIntoStrongbox(resourceType2, 1)) return false;
 
             if(foundExtra1 && resourceType1.equals(extraDeposit1.getResourceType())){
                 payUsingExtraDep1--;
@@ -427,17 +422,11 @@ public class PersonalBoard {
      */
     public boolean checkResourcesIntoWarehouse(ResourceType resource, int quantity) {
         if (resource == warehouseDepot.getLevel(1).getResourceType()) {
-            if (quantity <= warehouseDepot.getLevel(1).getCurrNumResources()) {
-                return true;
-            }
+            return quantity <= warehouseDepot.getLevel(1).getCurrNumResources();
         } else if (resource == warehouseDepot.getLevel(2).getResourceType()) {
-            if (quantity <= warehouseDepot.getLevel(2).getCurrNumResources()) {
-                return true;
-            }
+            return quantity <= warehouseDepot.getLevel(2).getCurrNumResources();
         } else if (resource == warehouseDepot.getLevel(3).getResourceType()) {
-            if (quantity <= warehouseDepot.getLevel(3).getCurrNumResources()) {
-                return true;
-            }
+            return quantity <= warehouseDepot.getLevel(3).getCurrNumResources();
         }
         return false;
     }
@@ -624,12 +613,12 @@ public class PersonalBoard {
         } else
             return false;
 
-        if( payUsingExtraDep1!=0 && extraDeposit1.getResourceType()==resourceType ){
+        if( payUsingExtraDep1!=0 && extraDeposit1!=null && extraDeposit1.getResourceType()==resourceType ){
             if( checkFromExtraDep(1,1) ){
                 payFromExtraDep(1,1 );
                 payUsingExtraDep1--;
             }
-        } else if( payUsingExtraDep2!=0 && extraDeposit2.getResourceType()==resourceType ){
+        } else if( payUsingExtraDep2!=0 && extraDeposit2!=null && extraDeposit2.getResourceType()==resourceType ){
             if( checkFromExtraDep(2,1) ){
                 payFromExtraDep(2,1 );
                 payUsingExtraDep2--;
@@ -652,7 +641,7 @@ public class PersonalBoard {
             extraDeposit1 = new ExtraDeposit(resourceType);
             return true;
         }
-        else if (extraDeposit2 == null){
+        else if (extraDeposit2 == null && !extraDeposit1.getResourceType().equals(resourceType)){
             extraDeposit2 = new ExtraDeposit(resourceType);
             return true;
         }
