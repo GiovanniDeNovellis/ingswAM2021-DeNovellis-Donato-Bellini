@@ -19,7 +19,7 @@ public class MarketBoard {
     /**
      * The grid of the marbles.
      */
-    private Marble[][] marketGrid = new Marble[3][4];
+    private final Marble[][] marketGrid = new Marble[3][4];
     /**
      * The marble which is out of the grid. Will be inserted
      * into the grid when taking resources again.
@@ -30,8 +30,8 @@ public class MarketBoard {
      * The player can store them or discard them. If he chooses to discard
      * a resource, all the other players will get one FaithPoint.
      */
-    private TreeMap<ResourceType, Integer> temporaryResources = new TreeMap<>();
-    private Game game;
+    private final TreeMap<ResourceType, Integer> temporaryResources = new TreeMap<>();
+    private final Game game;
     private int whiteMarblesSelected=0;
 
     /**

@@ -5,14 +5,12 @@ import java.util.Collections;
 
 /** This class represent a deck of ActionCards */
 public class LeaderCardDeck {
-    public ArrayList<LeaderCard> getLeaderCards() {
-        return leaderCards;
-    }
+
 
     /**
      * The ArrayList contains multiple LeaderCard's objects
      */
-    private ArrayList<LeaderCard> leaderCards = new ArrayList<>();
+    private final ArrayList<LeaderCard> leaderCards = new ArrayList<>();
 
     /** Build the deck with the cards contained in the game,
      * there are 4 cards for each types, for a total of 12 cards.

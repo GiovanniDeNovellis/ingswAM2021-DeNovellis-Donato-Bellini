@@ -6,7 +6,7 @@ public class Strongbox {
 
 
     /** The TreeMap resourceContained is used to keep in memory number and type of resources contained in the strongbox */
-    private TreeMap<ResourceType, Integer> resourcesContained = new TreeMap<>();
+    private final TreeMap<ResourceType, Integer> resourcesContained = new TreeMap<>();
     //for testing...
     // private String printTest;
     /** attribute victoryPoints is referred to victory points obtained throw resources in the strongbox, when the game ends.*/

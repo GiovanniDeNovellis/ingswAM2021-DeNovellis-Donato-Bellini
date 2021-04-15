@@ -9,11 +9,11 @@ public class Marble {
     /**
      * The marbleType associated to the Marble.
      */
-    private Selectable currentMarbleType;
+    private final Selectable currentMarbleType;
     /**
      * Colour of the marble.
      */
-    private String colour;
+    private final String colour;
 
     /**
      * Builds a Marble of the given Type and colour.

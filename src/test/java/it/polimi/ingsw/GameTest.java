@@ -334,6 +334,8 @@ class GameTest {
     }
 
     //                          --comment line 40 in LeaderCardDeck class to execute those test--
+
+
     /*
 
     @Test
@@ -443,7 +445,6 @@ class GameTest {
         //trying to activate production for dev card n°4(it needs one servant) using one servant located in extradep2
         assertTrue( game.getCurrentPlayer().getPersonalBoard().addToExtraDeposit2(ResourceType.SERVANTS,1));
         game.getCurrentPlayer().getPersonalBoard().setPayUsingExtraDep2(1);
-        //game.getCurrentPlayer().getPersonalBoard().getStrongbox().addResources(ResourceType.SERVANTS,1);
         assertEquals( ResourceType.SERVANTS, game.getCurrentPlayer().getPersonalBoard().getExtraDeposit2().getResourceType() );
         assertTrue( game.getCurrentPlayer().getPersonalBoard().activateProductionFromDevCard(1));
     }
@@ -621,5 +622,8 @@ class GameTest {
         assertEquals(1,game.getCurrentPlayer().getPersonalBoard().getStrongbox().getNumOf(ResourceType.STONES));
         assertEquals(oldFaith+1,game.getCurrentPlayer().getFaithPoints());
     }
-    */
+
+*/
+
+
 }

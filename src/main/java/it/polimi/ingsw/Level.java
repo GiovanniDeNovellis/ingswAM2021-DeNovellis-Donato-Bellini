@@ -14,7 +14,7 @@ public class Level {
     /**
      * The maximum capacity of the level.
      */
-    private int maxDimension;
+    private final int maxDimension;
     /**
      * Current number of resources
      * stored in the level.
