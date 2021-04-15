@@ -357,7 +357,7 @@ public class Game {
                 obtainedResource!=null && obtainedResource!=ResourceType.FAITHPOINTS ){
             currentPlayer.getPersonalBoard().activateProductionFromPersonalBoard(resourceType1, resourceType2, obtainedResource);
         }
-        currentPlayer.getPersonalBoard().fromStrongboxTempToStrongbox();
+
 
         //LEADER CARDS
         for( int j=0; j<2; j++ ){
@@ -365,8 +365,8 @@ public class Game {
                 currentPlayer.getPersonalBoard().activateProductionFromLeaderCard(resourceObtainedFromLeader[j]);
             }
         }
+        currentPlayer.getPersonalBoard().fromStrongboxTempToStrongbox();
         currentPlayer.setCanEndTurn(true);
-
         currentPlayer.getPersonalBoard().setPayUsingExtraDep1(0);
         currentPlayer.getPersonalBoard().setPayUsingExtraDep2(0);
         return true;
@@ -382,13 +382,10 @@ public class Game {
         if( currentPlayer.doneInitialDistribution() || currentPlayer.isCanEndTurn() || !currentPlayer.hasChosenLeaderCards())
             return false;
         if( marketBoard.getResourcesFromMarket(row, column) ) {
-            if(currentPlayer.getHasTrasformationAbility())
-                return true;
             currentPlayer.setCanEndTurn(true);
             return true;
         }
-        else
-            return false;
+        return false;
     }
 
     /**

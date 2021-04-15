@@ -333,8 +333,9 @@ class GameTest {
         assertEquals(ResourceType.COINS,game.getCurrentPlayer().getPersonalBoard().getWarehouseDepot().getLevel(1).getResourceType());
     }
 
-    //comment line 40 in LeaderCardDeck class to execute this test
+    //                          --comment line 40 in LeaderCardDeck class to execute those test--
     /*
+
     @Test
     public void LeaderAbilityDiscountAndExtraDepositTest() throws FileNotFoundException {
         Game game = new Game();
@@ -446,7 +447,179 @@ class GameTest {
         assertEquals( ResourceType.SERVANTS, game.getCurrentPlayer().getPersonalBoard().getExtraDeposit2().getResourceType() );
         assertTrue( game.getCurrentPlayer().getPersonalBoard().activateProductionFromDevCard(1));
     }
-     */
 
 
+
+
+    // HAVE TO COMMENT THE SHUFFLE LINE ON THE LEADERCARD DECK TO MAKE THOSE WORK
+    @Test
+    public void whiteTransformationTestSingle() throws FileNotFoundException {
+        Game game = new Game();
+        Deckgrid deckgrid = new Deckgrid();
+        assertTrue(game.addPlayer("First player"));
+        assertTrue(game.addPlayer("Second player"));
+        assertTrue(game.addPlayer("Third player"));
+        assertTrue(game.startMultiplayer());
+        assertTrue(game.chooseLeaderCards(0,1));
+        assertTrue(game.endTurn());//end 1
+        assertTrue(game.chooseLeaderCards(0,1));
+        assertTrue(game.distributionResourceSecondThird(ResourceType.STONES));
+        assertTrue(game.endTurn());//end 2
+        assertFalse(game.endTurn());
+        assertTrue(game.chooseLeaderCards(0,1));
+        assertFalse(game.chooseLeaderCards(0,1));
+        assertTrue(game.distributionResourceSecondThird(ResourceType.COINS));
+        assertTrue(game.endTurn()); //end 3
+        assertTrue(game.takeResourcesFromMarket(3,1));
+        assertTrue(game.endTurn()); //end 1
+        assertTrue(game.takeResourcesFromMarket(3,1));
+        assertTrue(game.endTurn()); //end 2
+        assertTrue(game.getCurrentPlayer().insertResourcesIntoWarehouse(ResourceType.STONES,2,2));
+        assertTrue(game.getCurrentPlayer().insertCard(deckgrid.getCards().get(3),0));
+        assertTrue(game.getCurrentPlayer().insertResourcesIntoWarehouse(ResourceType.STONES,2,1));
+        assertTrue(game.getCurrentPlayer().insertResourcesIntoWarehouse(ResourceType.SHIELDS,3,1));
+        assertTrue(game.getCurrentPlayer().insertCard(deckgrid.getCards().get(7),1));
+        assertTrue(game.getCurrentPlayer().insertResourcesIntoWarehouse(ResourceType.COINS,2,2));
+        assertTrue(game.getCurrentPlayer().insertCard(deckgrid.getCards().get(2),2));
+        assertTrue(game.activateLeaderCard(0));
+        assertTrue(game.takeResourcesFromMarket(2,4));
+        assertTrue(game.getCurrentPlayer().getHasTrasformationAbility());
+        assertTrue(game.getCurrentPlayer().isCanEndTurn());
+        if(game.getMarketBoard().getWhiteMarblesSelected()>0){
+            assertFalse(game.endTurn());
+            while(game.getMarketBoard().getWhiteMarblesSelected()>0){
+                assertFalse(game.endTurn());
+                int oldvalue;
+                if(game.getMarketBoard().getTemporaryResources().get(ResourceType.SERVANTS)==null) oldvalue=0;
+                else oldvalue=game.getMarketBoard().getTemporaryResources().get(ResourceType.SERVANTS);
+                System.out.println("Palline bianche rimaste: " + game.getMarketBoard().getWhiteMarblesSelected());
+                assertTrue(game.activateLeaderAbility(0));
+                assertEquals(oldvalue+1,game.getMarketBoard().getTemporaryResources().get(ResourceType.SERVANTS));
+            }
+            System.out.println("Convertite tutte posso finire");
+            assertTrue(game.endTurn());
+        }
+        else{
+            assertTrue(game.endTurn());
+            System.out.println("No palline bianche");
+        }
+    }
+
+    @Test
+    public void whiteTransformationTestDouble() throws FileNotFoundException {
+        Game game = new Game();
+        Deckgrid deckgrid = new Deckgrid();
+        assertTrue(game.addPlayer("First player"));
+        assertTrue(game.addPlayer("Second player"));
+        assertTrue(game.addPlayer("Third player"));
+        assertTrue(game.startMultiplayer());
+        assertTrue(game.chooseLeaderCards(0,1));
+        assertTrue(game.endTurn());//end 1
+        assertTrue(game.chooseLeaderCards(0,1));
+        assertTrue(game.distributionResourceSecondThird(ResourceType.STONES));
+        assertTrue(game.endTurn());//end 2
+        assertFalse(game.endTurn());
+        assertTrue(game.chooseLeaderCards(0,2));
+        assertFalse(game.chooseLeaderCards(0,1));
+        assertTrue(game.distributionResourceSecondThird(ResourceType.COINS));
+        assertTrue(game.endTurn()); //end 3
+        assertTrue(game.takeResourcesFromMarket(3,1));
+        assertTrue(game.endTurn()); //end 1
+        assertTrue(game.takeResourcesFromMarket(3,1));
+        assertTrue(game.endTurn()); //end 2
+        assertTrue(game.getCurrentPlayer().insertResourcesIntoWarehouse(ResourceType.STONES,2,2));
+        assertTrue(game.getCurrentPlayer().insertCard(deckgrid.getCards().get(3),0));
+        assertTrue(game.getCurrentPlayer().insertResourcesIntoWarehouse(ResourceType.STONES,2,1));
+        assertTrue(game.getCurrentPlayer().insertResourcesIntoWarehouse(ResourceType.SHIELDS,3,1));
+        assertTrue(game.getCurrentPlayer().insertCard(deckgrid.getCards().get(7),1));
+        assertTrue(game.getCurrentPlayer().insertResourcesIntoWarehouse(ResourceType.COINS,2,2));
+        assertTrue(game.getCurrentPlayer().insertCard(deckgrid.getCards().get(2),2));
+        assertTrue(game.activateLeaderCard(0));
+        assertTrue(game.getCurrentPlayer().insertResourcesIntoWarehouse(ResourceType.COINS,3,3));
+        game.getCurrentPlayer().getPersonalBoard().getStrongbox().addResources(ResourceType.COINS,1);
+        assertTrue(game.getCurrentPlayer().insertCard(deckgrid.getCards().get(18),0));
+        assertTrue(game.activateLeaderCard(1));
+        assertFalse(game.activateLeaderCard(0));
+        assertFalse(game.activateLeaderCard(1));
+        assertTrue(game.takeResourcesFromMarket(2,4));
+        assertTrue(game.getCurrentPlayer().getHasTrasformationAbility());
+        assertTrue(game.getCurrentPlayer().isCanEndTurn());
+        if(game.getMarketBoard().getWhiteMarblesSelected()>0){
+            int num=1;
+            assertFalse(game.endTurn());
+            while(game.getMarketBoard().getWhiteMarblesSelected()>0){
+                assertFalse(game.endTurn());
+                int oldvalue;
+                if(num%2==0){
+                    if(game.getMarketBoard().getTemporaryResources().get(ResourceType.STONES)==null) oldvalue=0;
+                    else oldvalue=game.getMarketBoard().getTemporaryResources().get(ResourceType.STONES);
+                    System.out.println("Palline bianche rimaste: " + game.getMarketBoard().getWhiteMarblesSelected());
+                    assertTrue(game.activateLeaderAbility(1));
+                    assertEquals(oldvalue+1,game.getMarketBoard().getTemporaryResources().get(ResourceType.STONES));
+                    System.out.println("Converto in pietre");
+                }
+                else{
+                    if(game.getMarketBoard().getTemporaryResources().get(ResourceType.SERVANTS)==null) oldvalue=0;
+                    else oldvalue=game.getMarketBoard().getTemporaryResources().get(ResourceType.SERVANTS);
+                    System.out.println("Palline bianche rimaste: " + game.getMarketBoard().getWhiteMarblesSelected());
+                    assertTrue(game.activateLeaderAbility(0));
+                    assertEquals(oldvalue+1,game.getMarketBoard().getTemporaryResources().get(ResourceType.SERVANTS));
+                    System.out.println("Converto in servi");
+                }
+                num++;
+            }
+            System.out.println("Convertite tutte posso finire");
+            assertTrue(game.endTurn());
+        }
+        else{
+            assertTrue(game.endTurn());
+            System.out.println("No palline bianche");
+        }
+    }
+
+    @Test
+    public void extraProductionAbilityTest() throws FileNotFoundException {
+        Game game = new Game();
+        Deckgrid deckgrid = new Deckgrid();
+        assertTrue(game.addPlayer("First player"));
+        assertTrue(game.addPlayer("Second player"));
+        assertTrue(game.addPlayer("Third player"));
+        assertTrue(game.addPlayer("Fourth player"));
+        assertTrue(game.startMultiplayer());
+        assertTrue(game.chooseLeaderCards(0,1));
+        assertTrue(game.endTurn());//end 1
+        assertTrue(game.chooseLeaderCards(0,1));
+        assertTrue(game.distributionResourceSecondThird(ResourceType.STONES));
+        assertTrue(game.endTurn());//end 2
+        assertFalse(game.endTurn());
+        assertTrue(game.chooseLeaderCards(0,2));
+        assertFalse(game.chooseLeaderCards(0,1));
+        assertTrue(game.distributionResourceSecondThird(ResourceType.COINS));
+        assertTrue(game.endTurn()); //end 3
+        assertTrue(game.chooseLeaderCards(0,3));
+        assertTrue(game.distributionResourceFourthPlayer(ResourceType.SHIELDS,ResourceType.SHIELDS));
+        assertTrue(game.endTurn()); // end 4
+        game.getCurrentPlayer().setCanEndTurn(true);
+        assertTrue(game.endTurn()); //end 1
+        game.getCurrentPlayer().setCanEndTurn(true);
+        assertTrue(game.endTurn()); //end 2
+        game.getCurrentPlayer().setCanEndTurn(true);
+        assertTrue(game.endTurn());//end 3
+        assertTrue(game.getCurrentPlayer().insertCard(deckgrid.getCards().get(0),0));
+        assertTrue(game.getCurrentPlayer().insertResourcesIntoWarehouse(ResourceType.SHIELDS,3,3));
+        assertTrue(game.getCurrentPlayer().insertResourcesIntoWarehouse(ResourceType.SERVANTS,2,2));
+        assertFalse(game.getCurrentPlayer().insertCard(deckgrid.getCards().get(0),0));
+        assertTrue(game.getCurrentPlayer().insertCard(deckgrid.getCards().get(20),0));
+        assertTrue(game.getCurrentPlayer().insertResourcesIntoWarehouse(ResourceType.COINS,1,1));
+        assertTrue(game.activateLeaderCard(1));
+        game.activateLeaderAbility(1);
+        int oldFaith=game.getCurrentPlayer().getFaithPoints();
+        boolean[] dev  = {false,false,false};
+        boolean[] lead  = {false,true};
+        ResourceType[] obtRes  = {null,ResourceType.STONES};
+        assertTrue(game.activateProduction(dev,false,lead,null,null,null,obtRes,0,0));
+        assertEquals(1,game.getCurrentPlayer().getPersonalBoard().getStrongbox().getNumOf(ResourceType.STONES));
+        assertEquals(oldFaith+1,game.getCurrentPlayer().getFaithPoints());
+    }
+    */
 }

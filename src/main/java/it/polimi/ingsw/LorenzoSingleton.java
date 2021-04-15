@@ -26,6 +26,7 @@ public class LorenzoSingleton {
     public void addFaithPoints(int number) {
         Lorenzo.blackFaithPoints += number;
     }
+
     public int getBlackFaithPoints() {
         return blackFaithPoints;
     }

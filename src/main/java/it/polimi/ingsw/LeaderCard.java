@@ -119,8 +119,14 @@ class LeaderCardDeposit extends LeaderCard{
     public boolean setActive(){
         if(active)
             return false;
-        int missing;
-        missing=owner.getPersonalBoard().missingResourcesIntoWarehouseWithoutRemove(resourceRequired,5);
+        int missing=5;
+        if(owner.getPersonalBoard().getExtraDeposit1()!=null && owner.getPersonalBoard().getExtraDeposit1().getResourceType().equals(resourceType)){
+            missing-= owner.getPersonalBoard().getExtraDeposit1().getCurrentQuantity();
+        }
+        else if(owner.getPersonalBoard().getExtraDeposit2()!=null && owner.getPersonalBoard().getExtraDeposit2().getResourceType().equals(resourceType)){
+            missing-= owner.getPersonalBoard().getExtraDeposit1().getCurrentQuantity();
+        }
+        missing=owner.getPersonalBoard().missingResourcesIntoWarehouseWithoutRemove(resourceRequired,missing);
         if(owner.getPersonalBoard().checkResourcesIntoStrongbox(resourceRequired,missing)){
             active=true;
             return true;
