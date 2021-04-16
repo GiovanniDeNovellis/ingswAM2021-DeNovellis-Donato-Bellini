@@ -37,7 +37,7 @@ public class LeaderCardDeck {
         leaderCards.add(new LeaderCardProduction(Colour.PURPLE,ResourceType.STONES));
         leaderCards.add(new LeaderCardProduction(Colour.GREEN,ResourceType.COINS));
         //have to comment "Collections.shuffle(leaderCards);" to execute LeaderAbility tests in GameTest class.
-        Collections.shuffle(leaderCards);
+        //Collections.shuffle(leaderCards);
     }
 
     /**

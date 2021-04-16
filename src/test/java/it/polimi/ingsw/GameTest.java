@@ -334,7 +334,7 @@ class GameTest {
     }
 
     //                          --comment line 40 in LeaderCardDeck class to execute those test--
-    /*
+
 
     @Test
     public void LeaderAbilityDiscountAndExtraDepositTest() throws FileNotFoundException {
@@ -345,7 +345,7 @@ class GameTest {
         game.startMultiplayer();
         assertFalse( game.endTurn() );
         //disabled shuffle on leaderCardDeck for a better testing
-        assertTrue( game.chooseLeaderCards(0,1) );
+        assertTrue( game.chooseLeaderCards(0,3) );
         assertTrue( game.endTurn() );
         assertTrue( game.chooseLeaderCards(0,1) );
         assertTrue( game.distributionResourceSecondThird(ResourceType.COINS));
@@ -445,6 +445,19 @@ class GameTest {
         game.getCurrentPlayer().getPersonalBoard().setPayUsingExtraDep2(1);
         assertEquals( ResourceType.SERVANTS, game.getCurrentPlayer().getPersonalBoard().getExtraDeposit2().getResourceType() );
         assertTrue( game.getCurrentPlayer().getPersonalBoard().activateProductionFromDevCard(1));
+        game.getCurrentPlayer().setCanEndTurn(true);
+        assertTrue(game.endTurn());
+        //player2 turn:
+        //activating second leader card(leader card n° 4:it needs 1 yellow dev card and 1 purple dev card)
+        assertTrue( game.activateLeaderCard(1) );
+        //activating second leader card ability: discount on coins
+        assertTrue( game.activateLeaderAbility(1) );
+        //activating first leader card ability: discount on servants
+        assertTrue( game.activateLeaderAbility(0) );
+        //trying to buy development card n°22 with discount on both resources: it needs 3 servants and 2 coins without discount
+        game.getCurrentPlayer().getPersonalBoard().getStrongbox().addResources(ResourceType.SERVANTS,2);
+        game.getCurrentPlayer().getPersonalBoard().getStrongbox().addResources(ResourceType.COINS,1);
+        assertTrue( game.getCurrentPlayer().insertCard(deckgrid.getCards().get(21),2));
     }
 
     @Test
@@ -478,7 +491,7 @@ class GameTest {
         assertTrue(game.getCurrentPlayer().insertCard(deckgrid.getCards().get(2),2));
         assertTrue(game.activateLeaderCard(0));
         assertTrue(game.takeResourcesFromMarket(2,4));
-        assertTrue(game.getCurrentPlayer().getHasTrasformationAbility());
+        assertTrue(game.getCurrentPlayer().getHasTransformationAbility());
         assertTrue(game.getCurrentPlayer().isCanEndTurn());
         if(game.getMarketBoard().getWhiteMarblesSelected()>0){
             assertFalse(game.endTurn());
@@ -537,7 +550,7 @@ class GameTest {
         assertFalse(game.activateLeaderCard(0));
         assertFalse(game.activateLeaderCard(1));
         assertTrue(game.takeResourcesFromMarket(2,4));
-        assertTrue(game.getCurrentPlayer().getHasTrasformationAbility());
+        assertTrue(game.getCurrentPlayer().getHasTransformationAbility());
         assertTrue(game.getCurrentPlayer().isCanEndTurn());
         if(game.getMarketBoard().getWhiteMarblesSelected()>0){
             int num=1;
@@ -671,5 +684,5 @@ class GameTest {
         assertEquals(1,game.getCurrentPlayer().getPersonalBoard().getStrongbox().getNumOf(ResourceType.COINS));
         assertEquals(oldFaith+2,game.getCurrentPlayer().getFaithPoints());
     }
-     */
+
 }
