@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.TreeMap;
 
-
 /**
  * Main class: Users actions are managed by Game class.
  */
@@ -60,8 +59,9 @@ public class Game {
      * Represent the initial leader card's deck that contains all the leader cards of the game.
      */
     private LeaderCardDeck leaderCardDeck = new LeaderCardDeck();
-    private int singlePlayerScore;
 
+    /** Represent the score of the single player */
+    private int singlePlayerScore;
 
     public Player getCurrentPlayer() {
         return currentPlayer;
@@ -169,7 +169,7 @@ public class Game {
         if( currentPlayer.doneInitialDistribution() || !currentPlayer.isCanEndTurn() || !currentPlayer.hasChosenLeaderCards()){
             return false;
         }
-        if(currentPlayer.getHasTrasformationAbility()&&marketBoard.getWhiteMarblesSelected()>0) return false;
+        if(currentPlayer.getHasTransformationAbility()&&marketBoard.getWhiteMarblesSelected()>0) return false;
         marketBoard.setWhiteMarblesSelected(0);
         if(players.size()==1&&!actionCardDone) return false;
         actionCardDone=false;
@@ -557,5 +557,3 @@ public class Game {
         return currentPlayer.activateLeaderAbility(whichLeaderCard);
     }
 }
-
-

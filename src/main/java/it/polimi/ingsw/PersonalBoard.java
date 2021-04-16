@@ -3,19 +3,35 @@ package it.polimi.ingsw;
 import java.util.ArrayList;
 import java.util.TreeMap;
 
+/**
+ * This class represent the board that every player had,
+ * it is composed by different items and include differnt board
+ */
 public class PersonalBoard {
 
-    public PersonalBoard(Player player){
-        this.player = player;
-    }
+    /** The Player who has the board */
     private final Player player;
+
+    /** The board of the different type of cards */
     private final TreeMap<Colour,Integer> cardsColours = new TreeMap<>();
+
+    /** The quantity of DevelopmentCards */
     private int totDevCards = 0;
+
+    /** This ArrayList contain all the DevelopmentCards */
     private final ArrayList<DevelopmentCard> insertedDevelopmentCards = new ArrayList<>();
+
+    /** The reference of the Player's Strongbox */
     private final Strongbox strongbox = new Strongbox();
+
+    /** The reference of the Player's WarehousDeposit */
     private final WareHouseDepot warehouseDepot = new WareHouseDepot();
+
+    /** Indicate the potential extra deposit created by the ability of the leaderCard */
     private ExtraDeposit extraDeposit1 = null;
     private ExtraDeposit extraDeposit2 = null;
+
+    /** Indicate the resource payed from the Extra Deposit */
     private int payUsingExtraDep1 = 0;
     private int payUsingExtraDep2 = 0;
 
@@ -30,28 +46,68 @@ public class PersonalBoard {
      */
     private final TreeMap<ResourceType, Integer> resourcesToAddToStrongbox = new TreeMap<>();
 
+    /** Indicate the type of resource for the discount from the Leader Card ability */
     private ResourceType discount1;
     private ResourceType discount2;
 
+    /** Indicate the Resource Type for the Leader Production */
     private ResourceType requirementForLeaderProduction1;
     private ResourceType requirementForLeaderProduction2;
 
+    /**
+     * Public method.
+     * The constructor of the class
+     * @param player indicates the player that had the board
+     */
+    public PersonalBoard(Player player){
+        this.player = player;
+    }
+
+    /** Public method.
+     * Getter of discount
+     * @return the resource type to discount
+     */
     public ResourceType getDiscount1() {
         return discount1;
     }
     public ResourceType getDiscount2() {
         return discount2;
     }
+    /** Public method.
+     * Setter of the discount
+     * @param discount1 indicate the resource type for the discount
+     */
     public void setDiscount1(ResourceType discount1) {
         this.discount1 = discount1;
     }
+    /** Public method.
+     * Setter of the discount
+     * @param discount2 indicate the resource type for the discount
+     */
     public void setDiscount2(ResourceType discount2) {
         this.discount2 = discount2;
     }
 
+    /**
+     * Public method.
+     * Getter of requirementForLeaderProductions
+     * @return the type of resource required to activate the discount
+     */
     public ResourceType getRequirementForLeaderProduction1(){ return requirementForLeaderProduction1; }
     public ResourceType getRequirementForLeaderProduction2(){ return requirementForLeaderProduction2; }
+
+
+    /**
+     * Public method.
+     * Setter of requirementForLeaderProduction1
+     * @param required indicate the type of resource needed to activate the production
+     */
     public void setRequirementForLeaderProduction1(ResourceType required){ requirementForLeaderProduction1 = required; }
+    /**
+     * Public method.
+     * Setter of requirementForLeaderProduction2
+     * @param required indicate the type of resource needed to activate the production
+     */
     public void setRequirementForLeaderProduction2(ResourceType required){ requirementForLeaderProduction2 = required; }
 
 
@@ -61,8 +117,11 @@ public class PersonalBoard {
     }
 
     /**
+     * Public method.
      * insertCard method inserts developmentCards in their own slots, if it is permitted and if the player can pay the
      * card's cost from his warehouse, from his strongbox, or from both
+     * @param card indicate which card insert
+     * @param position indicate where the card will be inserted
      */
     public boolean insertCard(DevelopmentCard card, int position) {
             if (developmentCard[position] == null) {
@@ -131,6 +190,7 @@ public class PersonalBoard {
 
 
     /**
+     * Public method.
      * payDevelopmentCard method is called by DevelopmentCard when a player wants to insert that DevelopmentCard in his
      * own personalBoard. This method checks if the player has got the necessary resources in the warehouse. If he has
      * enough resources in the warehouse to pay the card, this method takes all the necessary resources from the warehouse,
@@ -219,6 +279,13 @@ public class PersonalBoard {
         return true;
     }
 
+    /**
+     * Public method.
+     * Check if there are resource type to use in the extra deposit
+     * @param whichExtraDep indicate if check into extra deposit 1 or 2
+     * @param quantityToCheck indicate of many resources need to be checked
+     * @return false if there aren't resources available
+     */
     public boolean checkFromExtraDep(int whichExtraDep, int quantityToCheck){
         if( whichExtraDep == 1 && extraDeposit1!=null ){
             return quantityToCheck <= extraDeposit1.getCurrentQuantity();
@@ -229,6 +296,13 @@ public class PersonalBoard {
         return false;
     }
 
+    /**
+     * Public method.
+     * Pay the resource from the extradeposit
+     * @param whichExtraDep indicate if check into extra deposit 1 or 2
+     * @param quantityToPay indicate of many resources will be used
+     * @return false if there aren't resources available
+     */
     public boolean payFromExtraDep( int whichExtraDep, int quantityToPay ){
         if( quantityToPay<=0 )
             return false;
@@ -244,9 +318,13 @@ public class PersonalBoard {
 
 
     /**
+     * Public method.
      * insertResources method is called when a player takes resources form market: the player chooses what type of resource
      * and the quantity of that resource to add in the warehouse. The player chooses the level where to put those resources
      * and the method add the resources chosen into the level chosen by the player.
+     * @param resource indicate the type of resource
+     * @param quantity indicate how many resource
+     * @param level indicate the level where the resource will be taken
      */
     public boolean insertResources(ResourceType resource, int level, int quantity) {
         for(int i=1; i<=3; i++){
@@ -259,8 +337,10 @@ public class PersonalBoard {
     }
 
     /**
+     * Public method
      * activateProductionFromDevCard  method is called when a player activate a production form a DevelopmentCard in his
      * PersonalBoard. The method calls the production from the DevelopmentCard
+     * @param slot indicate the slot of the card
      */
     public boolean activateProductionFromDevCard(int slot) {
         if( developmentCard[slot] != null )
@@ -270,6 +350,7 @@ public class PersonalBoard {
     }
 
     /**
+     * Public method.
      * activateProductionFromPersonalBoard represents the basic production power. The player choose two resources of any
      * type as payment and he obtains back one resource of any type(the player chooses the resource type).
      * @param resourceType1 is the first resource to activate production
@@ -398,10 +479,13 @@ public class PersonalBoard {
     }
 
     /**
+     * Public method.
      * takeResourcesFromWarehouse method is called by the DevelopmentCard when the player activate production on that
      * DevelopmentCard. This method checks if the player has enough resources in his warehouse to activate
      * production and takes resources from warehouse if he has it. This method returns a boolean: if the boolean is true
      * it means the player has enough resources to activate production.
+     * @param quantity indicate the quantity taken from warehouse
+     * @param resource indicate the type of resource
      */
     public boolean takeResourcesFromWarehouse(ResourceType resource, int quantity) {
         if (resource == warehouseDepot.getLevel(1).getResourceType()) {
@@ -415,6 +499,7 @@ public class PersonalBoard {
     }
 
     /**
+     * Public method.
      * checkResourcesIntoWarehouse method checks if the warehouse contains a certain quantity of a resource type
      * @param resource says what resource type has to check
      * @param quantity says how many resources warehouse has to contains
@@ -433,6 +518,7 @@ public class PersonalBoard {
 
 
     /**
+     * Public method.
      * missingResourcesIntoWarehouse method checks how many resources are missing in the warehouse to reach a certain
      * quantity of that resource type and remove them.
      * @param resource represents the resource type to check
@@ -477,11 +563,12 @@ public class PersonalBoard {
 
 
     /**
-     *missingResourcesIntoWarehouse method checks how many resources are missing in the warehouse to reach a certain
-     *quantity of that resource type but it doesn't remove them.
-     *@param resource represents the resource type to check
-     *@param requestedQuantity is the quantity to check
-     *@return how many resources misses
+     * Public method.
+     * missingResourcesIntoWarehouse method checks how many resources are missing in the warehouse to reach a certain
+     * quantity of that resource type but it doesn't remove them.
+     * @param resource represents the resource type to check
+     * @param requestedQuantity is the quantity to check
+     * @return how many resources misses
      */
     public int missingResourcesIntoWarehouseWithoutRemove(ResourceType resource, int requestedQuantity) {
         int missing;
@@ -515,6 +602,7 @@ public class PersonalBoard {
 
 
     /**
+     * Public method.
      * checkResourcesIntoStrongbox method check if strongbox contains "quantity" resources of "resource" resource type
      * @param resource is the resource type to check
      * @param quantity is the quantity of that resource type
@@ -529,7 +617,8 @@ public class PersonalBoard {
     }
 
     /**
-     * method addResourceToStrongboxTemp is called if takeResourcesFromWarehouse method returns true: this method adds
+     * Public method.
+     * addResourceToStrongboxTemp is called if takeResourcesFromWarehouse method returns true: this method adds
      * resources into the temporary strongbox "resourcesToAddToStrongbox"(the resources earned from production, written in the DevelopmentCard
      * activated from the player).
      */
@@ -543,6 +632,7 @@ public class PersonalBoard {
 
 
     /**
+     * Public method.
      * fromStrongboxTempToStrongbox method puts into the strongbox's player all the resources earned with all the
      * productions activated by the player in this turn
      */
@@ -557,7 +647,8 @@ public class PersonalBoard {
     }
 
     /**
-     * Method called to swap the resources from two levels.
+     * Public method.
+     * Called to swap the resources from two levels.
      * @param maxSlotsFirst The first level to swap.
      * @param maxSlotsSecond The second level to swap.
      * @return True if the swap is possible, false if not.
@@ -567,6 +658,7 @@ public class PersonalBoard {
     }
 
     /**
+     * Public method.
      * For whitebox testing
      * @return the board's warehouse depot
      */
@@ -574,6 +666,11 @@ public class PersonalBoard {
         return warehouseDepot;
     }
 
+    /**
+     * Public method.
+     * Getter of the top card to calculate the victory points.
+     * @return the total of victory points
+     */
     public int getTopCardsVictoryPoints(){
         int tot = 0;
         for( int i=0; i<3; i++ ) {
@@ -584,15 +681,28 @@ public class PersonalBoard {
         return tot;
     }
 
+
+    /**
+     * Public method.
+     * Getter of cardsColours
+     * @return the colours of the card
+     */
     public TreeMap<Colour, Integer> getCardsColours(){
         return cardsColours;
     }
 
+
+    /**
+     * Public method.
+     * Getter of the inserted development card
+     * @return the card inserted
+     */
     public ArrayList<DevelopmentCard> getInsertedDevelopmentCards() {
         return insertedDevelopmentCards;
     }
 
     /**
+     * Public method.
      * Method to activate the er card's production special ability
      * @param obtainedResource is the resource the player wants to obtain after production.
      * @return true if the player can effectively activate the production.
@@ -635,7 +745,11 @@ public class PersonalBoard {
         return true;
     }
 
-
+    /** Public method.
+     * Create the extra deposit for the leader card ability
+     * @param resourceType indicate the type of resource that the extra deposit can contain
+     * @return false if the resource type if different
+     */
     public boolean createExtraDeposit(ResourceType resourceType){
         if(extraDeposit1 == null){
             extraDeposit1 = new ExtraDeposit(resourceType);
@@ -648,13 +762,27 @@ public class PersonalBoard {
         return false;
     }
 
+    /**
+     * Public method.
+     * Add the resource to the extra deposit1
+     * @param resourceType indicate the type of resource to add
+     * @param quantity indicate how many resource
+     * @return false if the extra deposit dont' exist
+     */
     public boolean addToExtraDeposit1(ResourceType resourceType, int quantity){
         if (extraDeposit1==null){
             return false;
         }
         return extraDeposit1.addResource(resourceType,quantity);
-
     }
+
+    /**
+     * Public method.
+     * Add the resource to the extra deposit2
+     * @param resourceType indicate the type of resource to add
+     * @param quantity indicate how many resource
+     * @return false if the extra deposit dont' exist
+     */
     public boolean addToExtraDeposit2(ResourceType resourceType, int quantity){
         if (extraDeposit2 == null){
             return false;
@@ -662,32 +790,57 @@ public class PersonalBoard {
         return extraDeposit2.addResource(resourceType,quantity);
     }
 
+    /**
+     * Public method
+     * Getter of extradeposit
+     * @return the reference to the extra deposit 1
+     */
     public ExtraDeposit getExtraDeposit1() {
         return extraDeposit1;
     }
 
+    /**
+     * Public method
+     * Getter of extradeposit
+     * @return the reference to the extra deposit 2
+     */
     public ExtraDeposit getExtraDeposit2() {
         return extraDeposit2;
     }
 
+    /**
+     * Public method.
+     * Setter of pay using extra deposit 1
+     * @param payUsingExtraDep1 indicate the quantity to pay
+     */
     public void setPayUsingExtraDep1(int payUsingExtraDep1) {
         this.payUsingExtraDep1 = payUsingExtraDep1;
     }
 
+     /**
+     * Public method.
+     * Setter of pay using extra deposit 2
+     * @param payUsingExtraDep2 indicate the quantity to pay
+     */
     public void setPayUsingExtraDep2(int payUsingExtraDep2) {
         this.payUsingExtraDep2 = payUsingExtraDep2;
     }
 
+    /**
+     * Public method.
+     * Getter of pay using extra deposit 1
+     * @return the reference to pay with the extra deposit 1
+     */
     public int getPayUsingExtraDep1() {
         return payUsingExtraDep1;
     }
 
+    /**
+     * Public method.
+     * Getter of pay using extra deposit 2
+     * @return the reference to pay with the extra deposit 2
+     */
     public int getPayUsingExtraDep2() {
         return payUsingExtraDep2;
     }
-
-
 }
-
-
-

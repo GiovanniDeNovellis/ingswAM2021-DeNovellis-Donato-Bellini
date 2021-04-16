@@ -1,6 +1,5 @@
 package it.polimi.ingsw;
 
-
 import java.util.ArrayList;
 import java.util.TreeMap;
 
@@ -18,7 +17,7 @@ public class Player {
      */
     private int faithPoints = 0;
     /**
-     * The array of the faitch cards. A faith card's value
+     * The array of the faith cards. A faith card's value
      * is 0 after the corresponding audience is done.
      */
     private int[] faithCards = {2, 3, 4};
@@ -79,13 +78,18 @@ public class Player {
     private boolean hasTrasformationAbility=false;
 
 
-
+    /**
+     * Public method.
+     * Getter of ChoosedLeaderCards
+     * @return the reference of the choosedLeaderCards
+     */
     public ArrayList<LeaderCard> getChoosedLeaderCards() {
         return choosedLeaderCards;
     }
 
     /**
-     * Method used to choose the 2 leader cards from the
+     * Public method.
+     * Used to choose the 2 leader cards from the
      * 4 available.
      * @param pos1 Position of the first leader card.
      * @param pos2 Position of the second leader card.
@@ -103,7 +107,8 @@ public class Player {
     }
 
     /**
-     * Method used to set if the player has chosen the leader cards.
+     * Public method.
+     * Used to set if the player has chosen the leader cards.
      * @param chosenLeaderCards True if the player has chosen the leader cards.
      */
     public void setChosenLeaderCards(boolean chosenLeaderCards) {
@@ -111,6 +116,7 @@ public class Player {
     }
 
     /**
+     * Public method.
      * @return True if the player has chosen the leader cards.
      */
     public boolean hasChosenLeaderCards() {
@@ -118,6 +124,7 @@ public class Player {
     }
 
     /**
+     * Public method.
      * Setter for the game reference.
      * @param game reference of the game class.
      */
@@ -126,6 +133,7 @@ public class Player {
     }
 
     /**
+     * Public method.
      * Getter for the game reference.
      * @return the reference of the game class.
      */
@@ -134,7 +142,8 @@ public class Player {
     }
 
     /**
-     * Method used to distribute the 4 leader cards to the player
+     * Public method.
+     * Used to distribute the 4 leader cards to the player
      * that will choose 2 of them.
      * @param leaderCard The leader card to add.
      */
@@ -143,6 +152,7 @@ public class Player {
     }
 
     /**
+     * Public method.
      * @return True if the player can end his turn.
      */
     public boolean isCanEndTurn() {
@@ -150,6 +160,8 @@ public class Player {
     }
 
     /**
+     * Public method.
+     * Setter of CanEndTurn.
      * @param canEndTurn Set if the player can end his turn.
      */
     public void setCanEndTurn(boolean canEndTurn) {
@@ -157,6 +169,8 @@ public class Player {
     }
 
     /**
+     * Public method.
+     * Getter of totNumOfRes.
      * @return The number of resources owned by the player.
      */
     public int getTotNumOfRes() {
@@ -164,6 +178,7 @@ public class Player {
     }
 
     /**
+     * Public method.
      * Set the position of the player in the turn.
      * @param playerNumber Number to associate to the player.
      */
@@ -172,6 +187,8 @@ public class Player {
     }
 
     /**
+     * Public method.
+     * Getter of PLayerNumber
      * @return The player's number.
      */
     public int getPlayerNumber(){
@@ -179,7 +196,8 @@ public class Player {
     }
 
     /**
-     * Method used to add vistory points to the player.
+     * Public method.
+     * Used to add victory points to the player.
      * @param quantity Points to add.
      */
     public void addVictoryPoints(int quantity){
@@ -187,6 +205,8 @@ public class Player {
     }
 
     /**
+     * Public method.
+     * Getter of VictoryPoints.
      * @return The victory points of the player.
      */
     public int getVictoryPoints(){
@@ -194,6 +214,7 @@ public class Player {
     }
 
     /**
+     * Public method.
      * @return True if the player has done the initial distribution.
      */
     public boolean doneInitialDistribution() {
@@ -201,6 +222,8 @@ public class Player {
     }
 
     /**
+     * Public method.
+     * Setter of the InitialDistribution
      * @param initialDistributionDone Set True when the player does the initial distribution.
      */
     public void setInitialDistribution(boolean initialDistributionDone) {
@@ -208,6 +231,8 @@ public class Player {
     }
 
     /**
+     * Public method.
+     * Getter of the PersonalBoard
      * @return The player's personal board.
      */
     public PersonalBoard getPersonalBoard() {
@@ -215,6 +240,8 @@ public class Player {
     }
 
     /**
+     * Public method.
+     * Getter of the FaithCards.
      * @return The player's faith cards.
      */
     public int[] getFaithCards() {
@@ -222,8 +249,8 @@ public class Player {
     }
 
     /**
-     * Set the faith card to zero when it is read( to add it's points
-     * or to discard it)
+     * Public method.
+     * Setter of the faith card to zero when it's read( to add it's points or to discard it)
      * @param position The position of the card.
      */
     public void setFaithCardsZero(int position) {
@@ -231,7 +258,8 @@ public class Player {
     }
 
     /**
-     * Method used to set the inkwell true to the first player.
+     * Public method.
+     * Setter of the inkwell.
      * @param inkwell Set true to the first player.
      */
     public void setInkwell(boolean inkwell) {
@@ -239,7 +267,8 @@ public class Player {
     }
 
     /**
-     * Method used to set the nickname of the player.
+     * Public method.
+     * Setter of the nickname of the player.
      * @param nickname Nickname of the player.
      */
     public void setNickname(String nickname) {
@@ -247,6 +276,8 @@ public class Player {
     }
 
     /**
+     * Public method.
+     * Getter of the Nickname.
      * @return The nickname of the player.
      */
     public String getNickname(){
@@ -254,6 +285,8 @@ public class Player {
     }
 
     /**
+     * Public method.
+     * Getter of FaithPoints.
      * @return The faith points of the player.
      */
     public int getFaithPoints(){
@@ -261,7 +294,8 @@ public class Player {
     }
 
     /**
-     * Method used to insert a development card into the player's
+     * Public Method.
+     * Used to insert a development card into the player's
      * personal board.
      * @param devCard The development card to insert.
      * @param position The position of the personal board where
@@ -273,7 +307,8 @@ public class Player {
     }
 
     /**
-     * Method used to insert resources into the warehouse during the first distribution.
+     * Public method.
+     * Used to insert resources into the warehouse during the first distribution.
      * @param resourceType Type of resource.
      * @param level Level of the warehouse.
      * @param quantity Quantity to insert.
@@ -284,7 +319,8 @@ public class Player {
     }
 
     /**
-     * Method used to switch the resources of two levels.
+     * Public method.
+     * Used to switch the resources of two levels.
      * @param maxSlotsFirst The first level's number.
      * @param maxSlotsSecond The second level's number.
      * @return True if the switch is completed successfully,
@@ -294,6 +330,7 @@ public class Player {
     }
 
     /**
+     * Public method.
      * Add faith points to the player and calls an audition if needed.
      * @param pointsToAdd Quantity of points to add.
      * @return True if the addition is completed successfully.
@@ -324,7 +361,8 @@ public class Player {
     }
 
     /**
-     * Method used to call an audience if there are enough points.
+     * Public method.
+     * Used to call an audience if there are enough points.
      * @return True if a call has been completed.
      */
     public boolean callAudience(){
@@ -352,7 +390,8 @@ public class Player {
     }
 
     /**
-     * Method used to add faith points to the player without calling an audience if needed.
+     * Public method.
+     * Used to add faith points to the player without calling an audience if needed.
      * @param pointsToAdd Quantity of points to add.
      */
     public void addFaithPointsWithoutCallingAudience(int pointsToAdd ){
@@ -363,7 +402,8 @@ public class Player {
     }
 
     /**
-     * Method used to set the end game if a player has reached the
+     * Public method.
+     * Used to set the end game if a player has reached the
      * 24 faith points.
      */
     public void endGameFaithPoints(){
@@ -376,7 +416,8 @@ public class Player {
     //STRONGBOX, DEVCARDS, LEADERCARDS, POSITION(TRACCIATO)
 
     /**
-     * Method used to calculate the victory points of
+     * Public method.
+     * Used to calculate the victory points of
      * every player at the end of the game.
      */
     public void calculateVictoryPoints(){
@@ -426,7 +467,8 @@ public class Player {
     }
 
     /**
-     * Method used to discard a leader card and add 1 faith points to the player.
+     * Public method.
+     * Used to discard a leader card and add 1 faith points to the player.
      * @param pos Position of the card to discard.
      * @return True if the removal has been completed successfully.
      */
@@ -439,7 +481,8 @@ public class Player {
     }
 
     /**
-     * Method used to activate a leader card.
+     * Public method.
+     * Used to activate a leader card.
      * @param pos Position of the leader card.
      * @return True if the activation has been done successfully.
      */
@@ -452,7 +495,8 @@ public class Player {
     }
 
     /**
-     * Method used to activate a leader ability.
+     * Public method.
+     * Used to activate a leader ability.
      * @param whichLeaderCard Position of the leader card.
      * @return True if the ability has been activated successfully.
      */
@@ -467,6 +511,7 @@ public class Player {
     }
 
     /**
+     * Public method.
      * @return Map of the colours owned by the player.
      */
     public TreeMap<Colour, Integer> getCardColours(){
@@ -474,6 +519,7 @@ public class Player {
     }
 
     /**
+     * Public method.
      * @return All the development cards owned by the player.
      */
     public ArrayList<DevelopmentCard> getInsertedDevCards(){
@@ -481,19 +527,28 @@ public class Player {
     }
 
     /**
+     * Public method.
+     * Getter of HasTransformationAbility.
      * @return If the player has activated a white marble transformation ability.
      */
-    public boolean getHasTrasformationAbility() {
+    public boolean getHasTransformationAbility() {
         return hasTrasformationAbility;
     }
 
     /**
+     * Public method.
+     * Setter of HasTransformationAbility.
      * @param hasTrasformationAbility Set true if the player has activated a white marble transformation ability.
      */
     public void setHasTrasformationAbility(boolean hasTrasformationAbility) {
         this.hasTrasformationAbility = hasTrasformationAbility;
     }
 
+    /**
+     * Public method.
+     * Check if the player is away from keyboard.
+     * @return true if is AFK.
+     */
     public boolean isAFK() {
         return isAFK;
     }

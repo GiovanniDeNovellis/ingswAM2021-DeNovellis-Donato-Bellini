@@ -6,11 +6,12 @@ package it.polimi.ingsw;
  * they are selected by a player.
  */
 public interface Selectable {
+
     /**
+     * Public method.
      * Reacts to the selection of the marble.
      * @param marketBoard The marketBoard where all the marbles are stored.
      */
     public void onSelection(MarketBoard marketBoard);
-
 }
 

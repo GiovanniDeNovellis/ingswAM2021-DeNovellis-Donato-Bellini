@@ -6,41 +6,53 @@ public abstract class LeaderCard {
 
     /** Attribute that indicate if the card is active or not */
     protected boolean active = false;
+
     /** The victory points that the card give to the player */
     private int victoryPoints;
+
     /** The resource type associate to the card */
     ResourceType resourceType;
+
     /** The owner of the card */
     Player owner;
 
-
-    /** Set the card active
+    /**
+     * Public method.
+     * Set the card active
      * @return the status of the card
      * */
     public boolean setActive (){
         return true; }
 
-    /** Activate the ability of the card
+    /**
+     * Public method.
+     * Activate the ability of the card
      * @return true when the card is activated
      */
     public boolean activateAbility(){
         return true; }
 
-    /** That method chek if the card is active
+    /**
+     * Public method.
+     * That method chek if the card is active
      * @return the status of the attribute
      */
     public boolean isActive(){
         return active;
     }
 
-    /** Set the owner of the card
+    /**
+     * Public method.
+     * Set the owner of the card
      * @param owner indicate the player that take the card
      */
     public void setOwner(Player owner) {
         this.owner = owner;
     }
 
-    /** The getter of the method
+    /**
+     * Public method.
+     * The getter of the method
      * @return the victory points
      */
     public int getVictoryPoints() {
@@ -60,6 +72,7 @@ class LeaderCardDiscount extends LeaderCard{
     Colour singleColour2;
 
     /**
+     * Public method.
      * @param singleColour1 the first requirement of the card
      * @param singleColour2 the second requirement of the card
      * @param resourceType the type of resource to which you'll have a discount
@@ -69,6 +82,11 @@ class LeaderCardDiscount extends LeaderCard{
         this.singleColour1 = singleColour1;
         this.singleColour2 = singleColour2;
     }
+
+    /**
+     * Public method overrode from LeaderCard.
+     * Set the card active if possible.
+     */
     @Override
     public boolean setActive(){
         if(owner.getCardColours().get(singleColour1)==null||owner.getCardColours().get(singleColour2)==null)
@@ -78,6 +96,10 @@ class LeaderCardDiscount extends LeaderCard{
         active=true;
         return true;
     }
+    /**
+     * Public method overrode from LeaderCard.
+     * Activate the ability of the card.
+     */
     @Override
     public boolean activateAbility(){
         if( owner.getPersonalBoard().getDiscount1()==null ) {
@@ -107,6 +129,7 @@ class LeaderCardDeposit extends LeaderCard{
 
 
     /**
+     * Public method.
      * @param resourceRequired the requirement of the card
      * @param resourceType the type of deposit that will be created
      */
@@ -115,6 +138,10 @@ class LeaderCardDeposit extends LeaderCard{
         this.resourceRequired = resourceRequired;
     }
 
+    /**
+     * Public method overrode from LeaderCard.
+     * Set the card active if possible.
+     */
     @Override
     public boolean setActive(){
         if(active)
@@ -133,6 +160,10 @@ class LeaderCardDeposit extends LeaderCard{
         }
         return false;
     }
+    /**
+     * Public method overrode from LeaderCard.
+     * Activate the ability of the card.
+     */
     @Override
     public boolean activateAbility(){
         return owner.getPersonalBoard().createExtraDeposit(resourceType);
@@ -149,6 +180,7 @@ class LeaderCardProduction extends LeaderCard{
     Colour level2CardColour;
 
     /**
+     * Public method.
      * @param level2CardColour the requirement of the card
      * @param resourceType the resource that want to produce
      */
@@ -157,6 +189,10 @@ class LeaderCardProduction extends LeaderCard{
         this.level2CardColour = level2CardColour;
     }
 
+    /**
+     * Public method overrode from LeaderCard.
+     * Set the card active if possible.
+     */
     @Override
     public boolean setActive(){
         for(DevelopmentCard d: owner.getInsertedDevCards()){
@@ -167,6 +203,10 @@ class LeaderCardProduction extends LeaderCard{
         }
         return false;
     }
+    /**
+     * Public method overrode from LeaderCard.
+     * Activate the ability of the card.
+     */
     @Override
     public boolean activateAbility(){
         if( owner.getPersonalBoard().getRequirementForLeaderProduction1()==null ) {
@@ -196,6 +236,7 @@ class LeaderCardTransformation extends LeaderCard{
     Colour singleCardColour;
 
     /**
+     * Public method.
      * @param doubleCardColour the first requirement of the card
      * @param singleCardColour the second requirement of the card
      * @param resourceType the resource that the card transform for the player
@@ -206,6 +247,10 @@ class LeaderCardTransformation extends LeaderCard{
         this.singleCardColour = singleCardColour;
     }
 
+    /**
+     * Public method overrode from LeaderCard.
+     * Set the card active if possible.
+     */
     @Override
     public boolean setActive(){
         if(owner.getCardColours().get(singleCardColour)==null || owner.getCardColours().get(singleCardColour)==null) return false;
@@ -215,6 +260,10 @@ class LeaderCardTransformation extends LeaderCard{
         return true;
     }
 
+    /**
+     * Public method overrode from LeaderCard.
+     * Activate the ability of the card.
+     */
     @Override
     public boolean activateAbility(){
         int whiteMarbles = owner.getGame().getMarketBoard().getWhiteMarblesSelected();

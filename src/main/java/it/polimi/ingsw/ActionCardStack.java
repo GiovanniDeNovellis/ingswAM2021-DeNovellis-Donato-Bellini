@@ -3,17 +3,37 @@ import java.util.Random;
 
 /** This class represent a deck of ActionCards */
 public class ActionCardStack {
-        private ActionCard[] cards = new ActionCard[7];
-        private Deckgrid deck;
 
-        public ActionCard[] getCards() { return cards; }
-    /** Constructor of ActionCardStack, doing the Fill and the Shuffle for the first time */
+    /** Array of seven ActionCard */
+    private ActionCard[] cards = new ActionCard[7];
+
+    /**
+     * The reference to the DevelopmentCard deck
+     * that contains the DevelopmentCards.
+     */
+    private Deckgrid deck;
+
+    /**
+     * Public Method.
+     * Getter of the ActionCard.
+     * @return the card
+     */
+    public ActionCard[] getCards() { return cards; }
+
+    /**
+     * Public method.
+     * Constructor of ActionCardStack, doing the Fill and the Shuffle for the first time
+     * @param deck indicate the deck where is the card
+     */
     public ActionCardStack(Deckgrid deck) {
         this.deck = deck;
         this.Fill();
     }
 
-    /** Fill the ActionCardStack with the cards that we know from the game */
+    /**
+     * Public method.
+     * Fill the ActionCardStack with the cards that we know from the game
+     */
     public void Fill(){
             cards [0] = new MoveAndShuffle (this);
             cards [1] = new Move ();
@@ -24,7 +44,8 @@ public class ActionCardStack {
             cards [6] = new RemoveDevCard (Colour.YELLOW,deck);
     }
 
-    /** Shuffle the index of the ActionCard array and randomize the drawing of the cards */
+    /** Public method
+     * Shuffle the index of the ActionCard array and randomize the drawing of the cards */
     public void Shuffle(){
         Random rnd = new Random();
         for (int i = this.cards.length - 1; i>0; i--){
@@ -35,6 +56,8 @@ public class ActionCardStack {
         }
     }
 
+    /** Public method.
+     * Activate the ActionCard */
     public void activateCard(){
         ActionCard c = cards[0];
         for(int i=0; i< cards.length-1; i++){

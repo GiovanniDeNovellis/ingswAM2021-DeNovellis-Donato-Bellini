@@ -14,7 +14,9 @@ public class LeaderCardDeck {
      */
     private ArrayList<LeaderCard> leaderCards = new ArrayList<>();
 
-    /** Build the deck with the cards contained in the game,
+    /**
+     * Public method.
+     * Build the deck with the cards contained in the game,
      * there are 4 cards for each types, for a total of 12 cards.
      * The method add a slot in the array list of the deck that contains four Leader Card of each type
      * with different parameters.
@@ -41,7 +43,8 @@ public class LeaderCardDeck {
     }
 
     /**
-     * This method is used by the deck to distribute the cards to the players
+     * Public method.
+     * Used by the deck to distribute the cards to the players
      * @param player is the reference of who receive the cards
      */
     public void randomDistribute(Player player){

@@ -2,24 +2,34 @@ package it.polimi.ingsw;
 
 import java.util.TreeMap;
 
+/** The strongbox is the resource's container of the players. It has free slot to fill with different type of resources */
 public class Strongbox {
-
 
     /** The TreeMap resourceContained is used to keep in memory number and type of resources contained in the strongbox */
     private TreeMap<ResourceType, Integer> resourcesContained = new TreeMap<>();
+
     //for testing...
     // private String printTest;
     /** attribute victoryPoints is referred to victory points obtained throw resources in the strongbox, when the game ends.*/
     private int victoryPoints;
+
     /** attribute numOf is used to return the number of a specific resource contained in the strongbox.*/
     private int numOf;
 
+    /** Public method.
+     * Constructor of Strongbox
+     */
     public Strongbox(){
         victoryPoints = 0;
         numOf = 0;
     }
 
-    /** addResources method allows the player to add a certain quantity of one type of resource into the strongbox. */
+    /**
+     * Public method.
+     * Allows the player to add a certain quantity of one type of resource into the strongbox.
+     * @param resource indicates the resource type to add
+     * @param quantity indicates the quantity to add
+     */
     public void addResources(ResourceType resource, int quantity){
         if(quantity<0)
             quantity=0;
@@ -29,7 +39,9 @@ public class Strongbox {
         resourcesContained.put(resource, quantity);
     }
 
-    /** viewAllResources method allows the player to see the totality of resources (number and type of resources)
+    /**
+     * Public method.
+     * viewAllResources method allows the player to see the totality of resources (number and type of resources)
      *  contained in its own strongbox. */
     public void viewAllResources(){
         for (ResourceType resource : resourcesContained.keySet()) {
@@ -46,8 +58,12 @@ public class Strongbox {
         */
     }
 
-    /** getVictoryPoints method is called when game ends. This method calculate the total amount of victory points
-     *  earned in base of the total number of resources contained in the strongbox. */
+    /**
+     * Public method.
+     * getVictoryPoints method is called when game ends. This method calculate the total amount of victory points
+     * earned in base of the total number of resources contained in the strongbox.
+     * @return the number of victoryPoints earned
+     */
     public int getVictoryPoints(){
         for (ResourceType resource : resourcesContained.keySet()) {
             victoryPoints += resourcesContained.get(resource);
@@ -55,8 +71,14 @@ public class Strongbox {
     return victoryPoints;
     }
 
-    /** removeResources method allows to remove a specific quantity of a one type resource contained in the strongbox.
-     * The player can't remove more resources than resources contained in the strongbox. */
+
+    /** Public method.
+     * Allows to remove a specific quantity of a one type resource contained in the strongbox.
+     * The player can't remove more resources than resources contained in the strongbox.
+     * @param resource  indicates the resource type to remove
+     * @param quantity indicates how many resource to remove
+     * @return true if the remove is done or false if the resource can be done
+     */
     public boolean removeResources(ResourceType resource, int quantity){
         if(quantity<0)
             quantity=0;
@@ -73,7 +95,11 @@ public class Strongbox {
             return false;
     }
 
-    /** getNumOf allows the player to know the number of a specific resource contained in the strongbox. */
+    /**
+     * Public method.
+     * getNumOf allows the player to know the number of a specific resource contained in the strongbox.
+     * @param resource indicate the ResourceType
+     */
     public int getNumOf( ResourceType resource ){
 
         if( resourcesContained.get(resource) != null ) {

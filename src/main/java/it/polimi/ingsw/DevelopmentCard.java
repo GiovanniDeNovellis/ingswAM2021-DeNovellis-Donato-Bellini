@@ -2,18 +2,27 @@ package it.polimi.ingsw;
 
 import java.util.TreeMap;
 
+/**
+ * The Development card can activate the "production power" for a resource,
+ * each card has a cost, a level and gives you victory points.
+ */
 public class DevelopmentCard {
-    /** attribute level is referred to developmentCard's level */
+
+    /** Attribute level is referred to developmentCard's level */
     private int level;
-    /** The three TreeMaps are used to keep in memory ,respectively, the necessary resources to buy the development card,
-     * cost expressed in resources to activate the developmentCard's production and resources obtained throw the production */
+
+    /**
+     * The three TreeMaps are used to keep in memory ,respectively, the necessary resources to buy the development card,
+     * cost expressed in resources to activate the developmentCard's production and resources obtained throw the production
+     */
     private TreeMap<ResourceType, Integer> cost = new TreeMap<>();
     private TreeMap<ResourceType, Integer> earnedResources = new TreeMap<>();
     private TreeMap<ResourceType, Integer> productionCost = new TreeMap<>();
 
-    /** attribute colour is referred to developmentCard's colour */
+    /** Attribute colour is referred to developmentCard's colour */
     private Colour type;
-    /** attribute victoryPoints represents victoryPoints given by a developmentCard when game ends */
+
+    /** Attribute victoryPoints represents victoryPoints given by a developmentCard when game ends */
     private int victoryPoints;
 
     /**
@@ -23,15 +32,29 @@ public class DevelopmentCard {
     public Colour getColour(){return this.type;}
 
 
+    /**
+     * Public method.
+     * Getter of the level.
+     * @return the level of the card
+     */
     public int getLevel(){
         return level;
     }
 
+    /**
+     * Public method.
+     * Getter of the victoryPoints.
+     * @return the victoryPoints of the card
+     */
     public int getVictoryPoints(){
         return victoryPoints;
     }
 
-
+    /**
+     * Public method.
+     * Getter of the ProductionCost
+     * @return the resourceType of the productionCost
+     */
     public int getProductionCost(ResourceType resourceType) {
         return productionCost.get(resourceType);
     }
@@ -45,10 +68,14 @@ public class DevelopmentCard {
     }*/
 
 
-    /** activateProduction method is called by PersonalBoard when the player wants tho activate production from a
+    /**
+     * Public method.
+     * ActivateProduction method is called by PersonalBoard when the player wants tho activate production from a
      * DevelopmentCard in his own PersonalBoard. This method checks if the player has the required resources in his
      * warehouse to activate the production through the boolean returned by the personalBoard.takeResourcesFromWarehouse
-     * method, invoked by this method. If the player can pay the production cost, this method invokes personalBoard.addResourceToStrongbox */
+     * method, invoked by this method. If the player can pay the production cost, this method invokes personalBoard.addResourceToStrongbox
+     * @param personalBoard references the player's board where the card is placed
+     */
 
     public boolean activateProduction(PersonalBoard personalBoard){
         boolean doneWarehouse;
@@ -187,7 +214,10 @@ public class DevelopmentCard {
     }
 
 
-    /** the method printCards give a representation of developmentCards and their attributes */
+    /**
+     * Public method.
+     * Give a representation of developmentCards and their attributes
+     */
     public void printCards(){
         System.out.println("Colour: " + type);
         System.out.println("Level: " + level);
@@ -205,7 +235,8 @@ public class DevelopmentCard {
 
 
     /**
-     * buyCard method calls personalBoard.payDevelopmentCard method for each resource necessary to buy the card
+     * Public method.
+     * Call personalBoard.payDevelopmentCard method for each resource necessary to buy the card
      * @param personalBoard is the personal board where the card will be added
      * @return true if player can add that card
      */

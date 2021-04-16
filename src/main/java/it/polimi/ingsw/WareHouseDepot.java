@@ -9,6 +9,7 @@ import java.util.TreeMap;
  * this class, can't have the same type of resource.
  */
 public class WareHouseDepot {
+
     /**
      * Map associating an integer representing
      * the maximum capacity to the corresponding level.
@@ -16,6 +17,7 @@ public class WareHouseDepot {
     private final TreeMap<Integer, Level> warehouseLevels;
 
     /**
+     * Public method.
      * Build the warehouse with three levels capable
      * of storing 1,2 and 3 resources.
      */
@@ -30,14 +32,16 @@ public class WareHouseDepot {
     }
 
     /**
-     * Method used by the GameBoard to interact with any level.
+     * Public method.
+     * Used by the GameBoard to interact with any level.
      * @param maxSlots The size of the level selected.
      * @return The level selected.
      */
     public Level getLevel(int maxSlots){return warehouseLevels.get(maxSlots);}
 
     /**
-     * Method called to swap the resources from two levels.
+     * Public method.
+     * Called to swap the resources from two levels.
      * @param maxSlotsFirst The first level to swap.
      * @param maxSlotsSecond The second level to swap.
      * @return True if the swap is possible, false if not.

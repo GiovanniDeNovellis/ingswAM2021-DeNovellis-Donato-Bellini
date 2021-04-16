@@ -4,18 +4,19 @@ import it.polimi.ingsw.MarketBoard;
 import it.polimi.ingsw.Selectable;
 
 /**
- * A type of marbles that does nothing. Can be trasformed
+ * A type of marbles that does nothing. Can be transformed
  * into another Marble with a certain leaderAbility.
  */
 public class WhiteMarbleType implements Selectable {
+
     /**
+     * Public method overrode from Selectable.
      * Does nothing.
-     * @param marketBoard The marketBoard where all the marbles are stored.
+     * @param marketBoard The marketBoard where all the marbles are stored
      */
     @Override
     public void onSelection(MarketBoard marketBoard) {
         int old = marketBoard.getWhiteMarblesSelected();
-        marketBoard.setWhiteMarblesSelected(old+1);
+        marketBoard.setWhiteMarblesSelected(old + 1);
     }
-    //
 }
