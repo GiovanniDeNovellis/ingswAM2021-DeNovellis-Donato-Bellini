@@ -6,15 +6,16 @@ package it.polimi.ingsw;
  * depending on their MarbleType.
  */
 public class Marble {
-
-    /** The marbleType associated to the Marble */
-    private Selectable currentMarbleType;
-
-    /** Colour of the marble */
-    private String colour;
+    /**
+     * The marbleType associated to the Marble.
+     */
+    private final Selectable currentMarbleType;
+    /**
+     * Colour of the marble.
+     */
+    private final String colour;
 
     /**
-     * Public method.
      * Builds a Marble of the given Type and colour.
      * @param currentMarbleType The type of the marble.
      * @param colour The colour of the marble.
@@ -25,14 +26,11 @@ public class Marble {
     }
 
     /**
-     * Public method.
-     * Getter of the MarbleType.
      * @return The type of the marble.
      */
     public Selectable getCurrentMarbleType(){return currentMarbleType;}
 
     /**
-     * Public method.
      * Calls the onSelection associated to it's type.
      * @param marketBoard The board where all the Marbles are stored.
      */
@@ -40,11 +38,6 @@ public class Marble {
         currentMarbleType.onSelection(marketBoard);
     }
 
-    /**
-     * Public method.
-     * Getter of the colourd
-     * @return the colour of the marble.
-     */
     public String getColour() {
         return colour;
     }

@@ -6,22 +6,23 @@ package it.polimi.ingsw;
  * capacity is fixed.
  */
 public class Level {
-
     /**
      * The current resource type
-     * contained into the level.
+     * contained int the level.
      */
     private ResourceType currentResourceType;
-
-    /** The maximum capacity of the level */
-    private int maxDimension;
-
-    /** Current number of resources stored in the level. */
+    /**
+     * The maximum capacity of the level.
+     */
+    private final int maxDimension;
+    /**
+     * Current number of resources
+     * stored in the level.
+     */
     private int numResources;
 
     /**
-     * Public method.
-     * Constructor of Level, builds the level of the specified dimension.
+     * Builds the level of the specified dimension.
      * @param maxDimension Level's dimension.
      */
     public Level(int maxDimension) {
@@ -31,8 +32,7 @@ public class Level {
     }
 
     /**
-     * Public method.
-     * Used to add resources into the level. Returns
+     * Method used to add resources into the level. Returns
      * false if trying to add too many resources.
      * @param type Type of resource.
      * @param quantity Quantity of resource
@@ -46,8 +46,7 @@ public class Level {
     }
 
     /**
-     * Public method.
-     * Used to remove resources from the level. Returns
+     * Method use to remove resources from the level. Returns
      * false if trying to get too many resources or a
      * negative quantity.
      * @param quantity Quantity to get.
@@ -61,22 +60,21 @@ public class Level {
     }
 
     /**
-     * Public method.
-     * Returns the current number of resources stored into the level.
+     * Returns the current number of resources
+     * stored into the level.
      * @return Number of resources.
      */
     public int getCurrNumResources(){return this.numResources; }
 
     /**
-     * Public method.
-     * Returns the maximum number of resources storable into the level.
+     * Returns the maximum number of resources storable
+     * into the level.
      * @return Max num of resources.
      */
     public int getMaxNumResources(){return this.maxDimension;}
 
-    /**
-     * Public method.
-     * Returns the current type of resource stored into the level.
+    /** Returns the current type of resource
+     * stored into the level.
      * @return Type of resource.
      */
     ResourceType getResourceType(){return this.currentResourceType;}

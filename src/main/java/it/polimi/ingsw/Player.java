@@ -11,7 +11,7 @@ public class Player {
     /**
      * The personal board of the player
      */
-    private PersonalBoard personalBoard = new PersonalBoard(this);
+    private final PersonalBoard personalBoard = new PersonalBoard(this);
     /**
      * The player's position on the faith track.
      */
@@ -20,7 +20,7 @@ public class Player {
      * The array of the faith cards. A faith card's value
      * is 0 after the corresponding audience is done.
      */
-    private int[] faithCards = {2, 3, 4};
+    private final int[] faithCards = {2, 3, 4};
     /**
      * The inkwell is true for the first player
      * of the round.
@@ -59,11 +59,11 @@ public class Player {
      * The 4 cards in which the player has to choose
      * the 2 leader cards.
      */
-    private ArrayList<LeaderCard> choosableLeaderCards = new ArrayList<>();
+    private final ArrayList<LeaderCard> choosableLeaderCards = new ArrayList<>();
     /**
      * The 2 leader cards chosed by the player.
      */
-    private ArrayList<LeaderCard> choosedLeaderCards = new ArrayList<>();
+    private final ArrayList<LeaderCard> choosedLeaderCards = new ArrayList<>();
     /**
      * True if the player has chosen the 2 leader cards.
      */

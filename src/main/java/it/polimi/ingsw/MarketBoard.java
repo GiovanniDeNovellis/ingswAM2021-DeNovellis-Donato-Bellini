@@ -16,28 +16,25 @@ import java.util.TreeMap;
  */
 public class MarketBoard {
 
-    /** The grid of the marbles */
-    private Marble[][] marketGrid = new Marble[3][4];
-
+    /**
+     * The grid of the marbles.
+     */
+    private final Marble[][] marketGrid = new Marble[3][4];
     /**
      * The marble which is out of the grid. Will be inserted
      * into the grid when taking resources again.
      */
     private Marble marbleOut;
-
     /**
      * A map containing the resources chosen by the player.
      * The player can store them or discard them. If he chooses to discard
      * a resource, all the other players will get one FaithPoint.
      */
-    private TreeMap<ResourceType, Integer> temporaryResources = new TreeMap<>();
-
-    private Game game;
-
+    private final TreeMap<ResourceType, Integer> temporaryResources = new TreeMap<>();
+    private final Game game;
     private int whiteMarblesSelected=0;
 
     /**
-     * Public method.
      * Builds the marketBoard with all the Marbles
      * in a random position.
      */
@@ -54,7 +51,6 @@ public class MarketBoard {
     }
 
     /**
-     * Private method.
      * @return An ArrayList of marbles in a random position.
      */
     private ArrayList<Marble> createMarbles(){
@@ -77,8 +73,7 @@ public class MarketBoard {
     }
 
     /**
-     * Public method.
-     * Used to take resources from the market. Calls the onSelection
+     * Method used to take resources from the market. Calls the onSelection
      * method for every marble in the selected row or column and shifts all the marbles.
      * @param startrow The selected row.
      * @param startcol The selected column.
@@ -115,7 +110,6 @@ public class MarketBoard {
     }
 
     /**
-     * Public method.
      * @return The list of the resources selected by the player.
      */
     public TreeMap<ResourceType, Integer> getTemporaryResources() {
@@ -123,7 +117,6 @@ public class MarketBoard {
     }
 
     /**
-     * Public method.
      * Testing method used for printing the MarketGrid.
      */
     public void printMarketGrid(){
@@ -136,30 +129,17 @@ public class MarketBoard {
         System.out.println("Out: " + marbleOut.getColour());
     }
 
-    /**
-     * Public method
-     * Getter of the game.
-     * @return the reference of the game
-     */
     public Game getGame() {
         return game;
     }
 
-    /**
-     * Public method
-     * Getter of WhiteMarblesSelected.
-     * @return the reference of WhiteMarblesSelected
-     */
     public int getWhiteMarblesSelected() {
         return whiteMarblesSelected;
     }
 
-    /**
-     * Public method
-     * Setter of WhiteMarblesSelected.
-     * @param whiteMarblesSelected indicate the number of white marble
-     */
     public void setWhiteMarblesSelected(int whiteMarblesSelected) {
         this.whiteMarblesSelected = whiteMarblesSelected;
     }
+
+    //
 }
