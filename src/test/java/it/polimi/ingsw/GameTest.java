@@ -334,8 +334,6 @@ class GameTest {
     }
 
     //                          --comment line 40 in LeaderCardDeck class to execute those test--
-
-
     /*
 
     @Test
@@ -449,10 +447,6 @@ class GameTest {
         assertTrue( game.getCurrentPlayer().getPersonalBoard().activateProductionFromDevCard(1));
     }
 
-
-
-
-    // HAVE TO COMMENT THE SHUFFLE LINE ON THE LEADERCARD DECK TO MAKE THOSE WORK
     @Test
     public void whiteTransformationTestSingle() throws FileNotFoundException {
         Game game = new Game();
@@ -623,7 +617,59 @@ class GameTest {
         assertEquals(oldFaith+1,game.getCurrentPlayer().getFaithPoints());
     }
 
-*/
-
-
+    @Test
+    public void extraProductionAbilityTestDouble() throws FileNotFoundException {
+        Game game = new Game();
+        Deckgrid deckgrid = new Deckgrid();
+        assertTrue(game.addPlayer("First player"));
+        assertTrue(game.addPlayer("Second player"));
+        assertTrue(game.addPlayer("Third player"));
+        assertTrue(game.addPlayer("Fourth player"));
+        assertTrue(game.startMultiplayer());
+        assertTrue(game.chooseLeaderCards(0,1));
+        assertTrue(game.endTurn());//end 1
+        assertTrue(game.chooseLeaderCards(0,1));
+        assertTrue(game.distributionResourceSecondThird(ResourceType.STONES));
+        assertTrue(game.endTurn());//end 2
+        assertFalse(game.endTurn());
+        assertTrue(game.chooseLeaderCards(0,2));
+        assertFalse(game.chooseLeaderCards(0,1));
+        assertTrue(game.distributionResourceSecondThird(ResourceType.COINS));
+        assertTrue(game.endTurn()); //end 3
+        assertTrue(game.chooseLeaderCards(0,3));
+        assertTrue(game.distributionResourceFourthPlayer(ResourceType.SHIELDS,ResourceType.SHIELDS));
+        assertTrue(game.endTurn()); // end 4
+        game.getCurrentPlayer().setCanEndTurn(true);
+        assertTrue(game.endTurn()); //end 1
+        game.getCurrentPlayer().setCanEndTurn(true);
+        assertTrue(game.endTurn()); //end 2
+        game.getCurrentPlayer().setCanEndTurn(true);
+        assertTrue(game.endTurn());//end 3
+        assertTrue(game.getCurrentPlayer().insertCard(deckgrid.getCards().get(0),0));
+        assertTrue(game.getCurrentPlayer().insertResourcesIntoWarehouse(ResourceType.SHIELDS,3,3));
+        assertTrue(game.getCurrentPlayer().insertResourcesIntoWarehouse(ResourceType.SERVANTS,2,2));
+        assertFalse(game.getCurrentPlayer().insertCard(deckgrid.getCards().get(0),0));
+        assertTrue(game.getCurrentPlayer().insertCard(deckgrid.getCards().get(20),0));
+        assertTrue(game.activateLeaderCard(1));
+        assertTrue(game.getCurrentPlayer().insertResourcesIntoWarehouse(ResourceType.SERVANTS,2,2));
+        assertFalse(game.getCurrentPlayer().insertCard(deckgrid.getCards().get(1),0));
+        assertTrue(game.getCurrentPlayer().insertCard(deckgrid.getCards().get(1),1));
+        assertTrue(game.getCurrentPlayer().insertResourcesIntoWarehouse(ResourceType.STONES,3,3));
+        game.getCurrentPlayer().getPersonalBoard().getStrongbox().addResources(ResourceType.STONES,1);
+        assertTrue(game.getCurrentPlayer().insertCard(deckgrid.getCards().get(19),1));
+        assertTrue(game.activateLeaderCard(0));
+        assertTrue(game.activateLeaderAbility(0));
+        assertTrue(game.activateLeaderAbility(1));
+        assertTrue(game.getCurrentPlayer().insertResourcesIntoWarehouse(ResourceType.COINS,1,1));
+        assertTrue(game.getCurrentPlayer().insertResourcesIntoWarehouse(ResourceType.SHIELDS,2,1));
+        int oldFaith=game.getCurrentPlayer().getFaithPoints();
+        boolean[] dev  = {false,false,false};
+        boolean[] lead  = {true,true};
+        ResourceType[] obtRes  = {ResourceType.COINS,ResourceType.STONES};
+        assertTrue(game.activateProduction(dev,false,lead,null,null,null,obtRes,0,0));
+        assertEquals(1,game.getCurrentPlayer().getPersonalBoard().getStrongbox().getNumOf(ResourceType.STONES));
+        assertEquals(1,game.getCurrentPlayer().getPersonalBoard().getStrongbox().getNumOf(ResourceType.COINS));
+        assertEquals(oldFaith+2,game.getCurrentPlayer().getFaithPoints());
+    }
+     */
 }
