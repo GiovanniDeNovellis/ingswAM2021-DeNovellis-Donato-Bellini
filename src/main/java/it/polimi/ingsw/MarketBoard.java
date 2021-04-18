@@ -4,9 +4,7 @@ import it.polimi.ingsw.MarbleTypes.FaithMarbleType;
 import it.polimi.ingsw.MarbleTypes.WareHouseMarbleType;
 import it.polimi.ingsw.MarbleTypes.WhiteMarbleType;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.TreeMap;
+import java.util.*;
 
 /**
  * The board where all the Marbles are stored.
@@ -30,7 +28,7 @@ public class MarketBoard {
      * The player can store them or discard them. If he chooses to discard
      * a resource, all the other players will get one FaithPoint.
      */
-    private final TreeMap<ResourceType, Integer> temporaryResources = new TreeMap<>();
+    private final Map<ResourceType,Integer> temporaryResources = new HashMap<>();
     private final Game game;
     private int whiteMarblesSelected=0;
 
@@ -112,7 +110,7 @@ public class MarketBoard {
     /**
      * @return The list of the resources selected by the player.
      */
-    public TreeMap<ResourceType, Integer> getTemporaryResources() {
+    public Map<ResourceType, Integer> getTemporaryResources() {
         return temporaryResources;
     }
 

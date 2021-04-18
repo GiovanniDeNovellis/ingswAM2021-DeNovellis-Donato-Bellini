@@ -256,7 +256,7 @@ class LeaderCardTransformation extends LeaderCard{
         if(owner.getCardColours().get(singleCardColour)==null || owner.getCardColours().get(singleCardColour)==null) return false;
         if(owner.getCardColours().get(singleCardColour)<1||owner.getCardColours().get(doubleCardColour)<2||active) return false;
         active=true;
-        owner.setHasTrasformationAbility(true);
+        owner.increaseNumTrasformationAbility();
         return true;
     }
 
@@ -268,15 +268,29 @@ class LeaderCardTransformation extends LeaderCard{
     public boolean activateAbility(){
         int whiteMarbles = owner.getGame().getMarketBoard().getWhiteMarblesSelected();
         if(whiteMarbles<=0) return false;
-        if(owner.getGame().getMarketBoard().getTemporaryResources().isEmpty()||!owner.getGame().getMarketBoard().getTemporaryResources()
-            .containsKey(this.resourceType)){
-            owner.getGame().getMarketBoard().getTemporaryResources().put(this.resourceType,1);
+        if(owner.getNumTransformationAbility()==1){
+            if (owner.getGame().getMarketBoard().getTemporaryResources().isEmpty() || !owner.getGame().getMarketBoard().getTemporaryResources()
+                    .containsKey(this.resourceType)) {
+                owner.getGame().getMarketBoard().getTemporaryResources().put(this.resourceType, whiteMarbles);
+            }
+            else {
+                int oldval = owner.getGame().getMarketBoard().getTemporaryResources().get(this.resourceType);
+                owner.getGame().getMarketBoard().getTemporaryResources().put(this.resourceType, oldval + whiteMarbles);
+            }
+            owner.getGame().getMarketBoard().setWhiteMarblesSelected(0);
+            return true;
         }
-        else{
-            int oldval = owner.getGame().getMarketBoard().getTemporaryResources().get(this.resourceType);
-            owner.getGame().getMarketBoard().getTemporaryResources().put(this.resourceType,oldval+1);
+        else {
+            if (owner.getGame().getMarketBoard().getTemporaryResources().isEmpty() || !owner.getGame().getMarketBoard().getTemporaryResources()
+                    .containsKey(this.resourceType)) {
+                owner.getGame().getMarketBoard().getTemporaryResources().put(this.resourceType, 1);
+            }
+            else {
+                int oldval = owner.getGame().getMarketBoard().getTemporaryResources().get(this.resourceType);
+                owner.getGame().getMarketBoard().getTemporaryResources().put(this.resourceType, oldval + 1);
+            }
+            owner.getGame().getMarketBoard().setWhiteMarblesSelected(whiteMarbles - 1);
+            return true;
         }
-        owner.getGame().getMarketBoard().setWhiteMarblesSelected(whiteMarbles-1);
-        return true;
     }
 }

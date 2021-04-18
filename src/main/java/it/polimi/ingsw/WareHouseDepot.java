@@ -1,6 +1,8 @@
 package it.polimi.ingsw;
 
-import java.util.TreeMap;
+import java.util.HashMap;
+import java.util.Map;
+
 
 /**
  * Represents the warehouse depot. Through this
@@ -14,7 +16,7 @@ public class WareHouseDepot {
      * Map associating an integer representing
      * the maximum capacity to the corresponding level.
      */
-    private final TreeMap<Integer, Level> warehouseLevels;
+    private final Map<Integer, Level> warehouseLevels = new HashMap<>();
 
     /**
      * Public method.
@@ -22,7 +24,6 @@ public class WareHouseDepot {
      * of storing 1,2 and 3 resources.
      */
     public WareHouseDepot(){
-        this.warehouseLevels = new TreeMap<>();
         Level level1 = new Level(1);
         Level level2 = new Level(2);
         Level level3 = new Level(3);

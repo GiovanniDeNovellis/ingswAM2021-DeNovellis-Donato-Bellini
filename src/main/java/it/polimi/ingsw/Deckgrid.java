@@ -10,7 +10,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.TreeMap;
+import java.util.HashMap;
+import java.util.Map;
 
 /** It's the grid of DevelopmentCards, organized by level and color. */
 public class Deckgrid {
@@ -18,8 +19,8 @@ public class Deckgrid {
     /** The array indicate of many slot has the DeckGrid */
     private final Deck[] decks = new Deck[12];
 
-    /** Create the TreeMap of DevelopmentCards ordinated by colour */
-    private final TreeMap<Colour, Integer> deckColumn = new TreeMap<>();
+    /** Create the HasheMap of DevelopmentCards ordinated by colour */
+    private final Map<Colour, Integer> deckColumn = new HashMap<>();
 
     /** Reference of the DevelopmentCard's ArrayList */
     private ArrayList<DevelopmentCard> cards = new ArrayList<>();

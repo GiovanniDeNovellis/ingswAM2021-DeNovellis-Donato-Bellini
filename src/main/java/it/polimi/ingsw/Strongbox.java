@@ -1,14 +1,17 @@
 package it.polimi.ingsw;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.TreeMap;
 
 public class Strongbox {
 
 
     /** The TreeMap resourceContained is used to keep in memory number and type of resources contained in the strongbox */
-    private final TreeMap<ResourceType, Integer> resourcesContained = new TreeMap<>();
+    private final Map<ResourceType, Integer> resourcesContained = new HashMap<>();
     //for testing...
-    // private String printTest;
+    //private final TreeMap<ResourceType, Integer> resourcesContained = new TreeMap<>();
+    //private String printTest;
     /** attribute victoryPoints is referred to victory points obtained throw resources in the strongbox, when the game ends.*/
     private int victoryPoints;
     /** attribute numOf is used to return the number of a specific resource contained in the strongbox.*/
@@ -31,20 +34,19 @@ public class Strongbox {
 
     /** viewAllResources method allows the player to see the totality of resources (number and type of resources)
      *  contained in its own strongbox. */
-    public void viewAllResources(){
+    public void viewAllResources() {
         for (ResourceType resource : resourcesContained.keySet()) {
             System.out.println("Risorsa: " + resource + " ,Quantità: " + resourcesContained.get(resource));
         }
-
-         /*   //for testing...
+    }
+            //for testing...
+    /*
     public String viewAllResources(){
         for (ResourceType resource : resourcesContained.keySet()) {
             printTest = printTest + ("Risorsa: " + resource + " ,Quantità: " + resourcesContained.get(resource));
         }
         return printTest;
-    }
-        */
-    }
+    } */
 
     /** getVictoryPoints method is called when game ends. This method calculate the total amount of victory points
      *  earned in base of the total number of resources contained in the strongbox. */

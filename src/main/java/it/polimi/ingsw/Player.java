@@ -1,6 +1,8 @@
 package it.polimi.ingsw;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.TreeMap;
 
 /**
@@ -75,7 +77,7 @@ public class Player {
     /**
      * True if the player has to choose how to transform his white marbles
      */
-    private boolean hasTrasformationAbility=false;
+    private int numTransformationAbility=0;
 
 
     /**
@@ -514,7 +516,7 @@ public class Player {
      * Public method.
      * @return Map of the colours owned by the player.
      */
-    public TreeMap<Colour, Integer> getCardColours(){
+    public Map<Colour, Integer> getCardColours(){
         return this.personalBoard.getCardsColours();
     }
 
@@ -528,20 +530,19 @@ public class Player {
 
     /**
      * Public method.
-     * Getter of HasTransformationAbility.
-     * @return If the player has activated a white marble transformation ability.
+     * Getter of NumTransformationAbility.
+     * @return The number of transformation ability cards.
      */
-    public boolean getHasTransformationAbility() {
-        return hasTrasformationAbility;
+    public int getNumTransformationAbility() {
+        return numTransformationAbility;
     }
 
     /**
      * Public method.
-     * Setter of HasTransformationAbility.
-     * @param hasTrasformationAbility Set true if the player has activated a white marble transformation ability.
+     * Increaser of NumTransformationAbility.
      */
-    public void setHasTrasformationAbility(boolean hasTrasformationAbility) {
-        this.hasTrasformationAbility = hasTrasformationAbility;
+    public void increaseNumTrasformationAbility() {
+        this.numTransformationAbility++;
     }
 
     /**

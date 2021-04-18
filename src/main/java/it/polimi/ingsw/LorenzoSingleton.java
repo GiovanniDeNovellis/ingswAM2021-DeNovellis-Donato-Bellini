@@ -2,6 +2,8 @@ package it.polimi.ingsw;
 
 /** This class represent the single player mode of the game */
 public class LorenzoSingleton {
+    /** The reference for the game class to call audiences */
+    private Game game;
     /** Initialize the attribute to create a Singleton */
     private static LorenzoSingleton Lorenzo = null;
 
@@ -34,6 +36,16 @@ public class LorenzoSingleton {
      */
     public void addFaithPoints(int number) {
         Lorenzo.blackFaithPoints += number;
+        if( blackFaithPoints >= 8 && blackFaithPoints < 16 ){
+            game.firstAudience();
+        }
+        else if( blackFaithPoints >= 16 && blackFaithPoints < 24 ){
+            game.secondAudience();
+        }
+        if( blackFaithPoints >= 24 ) {
+            blackFaithPoints = 24;
+            setLorenzoWinner(true);
+        }
     }
 
     /**
@@ -61,5 +73,9 @@ public class LorenzoSingleton {
      */
     public boolean isLorenzoWinner() {
         return lorenzoWinner;
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
     }
 }

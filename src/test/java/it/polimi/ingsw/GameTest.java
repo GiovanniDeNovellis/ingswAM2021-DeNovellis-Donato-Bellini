@@ -72,7 +72,7 @@ class GameTest {
         assertTrue(game.takeResourcesFromMarket(3,1));
         if(game.getMarketBoard().getTemporaryResources().isEmpty())
             return;
-        ResourceType res = game.getMarketBoard().getTemporaryResources().firstKey();
+        ResourceType res = game.getMarketBoard().getTemporaryResources().keySet().stream().findFirst().get();
         int numOfThatRes = game.getMarketBoard().getTemporaryResources().get(res);
         assertTrue(game.insertResourcesIntoWarehouse(res,numOfThatRes,false));
         assertFalse(game.insertResourcesIntoWarehouse(res,numOfThatRes,false));
@@ -491,7 +491,7 @@ class GameTest {
         assertTrue(game.getCurrentPlayer().insertCard(deckgrid.getCards().get(2),2));
         assertTrue(game.activateLeaderCard(0));
         assertTrue(game.takeResourcesFromMarket(2,4));
-        assertTrue(game.getCurrentPlayer().getHasTransformationAbility());
+        assertEquals(1,game.getCurrentPlayer().getNumTransformationAbility());
         assertTrue(game.getCurrentPlayer().isCanEndTurn());
         if(game.getMarketBoard().getWhiteMarblesSelected()>0){
             assertFalse(game.endTurn());
@@ -550,7 +550,7 @@ class GameTest {
         assertFalse(game.activateLeaderCard(0));
         assertFalse(game.activateLeaderCard(1));
         assertTrue(game.takeResourcesFromMarket(2,4));
-        assertTrue(game.getCurrentPlayer().getHasTransformationAbility());
+        assertEquals(2,game.getCurrentPlayer().getNumTransformationAbility());
         assertTrue(game.getCurrentPlayer().isCanEndTurn());
         if(game.getMarketBoard().getWhiteMarblesSelected()>0){
             int num=1;

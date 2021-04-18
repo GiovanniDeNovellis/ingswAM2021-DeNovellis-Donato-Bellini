@@ -1,11 +1,12 @@
 package it.polimi.ingsw;
 
 import java.util.ArrayList;
-import java.util.TreeMap;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * This class represent the board that every player had,
- * it is composed by different items and include differnt board
+ * it is composed by different items and include different board
  */
 public class PersonalBoard {
 
@@ -13,7 +14,7 @@ public class PersonalBoard {
     private final Player player;
 
     /** The board of the different type of cards */
-    private final TreeMap<Colour,Integer> cardsColours = new TreeMap<>();
+    private final Map<Colour,Integer> cardsColours = new HashMap<>();
 
     /** The quantity of DevelopmentCards */
     private int totDevCards = 0;
@@ -42,9 +43,9 @@ public class PersonalBoard {
     private final DevelopmentCard[] developmentCard = new DevelopmentCard[3];
 
     /**
-     * resourcesToAddToStrongbox TreeMap contains all resources obtained through production.
+     * resourcesToAddToStrongbox HashMap contains all resources obtained through production.
      */
-    private final TreeMap<ResourceType, Integer> resourcesToAddToStrongbox = new TreeMap<>();
+    private final Map<ResourceType, Integer> resourcesToAddToStrongbox = new HashMap<>();
 
     /** Indicate the type of resource for the discount from the Leader Card ability */
     private ResourceType discount1;
@@ -200,9 +201,9 @@ public class PersonalBoard {
      * @param cost contains resource types to pay the card and relatives quantity
      * @return boolean
      */
-    public boolean payDevelopmentCard( TreeMap<ResourceType, Integer> cost ) {
+    public boolean payDevelopmentCard( Map<ResourceType, Integer> cost ) {
         boolean check;
-        TreeMap<ResourceType, Integer> discountedCost = new TreeMap<>();
+        Map<ResourceType, Integer> discountedCost = new HashMap<>();
         discountedCost.putAll(cost);
 
         if( discount1!=null || discount2!= null ){
@@ -687,7 +688,7 @@ public class PersonalBoard {
      * Getter of cardsColours
      * @return the colours of the card
      */
-    public TreeMap<Colour, Integer> getCardsColours(){
+    public Map<Colour, Integer> getCardsColours(){
         return cardsColours;
     }
 

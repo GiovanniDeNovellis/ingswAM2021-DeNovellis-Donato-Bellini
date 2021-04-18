@@ -39,7 +39,8 @@ class StrongboxTest{
         strongbox.addResources(STONES, 3);
         strongbox.addResources(STONES, 3);
         strongbox.addResources(COINS, 0);
-        //must uncomment viewAllResource method with return statement and the following assertEquals method to work
+        //must uncomment the TreeMap resourceContained attribute, viewAllResource method with return statement
+        // and the following assertEquals method to work
         //assertEquals(printResult, strongbox.viewAllResources());
     }
 

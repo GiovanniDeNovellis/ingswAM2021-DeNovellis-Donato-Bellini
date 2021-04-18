@@ -1,6 +1,7 @@
 package it.polimi.ingsw;
 
-import java.util.TreeMap;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * The Development card can activate the "production power" for a resource,
@@ -12,12 +13,12 @@ public class DevelopmentCard {
     private int level;
 
     /**
-     * The three TreeMaps are used to keep in memory ,respectively, the necessary resources to buy the development card,
+     * The three HashMaps are used to keep in memory ,respectively, the necessary resources to buy the development card,
      * cost expressed in resources to activate the developmentCard's production and resources obtained throw the production
      */
-    private TreeMap<ResourceType, Integer> cost = new TreeMap<>();
-    private TreeMap<ResourceType, Integer> earnedResources = new TreeMap<>();
-    private TreeMap<ResourceType, Integer> productionCost = new TreeMap<>();
+    private Map<ResourceType, Integer> cost = new HashMap<>();
+    private Map<ResourceType, Integer> earnedResources = new HashMap<>();
+    private Map<ResourceType, Integer> productionCost = new HashMap<>();
 
     /** Attribute colour is referred to developmentCard's colour */
     private Colour type;
@@ -108,10 +109,7 @@ public class DevelopmentCard {
             int value = productionCost.get(resource);
             if( resTypeExtraDep1!= null && quantityExtraDep1!=0 && resTypeExtraDep1==resource ){
                 doneExtra = true;
-                boolean allUsed = false;
-                if( value==quantityExtraDep1 ){
-                    allUsed=true;
-                }
+                boolean allUsed = value == quantityExtraDep1;
                 value-=quantityExtraDep1;
                 if( value<0 ){
                     quantityExtraDep1+=value;
@@ -126,10 +124,7 @@ public class DevelopmentCard {
             }
             if( resTypeExtraDep2!= null && quantityExtraDep2!=0 && resTypeExtraDep2==resource ){
                 doneExtra = true;
-                boolean allUsed2 = false;
-                if( value==quantityExtraDep2 ){
-                    allUsed2=true;
-                }
+                boolean allUsed2 = value == quantityExtraDep2;
                 value-=quantityExtraDep2;
                 if( value<0 ){
                     quantityExtraDep2+=value;
@@ -242,9 +237,6 @@ public class DevelopmentCard {
      */
     public boolean buyCard(PersonalBoard personalBoard){
 
-            if( !personalBoard.payDevelopmentCard(cost) )
-                return false;
-
-        return true;
+        return personalBoard.payDevelopmentCard(cost);
     }
 }

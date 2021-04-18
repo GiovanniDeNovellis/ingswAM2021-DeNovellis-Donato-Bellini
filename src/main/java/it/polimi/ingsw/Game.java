@@ -1,9 +1,7 @@
 package it.polimi.ingsw;
 
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.TreeMap;
+import java.util.*;
 
 /**
  * Main class: Users actions are managed by Game class.
@@ -113,6 +111,7 @@ public class Game {
         leaderCardDeck.randomDistribute(players.get(0));
         this.actionCardStack = new ActionCardStack(deckgrid);
         this.lorenzo = LorenzoSingleton.getLorenzo();
+        lorenzo.setGame(this);
         gameStarted = true;
         players.get(0).setInitialDistribution(true);
         return true;
@@ -169,7 +168,7 @@ public class Game {
         if( currentPlayer.doneInitialDistribution() || !currentPlayer.isCanEndTurn() || !currentPlayer.hasChosenLeaderCards()){
             return false;
         }
-        if(currentPlayer.getHasTransformationAbility()&&marketBoard.getWhiteMarblesSelected()>0) return false;
+        if(currentPlayer.getNumTransformationAbility()>0&&marketBoard.getWhiteMarblesSelected()>0) return false;
         marketBoard.setWhiteMarblesSelected(0);
         if(players.size()==1&&!actionCardDone) return false;
         actionCardDone=false;
@@ -426,7 +425,7 @@ public class Game {
      * that he has not inserted into his warehouse. For every discarded resource, the other players earn one faith point.
      */
     private void discardRemainingResources(){
-        TreeMap<ResourceType, Integer>map;
+        Map<ResourceType, Integer> map;
         boolean doneAudience = false;
         map = marketBoard.getTemporaryResources();
         for( ResourceType r: map.keySet() ){
