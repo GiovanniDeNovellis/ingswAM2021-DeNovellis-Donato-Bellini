@@ -85,4 +85,8 @@ public class Strongbox {
         else
             return 0;
     }
+
+    public Map<ResourceType, Integer> getResourcesContained() {
+        return resourcesContained;
+    }
 }

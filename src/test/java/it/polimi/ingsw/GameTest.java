@@ -501,8 +501,10 @@ class GameTest {
                 if(game.getMarketBoard().getTemporaryResources().get(ResourceType.SERVANTS)==null) oldvalue=0;
                 else oldvalue=game.getMarketBoard().getTemporaryResources().get(ResourceType.SERVANTS);
                 System.out.println("Palline bianche rimaste: " + game.getMarketBoard().getWhiteMarblesSelected());
+                int oldWhiteMarbles = game.getMarketBoard().getWhiteMarblesSelected();
                 assertTrue(game.activateLeaderAbility(0));
-                assertEquals(oldvalue+1,game.getMarketBoard().getTemporaryResources().get(ResourceType.SERVANTS));
+                assertEquals(oldvalue+oldWhiteMarbles,game.getMarketBoard().getTemporaryResources().get(ResourceType.SERVANTS));
+                assertEquals(0,game.getMarketBoard().getWhiteMarblesSelected());
             }
             System.out.println("Convertite tutte posso finire");
             assertTrue(game.endTurn());

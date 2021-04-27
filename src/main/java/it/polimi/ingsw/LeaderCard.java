@@ -16,6 +16,9 @@ public abstract class LeaderCard {
     /** The owner of the card */
     Player owner;
 
+    /** The type of the card */
+    protected String type;
+
     /**
      * Public method.
      * Set the card active
@@ -58,6 +61,15 @@ public abstract class LeaderCard {
     public int getVictoryPoints() {
         return victoryPoints;
     }
+
+    /**
+     * Public method.
+     * The getter of the type.
+     * @return the type of the card.
+     */
+    public String getType() {
+        return type;
+    }
 }
 
 /**
@@ -81,6 +93,7 @@ class LeaderCardDiscount extends LeaderCard{
         this.resourceType = resourceType;
         this.singleColour1 = singleColour1;
         this.singleColour2 = singleColour2;
+        this.type = "Discount";
     }
 
     /**
@@ -136,6 +149,7 @@ class LeaderCardDeposit extends LeaderCard{
     public LeaderCardDeposit(ResourceType resourceRequired, ResourceType resourceType) {
         this.resourceType = resourceType;
         this.resourceRequired = resourceRequired;
+        this.type = "Deposit";
     }
 
     /**
@@ -187,6 +201,7 @@ class LeaderCardProduction extends LeaderCard{
     public LeaderCardProduction(Colour level2CardColour,ResourceType resourceType) {
         this.resourceType = resourceType;
         this.level2CardColour = level2CardColour;
+        this.type = "Production";
     }
 
     /**
@@ -245,6 +260,7 @@ class LeaderCardTransformation extends LeaderCard{
         this.resourceType = resourceType;
         this.doubleCardColour = doubleCardColour;
         this.singleCardColour = singleCardColour;
+        this.type = "Transformation";
     }
 
     /**

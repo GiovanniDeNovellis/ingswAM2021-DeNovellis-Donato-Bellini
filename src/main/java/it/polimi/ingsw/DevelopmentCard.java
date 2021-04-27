@@ -8,7 +8,6 @@ import java.util.Map;
  * each card has a cost, a level and gives you victory points.
  */
 public class DevelopmentCard {
-
     /** Attribute level is referred to developmentCard's level */
     private int level;
 

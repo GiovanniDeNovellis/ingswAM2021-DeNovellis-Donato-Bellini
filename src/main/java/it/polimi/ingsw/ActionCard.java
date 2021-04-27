@@ -2,7 +2,6 @@ package it.polimi.ingsw;
 
 /** Abstracted class that represent the three different types of ActionCard */
 public abstract class ActionCard{
-
     /**
      * Public method.
      * Activate the ActionCard.
@@ -12,7 +11,10 @@ public abstract class ActionCard{
 
 /** Move the Black Cross token forward by 2 spaces. */
 class Move extends ActionCard {
-
+    /**
+     * Type of the card.
+     */
+    protected String type="Move";
     /**
      * Public method overrode from Action card.
      * Add 2 faithPoints to Lorenzo.
@@ -21,11 +23,24 @@ class Move extends ActionCard {
     public void activate() {
         LorenzoSingleton.getLorenzo().addFaithPoints(2);
     }
+
+    /**
+     * Public method.
+     * @return the type of the action card.
+     */
+    public String getType() {
+        return type;
+    }
 }
 
 /** Move the Black Cross token forward by 1 space. Then, shuffle all the Solo Action tokens and create a new stack. */
 class MoveAndShuffle extends ActionCard {
     private ActionCardStack cards;
+
+    /**
+     * Type of the card
+     */
+    protected String type = "MoveAndShuffle";
 
     /**
      * Public method.
@@ -45,6 +60,14 @@ class MoveAndShuffle extends ActionCard {
         LorenzoSingleton.getLorenzo().addFaithPoints(1);
         this.cards.Shuffle();
     }
+
+    /**
+     * Public method.
+     * @return the type of the action card.
+     */
+    public String getType() {
+        return type;
+    }
 }
 
 /** Discard 2 Development Cards of the indicated type from the bottom of the grid, from the lowest level to the highest */
@@ -58,6 +81,11 @@ class RemoveDevCard extends ActionCard {
      * that contains the DevelopmentCards.
      */
     private Deckgrid deck;
+
+    /**
+     * Type of the card
+     */
+    protected String type;
 
     /**
      * Public method.
@@ -88,5 +116,13 @@ class RemoveDevCard extends ActionCard {
             if (l==4){
                 LorenzoSingleton.getLorenzo().setLorenzoWinner(true);
             }
+    }
+
+    /**
+     * Public method.
+     * @return the type of the action card.
+     */
+    public String getType() {
+        return type;
     }
 }

@@ -19,6 +19,13 @@ public class Controller {
             AddPlayerMessage addMessage = gson.fromJson(jsonContent,AddPlayerMessage.class);
             //TODO GUARDA IL SEQUENCE DIAGRAM CORRISPONDENTE E CHIAMA I METODI SU GAME
         }
-    }
+        else if(message.getMessageType().equals("startSinglePlayer")){
+            if(game.startSinglePlayer()){
 
+            }
+            else{
+
+            }
+        }
+    }
 }

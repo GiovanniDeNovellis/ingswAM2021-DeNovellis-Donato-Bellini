@@ -93,6 +93,10 @@ public class Game {
         if( players.size() >= 4 || gameStarted ) {
             return false;
         }
+        for(Player p: players){
+            if(p.getNickname().equals(nickname))
+                return false;
+        }
         Player p = new Player();
         p.setNickname(nickname);
         p.setGame(this);
