@@ -12,6 +12,7 @@ public class Controller {
     private Game game;
     private ArrayList<ClientHandler> connectedClients = new ArrayList<>();
 
+
     public Controller(Game game) {
         this.game = game;
     }
@@ -45,7 +46,7 @@ public class Controller {
 
             }
         }
-        return "cacca";
+        return "end";
     }
 
     public void addClientHandler(ClientHandler clientHandler){

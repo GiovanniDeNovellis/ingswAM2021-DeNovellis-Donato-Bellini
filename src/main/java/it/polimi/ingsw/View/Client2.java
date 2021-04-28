@@ -19,10 +19,13 @@ public class Client2 {
                 BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in))
         ) {
             String userInput;
+            String serverOutput;
             System.out.println(in.readLine());
-            while ((userInput = stdIn.readLine()) != null) {
-                out.println(userInput);
-                System.out.println(in.readLine());
+            while (true) {
+                if((userInput = stdIn.readLine()) != null)
+                    out.println(userInput);
+                while((serverOutput=in.readLine())!=null)
+                    System.out.println(serverOutput);
             }
         } catch (UnknownHostException e) {
             System.err.println("Don't know about host " + hostName);
