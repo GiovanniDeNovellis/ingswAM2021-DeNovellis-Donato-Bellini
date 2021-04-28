@@ -13,6 +13,20 @@ public class Server {
 
     private int portNumber;
     private String hostName;
+    static int numClient = 0;
+
+    public int getNumClient() {
+        return numClient;
+    }
+
+
+    public int getPortNumber() {
+        return portNumber;
+    }
+
+    public String getHostName() {
+        return hostName;
+    }
 
     public static void main(String[] args) throws FileNotFoundException {
         Game game = new Game();
@@ -47,8 +61,11 @@ public class Server {
         while(true){
             try {
                 Socket socket = serverSocket.accept();
-                executor.submit(new ClientHandler(socket, controller));
+                //TODO: gestione afk
+                executor.submit(new ClientHandler(socket, controller, numClient));
+                numClient++;
                 System.out.println("Accettato la connessione numero " + ++num);
+
             }
             catch(IOException e) {
                 break; // Entrerei qui se serverSocket venisse chiuso
@@ -57,11 +74,4 @@ public class Server {
         executor.shutdown();
     }
 
-    public int getPortNumber() {
-        return portNumber;
-    }
-
-    public String getHostName() {
-        return hostName;
-    }
 }

@@ -503,7 +503,7 @@ class GameTest {
                 System.out.println("Palline bianche rimaste: " + game.getMarketBoard().getWhiteMarblesSelected());
                 int oldWhiteMarbles = game.getMarketBoard().getWhiteMarblesSelected();
                 assertTrue(game.activateLeaderAbility(0));
-                assertEquals(oldvalue+oldWhiteMarbles,game.getMarketBoard().getTemporaryResources().get(ResourceType.SERVANTS));
+                assertEquals((oldvalue+oldWhiteMarbles),game.getMarketBoard().getTemporaryResources().get(ResourceType.SERVANTS));
                 assertEquals(0,game.getMarketBoard().getWhiteMarblesSelected());
             }
             System.out.println("Convertite tutte posso finire");

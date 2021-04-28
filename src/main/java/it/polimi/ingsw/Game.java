@@ -11,11 +11,11 @@ public class Game {
     /**
      * Reference to market board, unique in the game and shared by all players.
      */
-    private MarketBoard marketBoard = new MarketBoard(this);
+    private final MarketBoard marketBoard = new MarketBoard(this);
     /**
      * Contains all the Game's players.
      */
-    private ArrayList<Player> players = new ArrayList<>();
+    private final ArrayList<Player> players = new ArrayList<>();
     /**
      * It represents the player who is playing in this turn.
      */
@@ -23,7 +23,7 @@ public class Game {
     /**
      * Represents the 12 decks of development cards.
      */
-    private Deckgrid deckgrid = new Deckgrid();
+    private final Deckgrid deckgrid = new Deckgrid();
     /**
      * Represents the deck of Solo Action tokens, used in single player mode.
      */
@@ -56,7 +56,7 @@ public class Game {
     /**
      * Represent the initial leader card's deck that contains all the leader cards of the game.
      */
-    private LeaderCardDeck leaderCardDeck = new LeaderCardDeck();
+    private final LeaderCardDeck leaderCardDeck = new LeaderCardDeck();
 
     /** Represent the score of the single player */
     private int singlePlayerScore;
