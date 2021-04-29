@@ -19,13 +19,14 @@ public class Client2 {
                 BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in))
         ) {
             String userInput;
-            String serverOutput;
             System.out.println(in.readLine());
+            ServerReader serverReader = new ServerReader(in);
+            Thread t = new Thread(serverReader);
+            t.start();
             while (true) {
-                if((userInput = stdIn.readLine()) != null)
+                if((userInput = stdIn.readLine()) != null) {
                     out.println(userInput);
-                while((serverOutput=in.readLine())!=null)
-                    System.out.println(serverOutput);
+                }
             }
         } catch (UnknownHostException e) {
             System.err.println("Don't know about host " + hostName);
@@ -35,6 +36,7 @@ public class Client2 {
                     hostName);
             System.exit(1);
         }
+        System.exit(2);
     }
 }
 
