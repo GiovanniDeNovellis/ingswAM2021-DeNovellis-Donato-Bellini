@@ -5,13 +5,23 @@ import it.polimi.ingsw.ResourceType;
 import it.polimi.ingsw.WareHouseDepot;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class NotifyInsertedOkMessage extends Message {
-    private HashMap<ResourceType,Integer> temporaryResourcesConfiguration;
+    private Map<ResourceType,Integer> temporaryResourcesConfiguration;
     private WareHouseDepot warehouseConfiguration;
     private ExtraDeposit[] extraDepositsConfiguration;
+    public String getNickname() {
+        return Nickname;
+    }
 
-    public HashMap<ResourceType, Integer> getTemporaryResourcesConfiguration() {
+    public void setNickname(String senderNickname) {
+        this.Nickname = senderNickname;
+    }
+
+    private String Nickname;
+
+    public Map<ResourceType, Integer> getTemporaryResourcesConfiguration() {
         return temporaryResourcesConfiguration;
     }
 
@@ -23,7 +33,7 @@ public class NotifyInsertedOkMessage extends Message {
         return extraDepositsConfiguration;
     }
 
-    public void setTemporaryResourcesConfiguration(HashMap<ResourceType, Integer> temporaryResourcesConfiguration) {
+    public void setTemporaryResourcesConfiguration(Map<ResourceType, Integer> temporaryResourcesConfiguration) {
         this.temporaryResourcesConfiguration = temporaryResourcesConfiguration;
     }
 

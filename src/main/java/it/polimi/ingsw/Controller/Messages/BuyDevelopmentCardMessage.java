@@ -8,6 +8,12 @@ public class BuyDevelopmentCardMessage extends Message{
     private int slot;
     private int[] payUsingExtraDeposit;
 
+    public String getSenderNickname() {
+        return senderNickname;
+    }
+
+    private String senderNickname;
+
     public int getLevel() {
         return level;
     }

@@ -6,6 +6,15 @@ public class InsertResourceMessage extends Message {
     private ResourceType resourceToInsert;
     private int quantityToInsert;
     private boolean intoExtraDeposit;
+    public String getSenderNickname() {
+        return senderNickname;
+    }
+
+    public void setSenderNickname(String senderNickname) {
+        this.senderNickname = senderNickname;
+    }
+
+    private String senderNickname;
 
     public ResourceType getResourceToInsert() {
         return resourceToInsert;

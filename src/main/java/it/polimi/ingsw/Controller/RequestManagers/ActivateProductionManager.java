@@ -6,7 +6,7 @@ import it.polimi.ingsw.Controller.Controller;
 import it.polimi.ingsw.Controller.Messages.*;
 import it.polimi.ingsw.ExtraDeposit;
 
-public class ActivateProductionManager implements Manageable {
+public class    ActivateProductionManager implements Manageable {
     private final Controller controller;
 
     public ActivateProductionManager(Controller controller) {

@@ -36,6 +36,10 @@ public class PersonalBoard {
     private int payUsingExtraDep1 = 0;
     private int payUsingExtraDep2 = 0;
 
+    public DevelopmentCard[] getDevelopmentCard() {
+        return developmentCard;
+    }
+
     /**
      * developmentCard[] attribute represent the three slots located in the personal board where developmentCards
      * can be positioned

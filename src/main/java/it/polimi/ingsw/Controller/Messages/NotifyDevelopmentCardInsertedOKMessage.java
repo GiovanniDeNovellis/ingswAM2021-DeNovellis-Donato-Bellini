@@ -12,6 +12,15 @@ public class NotifyDevelopmentCardInsertedOKMessage extends Message{
     private WareHouseDepot warehouseConfiguration;
     private ExtraDeposit[] extraDepositsConfiguration;
     private HashMap<ResourceType,Integer> strongboxConfiguration;
+    public String getNickname() {
+        return Nickname;
+    }
+
+    public void setNickname(String senderNickname) {
+        this.Nickname = senderNickname;
+    }
+
+    private String Nickname;
 
     public DevelopmentCard[] getDevelopmentCardsConfiguration() {
         return developmentCardsConfiguration;

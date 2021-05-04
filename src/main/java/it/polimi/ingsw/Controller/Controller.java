@@ -46,6 +46,22 @@ public class Controller {
             case "ActionCardActivation":
                 Manageable actionCardActivation = new ActionCardActivationManager(this);
                 return actionCardActivation.manageRequest(jsonContent);
+//Activating SwitchLevels
+            case "SwitchLevel":
+                Manageable switchLevel = new SwitchLevelsManager(this);
+                return switchLevel.manageRequest(jsonContent);
+//Activating TakeResourceFromMarket
+            case "TakeResourceFromMarket":
+                Manageable takeResourceFromMarket = new TakeResourcesFromMarketManager(this);
+                return takeResourceFromMarket.manageRequest(jsonContent);
+//Activating InsertResourceIntoWarehouse
+            case "InsertResourceIntoWarehouse":
+                Manageable insertResourceIntoWarehouse = new InsertResourcesIntoWarehouseManager(this);
+                return insertResourceIntoWarehouse.manageRequest(jsonContent);
+//Activating BuyDevelopmentCard
+            case "BuyDevelopmentCard":
+                Manageable buyDevelopmentCard = new BuyDevelopmentCardManager(this);
+                return buyDevelopmentCard.manageRequest(jsonContent);
 //Starting single player mode
             case "startSinglePlayer":
                 if (game.startSinglePlayer()) {

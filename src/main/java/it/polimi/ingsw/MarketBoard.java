@@ -14,6 +14,14 @@ import java.util.*;
  */
 public class MarketBoard {
 
+    public Marble[][] getMarketGrid() {
+        return marketGrid;
+    }
+
+    public Marble getMarbleOut() {
+        return marbleOut;
+    }
+
     /**
      * The grid of the marbles.
      */

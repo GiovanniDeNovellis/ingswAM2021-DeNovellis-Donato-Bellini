@@ -3,15 +3,26 @@ package it.polimi.ingsw.Controller.Messages;
 import it.polimi.ingsw.ResourceType;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class TemporaryResourcesChangedMessage extends Message{
-    private HashMap<ResourceType,Integer> temporaryResourcesConfiguration;
+    public String getNickname() {
+        return nickname;
+    }
 
-    public HashMap<ResourceType, Integer> getTemporaryResourcesConfiguration() {
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    private String nickname;
+
+    private Map<ResourceType,Integer> temporaryResourcesConfiguration;
+
+    public Map<ResourceType, Integer> getTemporaryResourcesConfiguration() {
         return temporaryResourcesConfiguration;
     }
 
-    public void setTemporaryResourcesConfiguration(HashMap<ResourceType, Integer> temporaryResourcesConfiguration) {
+    public void setTemporaryResourcesConfiguration(Map<ResourceType, Integer> temporaryResourcesConfiguration) {
         this.temporaryResourcesConfiguration = temporaryResourcesConfiguration;
     }
 }
