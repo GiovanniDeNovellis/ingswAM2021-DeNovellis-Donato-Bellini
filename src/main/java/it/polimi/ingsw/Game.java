@@ -20,14 +20,29 @@ public class Game {
      * It represents the player who is playing in this turn.
      */
     private Player currentPlayer;
+
+    public Deckgrid getDeckgrid() {
+        return deckgrid;
+    }
+
     /**
      * Represents the 12 decks of development cards.
      */
     private final Deckgrid deckgrid = new Deckgrid();
+
+    public ActionCardStack getActionCardStack() {
+        return actionCardStack;
+    }
+
     /**
      * Represents the deck of Solo Action tokens, used in single player mode.
      */
     private ActionCardStack actionCardStack;
+
+    public LorenzoSingleton getLorenzo() {
+        return lorenzo;
+    }
+
     /**
      * Represents Lorenzo il Magnifico: the virtual opponent in single player mode.
      */

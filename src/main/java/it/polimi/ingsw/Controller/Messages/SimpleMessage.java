@@ -1,6 +1,7 @@
 package it.polimi.ingsw.Controller.Messages;
 
 public class SimpleMessage extends Message{
+    private final String messageType = "SimpleMessage";
     private String messageContent;
 
     public SimpleMessage() {

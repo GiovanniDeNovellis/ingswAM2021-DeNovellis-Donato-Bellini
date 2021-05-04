@@ -6,6 +6,16 @@ public class ActivateLeaderAbilityDepositMessage extends Message{
     private int position;
     private ExtraDeposit[] extraDepositConfiguration;
 
+    public String getSenderNickname() {
+        return senderNickname;
+    }
+
+    public void setSenderNickname(String senderNickname) {
+        this.senderNickname = senderNickname;
+    }
+
+    private String senderNickname;
+
     public int getPosition() {
         return position;
     }

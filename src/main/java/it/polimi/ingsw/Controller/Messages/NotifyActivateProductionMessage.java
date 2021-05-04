@@ -3,14 +3,22 @@ package it.polimi.ingsw.Controller.Messages;
 import it.polimi.ingsw.ExtraDeposit;
 import it.polimi.ingsw.ResourceType;
 import it.polimi.ingsw.WareHouseDepot;
-
-import java.util.HashMap;
+import java.util.Map;
 
 public class NotifyActivateProductionMessage extends Message{
     private WareHouseDepot warehouseConfiguration;
     private ExtraDeposit[] extraDepositConfiguration;
-    private HashMap<ResourceType,Integer> strongboxConfiguration;
+    private Map<ResourceType,Integer> strongboxConfiguration;
     private int newFaithPoints;
+    private String whoActivatesProduction;
+
+    public String getWhoActivatesProduction() {
+        return whoActivatesProduction;
+    }
+
+    public void setWhoActivatesProduction(String whoActivatesProduction) {
+        this.whoActivatesProduction = whoActivatesProduction;
+    }
 
     public WareHouseDepot getWarehouseConfiguration() {
         return warehouseConfiguration;
@@ -20,7 +28,7 @@ public class NotifyActivateProductionMessage extends Message{
         return extraDepositConfiguration;
     }
 
-    public HashMap<ResourceType, Integer> getStrongboxConfiguration() {
+    public Map<ResourceType, Integer> getStrongboxConfiguration() {
         return strongboxConfiguration;
     }
 
@@ -36,7 +44,7 @@ public class NotifyActivateProductionMessage extends Message{
         this.extraDepositConfiguration = extraDepositConfiguration;
     }
 
-    public void setStrongboxConfiguration(HashMap<ResourceType, Integer> strongboxConfiguration) {
+    public void setStrongboxConfiguration(Map<ResourceType, Integer> strongboxConfiguration) {
         this.strongboxConfiguration = strongboxConfiguration;
     }
 

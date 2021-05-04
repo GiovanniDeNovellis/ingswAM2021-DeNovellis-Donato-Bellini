@@ -1,5 +1,5 @@
 package it.polimi.ingsw.Controller.RequestManagers;
 
-public interface Manager {
+public interface Manageable {
     String manageRequest(String jsonContent);
 }

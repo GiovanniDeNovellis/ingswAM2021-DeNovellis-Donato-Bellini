@@ -6,7 +6,7 @@ import it.polimi.ingsw.Controller.Controller;
 import it.polimi.ingsw.Controller.Messages.AddPlayerMessage;
 import it.polimi.ingsw.Controller.Messages.Message;
 
-public class AddPlayerManager implements Manager{
+public class AddPlayerManager implements Manageable {
     private final Controller controller;
 
     public AddPlayerManager(Controller controller) {
