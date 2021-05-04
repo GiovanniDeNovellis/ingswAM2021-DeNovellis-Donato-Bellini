@@ -8,7 +8,7 @@ import it.polimi.ingsw.Controller.Messages.EndTurnRequestMessage;
 import it.polimi.ingsw.Controller.Messages.Message;
 import it.polimi.ingsw.ResourceType;
 
-public class EndTurnManager implements Manager{
+public class EndTurnManager implements Manageable{
     private final Controller controller;
 
     public EndTurnManager(Controller controller) {

@@ -10,7 +10,7 @@ import it.polimi.ingsw.LeaderCard;
 
 import java.util.ArrayList;
 
-public class LeaderCardSelectionManager implements Manager{
+public class LeaderCardSelectionManager implements Manageable{
     private final Controller controller;
 
     public LeaderCardSelectionManager(Controller controller) {

@@ -8,7 +8,7 @@ import it.polimi.ingsw.Controller.Messages.Message;
 import it.polimi.ingsw.Controller.Messages.NotifyWarehouseChangeMessage;
 import it.polimi.ingsw.WareHouseDepot;
 
-public class DistributionSecondThirdManager implements Manager{
+public class DistributionSecondThirdManager implements Manageable{
     private final Controller controller;
 
     public DistributionSecondThirdManager(Controller controller) {

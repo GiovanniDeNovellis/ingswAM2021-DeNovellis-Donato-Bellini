@@ -10,8 +10,6 @@ import java.util.ArrayList;
 public class Controller {
     private final Game game;
     private final ArrayList<ClientHandler> connectedClients = new ArrayList<>();
-    private Game game;
-    private ArrayList<ClientHandler> connectedClients = new ArrayList<>();
     private int[] vaticanReport;
 
     public int[] getVaticanReport() {
@@ -48,23 +46,29 @@ public class Controller {
             case "ActionCardActivation":
                 Manageable actionCardActivation = new ActionCardActivationManager(this);
                 return actionCardActivation.manageRequest(jsonContent);
+//Starting a single player game
             case "startSinglePlayer":
                 StartSinglePlayerManager startSinglePlayerManager = new StartSinglePlayerManager(this);
                 return startSinglePlayerManager.manageRequest(jsonContent);
+//Starting a multi player game
             case "startMultiPlayer":
-                Manager startMultiPlayerManager = new StartMultiPlayerManager(this);
+                Manageable startMultiPlayerManager = new StartMultiPlayerManager(this);
                 return startMultiPlayerManager.manageRequest(jsonContent);
+//Activating an initial resource distribution for the second or the third player
             case "distributionSecondThird":
-                Manager distributionSecondThirdManager = new DistributionSecondThirdManager(this);
+                Manageable distributionSecondThirdManager = new DistributionSecondThirdManager(this);
                 return distributionSecondThirdManager.manageRequest(jsonContent);
+//Activating an initial resource distribution for the fourth player
             case "distributionFourth":
-                Manager distributionFourthManager = new DistributionFourthManager(this);
+                Manageable distributionFourthManager = new DistributionFourthManager(this);
                 return distributionFourthManager.manageRequest(jsonContent);
+//Selecting the leader cards from the 4 choosable cards
             case "leaderCardSelection":
-                Manager leaderCardSelectionManager = new LeaderCardSelectionManager(this);
+                Manageable leaderCardSelectionManager = new LeaderCardSelectionManager(this);
                 return leaderCardSelectionManager.manageRequest(jsonContent);
+// Ending turn
             case "endTurnRequest":
-                Manager endTurnManager = new EndTurnManager(this);
+                Manageable endTurnManager = new EndTurnManager(this);
                 return endTurnManager.manageRequest(jsonContent);
         }
         return "end";

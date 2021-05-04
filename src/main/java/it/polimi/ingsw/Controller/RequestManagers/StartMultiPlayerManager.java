@@ -9,7 +9,7 @@ import it.polimi.ingsw.Player;
 
 import java.util.ArrayList;
 
-public class StartMultiPlayerManager implements Manager {
+public class StartMultiPlayerManager implements Manageable {
     private final Controller controller;
 
     public StartMultiPlayerManager(Controller controller) {
