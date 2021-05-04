@@ -19,22 +19,26 @@ public class ActivateLeaderCardManager implements Manageable{
     public String manageRequest(String jsonContent){
         Gson gson = new Gson();
         ActivateLeaderCardMessage activateLeaderCardMessage = gson.fromJson(jsonContent,ActivateLeaderCardMessage.class);
-        if (controller.getGame().activateLeaderCard(activateLeaderCardMessage.getPosition())){
-            SimpleMessage mex = new SimpleMessage();
-            mex.setMessageContent("ActivateLeaderCardSuccessNotification");
-            NotifyActivateLeaderCard notification = new NotifyActivateLeaderCard();
-            notification.setMessageType("NotifyActivateLeaderCard");
-            notification.setActivatedLeaderCardPosition(activateLeaderCardMessage.getPosition());
-            notification.setWhoActivatedLeaderCard(activateLeaderCardMessage.getSenderNickname());
-            for( ClientHandler clientHandler: controller.getConnectedClients() ){
-                clientHandler.notifyInterface(gson.toJson(notification));
+        if(controller.getGame().getCurrentPlayer().getNickname().equals(activateLeaderCardMessage.getSenderNickname())) {
+            if (controller.getGame().activateLeaderCard(activateLeaderCardMessage.getPosition())) {
+                SimpleMessage mex = new SimpleMessage();
+                mex.setMessageContent("ActivateLeaderCardSuccessNotification");
+                NotifyActivateLeaderCard notification = new NotifyActivateLeaderCard();
+                notification.setMessageType("NotifyActivateLeaderCard");
+                notification.setActivatedLeaderCardPosition(activateLeaderCardMessage.getPosition());
+                notification.setWhoActivatedLeaderCard(activateLeaderCardMessage.getSenderNickname());
+                for (ClientHandler clientHandler : controller.getConnectedClients()) {
+                    clientHandler.notifyInterface(gson.toJson(notification));
+                }
+                return gson.toJson(mex);
+            } else {
+                SimpleMessage mex = new SimpleMessage();
+                mex.setMessageContent("ActivateLeaderCardFailureNotification");
+                return gson.toJson(mex);
             }
-            return gson.toJson(mex);
         }
-        else{
-            SimpleMessage mex = new SimpleMessage();
-            mex.setMessageContent("ActivateLeaderCardFailureNotification");
-            return gson.toJson(mex);
-        }
+        SimpleMessage mex = new SimpleMessage();
+        mex.setMessageContent("NotYourTurnNotification");
+        return gson.toJson(mex);
     }
 }

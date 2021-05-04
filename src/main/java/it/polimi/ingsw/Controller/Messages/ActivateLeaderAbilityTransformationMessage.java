@@ -9,6 +9,16 @@ public class ActivateLeaderAbilityTransformationMessage extends Message{
     private Map<ResourceType,Integer> temporaryResourcesConfiguration;
     private int remainingWhiteMarbles;
 
+    public String getSenderNickname() {
+        return senderNickname;
+    }
+
+    public void setSenderNickname(String senderNickname) {
+        this.senderNickname = senderNickname;
+    }
+
+    private String senderNickname;
+
     public int getPosition() {
         return position;
     }
