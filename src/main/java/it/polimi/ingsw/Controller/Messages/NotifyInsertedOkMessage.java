@@ -12,14 +12,14 @@ public class NotifyInsertedOkMessage extends Message {
     private WareHouseDepot warehouseConfiguration;
     private ExtraDeposit[] extraDepositsConfiguration;
     public String getNickname() {
-        return Nickname;
+        return senderNickname;
     }
 
     public void setNickname(String senderNickname) {
-        this.Nickname = senderNickname;
+        this.senderNickname = senderNickname;
     }
 
-    private String Nickname;
+    private String senderNickname;
 
     public Map<ResourceType, Integer> getTemporaryResourcesConfiguration() {
         return temporaryResourcesConfiguration;

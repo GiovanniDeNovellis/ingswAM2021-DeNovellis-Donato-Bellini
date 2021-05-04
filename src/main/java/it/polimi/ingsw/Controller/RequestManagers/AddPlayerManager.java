@@ -19,20 +19,16 @@ public class AddPlayerManager implements Manageable {
         boolean ans;
         Gson gson = new Gson();
         AddPlayerMessage addMessage = gson.fromJson(jsonContent,AddPlayerMessage.class);
-        synchronized (controller.getGame()){
             ans = controller.getGame().addPlayer(addMessage.getSenderNickname());
-        }
         Message mex = new Message();
         if (ans) {
             mex.setMessageType("PlayerAddedNotification");
             AddPlayerMessage notification = new AddPlayerMessage();
             notification.setMessageType("AddPlayerNotificationForEveryone");
             notification.setSenderNickname(addMessage.getSenderNickname());
-            synchronized (controller.getConnectedClients()) {
                 for (ClientHandler clientHandler : controller.getConnectedClients()) {
                     clientHandler.notifyInterface(gson.toJson(notification));
                 }
-            }
         } else {
             mex.setMessageType("InvalidPlayerAddNotification");
         }

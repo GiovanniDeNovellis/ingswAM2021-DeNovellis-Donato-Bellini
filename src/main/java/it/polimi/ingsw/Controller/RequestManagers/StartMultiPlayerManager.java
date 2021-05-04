@@ -22,13 +22,10 @@ public class StartMultiPlayerManager implements Manageable {
         Gson gson = new Gson();
         Message message = new Message();
         ArrayList<Player> players=null;
-        synchronized (controller.getGame()){
             ans=controller.getGame().startMultiplayer();
             if(ans)
                 players=controller.getGame().getPlayers();
-        }
         if (ans) {
-            synchronized (controller.getConnectedClients()) {
                 for (ClientHandler clientHandler : controller.getConnectedClients()) {
                     for (Player player : players) {
                         if (clientHandler.getClientNickname().equals(player.getNickname())) {
@@ -40,7 +37,6 @@ public class StartMultiPlayerManager implements Manageable {
                         }
                     }
                 }
-            }
             message.setMessageType("MultiPlayerCreationOkNotification");
         } else {
             message.setMessageType("MultiPlayerCreationErrorNotification");

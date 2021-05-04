@@ -14,18 +14,13 @@ public class StartSinglePlayerManager implements Manageable{
     @Override
     public String manageRequest(String jsonContent) {
         Gson gson = new Gson();
-        boolean ans;
-        synchronized (controller.getGame()){
-            ans=controller.getGame().startSinglePlayer();
-        }
+        boolean ans=controller.getGame().startSinglePlayer();
+        Message message = new Message();
         if (ans) {
-            Message message = new Message();
             message.setMessageType("SinglePLayerCreationOkNotification");
-            return gson.toJson(message);
         } else {
-            Message message = new Message();
             message.setMessageType("SinglePLayerCreationFailedNotification");
-            return gson.toJson(message);
         }
+        return gson.toJson(message);
     }
 }

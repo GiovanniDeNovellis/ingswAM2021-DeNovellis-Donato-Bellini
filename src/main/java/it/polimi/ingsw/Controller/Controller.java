@@ -22,7 +22,7 @@ public class Controller {
         this.game = game;
     }
 
-    public String startAction(String jsonContent){
+    public synchronized String startAction(String jsonContent){
         Gson gson = new Gson();
         Message message = gson.fromJson(jsonContent,Message.class);
         switch (message.getMessageType()) {
@@ -47,15 +47,15 @@ public class Controller {
                 Manageable actionCardActivation = new ActionCardActivationManager(this);
                 return actionCardActivation.manageRequest(jsonContent);
 //Activating SwitchLevels
-            case "SwitchLevel":
-                Manageable switchLevel = new SwitchLevelsManager(this);
-                return switchLevel.manageRequest(jsonContent);
+            case "SwitchLevels":
+                Manageable switchLevels = new SwitchLevelsManager(this);
+                return switchLevels.manageRequest(jsonContent);
 //Activating TakeResourceFromMarket
-            case "TakeResourceFromMarket":
+            case "TakeResourcesFromMarket":
                 Manageable takeResourceFromMarket = new TakeResourcesFromMarketManager(this);
                 return takeResourceFromMarket.manageRequest(jsonContent);
 //Activating InsertResourceIntoWarehouse
-            case "InsertResourceIntoWarehouse":
+            case "InsertResourcesIntoWarehouse":
                 Manageable insertResourceIntoWarehouse = new InsertResourcesIntoWarehouseManager(this);
                 return insertResourceIntoWarehouse.manageRequest(jsonContent);
 //Activating BuyDevelopmentCard
@@ -63,27 +63,27 @@ public class Controller {
                 Manageable buyDevelopmentCard = new BuyDevelopmentCardManager(this);
                 return buyDevelopmentCard.manageRequest(jsonContent);
 //Starting single player mode
-            case "startSinglePlayer":
+            case "StartSinglePlayer":
                 StartSinglePlayerManager startSinglePlayerManager = new StartSinglePlayerManager(this);
                 return startSinglePlayerManager.manageRequest(jsonContent);
 //Starting a multi player game
-            case "startMultiPlayer":
+            case "StartMultiPlayer":
                 Manageable startMultiPlayerManager = new StartMultiPlayerManager(this);
                 return startMultiPlayerManager.manageRequest(jsonContent);
 //Activating an initial resource distribution for the second or the third player
-            case "distributionSecondThird":
+            case "DistributionSecondThird":
                 Manageable distributionSecondThirdManager = new DistributionSecondThirdManager(this);
                 return distributionSecondThirdManager.manageRequest(jsonContent);
 //Activating an initial resource distribution for the fourth player
-            case "distributionFourth":
+            case "DistributionFourth":
                 Manageable distributionFourthManager = new DistributionFourthManager(this);
                 return distributionFourthManager.manageRequest(jsonContent);
 //Selecting the leader cards from the 4 choosable cards
-            case "leaderCardSelection":
+            case "LeaderCardSelection":
                 Manageable leaderCardSelectionManager = new LeaderCardSelectionManager(this);
                 return leaderCardSelectionManager.manageRequest(jsonContent);
 // Ending turn
-            case "endTurnRequest":
+            case "EndTurnRequest":
                 Manageable endTurnManager = new EndTurnManager(this);
                 return endTurnManager.manageRequest(jsonContent);
         }

@@ -74,7 +74,7 @@ public class ClientHandler implements Runnable {
                     }
                 }
                 else{
-                    mex= new SimpleMessage();
+                    mex= new Message();
                     mex.setMessageType("ExpectedLoginRequestNotification");
                     s=gson.toJson(mex);
                     out.println(s);

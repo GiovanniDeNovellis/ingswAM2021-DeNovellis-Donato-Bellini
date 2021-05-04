@@ -33,7 +33,7 @@ public class InsertResourcesIntoWarehouseManager implements Manageable {
                 return gson.toJson(mex);
             } else {
                 Message mex = new Message();
-                mex.setMessageType("InsertedResourcesNotification");
+                mex.setMessageType("InsertedResourcesFailureNotification");
                 return gson.toJson(mex);
             }
         }

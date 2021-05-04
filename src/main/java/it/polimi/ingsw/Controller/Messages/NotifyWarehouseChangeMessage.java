@@ -12,14 +12,14 @@ public class NotifyWarehouseChangeMessage extends Message {
     }
 
     public String getNickname() {
-        return nickname;
+        return senderNickname;
     }
 
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
+    public void setNickname(String senderNickname) {
+        this.senderNickname = senderNickname;
     }
 
-    private String nickname;
+    private String senderNickname;
 
     public WareHouseDepot getWarehouseConfiguration() {
         return warehouseConfiguration;

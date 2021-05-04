@@ -27,7 +27,6 @@ public class LeaderCardSelectionManager implements Manageable{
         ArrayList<LeaderCard> lead;
         int num1=0,num2=0;
         LeaderCardSelectionMessage leaderCardSelectionMessage = gson.fromJson(jsonContent,LeaderCardSelectionMessage.class);
-        synchronized (controller.getGame()){
             ans1= leaderCardSelectionMessage.getSenderNickname().equals(controller.getGame().getCurrentPlayer().getNickname());
             if(ans1) {
                 ans2 = controller.getGame().chooseLeaderCards(leaderCardSelectionMessage.getLeaderCardPosition1(),
@@ -39,7 +38,6 @@ public class LeaderCardSelectionManager implements Manageable{
                     num2=lead.get(1).getLeaderCardNumber();
                 }
             }
-        }
         if(ans1){
             if(ans2){
                 ChoosedLeaderCardsMessage mex = new ChoosedLeaderCardsMessage();
@@ -47,11 +45,9 @@ public class LeaderCardSelectionManager implements Manageable{
                 mex.setFirstChosenLeaderCardNumber(num1);
                 mex.setSecondChosenLeaderCardNumber(num2);
                 String notificationForAll = gson.toJson(mex);
-                synchronized (controller.getConnectedClients()){
                     for(ClientHandler c : controller.getConnectedClients()){
                         c.notifyInterface(notificationForAll);
                     }
-                }
                 message.setMessageType("LeaderCardSelectionOkNotification");
                 return gson.toJson(message);
             }

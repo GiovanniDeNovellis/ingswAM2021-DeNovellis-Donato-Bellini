@@ -13,14 +13,14 @@ public class NotifyDevelopmentCardInsertedOKMessage extends Message{
     private ExtraDeposit[] extraDepositsConfiguration;
     private HashMap<ResourceType,Integer> strongboxConfiguration;
     public String getNickname() {
-        return Nickname;
+        return senderNickname;
     }
 
     public void setNickname(String senderNickname) {
-        this.Nickname = senderNickname;
+        this.senderNickname = senderNickname;
     }
 
-    private String Nickname;
+    private String senderNickname;
 
     public DevelopmentCard[] getDevelopmentCardsConfiguration() {
         return developmentCardsConfiguration;

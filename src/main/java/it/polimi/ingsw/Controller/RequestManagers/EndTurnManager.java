@@ -26,7 +26,6 @@ public class EndTurnManager implements Manageable{
         String winnerNickname=null;
         int tempResourcesDiscarded=0;
         EndTurnRequestMessage endTurnRequestMessage = gson.fromJson(jsonContent, EndTurnRequestMessage.class);
-        synchronized (controller.getGame()){
             ans1= endTurnRequestMessage.getSenderNickname().equals(controller.getGame().getCurrentPlayer().getNickname());
             if(ans1){
                 for(ResourceType res: controller.getGame().getMarketBoard().getTemporaryResources().keySet()){
@@ -40,7 +39,6 @@ public class EndTurnManager implements Manageable{
                         winnerNickname=controller.getGame().getWinnerPlayer().getNickname();
                 }
             }
-        }
         if(ans1){
             if(ans2){
                 EndTurnNotificationMessage mex = new EndTurnNotificationMessage();
@@ -49,11 +47,9 @@ public class EndTurnManager implements Manageable{
                 mex.setWinnerPlayerNickname(winnerNickname);
                 mex.setGameEnding(endGame);
                 String notificationForAll = gson.toJson(mex);
-                synchronized (controller.getConnectedClients()){
                     for(ClientHandler c : controller.getConnectedClients()){
                         c.notifyInterface(notificationForAll);
                     }
-                }
                 message.setMessageType("EndTurnOkNotification");
                 return gson.toJson(message);
             }

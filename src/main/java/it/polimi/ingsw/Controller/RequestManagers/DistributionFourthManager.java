@@ -24,7 +24,6 @@ public class DistributionFourthManager implements Manageable {
         String nickname=null;
         WareHouseDepot whouse=null;
         DistributionFourthMessage distributionFourthMessage = gson.fromJson(jsonContent,DistributionFourthMessage.class);
-        synchronized (controller.getGame()){
             ans1=distributionFourthMessage.getSenderNickname().equals(controller.getGame().getCurrentPlayer().getNickname());
             if(ans1) {
                 ans2 = controller.getGame().distributionResourceFourthPlayer(distributionFourthMessage.getResourceToDistribute(),
@@ -34,18 +33,15 @@ public class DistributionFourthManager implements Manageable {
                     whouse = controller.getGame().getCurrentPlayer().getPersonalBoard().getWarehouseDepot();
                 }
             }
-        }
         if(ans1){
             if(ans2){
                 NotifyWarehouseChangeMessage mex = new NotifyWarehouseChangeMessage();
                 mex.setWarehouseConfiguration(whouse);
                 mex.setPlayerToChange(nickname);
                 String notificationForAll = gson.toJson(mex);
-                synchronized (controller.getConnectedClients()){
                     for(ClientHandler c : controller.getConnectedClients()){
                         c.notifyInterface(notificationForAll);
                     }
-                }
                 message.setMessageType("DistributionOkNotification");
                 return gson.toJson(message);
             }
