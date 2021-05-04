@@ -2,14 +2,14 @@ package it.polimi.ingsw.Controller;
 
 import com.google.gson.Gson;
 import it.polimi.ingsw.Controller.Messages.Message;
-import it.polimi.ingsw.Controller.RequestManagers.AddPlayerManager;
+import it.polimi.ingsw.Controller.RequestManagers.*;
 import it.polimi.ingsw.Game;
 
 import java.util.ArrayList;
 
 public class Controller {
-    private Game game;
-    private ArrayList<ClientHandler> connectedClients = new ArrayList<>();
+    private final Game game;
+    private final ArrayList<ClientHandler> connectedClients = new ArrayList<>();
 
 
     public Controller(Game game) {
@@ -19,22 +19,36 @@ public class Controller {
     public String startAction(String jsonContent){
         Gson gson = new Gson();
         Message message = gson.fromJson(jsonContent,Message.class);
-        if(message.getMessageType().equals("AddPlayer")){
-            AddPlayerManager addPlayerManager = new AddPlayerManager(this);
-            return addPlayerManager.manageRequest(jsonContent);
-        }
-        else if(message.getMessageType().equals("startSinglePlayer")){
-            if(game.startSinglePlayer()){
-            }
-            else{
-
-            }
+        switch (message.getMessageType()) {
+            case "AddPlayer":
+                AddPlayerManager addPlayerManager = new AddPlayerManager(this);
+                return addPlayerManager.manageRequest(jsonContent);
+            case "startSinglePlayer":
+                StartSinglePlayerManager startSinglePlayerManager = new StartSinglePlayerManager(this);
+                return startSinglePlayerManager.manageRequest(jsonContent);
+            case "startMultiPlayer":
+                Manager startMultiPlayerManager = new StartMultiPlayerManager(this);
+                return startMultiPlayerManager.manageRequest(jsonContent);
+            case "distributionSecondThird":
+                Manager distributionSecondThirdManager = new DistributionSecondThirdManager(this);
+                return distributionSecondThirdManager.manageRequest(jsonContent);
+            case "distributionFourth":
+                Manager distributionFourthManager = new DistributionFourthManager(this);
+                return distributionFourthManager.manageRequest(jsonContent);
+            case "leaderCardSelection":
+                Manager leaderCardSelectionManager = new LeaderCardSelectionManager(this);
+                return leaderCardSelectionManager.manageRequest(jsonContent);
+            case "endTurnRequest":
+                Manager endTurnManager = new EndTurnManager(this);
+                return endTurnManager.manageRequest(jsonContent);
         }
         return "end";
     }
 
     public void addClientHandler(ClientHandler clientHandler){
-        connectedClients.add(clientHandler);
+        synchronized (connectedClients) {
+            connectedClients.add(clientHandler);
+        }
     }
 
     public Game getGame() {

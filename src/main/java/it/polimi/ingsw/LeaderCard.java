@@ -1,8 +1,10 @@
 package it.polimi.ingsw;
 
-import java.util.ArrayList;
 /** Abstracted class that represent the four different types of LeaderCard */
 public abstract class LeaderCard {
+
+    /** Numeric identificator of the card*/
+    protected int leaderCardNumber;
 
     /** Attribute that indicate if the card is active or not */
     protected boolean active = false;
@@ -70,6 +72,15 @@ public abstract class LeaderCard {
     public String getType() {
         return type;
     }
+
+    /**
+     * Public method.
+     * The getter of the number
+     * @return the number identificator of the card
+     */
+    public int getLeaderCardNumber() {
+        return leaderCardNumber;
+    }
 }
 
 /**
@@ -89,11 +100,12 @@ class LeaderCardDiscount extends LeaderCard{
      * @param singleColour2 the second requirement of the card
      * @param resourceType the type of resource to which you'll have a discount
      */
-    public LeaderCardDiscount(Colour singleColour1,Colour singleColour2,ResourceType resourceType) {
+    public LeaderCardDiscount(Colour singleColour1,Colour singleColour2,ResourceType resourceType, int leaderCardNumber) {
         this.resourceType = resourceType;
         this.singleColour1 = singleColour1;
         this.singleColour2 = singleColour2;
         this.type = "Discount";
+        this.leaderCardNumber=leaderCardNumber;
     }
 
     /**
@@ -146,10 +158,11 @@ class LeaderCardDeposit extends LeaderCard{
      * @param resourceRequired the requirement of the card
      * @param resourceType the type of deposit that will be created
      */
-    public LeaderCardDeposit(ResourceType resourceRequired, ResourceType resourceType) {
+    public LeaderCardDeposit(ResourceType resourceRequired, ResourceType resourceType, int leaderCardNumber) {
         this.resourceType = resourceType;
         this.resourceRequired = resourceRequired;
         this.type = "Deposit";
+        this.leaderCardNumber=leaderCardNumber;
     }
 
     /**
@@ -198,10 +211,11 @@ class LeaderCardProduction extends LeaderCard{
      * @param level2CardColour the requirement of the card
      * @param resourceType the resource that want to produce
      */
-    public LeaderCardProduction(Colour level2CardColour,ResourceType resourceType) {
+    public LeaderCardProduction(Colour level2CardColour,ResourceType resourceType, int leaderCardNumber) {
         this.resourceType = resourceType;
         this.level2CardColour = level2CardColour;
         this.type = "Production";
+        this.leaderCardNumber=leaderCardNumber;
     }
 
     /**
@@ -256,11 +270,12 @@ class LeaderCardTransformation extends LeaderCard{
      * @param singleCardColour the second requirement of the card
      * @param resourceType the resource that the card transform for the player
      */
-    public LeaderCardTransformation(Colour doubleCardColour, Colour singleCardColour,ResourceType resourceType) {
+    public LeaderCardTransformation(Colour doubleCardColour, Colour singleCardColour,ResourceType resourceType, int leaderCardNumber) {
         this.resourceType = resourceType;
         this.doubleCardColour = doubleCardColour;
         this.singleCardColour = singleCardColour;
         this.type = "Transformation";
+        this.leaderCardNumber=leaderCardNumber;
     }
 
     /**

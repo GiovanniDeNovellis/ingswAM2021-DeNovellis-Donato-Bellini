@@ -13,12 +13,6 @@ public class Server {
 
     private int portNumber;
     private String hostName;
-    static int numClient = 0;
-
-    public int getNumClient() {
-        return numClient;
-    }
-
 
     public int getPortNumber() {
         return portNumber;
@@ -62,8 +56,7 @@ public class Server {
             try {
                 Socket socket = serverSocket.accept();
                 //TODO: gestione afk
-                executor.submit(new ClientHandler(socket, controller, numClient));
-                numClient++;
+                executor.submit(new ClientHandler(socket, controller));
                 System.out.println("Accettato la connessione numero " + ++num);
 
             }

@@ -559,4 +559,11 @@ public class Game {
     public boolean activateLeaderAbility(int whichLeaderCard){
         return currentPlayer.activateLeaderAbility(whichLeaderCard);
     }
+
+    /**
+     * @return True if an end game condition has been reached.
+     */
+    public boolean isEndGame() {
+        return isEndGame;
+    }
 }

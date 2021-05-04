@@ -553,4 +553,18 @@ public class Player {
     public boolean isAFK() {
         return isAFK;
     }
+
+    /**
+     * @param isAFK The new AFK status of the player.
+     */
+    public void setIsAFK(boolean isAFK) {
+        this.isAFK = isAFK;
+    }
+
+    /**
+     * @return The choosable Leader Cards of the player.
+     */
+    public ArrayList<LeaderCard> getChoosableLeaderCards() {
+        return choosableLeaderCards;
+    }
 }
