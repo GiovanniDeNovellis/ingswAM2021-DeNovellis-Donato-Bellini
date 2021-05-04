@@ -2,11 +2,11 @@ package it.polimi.ingsw.Controller.Messages;
 
 import it.polimi.ingsw.ResourceType;
 
-import java.util.HashMap;
+import java.util.Map;
 
-public class ActivateLeaderAbilityTransformationMessage {
+public class ActivateLeaderAbilityTransformationMessage extends Message{
     private int position;
-    private HashMap<ResourceType,Integer> temporaryResourcesConfiguration;
+    private Map<ResourceType,Integer> temporaryResourcesConfiguration;
     private int remainingWhiteMarbles;
 
     public int getPosition() {
@@ -17,11 +17,11 @@ public class ActivateLeaderAbilityTransformationMessage {
         this.position = position;
     }
 
-    public HashMap<ResourceType, Integer> getTemporaryResourcesConfiguration() {
+    public Map<ResourceType, Integer> getTemporaryResourcesConfiguration() {
         return temporaryResourcesConfiguration;
     }
 
-    public void setTemporaryResourcesConfiguration(HashMap<ResourceType, Integer> temporaryResourcesConfiguration) {
+    public void setTemporaryResourcesConfiguration(Map<ResourceType, Integer> temporaryResourcesConfiguration) {
         this.temporaryResourcesConfiguration = temporaryResourcesConfiguration;
     }
 

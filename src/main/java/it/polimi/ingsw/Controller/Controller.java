@@ -2,7 +2,7 @@ package it.polimi.ingsw.Controller;
 
 import com.google.gson.Gson;
 import it.polimi.ingsw.Controller.Messages.Message;
-import it.polimi.ingsw.Controller.RequestManagers.AddPlayerManager;
+import it.polimi.ingsw.Controller.RequestManagers.*;
 import it.polimi.ingsw.Game;
 
 import java.util.ArrayList;
@@ -10,6 +10,12 @@ import java.util.ArrayList;
 public class Controller {
     private Game game;
     private ArrayList<ClientHandler> connectedClients = new ArrayList<>();
+    private int[] vaticanReport;
+
+    public int[] getVaticanReport() {
+        vaticanReport = game.getCurrentPlayer().getFaithCards();
+        return vaticanReport;
+    }
 
 
     public Controller(Game game) {
@@ -19,16 +25,34 @@ public class Controller {
     public String startAction(String jsonContent){
         Gson gson = new Gson();
         Message message = gson.fromJson(jsonContent,Message.class);
-        if(message.getMessageType().equals("AddPlayer")){
-            AddPlayerManager addPlayerManager = new AddPlayerManager(this);
-            return addPlayerManager.manageRequest(jsonContent);
-        }
-        else if(message.getMessageType().equals("startSinglePlayer")){
-            if(game.startSinglePlayer()){
-            }
-            else{
+        switch (message.getMessageType()) {
+//Adding a player
+            case "AddPlayer":
+                Manageable addPlayerManageable = new AddPlayerManager(this);
+                return addPlayerManageable.manageRequest(jsonContent);
+//Activating production
+            case "ActivateProduction":
+                Manageable activateProduction = new ActivateProductionManager(this);
+                return activateProduction.manageRequest(jsonContent);
+//Activating leader card(s)
+            case "ActivateLeaderCard":
+                Manageable activateLeaderCard = new ActivateLeaderCardManager(this);
+                return activateLeaderCard.manageRequest(jsonContent);
+//Activating leader ability
+            case "ActivateLeaderAbility":
+                Manageable activateLeaderAbility = new ActivateLeaderAbilityManager(this);
+                return activateLeaderAbility.manageRequest(jsonContent);
+//Activating action card
+            case "ActionCardActivation":
+                Manageable actionCardActivation = new ActionCardActivationManager(this);
+                return actionCardActivation.manageRequest(jsonContent);
+//Starting single player mode
+            case "startSinglePlayer":
+                if (game.startSinglePlayer()) {
+                } else {
 
-            }
+                }
+                break;
         }
         return "end";
     }
@@ -44,4 +68,6 @@ public class Controller {
     public ArrayList<ClientHandler> getConnectedClients() {
         return connectedClients;
     }
+
+
 }

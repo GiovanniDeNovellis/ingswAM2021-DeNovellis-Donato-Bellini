@@ -7,6 +7,7 @@ public abstract class ActionCard{
      * Activate the ActionCard.
      */
     public abstract void activate();
+    public abstract String getType();
 }
 
 /** Move the Black Cross token forward by 2 spaces. */
@@ -28,6 +29,7 @@ class Move extends ActionCard {
      * Public method.
      * @return the type of the action card.
      */
+    @Override
     public String getType() {
         return type;
     }
@@ -65,6 +67,7 @@ class MoveAndShuffle extends ActionCard {
      * Public method.
      * @return the type of the action card.
      */
+    @Override
     public String getType() {
         return type;
     }
@@ -85,7 +88,7 @@ class RemoveDevCard extends ActionCard {
     /**
      * Type of the card
      */
-    protected String type;
+    protected String type = "Remove";
 
     /**
      * Public method.
@@ -122,6 +125,7 @@ class RemoveDevCard extends ActionCard {
      * Public method.
      * @return the type of the action card.
      */
+    @Override
     public String getType() {
         return type;
     }
