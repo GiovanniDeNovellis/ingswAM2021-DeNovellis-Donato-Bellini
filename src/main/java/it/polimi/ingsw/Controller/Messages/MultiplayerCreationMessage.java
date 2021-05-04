@@ -2,20 +2,30 @@ package it.polimi.ingsw.Controller.Messages;
 
 import it.polimi.ingsw.LeaderCard;
 
-public class MultiplayerCreationMessage extends Message{
-    private String messageContent;
-    private int playerNumber;
-    private LeaderCard[] choosableLeaderCards;
+import java.util.ArrayList;
 
-    public String getMessageContent() {
-        return messageContent;
+public class MultiplayerCreationMessage extends Message{
+    private int playerNumber;
+    private ArrayList<LeaderCard> choosableLeaderCards;
+
+    public MultiplayerCreationMessage() {
+        super();
+        messageType= "MultiPlayerCreationMessage";
+    }
+
+    public void setPlayerNumber(int playerNumber) {
+        this.playerNumber = playerNumber;
+    }
+
+    public void setChoosableLeaderCards(ArrayList<LeaderCard> choosableLeaderCards) {
+        this.choosableLeaderCards = choosableLeaderCards;
     }
 
     public int getPlayerNumber() {
         return playerNumber;
     }
 
-    public LeaderCard[] getChoosableLeaderCards() {
+    public ArrayList<LeaderCard> getChoosableLeaderCards() {
         return choosableLeaderCards;
     }
 }

@@ -8,8 +8,8 @@ import it.polimi.ingsw.Game;
 import java.util.ArrayList;
 
 public class Controller {
-    private Game game;
-    private ArrayList<ClientHandler> connectedClients = new ArrayList<>();
+    private final Game game;
+    private final ArrayList<ClientHandler> connectedClients = new ArrayList<>();
     private int[] vaticanReport;
 
     public int[] getVaticanReport() {
@@ -64,17 +64,36 @@ public class Controller {
                 return buyDevelopmentCard.manageRequest(jsonContent);
 //Starting single player mode
             case "startSinglePlayer":
-                if (game.startSinglePlayer()) {
-                } else {
-
-                }
-                break;
+                StartSinglePlayerManager startSinglePlayerManager = new StartSinglePlayerManager(this);
+                return startSinglePlayerManager.manageRequest(jsonContent);
+//Starting a multi player game
+            case "startMultiPlayer":
+                Manageable startMultiPlayerManager = new StartMultiPlayerManager(this);
+                return startMultiPlayerManager.manageRequest(jsonContent);
+//Activating an initial resource distribution for the second or the third player
+            case "distributionSecondThird":
+                Manageable distributionSecondThirdManager = new DistributionSecondThirdManager(this);
+                return distributionSecondThirdManager.manageRequest(jsonContent);
+//Activating an initial resource distribution for the fourth player
+            case "distributionFourth":
+                Manageable distributionFourthManager = new DistributionFourthManager(this);
+                return distributionFourthManager.manageRequest(jsonContent);
+//Selecting the leader cards from the 4 choosable cards
+            case "leaderCardSelection":
+                Manageable leaderCardSelectionManager = new LeaderCardSelectionManager(this);
+                return leaderCardSelectionManager.manageRequest(jsonContent);
+// Ending turn
+            case "endTurnRequest":
+                Manageable endTurnManager = new EndTurnManager(this);
+                return endTurnManager.manageRequest(jsonContent);
         }
         return "end";
     }
 
     public void addClientHandler(ClientHandler clientHandler){
-        connectedClients.add(clientHandler);
+        synchronized (connectedClients) {
+            connectedClients.add(clientHandler);
+        }
     }
 
     public Game getGame() {
@@ -84,6 +103,4 @@ public class Controller {
     public ArrayList<ClientHandler> getConnectedClients() {
         return connectedClients;
     }
-
-
 }
