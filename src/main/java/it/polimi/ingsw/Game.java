@@ -218,7 +218,7 @@ public class Game {
      */
     public boolean distributionResourceSecondThird( ResourceType resourceType ){
         if( (currentPlayer.getPlayerNumber() == 2 || currentPlayer.getPlayerNumber() == 3)
-            && currentPlayer.doneInitialDistribution()) {
+            && currentPlayer.doneInitialDistribution() && resourceType!=ResourceType.FAITHPOINTS) {
             currentPlayer.insertResourcesIntoWarehouse(resourceType, 1, 1);
             currentPlayer.setInitialDistribution(true);
             currentPlayer.setCanEndTurn(true);
@@ -233,7 +233,8 @@ public class Game {
      * @return true if it is called on the fourth player.
      */
     public boolean distributionResourceFourthPlayer( ResourceType resourceType1, ResourceType resourceType2 ){
-        if( currentPlayer.getPlayerNumber() == 4 && currentPlayer.doneInitialDistribution()) {
+        if( currentPlayer.getPlayerNumber() == 4 && currentPlayer.doneInitialDistribution()
+        && resourceType1!=ResourceType.FAITHPOINTS && resourceType2!=ResourceType.FAITHPOINTS) {
             if( resourceType1.equals(resourceType2) ) {
                 currentPlayer.insertResourcesIntoWarehouse(resourceType1, 2, 2);
             }

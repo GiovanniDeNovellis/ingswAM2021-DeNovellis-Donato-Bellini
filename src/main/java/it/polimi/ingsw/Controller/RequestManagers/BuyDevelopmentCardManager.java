@@ -28,7 +28,8 @@ public class BuyDevelopmentCardManager implements Manageable{
                 notification.setNickname(controller.getGame().getCurrentPlayer().getNickname());
                 notification.setDevelopmentCardsConfiguration(controller.getGame().getCurrentPlayer().getPersonalBoard().getDevelopmentCard());
                 notification.setWarehouseConfiguration(controller.getGame().getCurrentPlayer().getPersonalBoard().getWarehouseDepot());
-                ExtraDeposit extraDeposits[] = new ExtraDeposit[2];
+                notification.setStrongboxConfiguration(controller.getGame().getCurrentPlayer().getPersonalBoard().getStrongbox().getResourcesContained());
+                ExtraDeposit[] extraDeposits = new ExtraDeposit[2];
                 extraDeposits[0] = controller.getGame().getCurrentPlayer().getPersonalBoard().getExtraDeposit1();
                 extraDeposits[1] = controller.getGame().getCurrentPlayer().getPersonalBoard().getExtraDeposit2();
                 notification.setExtraDepositsConfiguration(extraDeposits);

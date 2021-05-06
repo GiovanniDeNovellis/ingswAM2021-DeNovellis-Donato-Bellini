@@ -10,11 +10,9 @@ import java.util.ArrayList;
 public class Controller {
     private final Game game;
     private final ArrayList<ClientHandler> connectedClients = new ArrayList<>();
-    private int[] vaticanReport;
 
     public int[] getVaticanReport() {
-        vaticanReport = game.getCurrentPlayer().getFaithCards();
-        return vaticanReport;
+        return  game.getCurrentPlayer().getFaithCards();
     }
 
 

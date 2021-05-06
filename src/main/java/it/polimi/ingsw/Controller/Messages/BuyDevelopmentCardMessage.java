@@ -7,13 +7,12 @@ public class BuyDevelopmentCardMessage extends Message{
     private Colour colour;
     private int slot;
     private int[] payUsingExtraDeposit;
+    private String senderNickname;
+
 
     public String getSenderNickname() {
         return senderNickname;
     }
-
-    private String senderNickname;
-
     public int getLevel() {
         return level;
     }

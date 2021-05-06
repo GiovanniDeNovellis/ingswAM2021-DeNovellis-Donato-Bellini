@@ -4,14 +4,13 @@ import it.polimi.ingsw.DevelopmentCard;
 import it.polimi.ingsw.ExtraDeposit;
 import it.polimi.ingsw.ResourceType;
 import it.polimi.ingsw.WareHouseDepot;
-
-import java.util.HashMap;
+import java.util.Map;
 
 public class NotifyDevelopmentCardInsertedOKMessage extends Message{
     private DevelopmentCard[] developmentCardsConfiguration;
     private WareHouseDepot warehouseConfiguration;
     private ExtraDeposit[] extraDepositsConfiguration;
-    private HashMap<ResourceType,Integer> strongboxConfiguration;
+    private Map<ResourceType,Integer> strongboxConfiguration;
     public String getNickname() {
         return senderNickname;
     }
@@ -34,7 +33,7 @@ public class NotifyDevelopmentCardInsertedOKMessage extends Message{
         return extraDepositsConfiguration;
     }
 
-    public HashMap<ResourceType, Integer> getStrongboxConfiguration() {
+    public Map<ResourceType, Integer> getStrongboxConfiguration() {
         return strongboxConfiguration;
     }
 
@@ -50,7 +49,7 @@ public class NotifyDevelopmentCardInsertedOKMessage extends Message{
         this.extraDepositsConfiguration = extraDepositsConfiguration;
     }
 
-    public void setStrongboxConfiguration(HashMap<ResourceType, Integer> strongboxConfiguration) {
+    public void setStrongboxConfiguration(Map<ResourceType, Integer> strongboxConfiguration) {
         this.strongboxConfiguration = strongboxConfiguration;
     }
 }
