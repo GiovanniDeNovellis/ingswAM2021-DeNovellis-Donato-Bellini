@@ -16,10 +16,8 @@ public class ServerReader implements Runnable {
         String serverOutput;
         try {
             while ((serverOutput = in.readLine()) != null) {
-                if (serverOutput.equals("Ping")) {
-                } else {
+                if (!serverOutput.equals("Ping"))
                     System.out.println(serverOutput);
-                }
             }
         } catch (SocketTimeoutException e) {
             System.out.println("Il server non risponde");

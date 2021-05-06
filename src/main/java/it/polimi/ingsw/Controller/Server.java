@@ -55,7 +55,6 @@ public class Server {
         while(true){
             try {
                 Socket socket = serverSocket.accept();
-                //TODO: gestione afk
                 executor.submit(new ClientHandler(socket, controller));
                 System.out.println("Accettato la connessione numero " + ++num);
 

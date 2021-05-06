@@ -48,7 +48,11 @@ public class ClientHandler implements Runnable {
             while(true){
                 if(loginDone)
                     break;
-                line = in.readLine();
+                while(true) {
+                    line = in.readLine();
+                    if(!line.equals("Pong"))
+                        break;
+                }
                 Message message = gson.fromJson(line, Message.class);
                 if(message.getMessageType().equals("AddPlayer")){
                     String response = controller.startAction(line);
@@ -90,19 +94,15 @@ public class ClientHandler implements Runnable {
                                         reconnectConfigurationMessage.setNewFaithPoints(player.getFaithPoints());
                                         reconnectConfigurationMessage.setDevelopmentCardsConfiguration(player.getPersonalBoard().getDevelopmentCard());
                                         if(player.getNickname().equals(tempNickname)){
-                                            System.out.println("1");
                                             if(player.hasChosenLeaderCards()){
-                                                System.out.println("2");
                                                 for(LeaderCard l: player.getChoosedLeaderCards()){
                                                     reconnectConfigurationMessage.getChoosedLeaderCards().add(l.getLeaderCardNumber());
                                                 }
                                             }
                                             else{
-                                                System.out.println("3");
                                                 for(LeaderCard l: player.getChoosableLeaderCards()){
                                                     reconnectConfigurationMessage.getChoosableLeaderCards().add(l.getLeaderCardNumber());
                                                 }
-                                                System.out.println("5");
                                             }
                                         }
                                         else if(player.hasChosenLeaderCards()){
@@ -112,7 +112,6 @@ public class ClientHandler implements Runnable {
                                                }
                                            }
                                         }
-                                        System.out.println("4");
                                         out.println(gson.toJson(reconnectConfigurationMessage));
                                     }
                                     s = gson.toJson(mex);
@@ -124,6 +123,8 @@ public class ClientHandler implements Runnable {
                                 }
                             }
                         }
+                        if(loginDone)
+                            break;
                         mex= new Message();
                         mex.setMessageType("InvalidLoginNotification");
                         s=gson.toJson(mex);
@@ -162,10 +163,19 @@ public class ClientHandler implements Runnable {
         } catch (IOException e) {
             System.err.println("IO chiamata dal client handler");
         }
+        //GESTIONE DISCONNESSIONI
         synchronized (controller){
             Gson gson = new Gson();
             controller.getConnectedClients().remove(this);
-            if(clientNickname.equals(controller.getGame().getCurrentPlayer().getNickname())){
+            //DISCONNESSO MENTRE LA PARTITA NON E' INIZIATA
+            if(controller.getGame().getCurrentPlayer()==null){
+                for(Player p: controller.getGame().getPlayers()){
+                    if(p.getNickname().equals(clientNickname))
+                        p.setIsAFK(true);
+                }
+            }
+            //DISCONNESSO DURANTE IL SUO TURNO
+            else if(clientNickname.equals(controller.getGame().getCurrentPlayer().getNickname())){
                 controller.getGame().getCurrentPlayer().setIsAFK(true);
                 controller.getGame().endTurn();
                 String nickname=null;
@@ -187,6 +197,7 @@ public class ClientHandler implements Runnable {
                 for(ClientHandler c: controller.getConnectedClients())
                     c.notifyInterface(gson.toJson(endTurnNotificationMessage));
             }
+            //DISCONNESSO MA NON ERA IL SUO TURNO
             else{
                 for(Player p: controller.getGame().getPlayers()){
                     if(p.getNickname().equals(clientNickname))

@@ -17,7 +17,6 @@ public class ClientPong implements Runnable{
             try {
                 sleep(5000);
                 out.println("Pong");
-                out.flush();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
