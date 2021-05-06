@@ -5,6 +5,7 @@ import it.polimi.ingsw.Controller.ClientHandler;
 import it.polimi.ingsw.Controller.Controller;
 import it.polimi.ingsw.Controller.Messages.*;
 import it.polimi.ingsw.ExtraDeposit;
+import it.polimi.ingsw.Player;
 
 public class    ActivateProductionManager implements Manageable {
     private final Controller controller;
@@ -17,7 +18,7 @@ public class    ActivateProductionManager implements Manageable {
     public String manageRequest(String jsonContent) {
         Gson gson = new Gson();
         ActivateProductionMessage message = gson.fromJson(jsonContent, ActivateProductionMessage.class);
-        int[] faithCardsBefore = controller.getVaticanReport();
+        int[] faithCardsBefore = controller.getVaticanReport().clone();
 
         if(controller.getGame().getCurrentPlayer().getNickname().equals(message.getSenderNickname())) {
             if (controller.getGame().activateProduction(message.getWhichDevCardSlot(),
@@ -71,8 +72,11 @@ public class    ActivateProductionManager implements Manageable {
                 vaticanReportMessage.setMessageType("VaticanReportMessage");
                 vaticanReportMessage.setOccurred(vaticanReportOccurred);
                 vaticanReportMessage.setWhichOne(whichReport);
-
                 for (ClientHandler clientHandler : controller.getConnectedClients()) {
+                    for(Player p: controller.getGame().getPlayers()){
+                        if(p.getNickname().equals(clientHandler.getClientNickname()))
+                            vaticanReportMessage.setNewFaithPoints(p.getFaithPoints());
+                    }
                     clientHandler.notifyInterface(gson.toJson(vaticanReportMessage));
                 }
 

@@ -20,6 +20,9 @@ public class Client2 {
         ) {
             String userInput;
             System.out.println(in.readLine());
+            ClientPong clientPong=new ClientPong(out);
+            Thread t1 = new Thread(clientPong);
+            t1.start();
             ServerReader serverReader = new ServerReader(in);
             Thread t = new Thread(serverReader);
             t.start();
