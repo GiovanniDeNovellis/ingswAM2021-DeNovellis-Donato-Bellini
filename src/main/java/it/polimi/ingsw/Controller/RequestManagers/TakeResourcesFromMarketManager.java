@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import it.polimi.ingsw.Controller.ClientHandler;
 import it.polimi.ingsw.Controller.Controller;
 import it.polimi.ingsw.Controller.Messages.*;
+import it.polimi.ingsw.Player;
 
 public class TakeResourcesFromMarketManager implements Manageable{
     private final Controller controller;
@@ -13,6 +14,7 @@ public class TakeResourcesFromMarketManager implements Manageable{
     @Override
     public String manageRequest(String jsonContent) {
         Gson gson = new Gson();
+        int[] faithCardsBefore = controller.getVaticanReport().clone();
         TakeResourceFromMarketMessage takeResourceFromMarketMessage = gson.fromJson(jsonContent, TakeResourceFromMarketMessage.class);
         if (controller.getGame().getCurrentPlayer().getNickname().equals(takeResourceFromMarketMessage.getSenderNickname())) {
             if(controller.getGame().takeResourcesFromMarket(takeResourceFromMarketMessage.getMarketIndex()[0],takeResourceFromMarketMessage.getMarketIndex()[1])){
@@ -27,6 +29,38 @@ public class TakeResourcesFromMarketManager implements Manageable{
                 for (ClientHandler clientHandler : controller.getConnectedClients()) {
                     clientHandler.notifyInterface(gson.toJson(notification));
                     clientHandler.notifyInterface(gson.toJson(notification1));
+                }
+                int[] faithCardsAfter = controller.getVaticanReport();
+                int whichReport = 0;
+                boolean vaticanReportOccurred = false;
+                for (int i = 0; i < 3; i++) {
+                    if (faithCardsBefore[i] != faithCardsAfter[i]) {
+                        switch (i) {
+                            case 0:
+                                whichReport = 1;
+                                vaticanReportOccurred = true;
+                                break;
+                            case 1:
+                                whichReport = 2;
+                                vaticanReportOccurred = true;
+                                break;
+                            case 2:
+                                whichReport = 3;
+                                vaticanReportOccurred = true;
+                                break;
+                        }
+                    }
+                }
+                VaticanReportMessage vaticanReportMessage = new VaticanReportMessage();
+                vaticanReportMessage.setMessageType("VaticanReportMessage");
+                vaticanReportMessage.setOccurred(vaticanReportOccurred);
+                vaticanReportMessage.setWhichOne(whichReport);
+                for (ClientHandler clientHandler : controller.getConnectedClients()) {
+                    for(Player p: controller.getGame().getPlayers()){
+                        if(p.getNickname().equals(clientHandler.getClientNickname()))
+                            vaticanReportMessage.setNewFaithPoints(p.getFaithPoints());
+                    }
+                    clientHandler.notifyInterface(gson.toJson(vaticanReportMessage));
                 }
                 return gson.toJson(mex);
             } else {

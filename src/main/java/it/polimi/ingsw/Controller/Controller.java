@@ -88,10 +88,8 @@ public class Controller {
         return "end";
     }
 
-    public void addClientHandler(ClientHandler clientHandler){
-        synchronized (connectedClients) {
+    public synchronized void addClientHandler(ClientHandler clientHandler){
             connectedClients.add(clientHandler);
-        }
     }
 
     public Game getGame() {

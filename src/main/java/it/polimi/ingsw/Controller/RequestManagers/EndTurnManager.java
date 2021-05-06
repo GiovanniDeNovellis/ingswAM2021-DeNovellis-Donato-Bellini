@@ -6,6 +6,8 @@ import it.polimi.ingsw.Controller.Controller;
 import it.polimi.ingsw.Controller.Messages.EndTurnNotificationMessage;
 import it.polimi.ingsw.Controller.Messages.EndTurnRequestMessage;
 import it.polimi.ingsw.Controller.Messages.Message;
+import it.polimi.ingsw.Controller.Messages.VaticanReportMessage;
+import it.polimi.ingsw.Player;
 import it.polimi.ingsw.ResourceType;
 
 public class EndTurnManager implements Manageable{
@@ -24,6 +26,7 @@ public class EndTurnManager implements Manageable{
         boolean endGame=false;
         String nickname=null;
         String winnerNickname=null;
+        int[] faithCardsBefore = controller.getVaticanReport().clone();
         int tempResourcesDiscarded=0;
         EndTurnRequestMessage endTurnRequestMessage = gson.fromJson(jsonContent, EndTurnRequestMessage.class);
             ans1= endTurnRequestMessage.getSenderNickname().equals(controller.getGame().getCurrentPlayer().getNickname());
@@ -47,9 +50,41 @@ public class EndTurnManager implements Manageable{
                 mex.setWinnerPlayerNickname(winnerNickname);
                 mex.setGameEnding(endGame);
                 String notificationForAll = gson.toJson(mex);
-                    for(ClientHandler c : controller.getConnectedClients()){
+                for(ClientHandler c : controller.getConnectedClients()){
                         c.notifyInterface(notificationForAll);
+                }
+                int[] faithCardsAfter = controller.getVaticanReport();
+                int whichReport = 0;
+                boolean vaticanReportOccurred = false;
+                for (int i = 0; i < 3; i++) {
+                    if (faithCardsBefore[i] != faithCardsAfter[i]) {
+                        switch (i) {
+                            case 0:
+                                whichReport = 1;
+                                vaticanReportOccurred = true;
+                                break;
+                            case 1:
+                                whichReport = 2;
+                                vaticanReportOccurred = true;
+                                break;
+                            case 2:
+                                whichReport = 3;
+                                vaticanReportOccurred = true;
+                                break;
+                        }
                     }
+                }
+                VaticanReportMessage vaticanReportMessage = new VaticanReportMessage();
+                vaticanReportMessage.setMessageType("VaticanReportMessage");
+                vaticanReportMessage.setOccurred(vaticanReportOccurred);
+                vaticanReportMessage.setWhichOne(whichReport);
+                for (ClientHandler clientHandler : controller.getConnectedClients()) {
+                    for(Player p: controller.getGame().getPlayers()){
+                        if(p.getNickname().equals(clientHandler.getClientNickname()))
+                            vaticanReportMessage.setNewFaithPoints(p.getFaithPoints());
+                    }
+                    clientHandler.notifyInterface(gson.toJson(vaticanReportMessage));
+                }
                 message.setMessageType("EndTurnOkNotification");
                 return gson.toJson(message);
             }

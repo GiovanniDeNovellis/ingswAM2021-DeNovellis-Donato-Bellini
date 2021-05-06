@@ -21,17 +21,18 @@ public class StartMultiPlayerManager implements Manageable {
         boolean ans;
         Gson gson = new Gson();
         Message message = new Message();
-        ArrayList<Player> players=null;
-            ans=controller.getGame().startMultiplayer();
-            if(ans)
-                players=controller.getGame().getPlayers();
+        ArrayList<Player> players;
+        ans=controller.getGame().startMultiplayer();
         if (ans) {
-                for (ClientHandler clientHandler : controller.getConnectedClients()) {
+            players=controller.getGame().getPlayers();
+            for (ClientHandler clientHandler : controller.getConnectedClients()) {
                     for (Player player : players) {
                         if (clientHandler.getClientNickname().equals(player.getNickname())) {
                             MultiplayerCreationMessage multiplayerCreationMessage = new MultiplayerCreationMessage();
                             multiplayerCreationMessage.setPlayerNumber(player.getPlayerNumber());
                             multiplayerCreationMessage.setChoosableLeaderCards(player.getChoosableLeaderCards());
+                            multiplayerCreationMessage.setDeckgridConfiguration(controller.getGame().getDeckgrid());
+                            multiplayerCreationMessage.setMarbleGridConfiguration(controller.getGame().getMarketBoard().getMarketGrid());
                             String s = gson.toJson(multiplayerCreationMessage);
                             clientHandler.notifyInterface(s);
                         }

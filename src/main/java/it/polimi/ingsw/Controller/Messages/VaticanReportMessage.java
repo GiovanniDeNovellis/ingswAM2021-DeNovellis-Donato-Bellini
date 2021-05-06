@@ -3,6 +3,7 @@ package it.polimi.ingsw.Controller.Messages;
 public class VaticanReportMessage extends Message {
     boolean occurred;
     int whichOne;
+    int newFaithPoints;
 
     public boolean isOccurred() {
         return occurred;
@@ -18,5 +19,13 @@ public class VaticanReportMessage extends Message {
 
     public void setWhichOne(int whichOne) {
         this.whichOne = whichOne;
+    }
+
+    public int getNewFaithPoints() {
+        return newFaithPoints;
+    }
+
+    public void setNewFaithPoints(int newFaithPoints) {
+        this.newFaithPoints = newFaithPoints;
     }
 }
