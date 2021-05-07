@@ -6,6 +6,7 @@ import static java.lang.Thread.sleep;
 
 public class ServerPing implements Runnable{
     private final PrintWriter out;
+    private boolean running = true;
 
     public ServerPing(PrintWriter out) {
         this.out = out;
@@ -15,6 +16,10 @@ public class ServerPing implements Runnable{
     public void run() {
         while(true){
             try {
+                synchronized (this){
+                    if(!running)
+                        return;
+                }
                 sleep(5000);
                 out.println("Ping");
                 out.flush();
@@ -22,5 +27,9 @@ public class ServerPing implements Runnable{
                 e.printStackTrace();
             }
         }
+    }
+
+    public synchronized void setRunning(boolean running) {
+        this.running = running;
     }
 }

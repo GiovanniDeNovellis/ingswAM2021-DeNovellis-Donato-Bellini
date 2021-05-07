@@ -4,10 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -61,13 +58,12 @@ public class Deckgrid {
     /**
      * Private metod used by the DeckGrid to read all the Development
      * Cards from the json file and store them into the ArrayList cards.
-     * @throws FileNotFoundException If the file is not present.
      */
     private void uploadCards() throws FileNotFoundException {
         Gson gson = new GsonBuilder().serializeNulls().create();
         Type Devcards = new TypeToken<ArrayList<DevelopmentCard>>() {}.getType();
-        File f = new File("src/main/java/it/polimi/ingsw/DevelopmentCards.json");
-        BufferedReader Reader = new BufferedReader(new FileReader(f));
+        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("DevelopmentCards.json");
+        BufferedReader Reader = new BufferedReader(new InputStreamReader(inputStream));
         this.cards = gson.fromJson(Reader, Devcards);
     }
 

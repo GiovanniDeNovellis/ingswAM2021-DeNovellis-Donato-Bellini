@@ -16,6 +16,7 @@ import java.net.SocketTimeoutException;
 import java.util.ArrayList;
 
 public class ClientHandler implements Runnable {
+    private ServerPing serverPing;
     private final Controller controller;
     private final Socket socket;
     private PrintWriter out;
@@ -41,6 +42,7 @@ public class ClientHandler implements Runnable {
             out.flush();
             String line;
             ServerPing serverPing= new ServerPing(out);
+            this.serverPing=serverPing;
             Thread t = new Thread(serverPing);
             t.start();
             //LOGIN PHASE
@@ -154,6 +156,7 @@ public class ClientHandler implements Runnable {
                 }
             }
             // Chiudo lo stream e i socket
+            this.serverPing.setRunning(false);
             in.close();
             out.close();
             socket.close();
@@ -211,6 +214,7 @@ public class ClientHandler implements Runnable {
                 c.notifyInterface(gson.toJson(mex));
             }
         }
+        this.serverPing.setRunning(false);
     }
 
 
