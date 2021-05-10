@@ -20,14 +20,11 @@ public class ServerReader implements Runnable {
                     System.out.println(serverOutput);
             }
         } catch (SocketTimeoutException e) {
-            System.out.println("Il server non risponde");
-            System.exit(1);
+                System.out.println("Il server non risponde");
+                System.exit(1);
         } catch (IOException e) {
-            {
                 System.err.println("Couldn't get I/O for the connection");
                 System.exit(1);
-
-            }
         }
     }
 }

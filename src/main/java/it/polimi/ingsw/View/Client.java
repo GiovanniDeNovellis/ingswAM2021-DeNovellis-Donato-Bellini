@@ -8,18 +8,18 @@ import java.net.Socket;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 
-public class Client1 {
+public class Client {
 
     public static void main(String[] args) {
             String hostName = "127.0.0.1";
             int portNumber = 1234;
             try (
-                    Socket echoSocket = new Socket(hostName, portNumber);
-                    PrintWriter out = new PrintWriter(echoSocket.getOutputStream(), true);
-                    BufferedReader in = new BufferedReader(new InputStreamReader(echoSocket.getInputStream()));
+                    Socket socket = new Socket(hostName, portNumber);
+                    PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+                    BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                     BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in))
             ) {
-                echoSocket.setSoTimeout(15000);
+                socket.setSoTimeout(15000);
                 String userInput;
                 System.out.println(in.readLine());
                 ClientPong clientPong=new ClientPong(out);
