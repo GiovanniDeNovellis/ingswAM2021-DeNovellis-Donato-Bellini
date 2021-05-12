@@ -16,4 +16,16 @@ public class LeaderCardSelectionMessage extends Message {
     public int getLeaderCardPosition2() {
         return leaderCardPosition2;
     }
+
+    public void setSenderNickname(String senderNickname) {
+        this.senderNickname = senderNickname;
+    }
+
+    public void setLeaderCardPosition1(int leaderCardPosition1) {
+        this.leaderCardPosition1 = leaderCardPosition1;
+    }
+
+    public void setLeaderCardPosition2(int leaderCardPosition2) {
+        this.leaderCardPosition2 = leaderCardPosition2;
+    }
 }

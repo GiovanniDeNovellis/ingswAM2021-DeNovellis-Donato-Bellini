@@ -13,4 +13,12 @@ public class DistributionSecondThirdMessage extends Message {
     public ResourceType getResourceToDistribute() {
         return resourceToDistribute;
     }
+
+    public void setSenderNickname(String senderNickname) {
+        this.senderNickname = senderNickname;
+    }
+
+    public void setResourceToDistribute(ResourceType resourceToDistribute) {
+        this.resourceToDistribute = resourceToDistribute;
+    }
 }

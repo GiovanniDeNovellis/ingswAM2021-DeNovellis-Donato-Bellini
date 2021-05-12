@@ -18,4 +18,16 @@ public class DistributionFourthMessage extends Message{
     public ResourceType getSecondResourceToDistribute() {
         return secondResourceToDistribute;
     }
+
+    public void setSenderNickname(String senderNickname) {
+        this.senderNickname = senderNickname;
+    }
+
+    public void setResourceToDistribute(ResourceType resourceToDistribute) {
+        this.resourceToDistribute = resourceToDistribute;
+    }
+
+    public void setSecondResourceToDistribute(ResourceType secondResourceToDistribute) {
+        this.secondResourceToDistribute = secondResourceToDistribute;
+    }
 }

@@ -6,4 +6,8 @@ public class EndTurnRequestMessage extends Message{
     public String getSenderNickname() {
         return senderNickname;
     }
+
+    public void setSenderNickname(String senderNickname) {
+        this.senderNickname = senderNickname;
+    }
 }

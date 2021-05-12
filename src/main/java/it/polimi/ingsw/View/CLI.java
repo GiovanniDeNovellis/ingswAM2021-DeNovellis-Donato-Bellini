@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 public class CLI implements Runnable{
     private String userInput=null;
     private final VirtualView virtualView = new VirtualView();
+    private String nickname;
 
     public void run(){
         BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
@@ -15,8 +16,8 @@ public class CLI implements Runnable{
             try {
                 if((userInput=stdIn.readLine())!=null){
                     synchronized (virtualView) {
-                        CommandManager commandManager = new CommandManager(virtualView);
-                        userInput=commandManager.Manage(userInput);
+                        CommandManager commandManager = new CommandManager(virtualView, nickname);
+                        userInput=commandManager.manage(userInput);
                     }
                     setUserInput(userInput);
                 }
