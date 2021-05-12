@@ -28,7 +28,7 @@ public class Server {
         Controller controller = new Controller(game);
         int portNumber;
         String hostName;
-        if(args.length==2) {
+        if(args!=null&&args.length==2) {
             hostName = args[0];
             portNumber = Integer.parseInt(args[1]);
             System.out.println("Letto correttamente da linea di comando\n");

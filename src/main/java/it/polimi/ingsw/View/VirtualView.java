@@ -11,6 +11,7 @@ public class VirtualView {
     private Printable deckGridPrinter = new DeckGridPrinter();
     private ArrayList<Printable> personalBoards = new ArrayList<>();
     private ArrayList<Printable> leaderCardsPrinters = new ArrayList<>();
+    private int blackFaithPoints;
 
     public void print(Printable p){
         p.print();
@@ -30,5 +31,20 @@ public class VirtualView {
 
     public ArrayList<Printable> getLeaderCardsPrinters() {
         return leaderCardsPrinters;
+    }
+
+    public int getBlackFaithPoints() {
+        return blackFaithPoints;
+    }
+
+    public void setBlackFaithPoints(int blackFaithPoints) {
+        this.blackFaithPoints = blackFaithPoints;
+    }
+
+    public void printAll(){
+        for(int i=0;i<10;i++){
+            System.out.print("\n");
+        }
+        //printo tutto
     }
 }
