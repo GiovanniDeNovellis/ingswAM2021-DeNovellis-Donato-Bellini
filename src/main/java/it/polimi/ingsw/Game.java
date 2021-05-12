@@ -130,6 +130,9 @@ public class Game {
         leaderCardDeck.randomDistribute(players.get(0));
         this.actionCardStack = new ActionCardStack(deckgrid);
         this.lorenzo = LorenzoSingleton.getLorenzo();
+        currentPlayer=players.get(0);
+        currentPlayer.setCanEndTurn(true);
+        players.get(0).setPlayerNumber(1);
         lorenzo.setGame(this);
         gameStarted = true;
         players.get(0).setInitialDistribution(true);
@@ -537,7 +540,7 @@ public class Game {
      * @return true if it can be done.
      */
     public boolean activateActionCard(){
-        if(players.size()!=1 || !currentPlayer.isCanEndTurn()) return false;
+        if(players.size()!=1 || !currentPlayer.isCanEndTurn() || actionCardDone) return false;
         actionCardStack.activateCard();
         actionCardDone=true;
         return true;

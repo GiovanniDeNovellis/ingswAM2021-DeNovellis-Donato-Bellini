@@ -1,10 +1,13 @@
 package it.polimi.ingsw.Controller.Messages;
 
+import it.polimi.ingsw.ActionCard;
 import it.polimi.ingsw.ActionCardStack;
+
+import java.util.ArrayList;
 
 public class MoveAndShuffleMessage extends Message{
     private int newBlackFaithPoints;
-    private ActionCardStack actionCardConfiguration;
+    private ArrayList<String> actionCardConfiguration;
 
     public int getNewBlackFaithPoints() {
         return newBlackFaithPoints;
@@ -14,11 +17,11 @@ public class MoveAndShuffleMessage extends Message{
         this.newBlackFaithPoints = newBlackFaithPoints;
     }
 
-    public ActionCardStack getActionCardConfiguration() {
+    public ArrayList<String> getActionCardConfiguration() {
         return actionCardConfiguration;
     }
 
-    public void setActionCardConfiguration(ActionCardStack actionCardConfiguration) {
+    public void setActionCardConfiguration(ArrayList<String> actionCardConfiguration) {
         this.actionCardConfiguration = actionCardConfiguration;
     }
 }

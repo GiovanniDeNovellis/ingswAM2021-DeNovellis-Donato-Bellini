@@ -15,14 +15,14 @@ class ActionCardStackTest {
     void fillTest() throws FileNotFoundException {
         Deckgrid d = new Deckgrid();
         ActionCardStack c = new ActionCardStack(d);
-        assertTrue(c.getCards()[0] instanceof MoveAndShuffle);
-        assertTrue(c.getCards()[1] instanceof Move);
-        assertTrue(c.getCards()[2] instanceof Move);
-        assertTrue(c.getCards()[3] instanceof RemoveDevCard);
-        assertTrue(c.getCards()[4] instanceof RemoveDevCard);
-        assertTrue(c.getCards()[5] instanceof RemoveDevCard);
-        assertTrue(c.getCards()[6] instanceof RemoveDevCard);
-        assertEquals(7,c.getCards().length);
+        assertTrue(c.getCards().get(0) instanceof MoveAndShuffle);
+        assertTrue(c.getCards().get(1) instanceof Move);
+        assertTrue(c.getCards().get(2) instanceof Move);
+        assertTrue(c.getCards().get(3) instanceof RemoveDevCard);
+        assertTrue(c.getCards().get(4) instanceof RemoveDevCard);
+        assertTrue(c.getCards().get(5) instanceof RemoveDevCard);
+        assertTrue(c.getCards().get(6) instanceof RemoveDevCard);
+        assertEquals(7,c.getCards().size());
     }
 
     @Test
@@ -30,8 +30,8 @@ class ActionCardStackTest {
         Deckgrid d = new Deckgrid();
         ActionCardStack c = new ActionCardStack(d);
         c.Shuffle();
-        assertEquals(7,c.getCards().length);
+        assertEquals(7,c.getCards().size());
         c.Shuffle();
-        assertEquals(7,c.getCards().length);
+        assertEquals(7,c.getCards().size());
     }
 }

@@ -1,8 +1,11 @@
 package it.polimi.ingsw.Controller.RequestManagers;
 
 import com.google.gson.Gson;
+import it.polimi.ingsw.ActionCard;
 import it.polimi.ingsw.Controller.Controller;
 import it.polimi.ingsw.Controller.Messages.*;
+
+import java.util.ArrayList;
 
 public class ActionCardActivationManager implements Manageable{
     private final Controller controller;
@@ -13,7 +16,7 @@ public class ActionCardActivationManager implements Manageable{
 
     @Override
     public String manageRequest(String jsonContent) {
-        String type = controller.getGame().getActionCardStack().getCards()[0].getType();
+        String type = controller.getGame().getActionCardStack().getCards().get(0).getType();
         if (controller.getGame().activateActionCard()) {
             Gson gson = new Gson();
             switch (type) {
@@ -26,7 +29,11 @@ public class ActionCardActivationManager implements Manageable{
                     MoveAndShuffleMessage message1 = new MoveAndShuffleMessage();
                     message1.setMessageType("MoveAndShuffle");
                     message1.setNewBlackFaithPoints(controller.getGame().getLorenzo().getBlackFaithPoints());
-                    message1.setActionCardConfiguration(controller.getGame().getActionCardStack());
+                    ArrayList<String> config = new ArrayList<>();
+                    for(ActionCard c: controller.getGame().getActionCardStack().getCards()){
+                        config.add(c.getType());
+                    }
+                    message1.setActionCardConfiguration(config);
                     return gson.toJson(message1);
                 case "Remove":
                     NoitifyDeckgridChangedMessage message2 = new NoitifyDeckgridChangedMessage();
@@ -36,7 +43,7 @@ public class ActionCardActivationManager implements Manageable{
             }
         }
         Gson gson = new Gson();
-        Message notification = new SimpleMessage();
+        Message notification = new Message();
         notification.setMessageType("ActionCardActivationFailureNotification");
         return gson.toJson(notification);
     }

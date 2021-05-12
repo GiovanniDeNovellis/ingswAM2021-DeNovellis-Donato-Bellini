@@ -50,6 +50,9 @@ public class EndTurnManager implements Manageable{
                 mex.setWinnerPlayerNickname(winnerNickname);
                 mex.setGameEnding(endGame);
                 mex.setTemporaryResources(controller.getGame().getMarketBoard().getTemporaryResources());
+                if(controller.getGame().getPlayers().size()==1){
+                    mex.setBlackFaithPoints(controller.getGame().getLorenzo().getBlackFaithPoints());
+                }
                 String notificationForAll = gson.toJson(mex);
                 for(ClientHandler c : controller.getConnectedClients()){
                         c.notifyInterface(notificationForAll);

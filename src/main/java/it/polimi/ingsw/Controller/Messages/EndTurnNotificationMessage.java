@@ -11,6 +11,7 @@ public class EndTurnNotificationMessage extends Message{
     private String winnerPlayerNickname;
     private boolean gameEnding;
     private Map<ResourceType,Integer> temporaryResources;
+    private int blackFaithPoints;
 
     public String getActualCurrentPlayer() {
         return actualCurrentPlayer;
@@ -50,5 +51,13 @@ public class EndTurnNotificationMessage extends Message{
 
     public void setTemporaryResources(Map<ResourceType, Integer> temporaryResources) {
         this.temporaryResources = temporaryResources;
+    }
+
+    public int getBlackFaithPoints() {
+        return blackFaithPoints;
+    }
+
+    public void setBlackFaithPoints(int blackFaithPoints) {
+        this.blackFaithPoints = blackFaithPoints;
     }
 }
