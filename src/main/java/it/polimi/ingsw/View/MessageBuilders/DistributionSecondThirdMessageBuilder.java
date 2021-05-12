@@ -26,7 +26,7 @@ public class DistributionSecondThirdMessageBuilder extends MessageBuilder{
         message.setSenderNickname(nickname);
 
         do {
-            System.out.println("Write the resource you want to obtain through initial distribution: [\"shield\",\"coins\",\"servants\",\"stones\"]");
+            System.out.println("Write the resource you want to obtain through initial distribution: [\"shields\",\"coins\",\"servants\",\"stones\"]");
             resourceType = input.nextLine();
         }while (!(resourceType.equals("shields") || resourceType.equals("coins") || resourceType.equals("servants") || resourceType.equals("stones")) );
 

@@ -24,14 +24,14 @@ public class DistributionFourthMessageBuilder extends MessageBuilder{
         message.setSenderNickname(nickname);
 
         do {
-            System.out.println("Write the first resource you want to obtain through initial distribution: [\"shield\",\"coins\",\"servants\",\"stones\"]");
+            System.out.println("Write the first resource you want to obtain through initial distribution: [\"shields\",\"coins\",\"servants\",\"stones\"]");
             resourceType = input.nextLine();
         }while (!(resourceType.equals("shields") || resourceType.equals("coins") || resourceType.equals("servants") || resourceType.equals("stones")) );
 
         setResourceType(resourceType, message);
 
         do {
-            System.out.println("Write the second resource you want to obtain through initial distribution: [\"shield\",\"coins\",\"servants\",\"stones\"]");
+            System.out.println("Write the second resource you want to obtain through initial distribution: [\"shields\",\"coins\",\"servants\",\"stones\"]");
             resourceType = input.nextLine();
         }while (!(resourceType.equals("shields") || resourceType.equals("coins") || resourceType.equals("servants") || resourceType.equals("stones")) );
 

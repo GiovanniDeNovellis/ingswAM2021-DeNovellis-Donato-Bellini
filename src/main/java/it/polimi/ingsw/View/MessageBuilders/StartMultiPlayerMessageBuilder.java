@@ -8,7 +8,8 @@ public class StartMultiPlayerMessageBuilder extends MessageBuilder{
     @Override
     public String buildMessage() {
         Gson gson = new Gson();
-        Message message = new StartMultiPlayerMessage();
+        StartMultiPlayerMessage message = new StartMultiPlayerMessage();
+        message.setMessageType("StartMultiPlayer");
         return gson.toJson(message);
     }
 }

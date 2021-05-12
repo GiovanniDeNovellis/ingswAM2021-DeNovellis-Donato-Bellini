@@ -13,7 +13,8 @@ public class Client {
     public static void main(String[] args) {
             String hostName = "127.0.0.1";
             int portNumber = 1234;
-            String type=args[0];
+            //String type=args[0];
+            String type = "CLI";
             try (
                     Socket socket = new Socket(hostName, portNumber);
                     PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
