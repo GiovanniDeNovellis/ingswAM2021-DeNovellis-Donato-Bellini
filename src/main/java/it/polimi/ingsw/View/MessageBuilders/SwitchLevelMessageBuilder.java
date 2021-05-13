@@ -18,7 +18,7 @@ public class SwitchLevelMessageBuilder extends MessageBuilder {
         Gson gson = new Gson();
         Scanner input = new Scanner(System.in);
         SwitchLevelMessage message = new SwitchLevelMessage();
-        message.setMessageType("SwitchLevel");
+        message.setMessageType("SwitchLevels");
         message.setSenderNickname(nickname);
         do {
             System.out.println("Write the first level you want to switch: [\"1\",\"2\",\"3\"]");

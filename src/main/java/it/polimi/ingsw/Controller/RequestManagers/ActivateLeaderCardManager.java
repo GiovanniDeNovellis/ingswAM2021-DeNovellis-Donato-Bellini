@@ -3,10 +3,7 @@ package it.polimi.ingsw.Controller.RequestManagers;
 import com.google.gson.Gson;
 import it.polimi.ingsw.Controller.ClientHandler;
 import it.polimi.ingsw.Controller.Controller;
-import it.polimi.ingsw.Controller.Messages.ActivateLeaderCardMessage;
-import it.polimi.ingsw.Controller.Messages.AddPlayerMessage;
-import it.polimi.ingsw.Controller.Messages.NotifyActivateLeaderCard;
-import it.polimi.ingsw.Controller.Messages.SimpleMessage;
+import it.polimi.ingsw.Controller.Messages.*;
 
 public class ActivateLeaderCardManager implements Manageable{
     private final Controller controller;
@@ -17,12 +14,18 @@ public class ActivateLeaderCardManager implements Manageable{
 
     @Override
     public String manageRequest(String jsonContent){
+        if(!controller.getGame().isGameStarted()){
+            Gson gson = new Gson();
+            Message notification = new Message();
+            notification.setMessageType("GameNotStartedNotification");
+            return gson.toJson(notification);
+        }
         Gson gson = new Gson();
         ActivateLeaderCardMessage activateLeaderCardMessage = gson.fromJson(jsonContent,ActivateLeaderCardMessage.class);
         if(controller.getGame().getCurrentPlayer().getNickname().equals(activateLeaderCardMessage.getSenderNickname())) {
             if (controller.getGame().activateLeaderCard(activateLeaderCardMessage.getPosition())) {
-                SimpleMessage mex = new SimpleMessage();
-                mex.setMessageContent("ActivateLeaderCardSuccessNotification");
+                Message mex = new Message();
+                mex.setMessageType("ActivateLeaderCardSuccessNotification");
                 NotifyActivateLeaderCard notification = new NotifyActivateLeaderCard();
                 notification.setMessageType("NotifyActivateLeaderCard");
                 notification.setActivatedLeaderCardPosition(activateLeaderCardMessage.getPosition());
@@ -32,13 +35,13 @@ public class ActivateLeaderCardManager implements Manageable{
                 }
                 return gson.toJson(mex);
             } else {
-                SimpleMessage mex = new SimpleMessage();
-                mex.setMessageContent("ActivateLeaderCardFailureNotification");
+                Message mex = new Message();
+                mex.setMessageType("ActivateLeaderCardFailureNotification");
                 return gson.toJson(mex);
             }
         }
-        SimpleMessage mex = new SimpleMessage();
-        mex.setMessageContent("NotYourTurnNotification");
+        Message mex = new Message();
+        mex.setMessageType("NotYourTurnNotification");
         return gson.toJson(mex);
     }
 }

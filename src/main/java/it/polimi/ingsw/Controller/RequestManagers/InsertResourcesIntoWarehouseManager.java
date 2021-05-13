@@ -16,6 +16,12 @@ public class InsertResourcesIntoWarehouseManager implements Manageable {
 
     @Override
     public String manageRequest(String jsonContent) {
+        if(!controller.getGame().isGameStarted()){
+            Gson gson = new Gson();
+            Message notification = new Message();
+            notification.setMessageType("GameNotStartedNotification");
+            return gson.toJson(notification);
+        }
         Gson gson = new Gson();
         InsertResourceMessage insertResourceMessage = gson.fromJson(jsonContent, InsertResourceMessage.class);
         if (controller.getGame().getCurrentPlayer().getNickname().equals(insertResourceMessage.getSenderNickname())) {

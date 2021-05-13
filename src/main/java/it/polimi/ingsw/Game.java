@@ -585,4 +585,11 @@ public class Game {
     public boolean isEndGame() {
         return isEndGame;
     }
+
+    /**
+     * @return If the game has started.
+     */
+    public boolean isGameStarted() {
+        return gameStarted;
+    }
 }

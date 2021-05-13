@@ -13,6 +13,12 @@ public class TakeResourcesFromMarketManager implements Manageable{
 
     @Override
     public String manageRequest(String jsonContent) {
+        if(!controller.getGame().isGameStarted()){
+            Gson gson = new Gson();
+            Message notification = new Message();
+            notification.setMessageType("GameNotStartedNotification");
+            return gson.toJson(notification);
+        }
         Gson gson = new Gson();
         int[] faithCardsBefore = controller.getVaticanReport().clone();
         TakeResourceFromMarketMessage takeResourceFromMarketMessage = gson.fromJson(jsonContent, TakeResourceFromMarketMessage.class);

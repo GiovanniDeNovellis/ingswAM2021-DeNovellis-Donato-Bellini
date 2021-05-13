@@ -16,6 +16,12 @@ public class SwitchLevelsManager implements Manageable {
 
     @Override
     public String manageRequest(String jsonContent) {
+        if(!controller.getGame().isGameStarted()){
+            Gson gson = new Gson();
+            Message notification = new Message();
+            notification.setMessageType("GameNotStartedNotification");
+            return gson.toJson(notification);
+        }
         Gson gson = new Gson();
         SwitchLevelMessage switchMessage = gson.fromJson(jsonContent, SwitchLevelMessage.class);
         if (controller.getGame().getCurrentPlayer().getNickname().equals(switchMessage.getSenderNickname())) {

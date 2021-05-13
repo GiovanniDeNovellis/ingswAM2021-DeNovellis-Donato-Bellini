@@ -15,12 +15,18 @@ public class ActivateLeaderAbilityManager implements Manageable{
 
     @Override
     public String manageRequest(String jsonContent){
+        if(!controller.getGame().isGameStarted()){
+            Gson gson = new Gson();
+            Message notification = new Message();
+            notification.setMessageType("GameNotStartedNotification");
+            return gson.toJson(notification);
+        }
         Gson gson = new Gson();
         ActivateLeaderAbilityMessage activateLeaderAbilityMessage = gson.fromJson(jsonContent,ActivateLeaderAbilityMessage.class);
         if(controller.getGame().getCurrentPlayer().getNickname().equals(activateLeaderAbilityMessage.getSenderNickname())) {
             if (controller.getGame().activateLeaderCard(activateLeaderAbilityMessage.getPosition())) {
-                SimpleMessage mex = new SimpleMessage();
-                mex.setMessageContent("ActivateLeaderAbilitySuccessNotification");
+                Message mex = new Message();
+                mex.setMessageType("ActivateLeaderAbilitySuccessNotification");
                 switch (controller.getGame().getCurrentPlayer().getChoosedLeaderCards().get(activateLeaderAbilityMessage.getPosition()).getType()) {
                     case "Discount":
                         ActivateLeaderAbilityDiscountMessage notification = new ActivateLeaderAbilityDiscountMessage();
@@ -67,13 +73,13 @@ public class ActivateLeaderAbilityManager implements Manageable{
                 }
                 return gson.toJson(mex);
             } else {
-                SimpleMessage mex = new SimpleMessage();
-                mex.setMessageContent("ActivateLeaderAbilityFailureNotification");
+                Message mex = new Message();
+                mex.setMessageType("ActivateLeaderAbilityFailureNotification");
                 return gson.toJson(mex);
             }
         }
-        SimpleMessage mex = new SimpleMessage();
-        mex.setMessageContent("NotYourTurnNotification");
+        Message mex = new Message();
+        mex.setMessageType("NotYourTurnNotification");
         return gson.toJson(mex);
     }
 }

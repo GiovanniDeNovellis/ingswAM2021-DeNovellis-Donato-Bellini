@@ -22,7 +22,7 @@ public class DistributionSecondThirdMessageBuilder extends MessageBuilder{
         Scanner input = new Scanner(System.in);
         Gson gson = new Gson();
         DistributionSecondThirdMessage message = new DistributionSecondThirdMessage();
-        message.setMessageType("DistributionSecondThirdMessage");
+        message.setMessageType("DistributionSecondThird");
         message.setSenderNickname(nickname);
 
         do {

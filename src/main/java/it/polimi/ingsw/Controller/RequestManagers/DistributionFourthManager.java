@@ -17,6 +17,12 @@ public class DistributionFourthManager implements Manageable {
 
     @Override
     public String manageRequest(String jsonContent) {
+        if(!controller.getGame().isGameStarted()){
+            Gson gson = new Gson();
+            Message notification = new Message();
+            notification.setMessageType("GameNotStartedNotification");
+            return gson.toJson(notification);
+        }
         boolean ans1;
         boolean ans2=false;
         Message message = new Message();

@@ -42,11 +42,12 @@ public class Client {
 
                 if (type.equals("CLI")) {
                     CLI cli = new CLI();
+                    serverReader.setCli(cli);
                     Thread thread = new Thread(cli);
                     thread.start();
                     while (true) {
                         if ((userInput = cli.getUserInput()) != null) {
-                            if(userInput.equals("Invalid command"))
+                            if(userInput.equals("Invalid command."))
                                 System.out.println("Invalid command. Use help to see all valid commands.");
                             else if(!userInput.equals("Show"))
                                 out.println(userInput);

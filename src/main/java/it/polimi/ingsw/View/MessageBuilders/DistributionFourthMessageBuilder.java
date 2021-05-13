@@ -22,7 +22,7 @@ public class DistributionFourthMessageBuilder extends MessageBuilder{
         Scanner input = new Scanner(System.in);
         Gson gson = new Gson();
         DistributionFourthMessage message = new DistributionFourthMessage();
-        message.setMessageType("DistributionFourthMessage");
+        message.setMessageType("DistributionFourth");
         message.setSenderNickname(nickname);
 
         do {

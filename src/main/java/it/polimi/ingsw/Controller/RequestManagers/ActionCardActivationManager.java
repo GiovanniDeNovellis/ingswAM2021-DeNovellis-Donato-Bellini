@@ -16,6 +16,12 @@ public class ActionCardActivationManager implements Manageable{
 
     @Override
     public String manageRequest(String jsonContent) {
+        if(!controller.getGame().isGameStarted()){
+            Gson gson = new Gson();
+            Message notification = new Message();
+            notification.setMessageType("GameNotStartedNotification");
+            return gson.toJson(notification);
+        }
         String type = controller.getGame().getActionCardStack().getCards().get(0).getType();
         if (controller.getGame().activateActionCard()) {
             Gson gson = new Gson();

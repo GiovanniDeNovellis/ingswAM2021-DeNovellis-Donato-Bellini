@@ -13,6 +13,10 @@ public class EndTurnNotificationMessage extends Message{
     private Map<ResourceType,Integer> temporaryResources;
     private int blackFaithPoints;
 
+    public EndTurnNotificationMessage() {
+        messageType="EndTurnNotificationMessage";
+    }
+
     public String getActualCurrentPlayer() {
         return actualCurrentPlayer;
     }

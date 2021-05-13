@@ -16,6 +16,12 @@ public class    ActivateProductionManager implements Manageable {
 
     @Override
     public String manageRequest(String jsonContent) {
+        if(!controller.getGame().isGameStarted()){
+            Gson gson = new Gson();
+            Message notification = new Message();
+            notification.setMessageType("GameNotStartedNotification");
+            return gson.toJson(notification);
+        }
         Gson gson = new Gson();
         ActivateProductionMessage message = gson.fromJson(jsonContent, ActivateProductionMessage.class);
         int[] faithCardsBefore = controller.getVaticanReport().clone();
@@ -31,8 +37,8 @@ public class    ActivateProductionManager implements Manageable {
                     message.getPayUsingExtraDeposit()[0],
                     message.getPayUsingExtraDeposit()[1])) {
 
-                SimpleMessage mex = new SimpleMessage();
-                mex.setMessageContent("ActivateProductionSuccessNotification");
+                Message mex = new Message();
+                mex.setMessageType("ActivateProductionSuccessNotification");
                 NotifyActivateProductionMessage notification = new NotifyActivateProductionMessage();
                 notification.setMessageType("NotifyActivateProductionMessage");
                 notification.setWhoActivatesProduction(message.getSenderNickname());
@@ -82,13 +88,13 @@ public class    ActivateProductionManager implements Manageable {
 
                 return gson.toJson(mex);
             } else {
-                SimpleMessage mex = new SimpleMessage();
-                mex.setMessageContent("ActivateProductionFailureNotification");
+                Message mex = new Message();
+                mex.setMessageType("ActivateProductionFailureNotification");
                 return gson.toJson(mex);
             }
         }
-        SimpleMessage mex = new SimpleMessage();
-        mex.setMessageContent("NotYourTurnNotification");
+        Message mex = new Message();
+        mex.setMessageType("NotYourTurnNotification");
         return gson.toJson(mex);
     }
 }
