@@ -62,7 +62,10 @@ public class ClientHandler implements Runnable {
                     AddPlayerMessage addMessage = gson.fromJson(line,AddPlayerMessage.class);
                     String tempNickname = addMessage.getSenderNickname();
                     if(resp.getMessageType().equals("PlayerAddedNotification")){
-                        out.println(response);
+                        LoginOkNotificationMessage m = new LoginOkNotificationMessage();
+                        m.setMessageType("LoginOkNotification");
+                        m.setSenderNickname(tempNickname);
+                        out.println(gson.toJson(m));
                         out.flush();
                         clientNickname=tempNickname;
                         loginDone=true;
@@ -116,7 +119,10 @@ public class ClientHandler implements Runnable {
                                         }
                                         out.println(gson.toJson(reconnectConfigurationMessage));
                                     }
-                                    s = gson.toJson(mex);
+                                    LoginOkNotificationMessage m = new LoginOkNotificationMessage();
+                                    m.setMessageType("LoginOkNotification");
+                                    m.setSenderNickname(tempNickname);
+                                    s = gson.toJson(m);
                                     out.println(s);
                                     out.flush();
                                     clientNickname = tempNickname;

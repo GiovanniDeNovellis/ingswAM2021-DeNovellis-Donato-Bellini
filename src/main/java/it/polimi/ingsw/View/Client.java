@@ -13,6 +13,7 @@ public class Client {
     public static void main(String[] args) {
             String hostName = "127.0.0.1";
             int portNumber = 1234;
+            //COMMENT FOR FIRST DEBUG
             //String type=args[0];
             String type = "CLI";
             try (
@@ -35,15 +36,19 @@ public class Client {
                     if((userInput = stdIn.readLine()) != null) {
                         out.println(userInput);
                     }
-                    out.println(userInput);
-                }*/
+                }
+                /*
+                */
+
                 if (type.equals("CLI")) {
                     CLI cli = new CLI();
                     Thread thread = new Thread(cli);
                     thread.start();
                     while (true) {
                         if ((userInput = cli.getUserInput()) != null) {
-                            if(!userInput.equals("Show"))
+                            if(userInput.equals("Invalid command"))
+                                System.out.println("Invalid command. Use help to see all valid commands.");
+                            else if(!userInput.equals("Show"))
                                 out.println(userInput);
                             cli.setUserInput(null);
                         }
@@ -55,6 +60,7 @@ public class Client {
                     System.err.println("Wrong config");
                     System.exit(1);
                 }
+            // UNCOMMENT FOR FIRST DEBUG*/
             } catch (UnknownHostException e) {
                 System.err.println("Don't know about host " + hostName);
                 System.exit(1);

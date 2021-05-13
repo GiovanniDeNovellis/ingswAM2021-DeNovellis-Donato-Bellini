@@ -11,4 +11,12 @@ public class ActivateLeaderAbilityMessage extends Message{
     public int getPosition() {
         return position;
     }
+
+    public void setSenderNickname(String senderNickname) {
+        this.senderNickname = senderNickname;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
 }

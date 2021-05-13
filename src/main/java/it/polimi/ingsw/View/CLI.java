@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 public class CLI implements Runnable{
     private String userInput=null;
     private final VirtualView virtualView = new VirtualView();
-    private String nickname;
+    private String nickname; // TODO settare quando si riceve un LoginOkNotification dal server
 
     public void run(){
         BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));

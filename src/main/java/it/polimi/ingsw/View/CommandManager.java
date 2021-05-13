@@ -17,22 +17,28 @@ public class CommandManager {
         switch (userInput) {
    //Help to show all commands
             case "help":
-
+                toBuild = new HelpMessageBuilder();
+                return toBuild.buildMessage();
 //Logging in
             case "login":
-
+                toBuild = new LoginMessageBuilder();
+                return toBuild.buildMessage();
 //Activating production
             case "ActivateProduction":
-
+                toBuild = new ActivateProductionMessageBuilder(nickname);
+                return toBuild.buildMessage();
 //Activating leader card(s)
             case "ActivateLeaderCard":
-
+                toBuild = new ActivateLeaderCardMessageBuilder(nickname);
+                return toBuild.buildMessage();
 //Activating leader ability
             case "ActivateLeaderAbility":
-
+                toBuild = new ActivateLeaderAbilityMessageBuilder(nickname);
+                return toBuild.buildMessage();
 //Activating action card
             case "ActionCardActivation":
-
+                toBuild = new ActivateActionCardMessageBuilder();
+                return toBuild.buildMessage();
 //Activating SwitchLevels
             case "SwitchLevels":
                 toBuild = new SwitchLevelMessageBuilder(nickname);
@@ -73,7 +79,6 @@ public class CommandManager {
             case "EndTurnRequest":
                 toBuild = new EndTurnRequestMessageBuilder(nickname);
                 return toBuild.buildMessage();
-
         }
         return "Invalid command";
     }

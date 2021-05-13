@@ -38,4 +38,32 @@ public class ActivateProductionMessage extends Message{
     public int[] getPayUsingExtraDeposit() {
         return payUsingExtraDeposit;
     }
+
+    public void setSenderNickname(String senderNickname) {
+        this.senderNickname = senderNickname;
+    }
+
+    public void setWhichDevCardSlot(boolean[] whichDevCardSlot) {
+        this.whichDevCardSlot = whichDevCardSlot;
+    }
+
+    public void setFromPersonalBoard(boolean fromPersonalBoard) {
+        this.fromPersonalBoard = fromPersonalBoard;
+    }
+
+    public void setResourceBaseProduction(ResourceType[] resourceBaseProduction) {
+        this.resourceBaseProduction = resourceBaseProduction;
+    }
+
+    public void setWhichLeaderCard(boolean[] whichLeaderCard) {
+        this.whichLeaderCard = whichLeaderCard;
+    }
+
+    public void setResourceFromLeader(ResourceType[] resourceFromLeader) {
+        this.resourceFromLeader = resourceFromLeader;
+    }
+
+    public void setPayUsingExtraDeposit(int[] payUsingExtraDeposit) {
+        this.payUsingExtraDeposit = payUsingExtraDeposit;
+    }
 }
