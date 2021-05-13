@@ -80,7 +80,8 @@ public class CommandManager {
                 toBuild = new EndTurnRequestMessageBuilder(nickname);
                 return toBuild.buildMessage();
         }
-        return "Invalid command";
+        return "Invalid command.";
+
     }
 
 }
