@@ -26,27 +26,13 @@ public class DistributionSecondThirdMessageBuilder extends MessageBuilder{
         message.setSenderNickname(nickname);
 
         do {
-            System.out.println("Write the resource you want to obtain through initial distribution: [\"shields\",\"coins\",\"servants\",\"stones\"]");
+            System.out.println("Write resource you want to obtain through initial distribution: [\"SHIELDS\",\"COINS\",\"SERVANTS\",\"STONES\"]");
             resourceType = input.nextLine();
-        }while (!(resourceType.equals("shields") || resourceType.equals("coins") || resourceType.equals("servants") || resourceType.equals("stones")) );
+        }while(!(resourceType.equals("SHIELDS") || resourceType.equals("COINS") || resourceType.equals("SERVANTS") || resourceType.equals("STONES")) );
 
-        switch (resourceType) {
-            case "shields":
-                message.setResourceToDistribute(ResourceType.SHIELDS);
-                break;
-            case "coins":
-                message.setResourceToDistribute(ResourceType.COINS);
-                break;
-            case "servants":
-                message.setResourceToDistribute(ResourceType.SERVANTS);
-                break;
-            case "stones":
-                message.setResourceToDistribute(ResourceType.STONES);
-                break;
-        }
+        message.setResourceToDistribute(ResourceType.valueOf(resourceType));
 
         return gson.toJson(message);
     }
-
 
 }

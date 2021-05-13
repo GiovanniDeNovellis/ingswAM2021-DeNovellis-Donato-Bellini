@@ -7,6 +7,8 @@ import it.polimi.ingsw.ResourceType;
 
 import java.util.Scanner;
 
+import static it.polimi.ingsw.ResourceType.*;
+
 public class DistributionFourthMessageBuilder extends MessageBuilder{
     String nickname;
     String resourceType;
@@ -24,53 +26,19 @@ public class DistributionFourthMessageBuilder extends MessageBuilder{
         message.setSenderNickname(nickname);
 
         do {
-            System.out.println("Write the first resource you want to obtain through initial distribution: [\"shields\",\"coins\",\"servants\",\"stones\"]");
+            System.out.println("Write the first resource you want to obtain through initial distribution: [\"SHIELDS\",\"COINS\",\"SERVANTS\",\"STONES\"]");
             resourceType = input.nextLine();
-        }while (!(resourceType.equals("shields") || resourceType.equals("coins") || resourceType.equals("servants") || resourceType.equals("stones")) );
+        }while(!(resourceType.equals("SHIELDS") || resourceType.equals("COINS") || resourceType.equals("SERVANTS") || resourceType.equals("STONES")) );
 
-        setResourceType(resourceType, message);
+        message.setResourceToDistribute(ResourceType.valueOf(resourceType));
 
         do {
-            System.out.println("Write the second resource you want to obtain through initial distribution: [\"shields\",\"coins\",\"servants\",\"stones\"]");
+            System.out.println("Write the second resource you want to obtain through initial distribution: [\"SHIELDS\",\"COINS\",\"SERVANTS\",\"STONES\"]");
             resourceType = input.nextLine();
-        }while (!(resourceType.equals("shields") || resourceType.equals("coins") || resourceType.equals("servants") || resourceType.equals("stones")) );
+        }while (!(resourceType.equals("SHIELDS") || resourceType.equals("COINS") || resourceType.equals("SERVANTS") || resourceType.equals("STONES")) );
 
-        setSecondResourceType(resourceType, message);
+        message.setSecondResourceToDistribute(ResourceType.valueOf(resourceType));
 
         return gson.toJson(message);
-    }
-
-    private void setResourceType(String resourceType, DistributionFourthMessage message){
-        switch (resourceType) {
-            case "shields":
-                message.setResourceToDistribute(ResourceType.SHIELDS);
-                break;
-            case "coins":
-                message.setResourceToDistribute(ResourceType.COINS);
-                break;
-            case "servants":
-                message.setResourceToDistribute(ResourceType.SERVANTS);
-                break;
-            case "stones":
-                message.setResourceToDistribute(ResourceType.STONES);
-                break;
-        }
-    }
-
-    private void setSecondResourceType(String resourceType, DistributionFourthMessage message){
-        switch (resourceType) {
-            case "shields":
-                message.setSecondResourceToDistribute(ResourceType.SHIELDS);
-                break;
-            case "coins":
-                message.setSecondResourceToDistribute(ResourceType.COINS);
-                break;
-            case "servants":
-                message.setSecondResourceToDistribute(ResourceType.SERVANTS);
-                break;
-            case "stones":
-                message.setSecondResourceToDistribute(ResourceType.STONES);
-                break;
-        }
     }
 }
