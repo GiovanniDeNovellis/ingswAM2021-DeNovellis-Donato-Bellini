@@ -73,9 +73,9 @@ public class CommandManager {
             case "EndTurnRequest":
                 toBuild = new EndTurnRequestMessageBuilder(nickname);
                 return toBuild.buildMessage();
-
         }
-        return "Invalid command";
+        return "Invalid command.";
+
     }
 
 }

@@ -25,7 +25,7 @@ public class BuyDevelopmentCardMessageBuilder extends MessageBuilder {
         message.setSenderNickname(nickname);
 
         do{
-            System.out.println("Write (in CAPS LOCK) the colour of the Development Card you want to buy: [\"PURPLE\",\"GREEN\",\"BLUE\",\"YELLOW\"]");
+            System.out.println("Write the colour of the Development Card you want to buy: [\"PURPLE\",\"GREEN\",\"BLUE\",\"YELLOW\"]");
             colour = input.nextLine();
         }while (!(colour.equals("PURPLE") || colour.equals("GREEN") || colour.equals("BLUE") || colour.equals("YELLOW")) );
         message.setColour(Colour.valueOf(colour));

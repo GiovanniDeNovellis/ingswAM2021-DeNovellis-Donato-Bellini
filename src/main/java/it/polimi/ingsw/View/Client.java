@@ -43,6 +43,8 @@ public class Client {
                     thread.start();
                     while (true) {
                         if ((userInput = cli.getUserInput()) != null) {
+                            if( userInput.equals("Invalid command."))
+                                System.out.println("Invalid command. Insert a valid one.");
                             if(!userInput.equals("Show"))
                                 out.println(userInput);
                             cli.setUserInput(null);

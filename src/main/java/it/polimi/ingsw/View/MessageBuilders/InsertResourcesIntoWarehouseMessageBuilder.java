@@ -26,12 +26,8 @@ public class InsertResourcesIntoWarehouseMessageBuilder extends MessageBuilder {
         message.setMessageType("InsertResourcesIntoWarehouse");
         message.setSenderNickname(nickname);
 
-        System.out.println("Write the quantity of resource that you want to insert into warehouse:");
-        quantity = input.nextInt();
-        message.setQuantityToInsert(quantity);
-
         do {
-            System.out.println("Write the type of resource you want to that you want to insert into warehouse: [\"SHIELDS\",\"COINS\",\"SERVANTS\",\"STONES\"]");
+            System.out.println("Write the type of resource you want to insert into warehouse: [\"SHIELDS\",\"COINS\",\"SERVANTS\",\"STONES\"]");
             resourceType = input.nextLine();
         } while (!(resourceType.equals("SHIELDS") || resourceType.equals("COINS") || resourceType.equals("SERVANTS") || resourceType.equals("STONES")));
         message.setResourceToInsert(ResourceType.valueOf(resourceType));

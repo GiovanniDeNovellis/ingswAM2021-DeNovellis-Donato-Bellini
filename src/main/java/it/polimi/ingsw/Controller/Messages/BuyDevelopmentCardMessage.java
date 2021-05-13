@@ -23,7 +23,7 @@ public class BuyDevelopmentCardMessage extends Message{
     private int level;
     private Colour colour;
     private int slot;
-    private int[] payUsingExtraDeposit;
+    private final int[] payUsingExtraDeposit = new int[2];
 
     public void setSenderNickname(String senderNickname) {
         this.senderNickname = senderNickname;
