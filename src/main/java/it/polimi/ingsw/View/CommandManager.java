@@ -35,19 +35,24 @@ public class CommandManager {
 
 //Activating SwitchLevels
             case "SwitchLevels":
-
+                toBuild = new SwitchLevelMessageBuilder(nickname);
+                return toBuild.buildMessage();
 //Activating TakeResourceFromMarket
             case "TakeResourcesFromMarket":
-
+                toBuild = new TakeResourceFromMarketMessageBuilder(nickname);
+                return toBuild.buildMessage();
 //Activating InsertResourceIntoWarehouse
             case "InsertResourcesIntoWarehouse":
-
+                toBuild = new InsertResourcesIntoWarehouseMessageBuilder(nickname);
+                return toBuild.buildMessage();
 //Activating BuyDevelopmentCard
             case "BuyDevelopmentCard":
-
+                toBuild = new BuyDevelopmentCardMessageBuilder(nickname);
+                return toBuild.buildMessage();
 //Starting single player mode
             case "StartSinglePlayer":
-
+                toBuild = new StartSinglePlayerMessageBuilder();
+                return toBuild.buildMessage();
 //Starting a multi player game
             case "StartMultiPlayer":
                 toBuild = new StartMultiPlayerMessageBuilder();
