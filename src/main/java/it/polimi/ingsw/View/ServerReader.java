@@ -31,12 +31,15 @@ public class ServerReader implements Runnable {
                         //TODO METTERE IL TIPO AI MESSAGGI CHE NON LO HANNO
                         System.err.println("Ricevuto messaggio senza tipo!");
                     }
-                    else if(mex.getMessageType().equals("LoginOkNotification")){
+                    else if(mex.getMessageType().equals("LoginOkNotification") && cli!=null ){
                         LoginOkNotificationMessage log = gson.fromJson(serverOutput,LoginOkNotificationMessage.class);
                         cli.setNickname(log.getSenderNickname());
+                        NotificationManager notificationManager = new NotificationManager(cli.getVirtualView());
+                        notificationManager.manageNotification(serverOutput);
                     }
                     else if(cli!=null){
                         NotificationManager notificationManager = new NotificationManager(cli.getVirtualView());
+                        notificationManager.manageNotification(serverOutput);
                     }
                     //System.out.println(serverOutput);  DEBUG
                 }

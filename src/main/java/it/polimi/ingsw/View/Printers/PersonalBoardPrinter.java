@@ -55,4 +55,8 @@ public class PersonalBoardPrinter implements Printable{
     public void setOwnerNickname(String ownerNickname) {
         this.ownerNickname = ownerNickname;
     }
+
+    public String getOwnerNickname() {
+        return ownerNickname;
+    }
 }

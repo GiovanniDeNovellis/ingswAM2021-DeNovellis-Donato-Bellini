@@ -1,21 +1,20 @@
 package it.polimi.ingsw.View;
 
-import it.polimi.ingsw.View.Printers.DeckGridPrinter;
-import it.polimi.ingsw.View.Printers.MarketBoardPrinter;
-import it.polimi.ingsw.View.Printers.Printable;
+import it.polimi.ingsw.View.Printers.*;
 
 import java.util.ArrayList;
 
 public class VirtualView {
-    private Printable marketBoardPrinter = new MarketBoardPrinter();
-    private Printable deckGridPrinter = new DeckGridPrinter();
-    private ArrayList<Printable> personalBoards = new ArrayList<>();
-    private ArrayList<Printable> leaderCardsPrinters = new ArrayList<>();
+    private MarketBoardPrinter marketBoardPrinter = new MarketBoardPrinter();
+    private DeckGridPrinter deckGridPrinter = new DeckGridPrinter();
+    private ArrayList<PersonalBoardPrinter> personalBoards = new ArrayList<>();
+    private ArrayList<LeaderCardsPrinter> leaderCardsPrinters = new ArrayList<>();
     private int blackFaithPoints;
 
     public void print(Printable p){
         p.print();
     }
+
 
     public Printable getMarketBoardPrinter() {
         return marketBoardPrinter;
@@ -25,11 +24,11 @@ public class VirtualView {
         return deckGridPrinter;
     }
 
-    public ArrayList<Printable> getPersonalBoards() {
+    public ArrayList<PersonalBoardPrinter> getPersonalBoards() {
         return personalBoards;
     }
 
-    public ArrayList<Printable> getLeaderCardsPrinters() {
+    public ArrayList<LeaderCardsPrinter> getLeaderCardsPrinters() {
         return leaderCardsPrinters;
     }
 

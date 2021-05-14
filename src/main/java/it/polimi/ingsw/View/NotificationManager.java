@@ -2,6 +2,9 @@ package it.polimi.ingsw.View;
 
 import com.google.gson.Gson;
 import it.polimi.ingsw.Controller.Messages.Message;
+import it.polimi.ingsw.Controller.Messages.NotifyInsertedOkMessage;
+import it.polimi.ingsw.View.NotificationReaders.InsertedResourceChanged;
+import it.polimi.ingsw.View.NotificationReaders.NotificationReader;
 
 public class NotificationManager {
     public NotificationManager(VirtualView virtualView){
@@ -14,8 +17,26 @@ public class NotificationManager {
         Gson gson = new Gson();
         Message toRead = gson.fromJson(notification, Message.class);
         String messageType = toRead.getMessageType();
+        NotificationReader reader;
 
         switch (messageType){
+            case "LoginOkNotification":
+                System.out.println("Logged in.");
+            case "InvalidLoginNotification":
+                System.out.println("Nickname already used. Choose another nickname.");
+                break;
+            case"ConnectionAcceptedPleaseLoginNotification":
+                System.out.println("Connection accepted. Please log in.");
+                break;
+            case"PlayerInNotification":
+                break;
+            case"ExpectedLoginRequestNotification":
+                System.out.println("Expected login. Please log in before doing this action.");
+                break;
+            case"PlayerOutNotification":
+                break;
+
+
             case"GameNotStartedNotification":
                 break;
             case"MoveLorenzo":
@@ -77,6 +98,8 @@ public class NotificationManager {
             case"InsertedResourcesSuccessNotification":
                 break;
             case"InsertedResourceChanged":
+                reader = new InsertedResourceChanged(virtualView);
+                reader.readNotification(notification);
                 break;
             case"ChoosedLeaderCardsMessage":
                 break;
@@ -99,6 +122,7 @@ public class NotificationManager {
             case"SwitchLevelsFailureNotification":
                 break;
             case"InsertedResourcesFailureNotification":
+                System.out.println("Resource(s) insertion failed. Try again.");
                 break;
             case"TakeResourceFromMarketSuccessNotification":
                 break;
