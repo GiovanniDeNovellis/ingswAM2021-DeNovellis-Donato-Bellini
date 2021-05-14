@@ -10,10 +10,6 @@ public class ChoosedLeaderCardsMessage extends Message{
     private int secondChosenLeaderCardNumber;
     private String senderNickname;
 
-    public ChoosedLeaderCardsMessage() {
-        messageType="ChoosedLeaderCardsMessage";
-    }
-
     public String getMessageContent() {
         return messageContent;
     }

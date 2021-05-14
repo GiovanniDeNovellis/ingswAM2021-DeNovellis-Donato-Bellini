@@ -39,4 +39,8 @@ public class CLI implements Runnable{
     public void setNickname(String nickname) {
         this.nickname = nickname;
     }
+
+    public VirtualView getVirtualView() {
+        return virtualView;
+    }
 }

@@ -35,7 +35,10 @@ public class ServerReader implements Runnable {
                         LoginOkNotificationMessage log = gson.fromJson(serverOutput,LoginOkNotificationMessage.class);
                         cli.setNickname(log.getSenderNickname());
                     }
-                    System.out.println(serverOutput);
+                    else if(cli!=null){
+                        NotificationManager notificationManager = new NotificationManager(cli.getVirtualView());
+                    }
+                    //System.out.println(serverOutput);  DEBUG
                 }
             }
         }

@@ -29,6 +29,7 @@ public class StartMultiPlayerManager implements Manageable {
                     for (Player player : players) {
                         if (clientHandler.getClientNickname().equals(player.getNickname())) {
                             MultiplayerCreationMessage multiplayerCreationMessage = new MultiplayerCreationMessage();
+                            multiplayerCreationMessage.setMessageType("MultiPlayerCreationMessage");
                             multiplayerCreationMessage.setPlayerNumber(player.getPlayerNumber());
                             multiplayerCreationMessage.setChoosableLeaderCards(player.getChoosableLeaderCards());
                             multiplayerCreationMessage.setDeckgridConfiguration(controller.getGame().getDeckgrid());

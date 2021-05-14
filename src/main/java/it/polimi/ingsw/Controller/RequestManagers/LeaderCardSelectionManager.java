@@ -48,6 +48,7 @@ public class LeaderCardSelectionManager implements Manageable{
             if(ans2){
                 ChoosedLeaderCardsMessage mex = new ChoosedLeaderCardsMessage();
                 mex.setSenderNickname(nickname);
+                mex.setMessageType("ChoosedLeaderCardsMessage");
                 mex.setFirstChosenLeaderCardNumber(num1);
                 mex.setSecondChosenLeaderCardNumber(num2);
                 String notificationForAll = gson.toJson(mex);

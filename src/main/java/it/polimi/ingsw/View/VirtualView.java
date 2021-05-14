@@ -45,6 +45,6 @@ public class VirtualView {
         for(int i=0;i<10;i++){
             System.out.print("\n");
         }
-        //printo tutto
+        //printo tutto quando cambia la CLI in seguito ad un'azione di un player
     }
 }

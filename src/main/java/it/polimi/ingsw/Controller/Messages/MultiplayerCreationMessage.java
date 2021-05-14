@@ -12,11 +12,6 @@ public class MultiplayerCreationMessage extends Message{
     private Deckgrid deckgridConfiguration;
     private Marble[][] marbleGridConfiguration;
 
-    public MultiplayerCreationMessage() {
-        super();
-        messageType= "MultiPlayerCreationMessage";
-    }
-
     public void setPlayerNumber(int playerNumber) {
         this.playerNumber = playerNumber;
     }

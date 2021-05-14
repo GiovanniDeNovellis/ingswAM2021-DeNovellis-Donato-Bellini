@@ -2,14 +2,9 @@ package it.polimi.ingsw.Controller.Messages;
 
 import it.polimi.ingsw.WareHouseDepot;
 
-public class NotifyWarehouseChangeMessage extends Message {
+public class NotifyWarehouseChangedMessage extends Message {
     private WareHouseDepot warehouseConfiguration;
     private String playerToChange;
-
-    public NotifyWarehouseChangeMessage() {
-        super();
-        messageType="NotifyWareHouseChangeMessage";
-    }
 
     public String getNickname() {
         return senderNickname;
@@ -36,4 +31,5 @@ public class NotifyWarehouseChangeMessage extends Message {
     public void setPlayerToChange(String playerToChange) {
         this.playerToChange = playerToChange;
     }
+
 }

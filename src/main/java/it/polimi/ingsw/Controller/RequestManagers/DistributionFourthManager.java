@@ -5,7 +5,7 @@ import it.polimi.ingsw.Controller.ClientHandler;
 import it.polimi.ingsw.Controller.Controller;
 import it.polimi.ingsw.Controller.Messages.DistributionFourthMessage;
 import it.polimi.ingsw.Controller.Messages.Message;
-import it.polimi.ingsw.Controller.Messages.NotifyWarehouseChangeMessage;
+import it.polimi.ingsw.Controller.Messages.NotifyWarehouseChangedMessage;
 import it.polimi.ingsw.WareHouseDepot;
 
 public class DistributionFourthManager implements Manageable {
@@ -41,9 +41,10 @@ public class DistributionFourthManager implements Manageable {
             }
         if(ans1){
             if(ans2){
-                NotifyWarehouseChangeMessage mex = new NotifyWarehouseChangeMessage();
+                NotifyWarehouseChangedMessage mex = new NotifyWarehouseChangedMessage();
                 mex.setWarehouseConfiguration(whouse);
                 mex.setPlayerToChange(nickname);
+                mex.setMessageType("NotifyWareHouseChangeMessage");
                 String notificationForAll = gson.toJson(mex);
                     for(ClientHandler c : controller.getConnectedClients()){
                         c.notifyInterface(notificationForAll);
