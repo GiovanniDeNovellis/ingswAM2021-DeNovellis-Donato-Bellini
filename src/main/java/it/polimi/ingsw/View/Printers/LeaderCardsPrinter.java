@@ -21,4 +21,8 @@ public class LeaderCardsPrinter implements Printable{
     public void activateLeaderCard(int position){
         activatedLeaderCards[position]=true;
     }
+
+    public String getOwnerNickname() {
+        return ownerNickname;
+    }
 }

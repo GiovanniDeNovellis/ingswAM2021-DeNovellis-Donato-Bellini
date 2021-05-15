@@ -8,9 +8,11 @@ import java.util.ArrayList;
 
 public class MultiplayerCreationMessage extends Message{
     private int playerNumber;
+    private String nickname;
     private ArrayList<LeaderCard> choosableLeaderCards;
     private Deckgrid deckgridConfiguration;
     private Marble[][] marbleGridConfiguration;
+    private Marble marbleOut;
 
     public void setPlayerNumber(int playerNumber) {
         this.playerNumber = playerNumber;
@@ -24,8 +26,14 @@ public class MultiplayerCreationMessage extends Message{
         return playerNumber;
     }
 
-    public ArrayList<LeaderCard> getChoosableLeaderCards() {
-        return choosableLeaderCards;
+    public int[] getChoosableLeaderCardsNumbers() {
+        int[] leaderCardsNumbers = new int[4];
+        int i = 0;
+        for( LeaderCard l: choosableLeaderCards){
+            leaderCardsNumbers[i] = l.getLeaderCardNumber();
+            i++;
+        }
+        return leaderCardsNumbers;
     }
 
     public Deckgrid getDeckgridConfiguration() {
@@ -42,5 +50,21 @@ public class MultiplayerCreationMessage extends Message{
 
     public void setMarbleGridConfiguration(Marble[][] marbleGridConfiguration) {
         this.marbleGridConfiguration = marbleGridConfiguration;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public Marble getMarbleOut() {
+        return marbleOut;
+    }
+
+    public void setMarbleOut(Marble marbleOut) {
+        this.marbleOut = marbleOut;
     }
 }

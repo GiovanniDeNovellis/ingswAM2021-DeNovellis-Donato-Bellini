@@ -6,6 +6,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class TemporaryResourcesChangedMessage extends Message{
+
+    private String senderNickname;
+    private Map<ResourceType,Integer> temporaryResourcesConfiguration;
+
     public String getNickname() {
         return senderNickname;
     }
@@ -14,10 +18,6 @@ public class TemporaryResourcesChangedMessage extends Message{
         this.senderNickname = senderNickname;
     }
 
-    private String senderNickname;
-
-    private Map<ResourceType,Integer> temporaryResourcesConfiguration;
-
     public Map<ResourceType, Integer> getTemporaryResourcesConfiguration() {
         return temporaryResourcesConfiguration;
     }
@@ -25,4 +25,5 @@ public class TemporaryResourcesChangedMessage extends Message{
     public void setTemporaryResourcesConfiguration(Map<ResourceType, Integer> temporaryResourcesConfiguration) {
         this.temporaryResourcesConfiguration = temporaryResourcesConfiguration;
     }
+
 }

@@ -16,11 +16,11 @@ public class VirtualView {
     }
 
 
-    public Printable getMarketBoardPrinter() {
+    public MarketBoardPrinter getMarketBoardPrinter() {
         return marketBoardPrinter;
     }
 
-    public Printable getDeckGridPrinter() {
+    public DeckGridPrinter getDeckGridPrinter() {
         return deckGridPrinter;
     }
 

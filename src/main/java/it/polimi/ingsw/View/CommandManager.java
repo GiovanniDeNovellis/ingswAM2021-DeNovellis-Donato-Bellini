@@ -15,6 +15,7 @@ public class CommandManager {
     public String manage(String userInput){
         MessageBuilder toBuild;
         switch (userInput) {
+            //TODO( AGGIUNGERE I COMANDI SHOW )
    //Help to show all commands
             case "help":
                 toBuild = new HelpMessageBuilder();
