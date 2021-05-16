@@ -137,7 +137,7 @@ public class NotificationManager {
                 reader.readNotification(notification);
                 break;
             case"ChosenLeaderCardsMessage":
-                reader = new ChosenLeaderCards(virtualView);
+                reader = new ChosenLeaderCards(modelPrinter);
                 reader.readNotification(notification);
                 break;
             case"LeaderCardSelectionOkNotification":
@@ -147,7 +147,7 @@ public class NotificationManager {
                 System.out.println("You have already chosen your Leader cards! Please try another game action.");
                 break;
             case"MultiPlayerCreationMessage":
-                reader = new MultiPlayerCreation(virtualView);
+                reader = new MultiPlayerCreation(modelPrinter);
                 reader.readNotification(notification);
                 break;
             case"MultiPlayerCreationOkNotification":
@@ -178,7 +178,7 @@ public class NotificationManager {
                 System.out.println("You have correctly taken resources from market!Place them in your warehouse.");
                 break;
             case"TemporaryResourcesChanged":
-                reader = new TemporaryResourcesChanged(virtualView);
+                reader = new TemporaryResourcesChanged(modelPrinter);
                 reader.readNotification(notification);
                 break;
             case"TakeResourceFromMarketFailureNotification":

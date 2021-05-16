@@ -2,15 +2,15 @@ package it.polimi.ingsw.View.NotificationReaders;
 
 import com.google.gson.Gson;
 import it.polimi.ingsw.Controller.Messages.ChosenLeaderCardsMessage;
+import it.polimi.ingsw.View.ModelPrinter;
 import it.polimi.ingsw.View.Printers.LeaderCardsPrinter;
-import it.polimi.ingsw.View.VirtualView;
 
 public class ChosenLeaderCards extends NotificationReader{
 
     String nickname;
 
-    public ChosenLeaderCards(VirtualView virtualView){
-        super(virtualView);
+    public ChosenLeaderCards(ModelPrinter modelPrinter){
+        super(modelPrinter);
     }
 
     @Override
@@ -20,10 +20,12 @@ public class ChosenLeaderCards extends NotificationReader{
 
         nickname = data.getSenderNickname();
         printNotification();
-        for(LeaderCardsPrinter l : virtualView.getLeaderCardsPrinters() ){
+        int[] num = new int[2];
+        for(LeaderCardsPrinter l : modelPrinter.getLeaderCardsPrinters() ){
             if( l.getOwnerNickname().equals(nickname) ){
-                l.setChoosedLeaderCard(0, data.getFirstChosenLeaderCardNumber() );
-                l.setChoosedLeaderCard(1, data.getSecondChosenLeaderCardNumber() );
+                num[0]=data.getFirstChosenLeaderCardNumber();
+                num[1]=data.getSecondChosenLeaderCardNumber();
+                l.setChoosedLeaderCards(num);
             }
         }
     }
