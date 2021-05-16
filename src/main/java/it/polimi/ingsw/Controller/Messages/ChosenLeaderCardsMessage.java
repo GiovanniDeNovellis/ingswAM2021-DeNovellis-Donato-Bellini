@@ -4,7 +4,7 @@ import it.polimi.ingsw.LeaderCard;
 
 import java.util.ArrayList;
 
-public class ChoosedLeaderCardsMessage extends Message{
+public class ChosenLeaderCardsMessage extends Message{
     private String messageContent;
     private int firstChosenLeaderCardNumber;
     private int secondChosenLeaderCardNumber;

@@ -3,7 +3,7 @@ package it.polimi.ingsw.Controller.RequestManagers;
 import com.google.gson.Gson;
 import it.polimi.ingsw.Controller.ClientHandler;
 import it.polimi.ingsw.Controller.Controller;
-import it.polimi.ingsw.Controller.Messages.ChoosedLeaderCardsMessage;
+import it.polimi.ingsw.Controller.Messages.ChosenLeaderCardsMessage;
 import it.polimi.ingsw.Controller.Messages.LeaderCardSelectionMessage;
 import it.polimi.ingsw.Controller.Messages.Message;
 import it.polimi.ingsw.LeaderCard;
@@ -46,9 +46,9 @@ public class LeaderCardSelectionManager implements Manageable{
             }
         if(ans1){
             if(ans2){
-                ChoosedLeaderCardsMessage mex = new ChoosedLeaderCardsMessage();
+                ChosenLeaderCardsMessage mex = new ChosenLeaderCardsMessage();
                 mex.setSenderNickname(nickname);
-                mex.setMessageType("ChoosedLeaderCardsMessage");
+                mex.setMessageType("ChosenLeaderCardsMessage");
                 mex.setFirstChosenLeaderCardNumber(num1);
                 mex.setSecondChosenLeaderCardNumber(num2);
                 String notificationForAll = gson.toJson(mex);

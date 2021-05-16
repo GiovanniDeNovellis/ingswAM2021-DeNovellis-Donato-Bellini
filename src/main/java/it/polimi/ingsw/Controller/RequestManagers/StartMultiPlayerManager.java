@@ -31,9 +31,11 @@ public class StartMultiPlayerManager implements Manageable {
                             MultiplayerCreationMessage multiplayerCreationMessage = new MultiplayerCreationMessage();
                             multiplayerCreationMessage.setMessageType("MultiPlayerCreationMessage");
                             multiplayerCreationMessage.setPlayerNumber(player.getPlayerNumber());
+                            multiplayerCreationMessage.setNickname(player.getNickname());
                             multiplayerCreationMessage.setChoosableLeaderCards(player.getChoosableLeaderCards());
                             multiplayerCreationMessage.setDeckgridConfiguration(controller.getGame().getDeckgrid());
                             multiplayerCreationMessage.setMarbleGridConfiguration(controller.getGame().getMarketBoard().getMarketGrid());
+                            multiplayerCreationMessage.setMarbleOut(controller.getGame().getMarketBoard().getMarbleOut());
                             String s = gson.toJson(multiplayerCreationMessage);
                             clientHandler.notifyInterface(s);
                         }

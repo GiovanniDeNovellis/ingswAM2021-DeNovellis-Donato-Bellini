@@ -10,9 +10,11 @@ import java.util.Map;
 
 public class PersonalBoardPrinter implements Printable{
     private String ownerNickname;
+    private int playerNumber;
     private DevelopmentCard[] developmentCards = new DevelopmentCard[3]; //RICORDA CONTROLLO A NULL SE UNO SLOT E' VUOTO
     private WareHouseDepot wareHouseDepot = new WareHouseDepot();
     private Map<ResourceType,Integer> strongbox = new HashMap<>();
+    private Map<ResourceType,Integer> temporaryResources = new HashMap<>();
     private ExtraDeposit extraDeposit1 = new ExtraDeposit(null);
     private ExtraDeposit extraDeposit2 = new ExtraDeposit(null);
     private int faithPoints=0;
@@ -58,5 +60,21 @@ public class PersonalBoardPrinter implements Printable{
 
     public String getOwnerNickname() {
         return ownerNickname;
+    }
+
+    public int getPlayerNumber() {
+        return playerNumber;
+    }
+
+    public void setPlayerNumber(int playerNumber) {
+        this.playerNumber = playerNumber;
+    }
+
+    public Map<ResourceType, Integer> getTemporaryResources() {
+        return temporaryResources;
+    }
+
+    public void setTemporaryResources(Map<ResourceType, Integer> temporaryResources) {
+        this.temporaryResources = temporaryResources;
     }
 }
