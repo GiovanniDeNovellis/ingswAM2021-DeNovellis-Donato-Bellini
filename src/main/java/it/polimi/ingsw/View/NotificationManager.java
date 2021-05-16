@@ -5,6 +5,8 @@ import it.polimi.ingsw.Controller.Messages.Message;
 import it.polimi.ingsw.Controller.Messages.PlayerOutNotification;
 import it.polimi.ingsw.View.NotificationReaders.*;
 
+import java.sql.SQLOutput;
+
 public class NotificationManager {
     public NotificationManager(ModelPrinter modelPrinter){
         this.modelPrinter = modelPrinter;
@@ -101,34 +103,45 @@ public class NotificationManager {
             case"ActivateLeaderCardFailureNotification":
                 System.out.println("You can't activate this leader card now.");
                 break;
+                //inizio
             case"ActivateProductionSuccessNotification":
+                System.out.println("Production successfully activated.");
                 break;
             case"NotifyActivateProductionMessage":
                 break;
             case"VaticanReportMessage":
                 break;
             case"ActivateProductionFailureNotification":
+                System.out.println("You can't activate the production now.");
                 break;
             case"PlayerAddedNotification":
+                System.out.println("Player successfully added to the game.");
                 break;
             case"AddPlayerNotificationForEveryone":
                 break;
             case"InvalidPlayerAddNotification":
+                System.out.println("Can't add other player into this game.");
                 break;
             case"BuyDevelopmentCardSuccessNotification":
+                System.out.println("Card successfully bought.");
                 break;
             case"DevelopmentCardBought":
                 break;
             case"BuyDevelopmentCardFailureNotification":
+                System.out.println("You can't buy the development card now.");
                 break;
             case"DistributionOkNotification":
+                System.out.println("Distribution successfully done, resource(s) received.");
                 break;
             case"NotifyWareHouseChangedMessage":
                 break;
             case"NotRightToDistributionNotification":
+                System.out.println("You don't have right to a free resource now.");
                 break;
             case"EndTurnNotificationMessage":
                 break;
+
+            //fine
             case"InsertedResourcesSuccessNotification":
                 System.out.println("You have correctly inserted resource(s) into your warehouse");
                 break;
