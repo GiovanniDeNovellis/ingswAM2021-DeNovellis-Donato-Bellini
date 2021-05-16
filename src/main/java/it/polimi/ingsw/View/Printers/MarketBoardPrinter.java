@@ -7,8 +7,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MarketBoardPrinter implements Printable {
-    private Marble[][] marbleGrid;
-    private Marble marbleOut;
+    private String[][] marbleGrid;
+    private String marbleOut;
     private Map<ResourceType,Integer> temporaryResources = new HashMap<>();
     private boolean built=false;
 
@@ -17,13 +17,13 @@ public class MarketBoardPrinter implements Printable {
 
     }
 
-    public void setMarbleGrid(Marble[][] marbleGrid) {
+    public void setMarbleGrid(String[][] marbleGrid) {
         if(!built)
             built=true;
         this.marbleGrid = marbleGrid;
     }
 
-    public void setMarbleOut(Marble marbleOut) {
+    public void setMarbleOut(String marbleOut) {
         if(!built)
             built=true;
         this.marbleOut = marbleOut;

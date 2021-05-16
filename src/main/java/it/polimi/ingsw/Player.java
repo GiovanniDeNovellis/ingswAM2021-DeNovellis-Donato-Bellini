@@ -567,4 +567,14 @@ public class Player {
     public ArrayList<LeaderCard> getChoosableLeaderCards() {
         return choosableLeaderCards;
     }
+
+    public int[] getChoosableLeadercardsNumber(){
+        int i = 0;
+        int[] numbers = new int[4];
+        for( LeaderCard l : choosedLeaderCards ) {
+            numbers[i] = l.getLeaderCardNumber();
+            i++;
+        }
+        return numbers;
+    }
 }

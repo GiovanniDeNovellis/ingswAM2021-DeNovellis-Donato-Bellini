@@ -31,7 +31,8 @@ public class TakeResourcesFromMarketManager implements Manageable{
                 notification.setNickname(controller.getGame().getCurrentPlayer().getNickname());
                 notification.setTemporaryResourcesConfiguration(controller.getGame().getMarketBoard().getTemporaryResources());
                 MarketGridChangedMessage notification1 = new MarketGridChangedMessage();
-                notification1.setMarketGridConfiguration(controller.getGame().getMarketBoard().getMarketGrid(),controller.getGame().getMarketBoard().getMarbleOut());
+                notification1.setMessageType("MarketGridChangedMessage");
+                notification1.setMarketGridConfiguration(controller.getGame().getMarketBoard().getMarketboardColours(),controller.getGame().getMarketBoard().getMarbleOut().getColour());
                 for (ClientHandler clientHandler : controller.getConnectedClients()) {
                     clientHandler.notifyInterface(gson.toJson(notification));
                     clientHandler.notifyInterface(gson.toJson(notification1));

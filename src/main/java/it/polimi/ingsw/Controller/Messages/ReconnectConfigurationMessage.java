@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class ReconnectConfigurationMessage extends Message{
     private String senderNickname;
-    private Marble[][] marbleGridConfiguration;
+    private String[][] marbleGridConfiguration;
     private Marble marbleOut;
     private Deckgrid deckgridConfiguration;
     private WareHouseDepot wareHouseConfiguration;
@@ -17,11 +17,11 @@ public class ReconnectConfigurationMessage extends Message{
     private ArrayList<Integer> choosableLeaderCards = new ArrayList<>();
     private ArrayList<Integer> choosedLeaderCards = new ArrayList<>();
 
-    public Marble[][] getMarbleGridConfiguration() {
+    public String[][] getMarbleGridConfiguration() {
         return marbleGridConfiguration;
     }
 
-    public void setMarbleGridConfiguration(Marble[][] marbleGridConfiguration) {
+    public void setMarbleGridConfiguration(String[][] marbleGridConfiguration) {
         this.marbleGridConfiguration = marbleGridConfiguration;
     }
 

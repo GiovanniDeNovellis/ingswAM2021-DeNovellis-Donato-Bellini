@@ -34,14 +34,14 @@ public class ServerReader implements Runnable {
                     else if(mex.getMessageType().equals("LoginOkNotification") && cli!=null ){
                         LoginOkNotificationMessage log = gson.fromJson(serverOutput,LoginOkNotificationMessage.class);
                         cli.setNickname(log.getSenderNickname());
-                        //NotificationManager notificationManager = new NotificationManager(cli.getVirtualView());
-                        //notificationManager.manageNotification(serverOutput);
+                        NotificationManager notificationManager = new NotificationManager(cli.getVirtualView());
+                        notificationManager.manageNotification(serverOutput);
                     }
                     else if(cli!=null){
-                        //NotificationManager notificationManager = new NotificationManager(cli.getVirtualView());
-                        //notificationManager.manageNotification(serverOutput);
+                        NotificationManager notificationManager = new NotificationManager(cli.getVirtualView());
+                        notificationManager.manageNotification(serverOutput);
                     }
-                    System.out.println(serverOutput); // DEBUG
+                    //System.out.println(serverOutput); // DEBUG
                 }
             }
         }

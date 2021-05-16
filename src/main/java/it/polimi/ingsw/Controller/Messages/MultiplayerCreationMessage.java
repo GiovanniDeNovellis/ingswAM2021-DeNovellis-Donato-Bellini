@@ -3,23 +3,24 @@ package it.polimi.ingsw.Controller.Messages;
 import it.polimi.ingsw.Deckgrid;
 import it.polimi.ingsw.LeaderCard;
 import it.polimi.ingsw.Marble;
+import it.polimi.ingsw.ResourceType;
 
 import java.util.ArrayList;
 
 public class MultiplayerCreationMessage extends Message{
     private int playerNumber;
     private String nickname;
-    private ArrayList<LeaderCard> choosableLeaderCards;
+    private int[] choosableLeaderCardsNumbers;
     private Deckgrid deckgridConfiguration;
-    private Marble[][] marbleGridConfiguration;
-    private Marble marbleOut;
+    private String[][] marbleGridConfiguration;
+    private String marbleOut;
 
     public void setPlayerNumber(int playerNumber) {
         this.playerNumber = playerNumber;
     }
 
-    public void setChoosableLeaderCards(ArrayList<LeaderCard> choosableLeaderCards) {
-        this.choosableLeaderCards = choosableLeaderCards;
+    public void setChoosableLeaderCardsNumbers(int[] choosableLeaderCards) {
+        this.choosableLeaderCardsNumbers = choosableLeaderCards;
     }
 
     public int getPlayerNumber() {
@@ -27,13 +28,7 @@ public class MultiplayerCreationMessage extends Message{
     }
 
     public int[] getChoosableLeaderCardsNumbers() {
-        int[] leaderCardsNumbers = new int[4];
-        int i = 0;
-        for( LeaderCard l: choosableLeaderCards){
-            leaderCardsNumbers[i] = l.getLeaderCardNumber();
-            i++;
-        }
-        return leaderCardsNumbers;
+        return choosableLeaderCardsNumbers;
     }
 
     public Deckgrid getDeckgridConfiguration() {
@@ -44,11 +39,11 @@ public class MultiplayerCreationMessage extends Message{
         this.deckgridConfiguration = deckgridConfiguration;
     }
 
-    public Marble[][] getMarbleGridConfiguration() {
+    public String[][] getMarbleGridConfiguration() {
         return marbleGridConfiguration;
     }
 
-    public void setMarbleGridConfiguration(Marble[][] marbleGridConfiguration) {
+    public void setMarbleGridConfiguration(String[][] marbleGridConfiguration) {
         this.marbleGridConfiguration = marbleGridConfiguration;
     }
 
@@ -60,11 +55,11 @@ public class MultiplayerCreationMessage extends Message{
         this.nickname = nickname;
     }
 
-    public Marble getMarbleOut() {
+    public String getMarbleOut() {
         return marbleOut;
     }
 
-    public void setMarbleOut(Marble marbleOut) {
+    public void setMarbleOut(String marbleOut) {
         this.marbleOut = marbleOut;
     }
 }
