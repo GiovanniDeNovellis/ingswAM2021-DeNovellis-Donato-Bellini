@@ -13,7 +13,7 @@ public class MarketBoardPrinter implements Printable {
     private boolean built=false;
 
     @Override
-    public void print() {
+    public void print(String whatIHaveToPrint) {
 
     }
 

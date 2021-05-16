@@ -25,7 +25,7 @@ public class ChosenLeaderCards extends NotificationReader{
             if( l.getOwnerNickname().equals(nickname) ){
                 num[0]=data.getFirstChosenLeaderCardNumber();
                 num[1]=data.getSecondChosenLeaderCardNumber();
-                l.setChoosedLeaderCards(num);
+                l.setChosenLeaderCards(num);
             }
         }
     }

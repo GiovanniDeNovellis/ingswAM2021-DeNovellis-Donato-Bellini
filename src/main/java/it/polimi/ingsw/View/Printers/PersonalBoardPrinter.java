@@ -5,6 +5,7 @@ import it.polimi.ingsw.ExtraDeposit;
 import it.polimi.ingsw.ResourceType;
 import it.polimi.ingsw.WareHouseDepot;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,6 +13,7 @@ public class PersonalBoardPrinter implements Printable{
     private String ownerNickname;
     private int playerNumber;
     private DevelopmentCard[] developmentCards = new DevelopmentCard[3]; //RICORDA CONTROLLO A NULL SE UNO SLOT E' VUOTO
+    private ArrayList<DevelopmentCard> allCardsInserted = new ArrayList<>();
     private WareHouseDepot wareHouseDepot = new WareHouseDepot();
     private Map<ResourceType,Integer> strongbox = new HashMap<>();
     private Map<ResourceType,Integer> temporaryResources = new HashMap<>();
@@ -22,7 +24,8 @@ public class PersonalBoardPrinter implements Printable{
 
 
     @Override
-    public void print() {
+    public void print(String whatIHaveToPrint) {
+
 
     }
 
@@ -76,5 +79,13 @@ public class PersonalBoardPrinter implements Printable{
 
     public void setTemporaryResources(Map<ResourceType, Integer> temporaryResources) {
         this.temporaryResources = temporaryResources;
+    }
+
+    public ArrayList<DevelopmentCard> getAllCardsInserted() {
+        return allCardsInserted;
+    }
+
+    public void setAllCardsInserted(ArrayList<DevelopmentCard> allCardsInserted) {
+        this.allCardsInserted = allCardsInserted;
     }
 }

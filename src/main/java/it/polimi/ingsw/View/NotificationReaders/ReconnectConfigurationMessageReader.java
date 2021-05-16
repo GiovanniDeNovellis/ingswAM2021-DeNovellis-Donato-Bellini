@@ -39,7 +39,7 @@ public class ReconnectConfigurationMessageReader extends NotificationReader{
             for(int i=0; i<reconnectConfigurationMessage.getChoosedLeaderCards().size();i++){
                 leads[i]=reconnectConfigurationMessage.getChoosedLeaderCards().get(i);
             }
-            l.setChoosedLeaderCards(leads);
+            l.setChosenLeaderCards(leads);
         }
         modelPrinter.getPersonalBoards().add(p);
         modelPrinter.getLeaderCardsPrinters().add(l);
