@@ -19,7 +19,7 @@ public class AddPlayerManager implements Manageable {
         boolean ans;
         Gson gson = new Gson();
         AddPlayerMessage addMessage = gson.fromJson(jsonContent,AddPlayerMessage.class);
-            ans = controller.getGame().addPlayer(addMessage.getSenderNickname());
+        ans = controller.getGame().addPlayer(addMessage.getSenderNickname());
         Message mex = new Message();
         if (ans) {
             mex.setMessageType("PlayerAddedNotification");

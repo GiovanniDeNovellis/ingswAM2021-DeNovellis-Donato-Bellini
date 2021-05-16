@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 
 public class CLI implements Runnable{
     private String userInput=null;
-    private final VirtualView virtualView = new VirtualView();
+    private final ModelPrinter modelPrinter = new ModelPrinter();
     private String nickname;
 
     public void run(){
@@ -15,8 +15,8 @@ public class CLI implements Runnable{
         while(true){
             try {
                 if((userInput=stdIn.readLine())!=null){
-                    synchronized (virtualView) {
-                        CommandManager commandManager = new CommandManager(virtualView, nickname);
+                    synchronized (modelPrinter) {
+                        CommandManager commandManager = new CommandManager(modelPrinter, nickname);
                         userInput=commandManager.manage(userInput);
                     }
                     setUserInput(userInput);
@@ -40,7 +40,7 @@ public class CLI implements Runnable{
         this.nickname = nickname;
     }
 
-    public VirtualView getVirtualView() {
-        return virtualView;
+    public ModelPrinter getVirtualView() {
+        return modelPrinter;
     }
 }

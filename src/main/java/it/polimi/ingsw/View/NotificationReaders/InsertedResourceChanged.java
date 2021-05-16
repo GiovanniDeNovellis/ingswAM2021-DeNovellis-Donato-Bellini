@@ -3,14 +3,13 @@ package it.polimi.ingsw.View.NotificationReaders;
 import com.google.gson.Gson;
 import it.polimi.ingsw.Controller.Messages.NotifyInsertedOkMessage;
 import it.polimi.ingsw.View.Printers.PersonalBoardPrinter;
-import it.polimi.ingsw.View.Printers.Printable;
-import it.polimi.ingsw.View.VirtualView;
+import it.polimi.ingsw.View.ModelPrinter;
 
 public class InsertedResourceChanged extends NotificationReader{
     String nickname;
 
-    public InsertedResourceChanged(VirtualView virtualView) {
-        super(virtualView);
+    public InsertedResourceChanged(ModelPrinter modelPrinter) {
+        super(modelPrinter);
     }
 
     @Override
@@ -21,7 +20,7 @@ public class InsertedResourceChanged extends NotificationReader{
         printNotification();
         data.getExtraDepositsConfiguration();
         //TODO FARE UN PRINTER PER TEMPORARY RESOURCES data.getTemporaryResourcesConfiguration();
-        for(PersonalBoardPrinter p: virtualView.getPersonalBoards() ){
+        for(PersonalBoardPrinter p: modelPrinter.getPersonalBoards() ){
             if( p.getOwnerNickname().equals(nickname) ){
                 p.setWareHouseDepot(data.getWarehouseConfiguration());
                 p.setExtraDeposit1(data.getExtraDepositsConfiguration()[0]);

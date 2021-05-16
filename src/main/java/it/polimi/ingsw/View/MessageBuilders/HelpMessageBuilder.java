@@ -3,6 +3,7 @@ package it.polimi.ingsw.View.MessageBuilders;
 public class HelpMessageBuilder extends MessageBuilder{
     @Override
     public String buildMessage() {
+        // TODO FARLO IN INGLESE
         System.out.print("Lista dei comandi possibili: \n" +
                 "help - Per vedere tutti i comandi \n" +
                 "login - Per effettuare il login alla partita \n" +

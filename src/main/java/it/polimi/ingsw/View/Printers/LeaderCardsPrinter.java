@@ -15,10 +15,19 @@ public class LeaderCardsPrinter implements Printable{
         this.choosableLeaderCards = choosableLeaderCards;
     }
 
-    public void setChoosedLeaderCard(int position, int leaderCardNumber){
-        choosedLeaderCards[position]=leaderCardNumber;
+    public void setChoosedLeaderCards(int[] choosedLeaderCards) {
+        this.choosedLeaderCards = choosedLeaderCards;
     }
+
     public void activateLeaderCard(int position){
         activatedLeaderCards[position]=true;
+    }
+
+    public void setOwnerNickname(String ownerNickname) {
+        this.ownerNickname = ownerNickname;
+    }
+
+    public String getOwnerNickname() {
+        return ownerNickname;
     }
 }

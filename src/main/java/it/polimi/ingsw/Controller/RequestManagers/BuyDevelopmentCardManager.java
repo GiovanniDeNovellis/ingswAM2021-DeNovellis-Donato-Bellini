@@ -31,6 +31,7 @@ public class BuyDevelopmentCardManager implements Manageable{
                 mex.setMessageType("BuyDevelopmentCardSuccessNotification");
                 NotifyDevelopmentCardInsertedOKMessage notification = new NotifyDevelopmentCardInsertedOKMessage();
                 notification.setMessageType("DevelopmentCardBought");
+                notification.setDeckgridConfiguration(controller.getGame().getDeckgrid());
                 notification.setNickname(controller.getGame().getCurrentPlayer().getNickname());
                 notification.setDevelopmentCardsConfiguration(controller.getGame().getCurrentPlayer().getPersonalBoard().getDevelopmentCard());
                 notification.setWarehouseConfiguration(controller.getGame().getCurrentPlayer().getPersonalBoard().getWarehouseDepot());

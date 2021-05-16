@@ -1,13 +1,13 @@
 package it.polimi.ingsw.View.NotificationReaders;
 
-import it.polimi.ingsw.View.VirtualView;
+import it.polimi.ingsw.View.ModelPrinter;
 
 public abstract class NotificationReader {
-    public NotificationReader(VirtualView virtualView){
-        this.virtualView = virtualView;
+    public NotificationReader(ModelPrinter modelPrinter){
+        this.modelPrinter = modelPrinter;
     }
 
-    VirtualView virtualView;
+    ModelPrinter modelPrinter;
 
     public abstract void readNotification(String notification);
 

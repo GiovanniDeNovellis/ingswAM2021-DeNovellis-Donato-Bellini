@@ -48,13 +48,9 @@ public class ClientHandler implements Runnable {
             //LOGIN PHASE
             boolean loginDone=false;
             while(true){
-                if(loginDone)
-                    break;
-                while(true) {
+                do {
                     line = in.readLine();
-                    if(!line.equals("Pong"))
-                        break;
-                }
+                } while (line.equals("Pong"));
                 Message message = gson.fromJson(line, Message.class);
                 if(message.getMessageType().equals("AddPlayer")){
                     String response = controller.startAction(line);
@@ -67,8 +63,14 @@ public class ClientHandler implements Runnable {
                         m.setSenderNickname(tempNickname);
                         out.println(gson.toJson(m));
                         out.flush();
+                        ConnectedPlayersMessage c = new ConnectedPlayersMessage();
+                        c.setMessageType("ConnectedPlayersMessage");
+                        for(Player p : controller.getGame().getPlayers()){
+                            c.getConnectedPlayers().add(p.getNickname());
+                        }
+                        out.println(gson.toJson(c));
+                        out.flush();
                         clientNickname=tempNickname;
-                        loginDone=true;
                         break;
                     }
                     else{
@@ -78,7 +80,7 @@ public class ClientHandler implements Runnable {
                                     //Il player era disconnesso e si è riconnesso
                                     p.setIsAFK(false);
                                     mex = new Message();
-                                    mex.setMessageType("LoginOkNotification");
+                                    mex.setMessageType("ReconnectOkNotification");
                                     PlayerInNotification playerInNotification=new PlayerInNotification();
                                     playerInNotification.setMessageType("PlayerInNotification");
                                     playerInNotification.setSenderNickname(tempNickname);
@@ -86,6 +88,7 @@ public class ClientHandler implements Runnable {
                                         c.notifyInterface(gson.toJson(playerInNotification));
                                     for(Player player: controller.getGame().getPlayers()){
                                         ReconnectConfigurationMessage reconnectConfigurationMessage= new ReconnectConfigurationMessage();
+                                        reconnectConfigurationMessage.setMessageType("ReconnectConfigurationMessage");
                                         reconnectConfigurationMessage.setSenderNickname(player.getNickname());
                                         reconnectConfigurationMessage.setMarbleGridConfiguration(controller.getGame().getMarketBoard().getMarketGrid());
                                         reconnectConfigurationMessage.setMarbleOut(controller.getGame().getMarketBoard().getMarbleOut());
@@ -119,10 +122,7 @@ public class ClientHandler implements Runnable {
                                         }
                                         out.println(gson.toJson(reconnectConfigurationMessage));
                                     }
-                                    LoginOkNotificationMessage m = new LoginOkNotificationMessage();
-                                    m.setMessageType("LoginOkNotification");
-                                    m.setSenderNickname(tempNickname);
-                                    s = gson.toJson(m);
+                                    s = gson.toJson(mex);
                                     out.println(s);
                                     out.flush();
                                     clientNickname = tempNickname;
@@ -187,10 +187,10 @@ public class ClientHandler implements Runnable {
             else if(clientNickname.equals(controller.getGame().getCurrentPlayer().getNickname())){
                 controller.getGame().getCurrentPlayer().setIsAFK(true);
                 controller.getGame().endTurn();
-                String nickname=null;
+                String nickname;
                 String winnerNickname=null;
                 int tempResourcesDiscarded=0;
-                boolean endGame=false;
+                boolean endGame;
                 for(ResourceType res: controller.getGame().getMarketBoard().getTemporaryResources().keySet()){
                     tempResourcesDiscarded+=controller.getGame().getMarketBoard().getTemporaryResources().get(res);
                 }
@@ -199,6 +199,7 @@ public class ClientHandler implements Runnable {
                 if(controller.getGame().getWinnerPlayer()!=null)
                     winnerNickname=controller.getGame().getWinnerPlayer().getNickname();
                 EndTurnNotificationMessage endTurnNotificationMessage= new EndTurnNotificationMessage();
+                endTurnNotificationMessage.setMessageType("EndTurnNotificationMessage");
                 endTurnNotificationMessage.setActualCurrentPlayer(nickname);
                 endTurnNotificationMessage.setNumResourcesDiscarded(tempResourcesDiscarded);
                 endTurnNotificationMessage.setWinnerPlayerNickname(winnerNickname);

@@ -4,11 +4,11 @@ package it.polimi.ingsw.View;
 import it.polimi.ingsw.View.MessageBuilders.*;
 
 public class CommandManager {
-    private VirtualView virtualView;
+    private ModelPrinter modelPrinter;
     private String nickname;
 
-    public CommandManager(VirtualView virtualView, String nickname) {
-        this.virtualView = virtualView;
+    public CommandManager(ModelPrinter modelPrinter, String nickname) {
+        this.modelPrinter = modelPrinter;
         this.nickname = nickname;
     }
 

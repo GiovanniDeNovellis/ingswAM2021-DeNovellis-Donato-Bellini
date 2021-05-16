@@ -1,9 +1,7 @@
 package it.polimi.ingsw.Controller.Messages;
 
-import it.polimi.ingsw.DevelopmentCard;
-import it.polimi.ingsw.ExtraDeposit;
-import it.polimi.ingsw.ResourceType;
-import it.polimi.ingsw.WareHouseDepot;
+import it.polimi.ingsw.*;
+
 import java.util.Map;
 
 public class NotifyDevelopmentCardInsertedOKMessage extends Message{
@@ -14,6 +12,7 @@ public class NotifyDevelopmentCardInsertedOKMessage extends Message{
     public String getNickname() {
         return senderNickname;
     }
+    private Deckgrid deckgridConfiguration;
 
     public void setNickname(String senderNickname) {
         this.senderNickname = senderNickname;
@@ -51,5 +50,13 @@ public class NotifyDevelopmentCardInsertedOKMessage extends Message{
 
     public void setStrongboxConfiguration(Map<ResourceType, Integer> strongboxConfiguration) {
         this.strongboxConfiguration = strongboxConfiguration;
+    }
+
+    public Deckgrid getDeckgridConfiguration() {
+        return deckgridConfiguration;
+    }
+
+    public void setDeckgridConfiguration(Deckgrid deckgridConfiguration) {
+        this.deckgridConfiguration = deckgridConfiguration;
     }
 }

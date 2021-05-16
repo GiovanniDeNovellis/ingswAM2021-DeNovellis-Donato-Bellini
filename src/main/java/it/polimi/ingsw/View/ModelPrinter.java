@@ -4,7 +4,7 @@ import it.polimi.ingsw.View.Printers.*;
 
 import java.util.ArrayList;
 
-public class VirtualView {
+public class ModelPrinter {
     private MarketBoardPrinter marketBoardPrinter = new MarketBoardPrinter();
     private DeckGridPrinter deckGridPrinter = new DeckGridPrinter();
     private ArrayList<PersonalBoardPrinter> personalBoards = new ArrayList<>();
@@ -16,11 +16,11 @@ public class VirtualView {
     }
 
 
-    public Printable getMarketBoardPrinter() {
+    public MarketBoardPrinter getMarketBoardPrinter() {
         return marketBoardPrinter;
     }
 
-    public Printable getDeckGridPrinter() {
+    public DeckGridPrinter getDeckGridPrinter() {
         return deckGridPrinter;
     }
 
