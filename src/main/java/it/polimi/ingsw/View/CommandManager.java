@@ -2,6 +2,7 @@ package it.polimi.ingsw.View;
 
 
 import it.polimi.ingsw.View.MessageBuilders.*;
+import it.polimi.ingsw.View.Printers.MarketBoardPrinter;
 import it.polimi.ingsw.View.Printers.PersonalBoardPrinter;
 
 import java.util.Scanner;
@@ -125,6 +126,8 @@ public class CommandManager {
     }
 
     public void showWarehouse(){
+        System.out.println("Which one do you want to see? Write the warehouse owner's nickname," +
+                " or \"all\" to see all the warehouses.");
         Scanner input = new Scanner(System.in);
         String nickname = input.nextLine();
         PersonalBoardPrinter printable = null;
@@ -135,6 +138,8 @@ public class CommandManager {
             }
             if( printable!=null )
                 modelPrinter.print(printable, "warehouse");
+            else
+                System.out.println("Write again the show command followed by a correct nickname.");
         } else {
             for (PersonalBoardPrinter p : modelPrinter.getPersonalBoards()) {
                 modelPrinter.print(p, "warehouse");
@@ -150,7 +155,38 @@ public class CommandManager {
     public void showChosenLeaderCards(){ }
     public void showActiveLeaderCards(){ }
     public void showDeckGrid(){ }
-    public void showMarketBoard(){ }
-    public void showPlayers(){ }//mostra il nickname di tutti i giocatori attualmente in gioco e il relativo player number
-    public void showInsertedDevCards(){ }
+
+    public void showMarketBoard(){
+        MarketBoardPrinter printable = modelPrinter.getMarketBoardPrinter();
+        modelPrinter.print(printable, "marketboard");
+    }
+
+    public void showPlayers(){
+        for( PersonalBoardPrinter p: modelPrinter.getPersonalBoards() ){ //turn position
+            System.out.println(p.getOwnerNickname() + "\tPlayer number: " + (p.getPlayerNumber()+1) + "\n");
+        }
+    }
+
+    public void showInsertedDevCards(){
+        System.out.println("Whose inserted development cards do you want to see? Write the player's nickname," +
+                " or \"all\" to see inserted development cards from all the players.");
+        Scanner input = new Scanner(System.in);
+        String nickname = input.nextLine();
+        PersonalBoardPrinter printable = null;
+        if (!nickname.equals("all")) {
+            for (PersonalBoardPrinter p : modelPrinter.getPersonalBoards()) {
+                if (p.getOwnerNickname().equals(nickname))
+                    printable = p;
+            }
+            if( printable!=null )
+                modelPrinter.print(printable, "insertedDevCards");
+            else
+                System.out.println("Write again the show command followed by a correct nickname.");
+        } else {
+            for (PersonalBoardPrinter p : modelPrinter.getPersonalBoards()) {
+                modelPrinter.print(p, "insertedDevCards");
+            }
+        }
+    }
+
 }
