@@ -1,7 +1,10 @@
 package it.polimi.ingsw.View;
 
 
+import it.polimi.ingsw.LeaderCard;
 import it.polimi.ingsw.View.MessageBuilders.*;
+import it.polimi.ingsw.View.Printers.DeckGridPrinter;
+import it.polimi.ingsw.View.Printers.LeaderCardsPrinter;
 import it.polimi.ingsw.View.Printers.MarketBoardPrinter;
 import it.polimi.ingsw.View.Printers.PersonalBoardPrinter;
 
@@ -146,6 +149,59 @@ public class CommandManager {
         }
     }
 
+    public void showChoosableLeaderCards(){
+        LeaderCardsPrinter printable = null;
+        for (LeaderCardsPrinter l : modelPrinter.getLeaderCardsPrinters()) {
+            if (l.getOwnerNickname().equals(nickname))
+                printable = l;
+        }
+        if (printable == null)
+            System.out.println("Nickname bug.");
+        else
+            modelPrinter.print(printable, "choosableLeaderCards");
+
+    }
+
+    public void showChosenLeaderCards() {
+        LeaderCardsPrinter printable = null;
+        for (LeaderCardsPrinter l : modelPrinter.getLeaderCardsPrinters()) {
+            if (l.getOwnerNickname().equals(nickname))
+                printable = l;
+        }
+            if (printable == null)
+                System.out.println("Nickname bug.");
+            else
+                modelPrinter.print(printable, "choosenLeaderCards");
+
+    }
+
+    public void showActiveLeaderCards(){
+        System.out.println("Whose active leader card do you want to see? Write the player's nickname," +
+                " or \"all\" to see active leader card from all the players.");
+        Scanner input = new Scanner(System.in);
+        String nickname = input.nextLine();
+        LeaderCardsPrinter printable = null;
+        if (!nickname.equals("all")) {
+            for (LeaderCardsPrinter l : modelPrinter.getLeaderCardsPrinters()) {
+                if (l.getOwnerNickname().equals(nickname))
+                    printable = l;
+            }
+            if( printable!=null )
+                modelPrinter.print(printable, "activeLeaderCards");
+            else
+                System.out.println("Write again the show command followed by a correct nickname.");
+        } else {
+            for (LeaderCardsPrinter l : modelPrinter.getLeaderCardsPrinters()) {
+                modelPrinter.print(l, "activeLeaderCards");
+            }
+        }
+    }
+
+    public void showDeckGrid(){
+        DeckGridPrinter printable = modelPrinter.getDeckGridPrinter();
+        modelPrinter.print(printable,"deckgrid");
+    }
+
     public void showStrongbox(){
         System.out.println("Which one do you want to see? Write the strongbox owner's nickname," +
                 " or \"all\" to see all the warehouses.");
@@ -241,11 +297,6 @@ public class CommandManager {
         }
     }
 
-    public void showChoosableLeaderCards(){ }
-    public void showChosenLeaderCards(){ }
-    public void showActiveLeaderCards(){ }
-    public void showDeckGrid(){ }
-
     public void showMarketBoard(){
         MarketBoardPrinter printable = modelPrinter.getMarketBoardPrinter();
         modelPrinter.print(printable, "marketboard");
@@ -278,5 +329,4 @@ public class CommandManager {
             }
         }
     }
-
 }

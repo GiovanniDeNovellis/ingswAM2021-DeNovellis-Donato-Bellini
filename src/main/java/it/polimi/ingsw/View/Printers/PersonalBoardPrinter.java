@@ -19,6 +19,11 @@ public class PersonalBoardPrinter implements Printable{
     private Map<ResourceType,Integer> temporaryResources = new HashMap<>();
     private ExtraDeposit extraDeposit1 = new ExtraDeposit(null);
     private ExtraDeposit extraDeposit2 = new ExtraDeposit(null);
+
+    public int getFaithPoints() {
+        return faithPoints;
+    }
+
     private int faithPoints=0;
     private int[] faithCards = {2,3,4};
 
