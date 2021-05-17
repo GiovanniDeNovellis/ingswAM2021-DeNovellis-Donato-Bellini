@@ -4,7 +4,6 @@ import it.polimi.ingsw.WareHouseDepot;
 
 public class NotifyWarehouseChangedMessage extends Message {
     private WareHouseDepot warehouseConfiguration;
-    private String playerToChange;
 
     public String getNickname() {
         return senderNickname;
@@ -23,13 +22,4 @@ public class NotifyWarehouseChangedMessage extends Message {
     public void setWarehouseConfiguration(WareHouseDepot warehouseConfiguration) {
         this.warehouseConfiguration = warehouseConfiguration;
     }
-
-    public String getPlayerToChange() {
-        return playerToChange;
-    }
-
-    public void setPlayerToChange(String playerToChange) {
-        this.playerToChange = playerToChange;
-    }
-
 }

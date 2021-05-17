@@ -105,29 +105,36 @@ public class NotificationManager {
             case"ActivateLeaderCardFailureNotification":
                 System.out.println("You can't activate this leader card now.");
                 break;
-                //inizio
             case"ActivateProductionSuccessNotification":
                 System.out.println("Production successfully activated.");
                 break;
             case"NotifyActivateProductionMessage":
+                reader = new NotifyActivateProductionReader(modelPrinter);
+                reader.readNotification(notification);
                 break;
             case"VaticanReportMessage":
+                reader = new VaticanReportMessageReader(modelPrinter);
+                reader.readNotification(notification);
                 break;
             case"ActivateProductionFailureNotification":
                 System.out.println("You can't activate the production now.");
                 break;
             case"PlayerAddedNotification":
-                System.out.println("Player successfully added to the game.");
+                System.out.println("You have been successfully added to the game.");
                 break;
             case"AddPlayerNotificationForEveryone":
+                reader = new AddPlayerNotificationForEveryoneReader(modelPrinter);
+                reader.readNotification(notification);
                 break;
             case"InvalidPlayerAddNotification":
-                System.out.println("Can't add other player into this game.");
+                System.out.println("You can't be added to the game.");
                 break;
             case"BuyDevelopmentCardSuccessNotification":
                 System.out.println("Card successfully bought.");
                 break;
             case"DevelopmentCardBought":
+                reader = new DevelopmentCardBoughtReader(modelPrinter);
+                reader.readNotification(notification);
                 break;
             case"BuyDevelopmentCardFailureNotification":
                 System.out.println("You can't buy the development card now.");
@@ -136,14 +143,16 @@ public class NotificationManager {
                 System.out.println("Distribution successfully done, resource(s) received.");
                 break;
             case"NotifyWareHouseChangedMessage":
+                reader = new NotifyWarehouseChangedMessageReader(modelPrinter);
+                reader.readNotification(notification);
                 break;
             case"NotRightToDistributionNotification":
-                System.out.println("You don't have right to a free resource now.");
+                System.out.println("You can't receive free resource now.");
                 break;
             case"EndTurnNotificationMessage":
+                reader = new EndTurnNotificationReader(modelPrinter);
+                reader.readNotification(notification);
                 break;
-
-            //fine
             case"InsertedResourcesSuccessNotification":
                 System.out.println("You have correctly inserted resource(s) into your warehouse");
                 break;
