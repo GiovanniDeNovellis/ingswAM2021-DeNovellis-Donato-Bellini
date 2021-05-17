@@ -10,6 +10,8 @@ import it.polimi.ingsw.Controller.Messages.VaticanReportMessage;
 import it.polimi.ingsw.Player;
 import it.polimi.ingsw.ResourceType;
 
+import java.awt.*;
+
 public class EndTurnManager implements Manageable{
     private final Controller controller;
 
@@ -92,6 +94,7 @@ public class EndTurnManager implements Manageable{
                 for (ClientHandler clientHandler : controller.getConnectedClients()) {
                     for(Player p: controller.getGame().getPlayers()){
                         if(p.getNickname().equals(clientHandler.getClientNickname()))
+                            vaticanReportMessage.setNickname(clientHandler.getClientNickname());
                             vaticanReportMessage.setNewFaithPoints(p.getFaithPoints());
                     }
                     clientHandler.notifyInterface(gson.toJson(vaticanReportMessage));

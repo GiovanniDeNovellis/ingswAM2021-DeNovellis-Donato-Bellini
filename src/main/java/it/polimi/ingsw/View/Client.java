@@ -12,6 +12,7 @@ public class Client {
 
     public static void main(String[] args) {
             String hostName = "127.0.0.1";
+        System.out.println("\u2551");
             int portNumber = 1234;
             //COMMENT FOR FIRST DEBUG
             //String type=args[0];

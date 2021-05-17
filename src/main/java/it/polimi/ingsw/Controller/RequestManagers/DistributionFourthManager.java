@@ -43,7 +43,7 @@ public class DistributionFourthManager implements Manageable {
             if(ans2){
                 NotifyWarehouseChangedMessage mex = new NotifyWarehouseChangedMessage();
                 mex.setWarehouseConfiguration(whouse);
-                mex.setPlayerToChange(nickname);
+                mex.setNickname(nickname);
                 mex.setMessageType("NotifyWareHouseChangeMessage");
                 String notificationForAll = gson.toJson(mex);
                     for(ClientHandler c : controller.getConnectedClients()){

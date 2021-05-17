@@ -4,6 +4,7 @@ public class VaticanReportMessage extends Message {
     boolean occurred;
     int whichOne;
     int newFaithPoints;
+    String nickname;
 
     public boolean isOccurred() {
         return occurred;
@@ -27,5 +28,13 @@ public class VaticanReportMessage extends Message {
 
     public void setNewFaithPoints(int newFaithPoints) {
         this.newFaithPoints = newFaithPoints;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 }

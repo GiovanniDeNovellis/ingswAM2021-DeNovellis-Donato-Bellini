@@ -163,6 +163,10 @@ public class NotificationManager {
             case"SinglePLayerCreationOkNotification":
                 System.out.println("You have just started the game in single player mode!");
                 break;
+            case"SinglePlayerCreationMessage":
+                reader = new SinglePlayerCreation(modelPrinter);
+                reader.readNotification(notification);
+                break;
             case"SinglePLayerCreationFailedNotification":
                 System.out.println("There too many players logged in. Single player mode needs exactly one player." +
                         "\nIf you want to play in multiplayer mode write \"StartMultiPlayer\".");
@@ -187,7 +191,8 @@ public class NotificationManager {
                 System.out.println("Wrong index(row,column) chosen. Try again.");
                 break;
             case "MarketGridChangedMessage":
-                //TODO CLASS
+                reader = new MarketGridChanged(modelPrinter);
+                reader.readNotification(notification);
                 break;
             default:
                 System.out.println("Received wrong input message!");

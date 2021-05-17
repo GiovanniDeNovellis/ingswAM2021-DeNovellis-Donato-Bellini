@@ -81,6 +81,7 @@ public class    ActivateProductionManager implements Manageable {
                 for (ClientHandler clientHandler : controller.getConnectedClients()) {
                     for(Player p: controller.getGame().getPlayers()){
                         if(p.getNickname().equals(clientHandler.getClientNickname()))
+                            vaticanReportMessage.setNickname(clientHandler.getClientNickname());
                             vaticanReportMessage.setNewFaithPoints(p.getFaithPoints());
                     }
                     clientHandler.notifyInterface(gson.toJson(vaticanReportMessage));

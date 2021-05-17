@@ -64,8 +64,10 @@ public class TakeResourcesFromMarketManager implements Manageable{
                 vaticanReportMessage.setWhichOne(whichReport);
                 for (ClientHandler clientHandler : controller.getConnectedClients()) {
                     for(Player p: controller.getGame().getPlayers()){
-                        if(p.getNickname().equals(clientHandler.getClientNickname()))
+                        if(p.getNickname().equals(clientHandler.getClientNickname())) {
+                            vaticanReportMessage.setNickname(clientHandler.getClientNickname());
                             vaticanReportMessage.setNewFaithPoints(p.getFaithPoints());
+                        }
                     }
                     clientHandler.notifyInterface(gson.toJson(vaticanReportMessage));
                 }

@@ -32,4 +32,8 @@ public class MarketBoardPrinter implements Printable {
     public void setTemporaryResources(Map<ResourceType, Integer> temporaryResources) {
         this.temporaryResources = temporaryResources;
     }
+
+    public Map<ResourceType, Integer> getTemporaryResources() {
+        return temporaryResources;
+    }
 }

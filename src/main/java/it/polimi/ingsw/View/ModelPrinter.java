@@ -9,12 +9,16 @@ public class ModelPrinter {
     private DeckGridPrinter deckGridPrinter = new DeckGridPrinter();
     private ArrayList<PersonalBoardPrinter> personalBoards = new ArrayList<>();
     private ArrayList<LeaderCardsPrinter> leaderCardsPrinters = new ArrayList<>();
-    private int blackFaithPoints;
+    private int blackFaithPoints=-1;
 
     public void print(Printable p, String whatIHaveToPrint){
-        p.print(whatIHaveToPrint);
+        if(whatIHaveToPrint.equals("blackFaithPoints")){
+         //TODO FAITH TRACK DI LORENZO
+        }
+        else {
+            p.print(whatIHaveToPrint);
+        }
     }
-
 
     public MarketBoardPrinter getMarketBoardPrinter() {
         return marketBoardPrinter;
@@ -46,4 +50,5 @@ public class ModelPrinter {
         }
         //printo tutto quando cambia la CLI in seguito ad un'azione di un player
     }
+
 }

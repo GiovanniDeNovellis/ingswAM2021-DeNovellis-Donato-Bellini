@@ -19,7 +19,6 @@ public class CommandManager {
     public String manage(String userInput){
         MessageBuilder toBuild;
         switch (userInput) {
-            //TODO( AGGIUNGERE I COMANDI SHOW )
             //Help to show all commands
             case "help":
                 toBuild = new HelpMessageBuilder();
@@ -147,10 +146,101 @@ public class CommandManager {
         }
     }
 
-    public void showStrongbox(){ }
-    public void showDevelopmentCards(){ }
-    public void showFaithTrack(){ }//in single player farà vedere quello di Lorenzo
-    public void showExtraDeposits(){ }
+    public void showStrongbox(){
+        System.out.println("Which one do you want to see? Write the strongbox owner's nickname," +
+                " or \"all\" to see all the warehouses.");
+        Scanner input = new Scanner(System.in);
+        String nickname = input.nextLine();
+        PersonalBoardPrinter printable = null;
+        if (!nickname.equals("all")) {
+            for (PersonalBoardPrinter p : modelPrinter.getPersonalBoards()) {
+                if (p.getOwnerNickname().equals(nickname))
+                    printable = p;
+            }
+            if( printable!=null )
+                modelPrinter.print(printable, "strongbox");
+            else
+                System.out.println("Write again the show command followed by a correct nickname.");
+        } else {
+            for (PersonalBoardPrinter p : modelPrinter.getPersonalBoards()) {
+                modelPrinter.print(p, "strongbox");
+            }
+        }
+    }
+
+    public void showDevelopmentCards(){
+        System.out.println("Whose development cards do you want to see? Write the player's nickname," +
+            " or \"all\" to see all player's development cards.");
+        Scanner input = new Scanner(System.in);
+        String nickname = input.nextLine();
+        PersonalBoardPrinter printable = null;
+        if (!nickname.equals("all")) {
+            for (PersonalBoardPrinter p : modelPrinter.getPersonalBoards()) {
+                if (p.getOwnerNickname().equals(nickname))
+                    printable = p;
+            }
+            if( printable!=null )
+                modelPrinter.print(printable, "developmentCards");
+            else
+                System.out.println("Write again the show command followed by a correct nickname.");
+        } else {
+            for (PersonalBoardPrinter p : modelPrinter.getPersonalBoards()) {
+                modelPrinter.print(p, "developmentCards");
+            }
+        }
+    }
+
+    public void showFaithTrack(){
+        System.out.println("Whose faith track do you want to see? Write the player's nickname," +
+                " or \"all\" to see all player's faith tracks or \"blackFaithPoints\" to show Lorenzo's faith track if you are " +
+                "playing a single player game.");
+        Scanner input = new Scanner(System.in);
+        String nickname = input.nextLine();
+        PersonalBoardPrinter printable = null;
+        if(nickname.equals("blackFaithPoints")){
+            if(modelPrinter.getBlackFaithPoints()==-1)
+                System.out.println("You are not playing a single player game!");
+            else
+                modelPrinter.print(null,"blackFaithPoints");
+        }
+        else if (!nickname.equals("all")) {
+            for (PersonalBoardPrinter p : modelPrinter.getPersonalBoards()) {
+                if (p.getOwnerNickname().equals(nickname))
+                    printable = p;
+            }
+            if( printable!=null )
+                modelPrinter.print(printable, "faithTrack");
+            else
+                System.out.println("Write again the show command followed by a correct nickname.");
+        } else {
+            for (PersonalBoardPrinter p : modelPrinter.getPersonalBoards()) {
+                modelPrinter.print(p, "faithTrack");
+            }
+        }
+    }
+
+    public void showExtraDeposits(){
+        System.out.println("Whose extra deposit do you want to see? Write the player's nickname," +
+                " or \"all\" to see all player's extra deposits.");
+        Scanner input = new Scanner(System.in);
+        String nickname = input.nextLine();
+        PersonalBoardPrinter printable = null;
+        if (!nickname.equals("all")) {
+            for (PersonalBoardPrinter p : modelPrinter.getPersonalBoards()) {
+                if (p.getOwnerNickname().equals(nickname))
+                    printable = p;
+            }
+            if( printable!=null )
+                modelPrinter.print(printable, "extraDeposit");
+            else
+                System.out.println("Write again the show command followed by a correct nickname.");
+        } else {
+            for (PersonalBoardPrinter p : modelPrinter.getPersonalBoards()) {
+                modelPrinter.print(p, "extraDeposit");
+            }
+        }
+    }
+
     public void showChoosableLeaderCards(){ }
     public void showChosenLeaderCards(){ }
     public void showActiveLeaderCards(){ }

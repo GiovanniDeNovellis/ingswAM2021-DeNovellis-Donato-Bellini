@@ -1,10 +1,11 @@
 package it.polimi.ingsw.Controller.RequestManagers;
 
 import com.google.gson.Gson;
+import it.polimi.ingsw.Controller.ClientHandler;
 import it.polimi.ingsw.Controller.Controller;
 import it.polimi.ingsw.Controller.Messages.Message;
+import it.polimi.ingsw.Controller.Messages.SinglePlayerCreationMessage;
 
-//TODO( MANDA CONFIGURAZIONE INIZIALE DI GIOCO )
 public class StartSinglePlayerManager implements Manageable{
     private final Controller controller;
 
@@ -18,7 +19,16 @@ public class StartSinglePlayerManager implements Manageable{
         boolean ans=controller.getGame().startSinglePlayer();
         Message message = new Message();
         if (ans) {
+            SinglePlayerCreationMessage mex = new SinglePlayerCreationMessage();
+            mex.setMessageType("SinglePlayerCreationMessage");
+            mex.setChoosableLeaderCardsNumbers(controller.getGame().getCurrentPlayer().getChoosableLeadercardsNumber());
+            mex.setDeckgridConfiguration(controller.getGame().getDeckgrid());
+            mex.setMarbleGridConfiguration(controller.getGame().getMarketBoard().getMarketboardColours());
+            mex.setMarbleOut(controller.getGame().getMarketBoard().getMarbleOut().getColour());
             message.setMessageType("SinglePLayerCreationOkNotification");
+            for(ClientHandler c: controller.getConnectedClients()){
+                c.notifyInterface(gson.toJson(mex));
+            }
         } else {
             message.setMessageType("SinglePLayerCreationFailedNotification");
         }

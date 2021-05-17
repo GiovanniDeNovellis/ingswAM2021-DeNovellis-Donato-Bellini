@@ -28,7 +28,6 @@ public class ServerReader implements Runnable {
                 else if (!serverOutput.equals("Ping")) {
                     Message mex=gson.fromJson(serverOutput,Message.class);
                     if(mex.getMessageType()==null){
-                        //TODO METTERE IL TIPO AI MESSAGGI CHE NON LO HANNO
                         System.err.println("Ricevuto messaggio senza tipo!");
                     }
                     else if(mex.getMessageType().equals("LoginOkNotification") && cli!=null ){

@@ -19,7 +19,7 @@ public class InsertedResourceChanged extends NotificationReader{
         nickname = data.getNickname();
         printNotification();
         data.getExtraDepositsConfiguration();
-        //TODO FARE UN PRINTER PER TEMPORARY RESOURCES data.getTemporaryResourcesConfiguration();
+        modelPrinter.getMarketBoardPrinter().setTemporaryResources(data.getTemporaryResourcesConfiguration());
         for(PersonalBoardPrinter p: modelPrinter.getPersonalBoards() ){
             if( p.getOwnerNickname().equals(nickname) ){
                 p.setWareHouseDepot(data.getWarehouseConfiguration());
