@@ -1,18 +1,17 @@
 package it.polimi.ingsw.View;
 
 
-import it.polimi.ingsw.LeaderCard;
 import it.polimi.ingsw.View.MessageBuilders.*;
 import it.polimi.ingsw.View.Printers.DeckGridPrinter;
 import it.polimi.ingsw.View.Printers.LeaderCardsPrinter;
 import it.polimi.ingsw.View.Printers.MarketBoardPrinter;
 import it.polimi.ingsw.View.Printers.PersonalBoardPrinter;
-
 import java.util.Scanner;
 
 public class CommandManager {
     private ModelPrinter modelPrinter;
     private String nickname;
+
 
     public CommandManager(ModelPrinter modelPrinter, String nickname) {
         this.modelPrinter = modelPrinter;
@@ -89,40 +88,40 @@ public class CommandManager {
             //__________________________SHOW CASES________________________
             case "show warehouse":
                 showWarehouse();
-                break;
+                return "show";
             case "show strongbox":
                 showStrongbox();
-                break;
+                return "show";
             case "show development cards":
                 showDevelopmentCards();
-                break;
+                return "show";
             case "show faith track":
                 showFaithTrack();
-                break;
+                return "show";
             case "show extra deposits":
                 showExtraDeposits();
-                break;
+                return "show";
             case "show choosable leader cards":
                 showChoosableLeaderCards();
-                break;
+                return "show";
             case "show chosen leader cards":
                 showChosenLeaderCards();
-                break;
+                return "show";
             case "show active leader cards":
                 showActiveLeaderCards();
-                break;
+                return "show";
             case "show deck grid":
                 showDeckGrid();
-                break;
+                return "show";
             case "show market board":
                 showMarketBoard();
-                break;
+                return "show";
             case "show players":
                 showPlayers();
-                break;
+                return "show";
             case "show all inserted development cards":
                 showInsertedDevCards();
-                break;
+                return "show";
         }
         return "Invalid command.";
     }
@@ -304,7 +303,7 @@ public class CommandManager {
 
     public void showPlayers(){
         for( PersonalBoardPrinter p: modelPrinter.getPersonalBoards() ){ //turn position
-            System.out.println(p.getOwnerNickname() + "\tPlayer number: " + (p.getPlayerNumber()+1) + "\n");
+            System.out.println(p.getOwnerNickname() + "\tPlayer number: " + (p.getPlayerNumber()) + "\n");
         }
     }
 

@@ -21,19 +21,27 @@ public class LeaderCardSelectionMessageBuilder extends MessageBuilder{
 
         message.setMessageType("LeaderCardSelection");
         message.setSenderNickname(nickname);
-        int position;
+        int position1;
         do{
             System.out.println("Write position of first Leader card you want to keep: [\"0\",\"1\",\"2\",\"3\"]");
-            position = input.nextInt();
-        }while(position !=0 && position !=1 && position !=2 && position !=3);
-        message.setLeaderCardPosition1(position);
+            position1 = input.nextInt();
+        }while(position1 !=0 && position1 !=1 && position1 !=2 && position1 !=3);
+        message.setLeaderCardPosition1(position1);
 
-        do{
-            System.out.println("Write position of second Leader card you want to keep: [\"0\",\"1\",\"2\",\"3\"]");
-            position = input.nextInt();
-        }while(position !=0 && position !=1 && position !=2 && position !=3);
-        message.setLeaderCardPosition2(position);
+        do {
+            setPos2(message, input);
+        }while(message.getLeaderCardPosition1()== message.getLeaderCardPosition2());
+
 
         return gson.toJson(message);
+    }
+
+    private void setPos2(LeaderCardSelectionMessage message, Scanner input){
+        int position2;
+        do{
+            System.out.println("Write position of second Leader card you want to keep: [\"0\",\"1\",\"2\",\"3\"]");
+            position2 = input.nextInt();
+        }while( position2 !=0 && position2 !=1 && position2 !=2 && position2 !=3);
+        message.setLeaderCardPosition2(position2);
     }
 }

@@ -6,6 +6,7 @@ import it.polimi.ingsw.Controller.Controller;
 import it.polimi.ingsw.Controller.Messages.InsertResourceMessage;
 import it.polimi.ingsw.Controller.Messages.Message;
 import it.polimi.ingsw.Controller.Messages.NotifyInsertedOkMessage;
+import it.polimi.ingsw.ExtraDeposit;
 
 public class InsertResourcesIntoWarehouseManager implements Manageable {
     private final Controller controller;
@@ -30,6 +31,10 @@ public class InsertResourcesIntoWarehouseManager implements Manageable {
                 mex.setMessageType("InsertedResourcesSuccessNotification");
                 NotifyInsertedOkMessage notification = new NotifyInsertedOkMessage();
                 notification.setMessageType("InsertedResourceChanged");
+                ExtraDeposit[] extraDeposits = new ExtraDeposit[2];
+                extraDeposits[0] = controller.getGame().getCurrentPlayer().getPersonalBoard().getExtraDeposit1();
+                extraDeposits[1] = controller.getGame().getCurrentPlayer().getPersonalBoard().getExtraDeposit2();
+                notification.setExtraDepositsConfiguration(extraDeposits);
                 notification.setNickname(controller.getGame().getCurrentPlayer().getNickname());
                 notification.setTemporaryResourcesConfiguration(controller.getGame().getMarketBoard().getTemporaryResources());
                 notification.setWarehouseConfiguration(controller.getGame().getCurrentPlayer().getPersonalBoard().getWarehouseDepot());

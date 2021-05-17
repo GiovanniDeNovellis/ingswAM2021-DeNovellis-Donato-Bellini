@@ -16,18 +16,20 @@ public class VaticanReportMessageReader extends NotificationReader{
     public void readNotification(String notification) {
         Gson gson = new Gson();
         VaticanReportMessage data = gson.fromJson(notification,VaticanReportMessage.class);
-        nickname = data.getNickname();
-        printNotification();
-        for(PersonalBoardPrinter p : modelPrinter.getPersonalBoards()){
-            if(p.getOwnerNickname().equals(nickname)){
-                p.setOwnerNickname(data.getNickname());
-                p.setFaithPoints(data.getNewFaithPoints());
-                if(data.getWhichOne()==1) {
-                    vatReport = "First vatican report occurred.";
-                }else if (data.getWhichOne()==2) {
-                    vatReport = "Second vatican report occurred.";
-                }else if (data.getWhichOne()==3){
-                    vatReport = "Third vatican report occurred.";
+        if(data.isOccurred() ) {
+            nickname = data.getNickname();
+            printNotification();
+            for (PersonalBoardPrinter p : modelPrinter.getPersonalBoards()) {
+                if (p.getOwnerNickname().equals(nickname)) {
+                    p.setOwnerNickname(data.getNickname());
+                    p.setFaithPoints(data.getNewFaithPoints());
+                    if (data.getWhichOne() == 1) {
+                        vatReport = "First vatican report occurred.";
+                    } else if (data.getWhichOne() == 2) {
+                        vatReport = "Second vatican report occurred.";
+                    } else if (data.getWhichOne() == 3) {
+                        vatReport = "Third vatican report occurred.";
+                    }
                 }
             }
         }

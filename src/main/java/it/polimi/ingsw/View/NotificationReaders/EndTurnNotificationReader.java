@@ -6,7 +6,7 @@ import it.polimi.ingsw.View.ModelPrinter;
 import it.polimi.ingsw.View.Printers.PersonalBoardPrinter;
 
 public class EndTurnNotificationReader extends NotificationReader{
-    String nickname,winner;
+    String winner,nextPlayer;
     int oldValue = 0;
     public EndTurnNotificationReader(ModelPrinter modelPrinter) {
         super(modelPrinter);
@@ -16,7 +16,7 @@ public class EndTurnNotificationReader extends NotificationReader{
     public void readNotification(String notification) {
         Gson gson = new Gson();
         EndTurnNotificationMessage data = gson.fromJson(notification, EndTurnNotificationMessage.class);
-        nickname = data.getActualCurrentPlayer();
+        nextPlayer = data.getActualCurrentPlayer();
         printNotification0();
         if(modelPrinter.getBlackFaithPoints()!=-1)
             modelPrinter.setBlackFaithPoints(data.getBlackFaithPoints());
@@ -35,7 +35,8 @@ public class EndTurnNotificationReader extends NotificationReader{
         }
     }
     public void printNotification0(){
-        System.out.println("Player " + nickname + " has finished his turn.");
+        System.out.println("Turn ended." +
+                "\nIt is " + nextPlayer + " turn.");
     }
     public void printNotification1(){
         System.out.println("GAME OVER.\n Player " + winner + " has won the game.");

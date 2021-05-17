@@ -10,7 +10,7 @@ import java.util.Map;
 public class NotifyInsertedOkMessage extends Message {
     private Map<ResourceType,Integer> temporaryResourcesConfiguration;
     private WareHouseDepot warehouseConfiguration;
-    private ExtraDeposit[] extraDepositsConfiguration;
+    private ExtraDeposit[] extraDepositsConfiguration = new ExtraDeposit[2];
     public String getNickname() {
         return senderNickname;
     }

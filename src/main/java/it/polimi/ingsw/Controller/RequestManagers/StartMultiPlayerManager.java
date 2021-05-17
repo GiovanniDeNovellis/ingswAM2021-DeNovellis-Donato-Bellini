@@ -27,7 +27,6 @@ public class StartMultiPlayerManager implements Manageable {
             players=controller.getGame().getPlayers();
             for (ClientHandler clientHandler : controller.getConnectedClients()) {
                     for (Player player : players) {
-                        if (clientHandler.getClientNickname().equals(player.getNickname())) {
                             MultiplayerCreationMessage multiplayerCreationMessage = new MultiplayerCreationMessage();
                             multiplayerCreationMessage.setMessageType("MultiPlayerCreationMessage");
                             multiplayerCreationMessage.setPlayerNumber(player.getPlayerNumber());
@@ -38,7 +37,6 @@ public class StartMultiPlayerManager implements Manageable {
                             multiplayerCreationMessage.setMarbleOut(controller.getGame().getMarketBoard().getMarbleOut().getColour());
                             String s = gson.toJson(multiplayerCreationMessage);
                             clientHandler.notifyInterface(s);
-                        }
                     }
                 }
             message.setMessageType("MultiPlayerCreationOkNotification");

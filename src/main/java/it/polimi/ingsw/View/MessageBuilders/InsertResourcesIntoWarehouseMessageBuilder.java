@@ -36,11 +36,13 @@ public class InsertResourcesIntoWarehouseMessageBuilder extends MessageBuilder {
             System.out.println("Do you want to insert that resource into the extra deposit? [\"Y\",\"N\"]");
             intoExtraDep = input.nextLine();
         } while (!(intoExtraDep.equals("Y") || (intoExtraDep.equals("N"))));
-        if (intoExtraDep.equals("Y")) {
-            message.setIntoExtraDeposit(true);
-        }
-        if (intoExtraDep.equals("N"))
-            message.setIntoExtraDeposit(false);
+        message.setIntoExtraDeposit(intoExtraDep.equals("Y"));
+
+        do {
+            System.out.println("How many of this resource do you want to insert? Write the number:\n");
+            quantity = input.nextInt();
+        } while (quantity<=0);
+        message.setQuantityToInsert(quantity);
 
         return gson.toJson(message);
     }

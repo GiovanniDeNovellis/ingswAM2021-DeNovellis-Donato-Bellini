@@ -23,7 +23,6 @@ public class TemporaryResourcesChanged extends NotificationReader{
     }
 
     public void printNotification(){
-        System.out.println("Write \"ShowInsertableResources\" tho see the remaining resource(s)" +
-                " you could insert(if there are other insertable resources).");
+        System.out.println("Write \"ShowInsertableResources\" to see the remaining resource(s)");
     }
 }

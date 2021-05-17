@@ -33,6 +33,7 @@ public class MultiPlayerCreation extends NotificationReader{
     }
 
     public void printNotification(){
-        System.out.println("Game started in multiplayer mode!");
+        if( !modelPrinter.isMultiplayerGameStarted() )
+            modelPrinter.setMultiplayerGameStarted(true);
     }
 }

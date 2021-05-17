@@ -21,8 +21,7 @@ public class NotificationManager {
 
         switch (messageType){
             case "LoginOkNotification":
-                reader = new LoginOKNotificationReader(modelPrinter);
-                reader.readNotification(notification);
+                System.out.println("Successfully logged in.");
                 break;
             case "ReconnectOkNotification":
                 System.out.println("Successfully reconnected");
@@ -178,7 +177,10 @@ public class NotificationManager {
                 System.out.println("You have just started the game in multiplayer mode!");
                 break;
             case"MultiPlayerCreationErrorNotification":
-                System.out.println("There is only one player logged in. You need at least another player to play" +
+                if( modelPrinter.isMultiplayerGameStarted())
+                    System.out.println("Game already started in multiplayer mode.");
+                else
+                    System.out.println("There is only one player logged in. You need at least another player to play" +
                         "multiplayer mode." +
                         "\nIf you want to play in single player mode write \"StartSinglePlayer\".");
                 break;
@@ -190,7 +192,12 @@ public class NotificationManager {
                 reader.readNotification(notification);
                 break;
             case"SinglePLayerCreationFailedNotification":
-                System.out.println("There too many players logged in. Single player mode needs exactly one player." +
+                if( modelPrinter.isMultiplayerGameStarted() )
+                    System.out.println("Game already started in multiplayer mode.");
+                else if( modelPrinter.getPersonalBoards().size()==1)
+                    System.out.println("Game already started in single player mode");
+                else if( modelPrinter.getPersonalBoards().size()>1)
+                    System.out.println("There too many players logged in. Single player mode needs exactly one player." +
                         "\nIf you want to play in multiplayer mode write \"StartMultiPlayer\".");
                 break;
             case"SwitchLevelsSuccessNotification":
@@ -216,8 +223,13 @@ public class NotificationManager {
                 reader = new MarketGridChanged(modelPrinter);
                 reader.readNotification(notification);
                 break;
+            case "EndTurnOkNotification":
+                break;
+            case "NotRightToEndTurnNotification":
+                System.out.println("You have to do a basic action before ending your turn.");
             default:
                 System.out.println("Received wrong input message!");
+                break;
         }
     }
 }

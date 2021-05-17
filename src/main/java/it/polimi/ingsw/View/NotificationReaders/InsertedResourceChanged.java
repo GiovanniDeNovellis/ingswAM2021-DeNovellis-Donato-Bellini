@@ -23,8 +23,10 @@ public class InsertedResourceChanged extends NotificationReader{
         for(PersonalBoardPrinter p: modelPrinter.getPersonalBoards() ){
             if( p.getOwnerNickname().equals(nickname) ){
                 p.setWareHouseDepot(data.getWarehouseConfiguration());
-                p.setExtraDeposit1(data.getExtraDepositsConfiguration()[0]);
-                p.setExtraDeposit2(data.getExtraDepositsConfiguration()[1]);
+                if (data.getExtraDepositsConfiguration()[0]!=null)
+                    p.setExtraDeposit1(data.getExtraDepositsConfiguration()[0]);
+                if (data.getExtraDepositsConfiguration()[1]!=null)
+                    p.setExtraDeposit2(data.getExtraDepositsConfiguration()[1]);
             }
         }
     }

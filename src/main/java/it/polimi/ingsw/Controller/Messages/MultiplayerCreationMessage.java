@@ -15,6 +15,9 @@ public class MultiplayerCreationMessage extends Message{
     private String[][] marbleGridConfiguration;
     private String marbleOut;
 
+
+
+
     public void setPlayerNumber(int playerNumber) {
         this.playerNumber = playerNumber;
     }

@@ -6,16 +6,6 @@ public class VaticanReportMessage extends Message {
     int newFaithPoints;
     String nickname;
 
-    public String getNickname() {
-        return nickname;
-    }
-
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
-    }
-
-    String nickname;
-
 
     public boolean isOccurred() {
         return occurred;

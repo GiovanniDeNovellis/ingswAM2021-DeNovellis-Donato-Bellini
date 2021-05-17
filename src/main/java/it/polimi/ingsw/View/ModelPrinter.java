@@ -10,6 +10,7 @@ public class ModelPrinter {
     private ArrayList<PersonalBoardPrinter> personalBoards = new ArrayList<>();
     private ArrayList<LeaderCardsPrinter> leaderCardsPrinters = new ArrayList<>();
     private int blackFaithPoints=-1;
+    private boolean multiplayerGameStarted = false;
 
     public void print(Printable p, String whatIHaveToPrint){
         if(whatIHaveToPrint.equals("blackFaithPoints")){
@@ -51,4 +52,12 @@ public class ModelPrinter {
         //printo tutto quando cambia la CLI in seguito ad un'azione di un player
     }
 
+    public boolean isMultiplayerGameStarted() {
+        return multiplayerGameStarted;
+    }
+
+    public void setMultiplayerGameStarted(boolean multiplayerGameStarted) {
+        this.multiplayerGameStarted = multiplayerGameStarted;
+        System.out.println("Game started in multiplayer mode!");
+    }
 }
