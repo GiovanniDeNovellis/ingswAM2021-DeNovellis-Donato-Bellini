@@ -1,20 +1,18 @@
 package it.polimi.ingsw.Controller.Messages;
 
-import it.polimi.ingsw.Marble;
-
 public class MarketGridChangedMessage extends Message{
-    private Marble[][] marketGridConfiguration;
+    private String[][] marketGridConfiguration;
 
-    public Marble getMarbleout() {
+    public String getMarbleout() {
         return marbleout;
     }
 
-    private Marble marbleout;
-    public Marble[][] getMarketGridConfiguration() {
+    private String marbleout;
+    public String[][] getMarketGridConfiguration() {
         return marketGridConfiguration;
     }
 
-    public void setMarketGridConfiguration(Marble[][] marketGridConfiguration,Marble marbleout) {
+    public void setMarketGridConfiguration(String[][] marketGridConfiguration,String marbleout) {
         this.marketGridConfiguration = marketGridConfiguration;
         this.marbleout = marbleout;
     }

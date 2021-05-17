@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import it.polimi.ingsw.Controller.Controller;
 import it.polimi.ingsw.Controller.Messages.Message;
 
+//TODO( MANDA CONFIGURAZIONE INIZIALE DI GIOCO )
 public class StartSinglePlayerManager implements Manageable{
     private final Controller controller;
 

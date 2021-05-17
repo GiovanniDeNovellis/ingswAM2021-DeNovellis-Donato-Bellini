@@ -23,7 +23,7 @@ public class Client {
             ) {
                 socket.setSoTimeout(15000);
                 String userInput;
-                System.out.println(in.readLine());
+                //System.out.println(in.readLine());
                 ClientPong clientPong = new ClientPong(out);
                 Thread t1 = new Thread(clientPong);
                 t1.start();

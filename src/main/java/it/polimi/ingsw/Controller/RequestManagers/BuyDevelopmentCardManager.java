@@ -6,6 +6,7 @@ import it.polimi.ingsw.Controller.Controller;
 import it.polimi.ingsw.Controller.Messages.BuyDevelopmentCardMessage;
 import it.polimi.ingsw.Controller.Messages.Message;
 import it.polimi.ingsw.Controller.Messages.NotifyDevelopmentCardInsertedOKMessage;
+import it.polimi.ingsw.DevelopmentCard;
 import it.polimi.ingsw.ExtraDeposit;
 
 public class BuyDevelopmentCardManager implements Manageable{
@@ -31,6 +32,7 @@ public class BuyDevelopmentCardManager implements Manageable{
                 mex.setMessageType("BuyDevelopmentCardSuccessNotification");
                 NotifyDevelopmentCardInsertedOKMessage notification = new NotifyDevelopmentCardInsertedOKMessage();
                 notification.setMessageType("DevelopmentCardBought");
+                notification.setInsertedDevelopmentCard(controller.getGame().getCurrentPlayer().getInsertedDevCards());
                 notification.setDeckgridConfiguration(controller.getGame().getDeckgrid());
                 notification.setNickname(controller.getGame().getCurrentPlayer().getNickname());
                 notification.setDevelopmentCardsConfiguration(controller.getGame().getCurrentPlayer().getPersonalBoard().getDevelopmentCard());

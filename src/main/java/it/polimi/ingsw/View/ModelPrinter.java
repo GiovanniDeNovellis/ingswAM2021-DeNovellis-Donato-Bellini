@@ -11,8 +11,8 @@ public class ModelPrinter {
     private ArrayList<LeaderCardsPrinter> leaderCardsPrinters = new ArrayList<>();
     private int blackFaithPoints;
 
-    public void print(Printable p){
-        p.print();
+    public void print(Printable p, String whatIHaveToPrint){
+        p.print(whatIHaveToPrint);
     }
 
 

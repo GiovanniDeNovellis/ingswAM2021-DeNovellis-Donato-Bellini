@@ -135,6 +135,16 @@ public class MarketBoard {
         System.out.println("Out: " + marbleOut.getColour());
     }
 
+    public String[][] getMarketboardColours(){
+        String[][] marbleColours = new String[3][4];
+        for(int i=0;i<3;i++) {
+            for (int j = 0; j < 4; j++) {
+                marbleColours[i][j] = marketGrid[i][j].getColour();
+            }
+        }
+        return marbleColours;
+    }
+
     public Game getGame() {
         return game;
     }

@@ -3,11 +3,11 @@ package it.polimi.ingsw.View.Printers;
 public class LeaderCardsPrinter implements Printable{
     private String ownerNickname;
     private int[] choosableLeaderCards = new int[4];
-    private int[] choosedLeaderCards = new int[2];
+    private int[] chosenLeaderCards = new int[2];
     private boolean[] activatedLeaderCards = {false,false};
 
     @Override
-    public void print() {
+    public void print(String whatIHaveToPrint) {
 
     }
 
@@ -15,8 +15,8 @@ public class LeaderCardsPrinter implements Printable{
         this.choosableLeaderCards = choosableLeaderCards;
     }
 
-    public void setChoosedLeaderCards(int[] choosedLeaderCards) {
-        this.choosedLeaderCards = choosedLeaderCards;
+    public void setChosenLeaderCards(int[] chosenLeaderCards) {
+        this.chosenLeaderCards = chosenLeaderCards;
     }
 
     public void activateLeaderCard(int position){

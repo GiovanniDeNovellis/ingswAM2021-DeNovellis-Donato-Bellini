@@ -2,7 +2,6 @@ package it.polimi.ingsw.View;
 
 import com.google.gson.Gson;
 import it.polimi.ingsw.Controller.Messages.Message;
-import it.polimi.ingsw.Controller.Messages.PlayerOutNotification;
 import it.polimi.ingsw.View.NotificationReaders.*;
 
 import java.sql.SQLOutput;
@@ -24,8 +23,10 @@ public class NotificationManager {
             case "LoginOkNotification":
                 reader = new LoginOKNotificationReader(modelPrinter);
                 reader.readNotification(notification);
+                break;
             case "ReconnectOkNotification":
                 System.out.println("Successfully reconnected");
+                break;
             case "InvalidLoginNotification":
                 System.out.println("Nickname already used. Choose another nickname.");
                 break;
@@ -39,6 +40,7 @@ public class NotificationManager {
             case"ConnectedPlayersMessage":
                 reader = new ConnectedPlayersMessageReader(modelPrinter);
                 reader.readNotification(notification);
+                break;
             case"ExpectedLoginRequestNotification":
                 System.out.println("Expected login. Please log in before doing this action.");
                 break;
@@ -197,6 +199,11 @@ public class NotificationManager {
             case"TakeResourceFromMarketFailureNotification":
                 System.out.println("Wrong index(row,column) chosen. Try again.");
                 break;
+            case "MarketGridChangedMessage":
+                //TODO CLASS
+                break;
+            default:
+                System.out.println("Received wrong input message!");
         }
     }
 }

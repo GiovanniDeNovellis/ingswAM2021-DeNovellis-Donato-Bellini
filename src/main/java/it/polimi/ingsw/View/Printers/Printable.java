@@ -1,5 +1,5 @@
 package it.polimi.ingsw.View.Printers;
 
 public interface Printable {
-    void print();
+    void print(String whatIHaveToPrint);
 }
