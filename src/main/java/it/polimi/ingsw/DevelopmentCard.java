@@ -238,4 +238,16 @@ public class DevelopmentCard {
 
         return personalBoard.payDevelopmentCard(cost);
     }
+
+    public Map<ResourceType, Integer> getCost() {
+        return cost;
+    }
+
+    public Map<ResourceType, Integer> getEarnedResources() {
+        return earnedResources;
+    }
+
+    public Map<ResourceType,Integer> getProductionCost(){
+        return this.productionCost;
+    }
 }
