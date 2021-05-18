@@ -76,26 +76,26 @@ public class DeckGridPrinter implements Printable{
 
     private void printCards(DevelopmentCard greenCard, DevelopmentCard blueCard, DevelopmentCard yellowCard, DevelopmentCard purpleCard){
 
-        String greenColour = greenCard.getColour().toString();
-        String blueColour = blueCard.getColour().toString();
-        String yellowColour = yellowCard.getColour().toString();
-        String purpleColour = purpleCard.getColour().toString();
-        if( greenColour==null)
+        String greenColour;
+        String blueColour;
+        String yellowColour;
+        String purpleColour;
+        if( greenCard==null)
             greenColour = "EMPTY STACK     ";
         else
             greenColour ="COLOUR: GREEN   ";
 
-        if( blueColour==null)
+        if( blueCard==null)
             blueColour = "EMPTY STACK     ";
         else
             blueColour ="COLOUR: BLUE    ";
 
-        if( yellowColour==null)
+        if( yellowCard==null)
             yellowColour = "EMPTY STACK     ";
         else
             yellowColour ="COLOUR: YELLOW  ";
 
-        if( purpleColour==null)
+        if( purpleCard==null)
             purpleColour = "EMPTY STACK     ";
         else
             purpleColour ="COLOUR: PURPLE  ";
@@ -145,10 +145,10 @@ public class DeckGridPrinter implements Printable{
                 "      "+
                 "\u2551");
 
-        StringBuilder greenCost = setCost(greenCard);
-        StringBuilder blueCost = setCost(blueCard);
-        StringBuilder yellowCost = setCost(yellowCard);
-        StringBuilder purpleCost = setCost(purpleCard);
+        StringBuilder greenCost = getCost(greenCard);
+        StringBuilder blueCost = getCost(blueCard);
+        StringBuilder yellowCost = getCost(yellowCard);
+        StringBuilder purpleCost = getCost(purpleCard);
 
         System.out.println(Colours.ANSI_GREEN.escape() + "\u2551" +
                 greenCost +
@@ -182,10 +182,10 @@ public class DeckGridPrinter implements Printable{
                 "PRODUCTION COST:" +
                 "\u2551");
 
-        StringBuilder greenProdCost = setProductionCost(greenCard);
-        StringBuilder blueProdCost = setProductionCost(blueCard);
-        StringBuilder yellowProdCost = setProductionCost(yellowCard);
-        StringBuilder purpleProdCost = setProductionCost(purpleCard);
+        StringBuilder greenProdCost = getProductionCost(greenCard);
+        StringBuilder blueProdCost = getProductionCost(blueCard);
+        StringBuilder yellowProdCost = getProductionCost(yellowCard);
+        StringBuilder purpleProdCost = getProductionCost(purpleCard);
 
         System.out.println(Colours.ANSI_GREEN.escape() + "\u2551" +
                 greenProdCost +
@@ -219,10 +219,10 @@ public class DeckGridPrinter implements Printable{
                 "PRODUCTION GAIN:" +
                 "\u2551");
 
-        StringBuilder greenGain = setEarnedResources(greenCard);
-        StringBuilder blueGain = setEarnedResources(blueCard);
-        StringBuilder yellowGain = setEarnedResources(yellowCard);
-        StringBuilder purpleGain = setEarnedResources(purpleCard);
+        StringBuilder greenGain = getEarnedResources(greenCard);
+        StringBuilder blueGain = getEarnedResources(blueCard);
+        StringBuilder yellowGain = getEarnedResources(yellowCard);
+        StringBuilder purpleGain = getEarnedResources(purpleCard);
 
         System.out.println(Colours.ANSI_GREEN.escape() + "\u2551" +
                 greenGain +
@@ -259,45 +259,27 @@ public class DeckGridPrinter implements Printable{
                 "VICTORY POINTS:" +
                 " " +
                 "\u2551");
-        String greenSpaces,blueSpaces,yellowSpaces,purpleSpaces;
-        if (greenCard.getVictoryPoints()>9)
-            greenSpaces = "              ";
-        else
-            greenSpaces = "               ";
 
-        if (blueCard.getVictoryPoints()>9)
-            blueSpaces = "              ";
-        else
-            blueSpaces = "               ";
-
-        if (yellowCard.getVictoryPoints()>9)
-            yellowSpaces = "              ";
-        else
-            yellowSpaces = "               ";
-
-        if (purpleCard.getVictoryPoints()>9)
-            purpleSpaces = "              ";
-        else
-            purpleSpaces = "               ";
+        String greenVictory,blueVictory,yellowVictory,purpleVictory;
+        greenVictory = getVictoryPoints(greenCard);
+        blueVictory = getVictoryPoints(blueCard);
+        yellowVictory = getVictoryPoints(yellowCard);
+        purpleVictory = getVictoryPoints(purpleCard);
 
         System.out.println(Colours.ANSI_GREEN.escape() + "\u2551" +
-                greenCard.getVictoryPoints() +
-                greenSpaces +
+                greenVictory +
                 "\u2551" +
                 "    " +
                 Colours.ANSI_BLUE.escape() + "\u2551" +
-                blueCard.getVictoryPoints() +
-                blueSpaces +
+                blueVictory +
                 "\u2551" +
                 "    " +
                 Colours.ANSI_YELLOW.escape() + "\u2551" +
-                yellowCard.getVictoryPoints() +
-                yellowSpaces +
+                yellowVictory +
                 "\u2551" +
                 "    " +
                 Colours.ANSI_PURPLE.escape() + "\u2551" +
-                purpleCard.getVictoryPoints() +
-                purpleSpaces +
+                purpleVictory +
                 "\u2551");
 
         System.out.println(Colours.ANSI_GREEN.escape() + "\u2551" +
@@ -320,24 +302,26 @@ public class DeckGridPrinter implements Printable{
                 "     " +
                 "\u2551");
 
+        String greenLevel, blueLevel, yellowLevel, purpleLevel;
+        greenLevel = getLevel(greenCard);
+        blueLevel = getLevel(blueCard);
+        yellowLevel = getLevel(yellowCard);
+        purpleLevel = getLevel(greenCard);
+
         System.out.println(Colours.ANSI_GREEN.escape() + "\u2551" +
-                greenCard.getLevel() +
-                "               " +
+                greenLevel +
                 "\u2551" +
                 "    " +
                 Colours.ANSI_BLUE.escape() + "\u2551" +
-                blueCard.getLevel() +
-                "               " +
+                blueLevel +
                 "\u2551" +
                 "    " +
                 Colours.ANSI_YELLOW.escape() + "\u2551" +
-                yellowCard.getLevel() +
-                "               " +
+                yellowLevel +
                 "\u2551" +
                 "    " +
                 Colours.ANSI_PURPLE.escape() + "\u2551" +
-                purpleCard.getLevel() +
-                "               " +
+                purpleLevel +
                 "\u2551");
 
         System.out.println(Colours.ANSI_GREEN.escape() + "\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d"
@@ -347,11 +331,15 @@ public class DeckGridPrinter implements Printable{
                 + Colours.ANSI_YELLOW.escape() + "\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d"
                 + "    "
                 + Colours.ANSI_PURPLE.escape() + "\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d"
-                + ("    ") );
+                + ("    ")  + Colours.RESET());
     }
 
-    private StringBuilder setCost(DevelopmentCard card){
+    private StringBuilder getCost(DevelopmentCard card){
         StringBuilder cost = new StringBuilder();
+        if (card==null){
+            cost.append("                ");
+            return cost;
+        }
         for( ResourceType res : card.getCost().keySet() ){
             if( res==ResourceType.COINS){
                 Integer quantity = card.getCost().get(res);
@@ -388,8 +376,12 @@ public class DeckGridPrinter implements Printable{
         return cost;
     }
 
-    private StringBuilder setProductionCost(DevelopmentCard card){
+    private StringBuilder getProductionCost(DevelopmentCard card){
         StringBuilder cost = new StringBuilder();
+        if (card==null){
+            cost.append("                ");
+            return cost;
+        }
         for( ResourceType res : card.getProductionCost().keySet() ){
             if( res==ResourceType.COINS){
                 Integer quantity = card.getProductionCost().get(res);
@@ -426,8 +418,12 @@ public class DeckGridPrinter implements Printable{
         return cost;
     }
 
-    private StringBuilder setEarnedResources(DevelopmentCard card){
+    private StringBuilder getEarnedResources(DevelopmentCard card){
         StringBuilder cost = new StringBuilder();
+        if (card==null){
+            cost.append("                ");
+            return cost;
+        }
         for( ResourceType res : card.getEarnedResources().keySet() ){
             if( res==ResourceType.COINS){
                 Integer quantity = card.getEarnedResources().get(res);
@@ -469,6 +465,22 @@ public class DeckGridPrinter implements Printable{
             cost.append(" ");
         }
         return cost;
+    }
+    public String getVictoryPoints(DevelopmentCard card){
+        String  cardsVictoryPoints;
+        if( card == null )
+            cardsVictoryPoints = "                ";
+        else if (card.getVictoryPoints()>9)
+            cardsVictoryPoints = card.getVictoryPoints() + "              ";
+        else
+            cardsVictoryPoints = card.getVictoryPoints() + "               ";
+        return cardsVictoryPoints;
+    }
+    public String getLevel(DevelopmentCard card){
+        if( card==null )
+            return "                ";
+        else
+            return card.getLevel() + "               ";
     }
 
 

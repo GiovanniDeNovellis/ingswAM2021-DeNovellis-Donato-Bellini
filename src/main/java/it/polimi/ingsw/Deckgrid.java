@@ -95,6 +95,7 @@ public class Deckgrid {
      * @return the card from the deck
      */
     public DevelopmentCard readCard(int level, Colour colour){
-        return decks[deckColumn.get(colour) + level-1].readCard();
+       // return decks[deckColumn.get(colour) + level-1].readCard();
+        return null;
     }
 }

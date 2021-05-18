@@ -19,4 +19,8 @@ public enum Colours {
     public String escape() {
         return escape;
     }
+
+    public static String RESET() {
+        return RESET;
+    }
 }

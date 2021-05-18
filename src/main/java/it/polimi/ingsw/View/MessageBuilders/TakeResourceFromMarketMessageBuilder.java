@@ -3,6 +3,7 @@ package it.polimi.ingsw.View.MessageBuilders;
 import com.google.gson.Gson;
 import it.polimi.ingsw.Controller.Messages.TakeResourceFromMarketMessage;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class TakeResourceFromMarketMessageBuilder extends MessageBuilder {
@@ -26,7 +27,12 @@ public class TakeResourceFromMarketMessageBuilder extends MessageBuilder {
                 "\n\"row:0,col:4\",\t\"row:1,col:4\",\n\"row:2,col:4\"");
         do {
             System.out.println("Write the row of the grid where you want to take the resource: [\"0\",\"1\",\"2\",\"3\"]");
-            x = input.nextInt();
+            try {
+                x = input.nextInt();
+            } catch (InputMismatchException e){
+                System.out.println("Write \"0\",\"1\",\"2\" or \"3\"");
+                x = input.nextInt();
+            }
         } while (x != 0 && x != 1 && x != 2 && x != 3);
         marketindex[0]=x;
         do {
