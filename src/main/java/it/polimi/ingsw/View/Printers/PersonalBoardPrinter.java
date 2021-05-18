@@ -3,6 +3,7 @@ package it.polimi.ingsw.View.Printers;
 import it.polimi.ingsw.DevelopmentCard;
 import it.polimi.ingsw.ExtraDeposit;
 import it.polimi.ingsw.ResourceType;
+import it.polimi.ingsw.View.Colours;
 import it.polimi.ingsw.WareHouseDepot;
 
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ public class PersonalBoardPrinter implements Printable{
     private Map<ResourceType,Integer> strongbox = new HashMap<>();
     private ExtraDeposit extraDeposit1 = new ExtraDeposit(null);
     private ExtraDeposit extraDeposit2 = new ExtraDeposit(null);
+    private Map<ResourceType, Colours> resourceTypeColoursMap = new HashMap<>();
 
     public int getFaithPoints() {
         return faithPoints;
@@ -26,11 +28,28 @@ public class PersonalBoardPrinter implements Printable{
     private int faithPoints=0;
     private int[] faithCards = {2,3,4};
 
+    public PersonalBoardPrinter() {
+        resourceTypeColoursMap.put(ResourceType.COINS,Colours.ANSI_YELLOW);
+        resourceTypeColoursMap.put(ResourceType.SERVANTS, Colours.ANSI_PURPLE);
+        resourceTypeColoursMap.put(ResourceType.SHIELDS,Colours.ANSI_CYAN);
+        resourceTypeColoursMap.put(ResourceType.STONES,Colours.ANSI_BLACK);
+    }
 
     @Override
     public void print(String whatIHaveToPrint) {
-
-
+        switch (whatIHaveToPrint){
+            case "warehouse":
+                printWarehouse();
+                break;
+            case "strongbox":
+                printStrongbox();
+                break;
+            case "extraDeposit":
+                printExtraDeposits();
+                break;
+            default:
+                System.out.println("Print non riconosciuta");
+        }
     }
 
     public void setDevelopmentCards(DevelopmentCard[] developmentCards) {
@@ -83,5 +102,109 @@ public class PersonalBoardPrinter implements Printable{
 
     public void setAllCardsInserted(ArrayList<DevelopmentCard> allCardsInserted) {
         this.allCardsInserted = allCardsInserted;
+    }
+
+    private void printWarehouse(){
+        System.out.println(ownerNickname + "'s Warehouse:");
+        if(wareHouseDepot==null){
+            System.out.println("Warehouse not present");
+            return;
+        }
+        if(wareHouseDepot.getLevel(1).getResourceType()==null){
+            for(int i=0;i<16;i++)
+                System.out.print("\u2550");
+            System.out.print("\u2551 EMPTY \u2551");
+            for(int i=0;i<16;i++)
+                System.out.print("\u2550");
+            System.out.println(" ");
+        }
+        else{
+            ResourceType res = wareHouseDepot.getLevel(1).getResourceType();
+            for(int i=0;i<16;i++)
+                System.out.print(resourceTypeColoursMap.get(res).escape() + "\u2550");
+            System.out.print("\u2551" + res + "\u2551");
+            for(int i=0;i<16;i++)
+                System.out.print(resourceTypeColoursMap.get(res).escape() + "\u2550");
+            System.out.print("\n");
+        }
+        if(wareHouseDepot.getLevel(2).getResourceType()==null){
+            for(int i=0;i<8;i++)
+                System.out.print(Colours.RESET+ "\u2550");
+            System.out.print("\u2551 EMPTY \u2551");
+            for(int i=0;i<8;i++)
+                System.out.print("\u2550");
+            System.out.print("\u2551 EMPTY \u2551");
+            for(int i=0;i<8;i++)
+                System.out.print("\u2550");
+            System.out.print("\n");
+        }
+        else{
+            ResourceType res = wareHouseDepot.getLevel(2).getResourceType();
+            int i,max=3,curr=wareHouseDepot.getLevel(2).getCurrNumResources();
+            for(i=curr; i>0;i--){
+                for(int j=0;j<8;j++)
+                    System.out.print(resourceTypeColoursMap.get(res).escape()+"\u2550");
+                System.out.print("\u2551 " + res + " \u2551");
+            }
+            for(i=max-curr;i>0;i--){
+                for(int j=0;j<8;j++)
+                    System.out.print("\u2550");
+                System.out.print("\u2551 EMPTY \u2551");
+            }
+            System.out.print("\n");
+        }
+        if(wareHouseDepot.getLevel(3).getResourceType()==null){
+            for(int i=0;i<4;i++)
+                System.out.print(Colours.RESET + "\u2550");
+            System.out.print("\u2551 EMPTY \u2551");
+            for(int i=0;i<4;i++)
+                System.out.print("\u2550");
+            System.out.print("\u2551 EMPTY \u2551");
+            for(int i=0;i<4;i++)
+                System.out.print("\u2550");
+            System.out.print("\u2551 EMPTY \u2551");
+            for(int i=0;i<4;i++)
+                System.out.print("\u2550");
+            System.out.print("\n");
+        }
+        else{
+            ResourceType res = wareHouseDepot.getLevel(3).getResourceType();
+            int i,max=3,curr=wareHouseDepot.getLevel(3).getCurrNumResources();
+            for(i=curr; i>0;i--){
+                for(int j=0;j<4;j++)
+                    System.out.print(resourceTypeColoursMap.get(res).escape() + "\u2550");
+                System.out.print("\u2551 " + resourceTypeColoursMap.get(res).escape() + res + " \u2551");
+            }
+            for(i=max-curr;i>0;i--){
+                for(int j=0;j<4;j++)
+                    System.out.print("\u2550");
+                System.out.print("\u2551 EMPTY \u2551");
+            }
+            System.out.print("\n");
+        }
+    }
+
+    private void printStrongbox(){
+        System.out.println(ownerNickname + "'s strongbox");
+        for(ResourceType r: strongbox.keySet()){
+            System.out.println(resourceTypeColoursMap.get(r).escape() + "\u2550\u2550\u2550 " + r + ":" + strongbox.get(r) + Colours.RESET);
+        }
+    }
+
+    private void printExtraDeposits(){
+        System.out.println(ownerNickname + "'s first extra deposit:");
+        if(extraDeposit1.getResourceType()==null){
+            System.out.println("\u2550\u2550\u2550\u2550\u2550\u2550 First deposit not activated \u2550\u2550\u2550\u2550\u2550\u2550 ");
+        }
+        else{
+            System.out.println(resourceTypeColoursMap.get(extraDeposit1.getResourceType()).escape()+"\u2550\u2550\u2550\u2550\u2550\u2550 "+ extraDeposit1.getResourceType()+":"+extraDeposit1.getCurrentQuantity()+"\u2550\u2550\u2550\u2550\u2550\u2550"+Colours.RESET);
+        }
+        System.out.println(ownerNickname + "'s second extra deposit:");
+        if(extraDeposit2.getResourceType()==null){
+            System.out.println("\u2550\u2550\u2550\u2550\u2550\u2550 Second deposit not activated \u2550\u2550\u2550\u2550\u2550\u2550 ");
+        }
+        else{
+            System.out.println(resourceTypeColoursMap.get(extraDeposit2.getResourceType()).escape()+"\u2550\u2550\u2550\u2550\u2550\u2550 "+ extraDeposit2.getResourceType()+":"+extraDeposit2.getCurrentQuantity()+"\u2550\u2550\u2550\u2550\u2550\u2550"+Colours.RESET);
+        }
     }
 }

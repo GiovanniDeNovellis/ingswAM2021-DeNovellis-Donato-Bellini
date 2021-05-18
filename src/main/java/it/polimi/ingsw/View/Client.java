@@ -1,5 +1,6 @@
 package it.polimi.ingsw.View;
 
+import java.awt.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -12,7 +13,6 @@ public class Client {
 
     public static void main(String[] args) {
             String hostName = "127.0.0.1";
-        //System.out.println("\u2551");
             int portNumber = 1234;
             //COMMENT FOR FIRST DEBUG
             //String type=args[0];

@@ -77,5 +77,5 @@ public class Level {
      * stored into the level.
      * @return Type of resource.
      */
-    ResourceType getResourceType(){return this.currentResourceType;}
+    public ResourceType getResourceType(){return this.currentResourceType;}
 }
