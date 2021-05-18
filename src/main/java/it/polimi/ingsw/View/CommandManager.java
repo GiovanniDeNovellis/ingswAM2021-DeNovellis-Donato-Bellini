@@ -22,6 +22,36 @@ public class CommandManager {
         MessageBuilder toBuild;
         switch (userInput) {
             //Help to show all commands
+            case "test":
+                System.out.println(Colours.ANSI_GREEN.escape() + "\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557"
+                        + "    "
+                        + Colours.ANSI_BLUE.escape() + "\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557"
+                        + "    "
+                        + Colours.ANSI_YELLOW.escape() + "\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557"
+                        + "    "
+                        + Colours.ANSI_PURPLE.escape() + "\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557"
+                        + ("    ") );
+
+                System.out.println(Colours.ANSI_GREEN.escape() + "\u2551" +
+                        "COLOUR: GREEN" +
+                        "   " +
+                        "\u2551" +
+                        "    " +
+                        Colours.ANSI_BLUE.escape() + "\u2551" +
+                        "COLOUR: BLUE" +
+                        "    " +
+                        "\u2551" +
+                        "    " +
+                        Colours.ANSI_YELLOW.escape() + "\u2551" +
+                        "COLOUR: YELLOW" +
+                        "  " +
+                        "\u2551" +
+                        "    " +
+                        Colours.ANSI_PURPLE.escape() + "\u2551" +
+                        "COLOUR: PURPLE" +
+                        "  "+
+                        "\u2551");
+                return "show";
             case "help":
                 toBuild = new HelpMessageBuilder();
                 return toBuild.buildMessage();
@@ -302,8 +332,9 @@ public class CommandManager {
     }
 
     public void showPlayers(){
-        for( PersonalBoardPrinter p: modelPrinter.getPersonalBoards() ){ //turn position
-            System.out.println(p.getOwnerNickname() + "\tPlayer number: " + (p.getPlayerNumber()) + "\n");
+        for( PersonalBoardPrinter p: modelPrinter.getPersonalBoards() ){
+            System.out.println("Player name: " + Colours.ANSI_RED.escape() + p.getOwnerNickname()
+                    + Colours.RESET + "Player number: " +  Colours.ANSI_RED.escape() +(p.getPlayerNumber()) + Colours.RESET +"\n");
         }
     }
 
