@@ -18,6 +18,10 @@ public class Strongbox {
     private int numOf;
 
     public Strongbox(){
+        resourcesContained.put(ResourceType.SHIELDS,0);
+        resourcesContained.put(ResourceType.COINS,0);
+        resourcesContained.put(ResourceType.SERVANTS,0);
+        resourcesContained.put(ResourceType.STONES,0);
         victoryPoints = 0;
         numOf = 0;
     }

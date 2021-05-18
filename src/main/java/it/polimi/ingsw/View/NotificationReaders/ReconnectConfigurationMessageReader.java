@@ -44,7 +44,7 @@ public class ReconnectConfigurationMessageReader extends NotificationReader{
         modelPrinter.getPersonalBoards().add(p);
         modelPrinter.getLeaderCardsPrinters().add(l);
         modelPrinter.getMarketBoardPrinter().setMarbleGrid(reconnectConfigurationMessage.getMarbleGridConfiguration());
-        modelPrinter.getMarketBoardPrinter().setMarbleOut(reconnectConfigurationMessage.getMarbleOut().getColour());
+        modelPrinter.getMarketBoardPrinter().setMarbleOut(reconnectConfigurationMessage.getMarbleOut());
         modelPrinter.getDeckGridPrinter().setDeckgrid(reconnectConfigurationMessage.getDeckgridConfiguration());
         System.out.println("You obtained the configuration of " + reconnectConfigurationMessage.getSenderNickname());
     }

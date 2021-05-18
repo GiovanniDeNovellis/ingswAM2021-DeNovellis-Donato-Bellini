@@ -91,7 +91,7 @@ public class ClientHandler implements Runnable {
                                         reconnectConfigurationMessage.setMessageType("ReconnectConfigurationMessage");
                                         reconnectConfigurationMessage.setSenderNickname(player.getNickname());
                                         reconnectConfigurationMessage.setMarbleGridConfiguration(controller.getGame().getMarketBoard().getMarketboardColours());
-                                        reconnectConfigurationMessage.setMarbleOut(controller.getGame().getMarketBoard().getMarbleOut());
+                                        reconnectConfigurationMessage.setMarbleOut(controller.getGame().getMarketBoard().getMarbleOut().getColour());
                                         reconnectConfigurationMessage.setDeckgridConfiguration(controller.getGame().getDeckgrid());
                                         reconnectConfigurationMessage.setWareHouseConfiguration(player.getPersonalBoard().getWarehouseDepot());
                                         reconnectConfigurationMessage.setStrongboxConfiguration(player.getPersonalBoard().getStrongbox());

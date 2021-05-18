@@ -18,23 +18,31 @@ public class VaticanReportMessageReader extends NotificationReader{
         VaticanReportMessage data = gson.fromJson(notification,VaticanReportMessage.class);
         if(data.isOccurred() ) {
             nickname = data.getNickname();
-            printNotification();
             for (PersonalBoardPrinter p : modelPrinter.getPersonalBoards()) {
                 if (p.getOwnerNickname().equals(nickname)) {
-                    p.setOwnerNickname(data.getNickname());
                     p.setFaithPoints(data.getNewFaithPoints());
                     if (data.getWhichOne() == 1) {
-                        vatReport = "First vatican report occurred.";
+                        if(data.getNewFaithPoints()>4)
+                            vatReport = "First vatican report occurred. You were inside the vatican space";
+                        else
+                            vatReport = "First vatican report occurred. You weren't inside the vatican space";
                     } else if (data.getWhichOne() == 2) {
-                        vatReport = "Second vatican report occurred.";
+                        if(data.getNewFaithPoints()>11)
+                            vatReport = "Second vatican report occurred. You were inside the vatican space";
+                        else
+                            vatReport = "Second vatican report occurred. You weren't inside the vatican space";
                     } else if (data.getWhichOne() == 3) {
-                        vatReport = "Third vatican report occurred.";
+                        if(data.getNewFaithPoints()>18)
+                            vatReport = "Third vatican report occurred. You were inside the vatican space";
+                        else
+                            vatReport = "Third vatican report occurred. You weren't inside the vatican space";
                     }
                 }
+                printNotification();
             }
         }
-}
+    }
     public void printNotification(){
-        System.out.println("Player " + nickname + " has a vatican report." + vatReport);
+        System.out.println(vatReport);
     }
 }

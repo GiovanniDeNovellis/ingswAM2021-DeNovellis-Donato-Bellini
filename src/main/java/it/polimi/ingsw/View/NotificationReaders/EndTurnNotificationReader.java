@@ -18,8 +18,14 @@ public class EndTurnNotificationReader extends NotificationReader{
         EndTurnNotificationMessage data = gson.fromJson(notification, EndTurnNotificationMessage.class);
         nextPlayer = data.getActualCurrentPlayer();
         printNotification0();
-        if(modelPrinter.getBlackFaithPoints()!=-1)
+        if(modelPrinter.getBlackFaithPoints()!=-1) {
+            int diff = data.getBlackFaithPoints()   - modelPrinter.getBlackFaithPoints();
+            if(diff>0)
+                System.out.println("You discarded resources: Lorenzo gets " + diff + " faith points." );
             modelPrinter.setBlackFaithPoints(data.getBlackFaithPoints());
+        }
+        else if(data.getNumResourcesDiscarded()>0)
+            System.out.println(data.getNumResourcesDiscarded() + " resources have been discarded");
         for (PersonalBoardPrinter p : modelPrinter.getPersonalBoards()){
             oldValue = p.getFaithPoints();
             p.setFaithPoints(data.getNumResourcesDiscarded()+oldValue);

@@ -23,8 +23,35 @@ public class ActionCardActivationManager implements Manageable{
             return gson.toJson(notification);
         }
         String type = controller.getGame().getActionCardStack().getCards().get(0).getType();
+        int[] faithCardsBefore = controller.getVaticanReport().clone();
         if (controller.getGame().activateActionCard()) {
             Gson gson = new Gson();
+            int[] faithCardsAfter = controller.getVaticanReport();
+            int whichReport = 0;
+            boolean vaticanReportOccurred = false;
+            for (int i = 0; i < 3; i++) {
+                if (faithCardsBefore[i] != faithCardsAfter[i]) {
+                    switch (i) {
+                        case 0:
+                            whichReport = 1;
+                            vaticanReportOccurred = true;
+                            break;
+                        case 1:
+                            whichReport = 2;
+                            vaticanReportOccurred = true;
+                            break;
+                        case 2:
+                            whichReport = 3;
+                            vaticanReportOccurred = true;
+                            break;
+                    }
+                }
+            }
+            VaticanReportMessage vaticanReportMessage = new VaticanReportMessage();
+            vaticanReportMessage.setMessageType("VaticanReportMessage");
+            vaticanReportMessage.setOccurred(vaticanReportOccurred);
+            vaticanReportMessage.setWhichOne(whichReport);
+            controller.getConnectedClients().get(0).notifyInterface(gson.toJson(vaticanReportMessage));
             switch (type) {
                 case "Move":
                     MoveLorenzoMessage message = new MoveLorenzoMessage();
