@@ -23,6 +23,7 @@ public class CommandManager {
         switch (userInput) {
             //Help to show all commands
             case "test":
+
                 System.out.println(Colours.ANSI_GREEN.escape() + "\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557"
                         + "    "
                         + Colours.ANSI_BLUE.escape() + "\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557"
@@ -50,6 +51,46 @@ public class CommandManager {
                         Colours.ANSI_PURPLE.escape() + "\u2551" +
                         "COLOUR: PURPLE" +
                         "  "+
+                        "\u2551");
+
+                System.out.println(Colours.ANSI_GREEN.escape() + "\u2551" +
+                        "COST:" +
+                        "           "+
+                        "\u2551" +
+                        "    " +
+                        Colours.ANSI_BLUE.escape() + "\u2551" +
+                        "COST:" +
+                        "           "+
+                        "\u2551" +
+                        "    " +
+                        Colours.ANSI_YELLOW.escape() + "\u2551" +
+                        "COST:" +
+                        "           "+
+                        "\u2551" +
+                        "    " +
+                        Colours.ANSI_PURPLE.escape() + "\u2551" +
+                        "COST:" +
+                        "           "+
+                        "\u2551");
+
+                System.out.println(Colours.ANSI_GREEN.escape() + "\u2551" +
+                        "STONES:" +
+                        "         "+
+                        "\u2551" +
+                        "    " +
+                        Colours.ANSI_BLUE.escape() + "\u2551" +
+                        "STONES:" +
+                        "         "+
+                        "\u2551" +
+                        "    " +
+                        Colours.ANSI_YELLOW.escape() + "\u2551" +
+                        "STONES:" +
+                        "         "+
+                        "\u2551" +
+                        "    " +
+                        Colours.ANSI_PURPLE.escape() + "\u2551" +
+                        "STONES:" +
+                        "         "+
                         "\u2551");
                 return "show";
             case "help":
@@ -334,7 +375,7 @@ public class CommandManager {
     public void showPlayers(){
         for( PersonalBoardPrinter p: modelPrinter.getPersonalBoards() ){
             System.out.println("Player name: " + Colours.ANSI_RED.escape() + p.getOwnerNickname()
-                    + Colours.RESET + "Player number: " +  Colours.ANSI_RED.escape() +(p.getPlayerNumber()) + Colours.RESET +"\n");
+                    + Colours.RESET + "\tPlayer number: " +  Colours.ANSI_RED.escape() +(p.getPlayerNumber()) + Colours.RESET +"\n");
         }
     }
 
