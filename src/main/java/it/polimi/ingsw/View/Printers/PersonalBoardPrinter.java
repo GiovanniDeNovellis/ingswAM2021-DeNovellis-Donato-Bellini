@@ -16,7 +16,6 @@ public class PersonalBoardPrinter implements Printable{
     private ArrayList<DevelopmentCard> allCardsInserted = new ArrayList<>();
     private WareHouseDepot wareHouseDepot = new WareHouseDepot();
     private Map<ResourceType,Integer> strongbox = new HashMap<>();
-    private Map<ResourceType,Integer> temporaryResources = new HashMap<>();
     private ExtraDeposit extraDeposit1 = new ExtraDeposit(null);
     private ExtraDeposit extraDeposit2 = new ExtraDeposit(null);
 
@@ -76,14 +75,6 @@ public class PersonalBoardPrinter implements Printable{
 
     public void setPlayerNumber(int playerNumber) {
         this.playerNumber = playerNumber;
-    }
-
-    public Map<ResourceType, Integer> getTemporaryResources() {
-        return temporaryResources;
-    }
-
-    public void setTemporaryResources(Map<ResourceType, Integer> temporaryResources) {
-        this.temporaryResources = temporaryResources;
     }
 
     public ArrayList<DevelopmentCard> getAllCardsInserted() {

@@ -85,6 +85,7 @@ public class CommandManager {
             case "EndTurnRequest":
                 toBuild = new EndTurnRequestMessageBuilder(nickname);
                 return toBuild.buildMessage();
+                //TODO FORSE FARE SHOW CURRENT PLAYER E SHOW PERSONAL BOARD
             //__________________________SHOW CASES________________________
             case "show warehouse":
                 showWarehouse();

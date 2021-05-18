@@ -227,6 +227,7 @@ public class NotificationManager {
                 break;
             case "NotRightToEndTurnNotification":
                 System.out.println("You have to do a basic action before ending your turn.");
+                break;
             default:
                 System.out.println("Received wrong input message!");
                 break;
