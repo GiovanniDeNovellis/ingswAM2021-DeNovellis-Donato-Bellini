@@ -1,10 +1,7 @@
 package it.polimi.ingsw.View.Printers;
 
-import it.polimi.ingsw.DevelopmentCard;
-import it.polimi.ingsw.ExtraDeposit;
-import it.polimi.ingsw.ResourceType;
+import it.polimi.ingsw.*;
 import it.polimi.ingsw.View.Colours;
-import it.polimi.ingsw.WareHouseDepot;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,7 +16,7 @@ public class PersonalBoardPrinter implements Printable{
     private Map<ResourceType,Integer> strongbox = new HashMap<>();
     private ExtraDeposit extraDeposit1 = new ExtraDeposit(null);
     private ExtraDeposit extraDeposit2 = new ExtraDeposit(null);
-    private Map<ResourceType, Colours> resourceTypeColoursMap = new HashMap<>();
+    private final Map<ResourceType, Colours> resourceTypeColoursMap = new HashMap<>();
 
     public int getFaithPoints() {
         return faithPoints;
@@ -50,8 +47,14 @@ public class PersonalBoardPrinter implements Printable{
             case "faithTrack":
                 printFaithTrack();
                 break;
+            case "developmentCards":
+                printDevelopmentCards();
+                break;
+            case "insertedDevCards":
+                printAllInsertedDevCards();
+                break;
             default:
-                System.out.println("Print non riconosciuta");
+                System.out.println("I don't understand what you want to see.");
         }
     }
 
@@ -219,5 +222,447 @@ public class PersonalBoardPrinter implements Printable{
 
     private void printFaithTrack(){
 
+    }
+
+    private void printDevelopmentCards(){
+
+        DevelopmentCard firstCard = developmentCards[0];
+        DevelopmentCard secondCard = developmentCards[1];
+        DevelopmentCard thirdCard = developmentCards[2];
+
+        String firstColour,secondColour,thirdColour;
+        firstColour = getColour(firstCard);
+        secondColour = getColour(secondCard);
+        thirdColour = getColour(thirdCard);
+
+        String firstDrawingColour, secondDrawingColour, thirdDrawingColour;
+        firstDrawingColour = drawColour(firstCard);
+        secondDrawingColour = drawColour(secondCard);
+        thirdDrawingColour = drawColour(thirdCard);
+
+        System.out.println(firstDrawingColour + "\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557"
+                + "    "
+                + secondDrawingColour + "\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557"
+                + "    "
+                + thirdDrawingColour + "\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557");
+
+        System.out.println(firstDrawingColour + "\u2551" +
+                firstColour +
+                "\u2551" +
+                "    " +
+                secondDrawingColour + "\u2551" +
+                secondColour +
+                "\u2551" +
+                "    " +
+                thirdDrawingColour + "\u2551" +
+                thirdColour +
+                "\u2551");
+
+        System.out.println(firstDrawingColour + "\u2551" +
+                "CARD COST:" +
+                "      "+
+                "\u2551" +
+                "    " +
+                secondDrawingColour + "\u2551" +
+                "CARD COST:" +
+                "      "+
+                "\u2551" +
+                "    " +
+                thirdDrawingColour + "\u2551" +
+                "CARD COST:" +
+                "      "+
+                "\u2551");
+
+        StringBuilder firstCost = getCost(firstCard);
+        StringBuilder secondCost = getCost(secondCard);
+        StringBuilder thirdCost = getCost(thirdCard);
+
+        System.out.println(firstDrawingColour + "\u2551" +
+                firstCost +
+                "\u2551" +
+                "    " +
+                secondDrawingColour + "\u2551" +
+                secondCost +
+                "\u2551" +
+                "    " +
+                thirdDrawingColour + "\u2551" +
+                thirdCost +
+                "\u2551" );
+
+        System.out.println(firstDrawingColour + "\u2551" +
+                "PRODUCTION COST:" +
+                "\u2551" +
+                "    " +
+                secondDrawingColour + "\u2551" +
+                "PRODUCTION COST:" +
+                "\u2551" +
+                "    " +
+                thirdDrawingColour + "\u2551" +
+                "PRODUCTION COST:" +
+                "\u2551");
+
+        StringBuilder firstProdCost = getProductionCost(firstCard);
+        StringBuilder secondProdCost = getProductionCost(secondCard);
+        StringBuilder thirdProdCost = getProductionCost(thirdCard);
+
+        System.out.println(firstDrawingColour + "\u2551" +
+                firstProdCost +
+                "\u2551" +
+                "    " +
+                secondDrawingColour + "\u2551" +
+                secondProdCost +
+                "\u2551" +
+                "    " +
+                thirdDrawingColour + "\u2551" +
+                thirdProdCost +
+                "\u2551");
+
+        System.out.println(firstDrawingColour + "\u2551" +
+                "PRODUCTION GAIN:" +
+                "\u2551" +
+                "    " +
+                secondDrawingColour + "\u2551" +
+                "PRODUCTION GAIN:" +
+                "\u2551" +
+                "    " +
+                thirdDrawingColour + "\u2551" +
+                "PRODUCTION GAIN:" +
+                "\u2551");
+
+        StringBuilder firstGain = getEarnedResources(firstCard);
+        StringBuilder secondGain = getEarnedResources(secondCard);
+        StringBuilder thirdGain = getEarnedResources(thirdCard);
+
+        System.out.println(firstDrawingColour + "\u2551" +
+                firstGain +
+                "\u2551" +
+                "    " +
+                secondDrawingColour + "\u2551" +
+                secondGain +
+                "\u2551" +
+                "    " +
+                thirdDrawingColour + "\u2551" +
+                thirdGain +
+                "\u2551");
+
+        System.out.println(firstDrawingColour + "\u2551" +
+                "VICTORY POINTS:" +
+                " " +
+                "\u2551" +
+                "    " +
+                secondDrawingColour + "\u2551" +
+                "VICTORY POINTS:" +
+                " " +
+                "\u2551" +
+                "    " +
+                thirdDrawingColour + "\u2551" +
+                "VICTORY POINTS:" +
+                " " +
+                "\u2551");
+
+        String firstVictory,secondVictory,thirdVictory;
+        firstVictory = getVictoryPoints(firstCard);
+        secondVictory = getVictoryPoints(secondCard);
+        thirdVictory = getVictoryPoints(thirdCard);
+
+        System.out.println(firstDrawingColour + "\u2551" +
+                firstVictory +
+                "\u2551" +
+                "    " +
+                secondDrawingColour + "\u2551" +
+                secondVictory +
+                "\u2551" +
+                "    " +
+                thirdDrawingColour + "\u2551" +
+                thirdVictory +
+                "\u2551");
+
+        System.out.println(firstDrawingColour + "\u2551" +
+                "CARD LEVEL:" +
+                "     " +
+                "\u2551" +
+                "    " +
+                secondDrawingColour + "\u2551" +
+                "CARD LEVEL:" +
+                "     " +
+                "\u2551" +
+                "    " +
+                thirdDrawingColour + "\u2551" +
+                "CARD LEVEL:" +
+                "     " +
+                "\u2551");
+
+        String firstLevel, secondLevel, thirdLevel;
+        firstLevel = getLevel(firstCard);
+        secondLevel = getLevel(secondCard);
+        thirdLevel = getLevel(thirdCard);
+
+        System.out.println(firstDrawingColour + "\u2551" +
+                firstLevel +
+                "\u2551" +
+                "    " +
+                secondDrawingColour + "\u2551" +
+                secondLevel +
+                "\u2551" +
+                "    " +
+                thirdDrawingColour + "\u2551" +
+                thirdLevel +
+                "\u2551");
+
+        System.out.println(firstDrawingColour + "\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d"
+                + "    "
+                + secondDrawingColour + "\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d"
+                + "    "
+                + thirdDrawingColour + "\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d"
+                + Colours.RESET);
+    }
+
+    private StringBuilder getCost(DevelopmentCard card){
+        StringBuilder cost = new StringBuilder();
+        if (card==null){
+            cost.append("                ");
+            return cost;
+        }
+        for( ResourceType res : card.getCost().keySet() ){
+            if( res==ResourceType.COINS){
+                Integer quantity = card.getCost().get(res);
+                if(quantity>0) {
+                    cost.append(quantity);
+                    cost.append("C ");
+                }
+            }
+            if( res==ResourceType.STONES){
+                Integer quantity = card.getCost().get(res);
+                if(quantity>0) {
+                    cost.append(quantity);
+                    cost.append("ST ");
+                }
+            }
+            if( res==ResourceType.SHIELDS){
+                Integer quantity = card.getCost().get(res);
+                if(quantity>0) {
+                    cost.append(quantity);
+                    cost.append("SH ");
+                }
+            }
+            if( res==ResourceType.SERVANTS){
+                Integer quantity = card.getCost().get(res);
+                if(quantity>0) {
+                    cost.append(quantity);
+                    cost.append("SE ");
+                }
+            }
+        }
+        for (int i=cost.length();i<=15;i++){
+            cost.append(" ");
+        }
+        return cost;
+    }
+
+    private StringBuilder getProductionCost(DevelopmentCard card){
+        StringBuilder cost = new StringBuilder();
+        if (card==null){
+            cost.append("                ");
+            return cost;
+        }
+        for( ResourceType res : card.getProductionCost().keySet() ){
+            if( res==ResourceType.COINS){
+                Integer quantity = card.getProductionCost().get(res);
+                if(quantity>0) {
+                    cost.append(quantity);
+                    cost.append("C ");
+                }
+            }
+            if( res==ResourceType.STONES){
+                Integer quantity = card.getProductionCost().get(res);
+                if(quantity>0) {
+                    cost.append(quantity);
+                    cost.append("ST ");
+                }
+            }
+            if( res==ResourceType.SHIELDS){
+                Integer quantity = card.getProductionCost().get(res);
+                if(quantity>0) {
+                    cost.append(quantity);
+                    cost.append("SH ");
+                }
+            }
+            if( res==ResourceType.SERVANTS){
+                Integer quantity = card.getProductionCost().get(res);
+                if(quantity>0) {
+                    cost.append(quantity);
+                    cost.append("SE ");
+                }
+            }
+        }
+        for (int i=cost.length();i<=15;i++){
+            cost.append(" ");
+        }
+        return cost;
+    }
+
+    private StringBuilder getEarnedResources(DevelopmentCard card){
+        StringBuilder cost = new StringBuilder();
+        if (card==null){
+            cost.append("                ");
+            return cost;
+        }
+        for( ResourceType res : card.getEarnedResources().keySet() ){
+            if( res==ResourceType.COINS){
+                Integer quantity = card.getEarnedResources().get(res);
+                if(quantity>0) {
+                    cost.append(quantity);
+                    cost.append("C ");
+                }
+            }
+            if( res==ResourceType.STONES){
+                Integer quantity = card.getEarnedResources().get(res);
+                if(quantity>0) {
+                    cost.append(quantity);
+                    cost.append("ST ");
+                }
+            }
+            if( res==ResourceType.SHIELDS){
+                Integer quantity = card.getEarnedResources().get(res);
+                if(quantity>0) {
+                    cost.append(quantity);
+                    cost.append("SH ");
+                }
+            }
+            if( res==ResourceType.SERVANTS){
+                Integer quantity = card.getEarnedResources().get(res);
+                if(quantity>0) {
+                    cost.append(quantity);
+                    cost.append("SE ");
+                }
+            }
+            if( res==ResourceType.FAITHPOINTS){
+                Integer quantity = card.getEarnedResources().get(res);
+                if(quantity>0) {
+                    cost.append(quantity);
+                    cost.append("FP ");
+                }
+            }
+        }
+        for (int i=cost.length();i<=15;i++){
+            cost.append(" ");
+        }
+        return cost;
+    }
+    private String getVictoryPoints(DevelopmentCard card){
+        String  cardsVictoryPoints;
+        if( card == null )
+            cardsVictoryPoints = "                ";
+        else if (card.getVictoryPoints()>9)
+            cardsVictoryPoints = card.getVictoryPoints() + "              ";
+        else
+            cardsVictoryPoints = card.getVictoryPoints() + "               ";
+        return cardsVictoryPoints;
+    }
+    private String getLevel(DevelopmentCard card){
+        if( card==null )
+            return "                ";
+        else
+            return card.getLevel() + "               ";
+    }
+
+    private String getColour(DevelopmentCard card){
+        String cardColour = "EMPTY SLOT      ";;
+        if( card==null)
+            cardColour = "EMPTY SLOT      ";
+        else if( card.getColour() == Colour.GREEN )
+            cardColour ="COLOUR: GREEN   ";
+        else if( card.getColour() == Colour.BLUE )
+            cardColour ="COLOUR: BLUE    ";
+        else if( card.getColour() == Colour.YELLOW )
+            cardColour ="COLOUR: YELLOW  ";
+        else if( card.getColour() == Colour.PURPLE )
+            cardColour ="COLOUR: PURPLE  ";
+        return cardColour;
+    }
+
+    private String drawColour(DevelopmentCard card){
+        String drawingColour = Colours.RESET;
+        if( card==null)
+            drawingColour = Colours.RESET;
+        else if( card.getColour() == Colour.GREEN )
+            drawingColour = Colours.ANSI_GREEN.escape();
+        else if( card.getColour() == Colour.BLUE )
+            drawingColour = Colours.ANSI_BLUE.escape();
+        else if( card.getColour() == Colour.YELLOW )
+            drawingColour = Colours.ANSI_YELLOW.escape();
+        else if( card.getColour() == Colour.PURPLE )
+            drawingColour = Colours.ANSI_PURPLE.escape();
+        return drawingColour;
+    }
+
+    private void printAllInsertedDevCards(){
+        for( DevelopmentCard card : allCardsInserted ) {
+
+            String colour = getColour(card);
+            String drawingColour = drawColour(card);
+
+            System.out.println(drawingColour + "\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557");
+
+            System.out.println(drawingColour + "\u2551" +
+                    colour +
+                    "\u2551");
+
+            System.out.println(drawingColour + "\u2551" +
+                    "CARD COST:" +
+                    "      " +
+                    "\u2551");
+
+            StringBuilder cost = getCost(card);
+
+            System.out.println(drawingColour + "\u2551" +
+                    cost +
+                    "\u2551");
+
+            System.out.println(drawingColour + "\u2551" +
+                    "PRODUCTION COST:" +
+                    "\u2551");
+
+            StringBuilder prodCost = getProductionCost(card);
+
+            System.out.println(drawingColour + "\u2551" +
+                    prodCost +
+                    "\u2551");
+
+            System.out.println(drawingColour + "\u2551" +
+                    "PRODUCTION GAIN:" +
+                    "\u2551");
+
+            StringBuilder gain = getEarnedResources(card);
+
+            System.out.println(drawingColour + "\u2551" +
+                    gain +
+                    "\u2551");
+
+            System.out.println(drawingColour + "\u2551" +
+                    "VICTORY POINTS:" +
+                    " " +
+                    "\u2551");
+
+            String victory = getVictoryPoints(card);
+
+            System.out.println(drawingColour + "\u2551" +
+                    victory +
+                    "\u2551");
+
+            System.out.println(drawingColour + "\u2551" +
+                    "CARD LEVEL:" +
+                    "     " +
+                    "\u2551" );
+
+            String level = getLevel(card);
+
+            System.out.println(drawingColour + "\u2551" +
+                    level +
+                    "\u2551");
+
+            System.out.println(drawingColour + "\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d"
+                    + Colours.RESET);
+        }
     }
 }

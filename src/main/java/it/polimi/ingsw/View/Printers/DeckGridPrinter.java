@@ -6,19 +6,9 @@ import it.polimi.ingsw.DevelopmentCard;
 import it.polimi.ingsw.ResourceType;
 import it.polimi.ingsw.View.Colours;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class DeckGridPrinter implements Printable{
     private Deckgrid deckgrid;
     private boolean built=false;
-
-    private Colour colour = null;
-    private int level = -1;
-    private int victoryPoints = -1;
-    private Map<ResourceType,Integer> cost = new HashMap<>();
-    private Map<ResourceType,Integer> productionCost = new HashMap<>();
-    private Map<ResourceType,Integer> earnedResources = new HashMap<>();
 
     @Override
     public void print(String whatIHaveToPrint) {
@@ -31,25 +21,11 @@ public class DeckGridPrinter implements Printable{
         System.out.println(Colours.ANSI_RED.escape() + "Legend: SH=SHIELDS, C=COINS, ST=STONES, SE=SERVANTS, FP=FAITH POINTS\n");
 
         for( int levelToSet=3; levelToSet>0; levelToSet-- ) {
+
             greenCard = getCard( levelToSet, Colour.GREEN);
-            if( greenCard!=null ){
-                setInfo(greenCard);
-            }
-
             blueCard = getCard( levelToSet, Colour.BLUE);
-            if( blueCard!=null ){
-                setInfo(blueCard);
-            }
-
             yellowCard = getCard( levelToSet, Colour.YELLOW);
-            if( yellowCard!=null ){
-                setInfo(yellowCard);
-            }
-
             purpleCard = getCard( levelToSet, Colour.PURPLE);
-            if( purpleCard!=null ){
-                setInfo(purpleCard);
-            }
 
             printCards(greenCard,blueCard,yellowCard,purpleCard);
         }
@@ -63,15 +39,6 @@ public class DeckGridPrinter implements Printable{
 
     private DevelopmentCard getCard(int level, Colour colour){
         return deckgrid.readCard(level, colour);
-    }
-
-    private void setInfo(DevelopmentCard card){
-        colour = card.getColour();
-        level = card.getLevel();
-        victoryPoints = card.getVictoryPoints();
-        cost = card.getCost();
-        productionCost = card.getProductionCost();
-        earnedResources = card.getEarnedResources();
     }
 
     private void printCards(DevelopmentCard greenCard, DevelopmentCard blueCard, DevelopmentCard yellowCard, DevelopmentCard purpleCard){
@@ -331,7 +298,7 @@ public class DeckGridPrinter implements Printable{
                 + Colours.ANSI_YELLOW.escape() + "\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d"
                 + "    "
                 + Colours.ANSI_PURPLE.escape() + "\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d"
-                + ("    ")  + Colours.RESET());
+                + ("    ")  + Colours.RESET);
     }
 
     private StringBuilder getCost(DevelopmentCard card){
@@ -466,7 +433,7 @@ public class DeckGridPrinter implements Printable{
         }
         return cost;
     }
-    public String getVictoryPoints(DevelopmentCard card){
+    private String getVictoryPoints(DevelopmentCard card){
         String  cardsVictoryPoints;
         if( card == null )
             cardsVictoryPoints = "                ";
@@ -476,7 +443,7 @@ public class DeckGridPrinter implements Printable{
             cardsVictoryPoints = card.getVictoryPoints() + "               ";
         return cardsVictoryPoints;
     }
-    public String getLevel(DevelopmentCard card){
+    private String getLevel(DevelopmentCard card){
         if( card==null )
             return "                ";
         else

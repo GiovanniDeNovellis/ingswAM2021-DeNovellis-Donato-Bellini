@@ -22,7 +22,4 @@ public enum Colours {
         return escape;
     }
 
-    public static String RESET() {
-        return RESET;
-    }
 }

@@ -16,7 +16,7 @@ public class Deckgrid {
     /** The array indicate of many slot has the DeckGrid */
     private final Deck[] decks = new Deck[12];
 
-    /** Create the HasheMap of DevelopmentCards ordinated by colour */
+    /** Create the HashMap of DevelopmentCards ordinated by colour */
     private final Map<Colour, Integer> deckColumn = new HashMap<>();
 
     /** Reference of the DevelopmentCard's ArrayList */
@@ -56,13 +56,14 @@ public class Deckgrid {
     }
 
     /**
-     * Private metod used by the DeckGrid to read all the Development
+     * Private method used by the DeckGrid to read all the Development
      * Cards from the json file and store them into the ArrayList cards.
      */
-    private void uploadCards() throws FileNotFoundException {
+    private void uploadCards(){
         Gson gson = new GsonBuilder().serializeNulls().create();
         Type Devcards = new TypeToken<ArrayList<DevelopmentCard>>() {}.getType();
         InputStream inputStream = getClass().getClassLoader().getResourceAsStream("DevelopmentCards.json");
+        assert inputStream != null;
         BufferedReader Reader = new BufferedReader(new InputStreamReader(inputStream));
         this.cards = gson.fromJson(Reader, Devcards);
     }
@@ -95,7 +96,6 @@ public class Deckgrid {
      * @return the card from the deck
      */
     public DevelopmentCard readCard(int level, Colour colour){
-       // return decks[deckColumn.get(colour) + level-1].readCard();
-        return null;
+       return decks[deckColumn.get(colour) + level-1].readCard();
     }
 }
