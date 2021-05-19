@@ -3,7 +3,7 @@ package it.polimi.ingsw.View.LeaderCardsBuilder;
 import it.polimi.ingsw.Colour;
 import it.polimi.ingsw.ResourceType;
 
-public class LeaderCardTransformation {
+public class LeaderCardTransformation extends LeaderCards{
     ResourceType resourceType;
     Colour doubleCardColour;
     Colour singleCardColour;
@@ -22,18 +22,22 @@ public class LeaderCardTransformation {
         return resourceType;
     }
 
+    @Override
     public Colour getDoubleCardColour() {
         return doubleCardColour;
     }
 
+    @Override
     public Colour getSingleCardColour() {
         return singleCardColour;
     }
 
+    @Override
     public String getType() {
         return type;
     }
 
+    @Override
     public int getLeaderCardNumber() {
         return leaderCardNumber;
     }

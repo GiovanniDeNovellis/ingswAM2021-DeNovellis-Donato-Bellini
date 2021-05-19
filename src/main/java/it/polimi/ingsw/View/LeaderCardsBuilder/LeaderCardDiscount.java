@@ -3,7 +3,7 @@ package it.polimi.ingsw.View.LeaderCardsBuilder;
 import it.polimi.ingsw.Colour;
 import it.polimi.ingsw.ResourceType;
 
-public class LeaderCardDiscount {
+public class LeaderCardDiscount extends LeaderCards{
         ResourceType resourceType;
         Colour singleColour1;
         Colour singleColour2;
@@ -21,18 +21,22 @@ public class LeaderCardDiscount {
                 return resourceType;
         }
 
+        @Override
         public Colour getSingleColour1() {
                 return singleColour1;
         }
 
+        @Override
         public Colour getSingleColour2() {
                 return singleColour2;
         }
 
+        @Override
         public String getType() {
                 return type;
         }
 
+        @Override
         public int getLeaderCardNumber() {
                 return leaderCardNumber;
         }

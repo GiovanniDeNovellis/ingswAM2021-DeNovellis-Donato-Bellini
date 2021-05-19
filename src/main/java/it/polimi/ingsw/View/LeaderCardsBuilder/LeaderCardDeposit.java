@@ -1,7 +1,7 @@
 package it.polimi.ingsw.View.LeaderCardsBuilder;
 import it.polimi.ingsw.ResourceType;
 
-public class LeaderCardDeposit {
+public class LeaderCardDeposit extends LeaderCards{
     ResourceType resourceType;
     ResourceType resourceRequired;
     String type;
@@ -17,14 +17,17 @@ public class LeaderCardDeposit {
         return resourceType;
     }
 
+    @Override
     public ResourceType getResourceRequired() {
         return resourceRequired;
     }
 
+    @Override
     public String getType() {
         return type;
     }
 
+    @Override
     public int getLeaderCardNumber() {
         return leaderCardNumber;
     }

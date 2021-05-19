@@ -12,17 +12,14 @@ public class LeaderCardsPrinter implements Printable{
     private boolean[] activatedLeaderCards = {false,false};
     private LeaderCardsDeck deck = new LeaderCardsDeck();
 
-    ArrayList<LeaderCardDiscount> discount = deck.getDiscount();
-    ArrayList<LeaderCardDeposit> deposit = deck.getDeposit();
-    ArrayList<LeaderCardTransformation> transformation = deck.getTransformation();
-    ArrayList<LeaderCardProduction> production = deck.getProduction();
+    ArrayList<LeaderCards> leaderCards = deck.getLeaderCards();
 
 
 
     @Override
     public void print(String whatIHaveToPrint) {
 
-        // if( discount.get(1).getLeaderCardNumber() == 2 ) ....
+        String type = leaderCards.get(choosableLeaderCards[0]).getType();
 
     }
 

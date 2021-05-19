@@ -157,7 +157,7 @@ public class Player {
      * Public method.
      * @return True if the player can end his turn.
      */
-    public boolean isCanEndTurn() {
+    public boolean canEndTurn() {
         return canEndTurn;
     }
 
