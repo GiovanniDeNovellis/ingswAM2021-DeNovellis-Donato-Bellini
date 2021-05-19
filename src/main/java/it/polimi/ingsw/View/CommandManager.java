@@ -34,6 +34,8 @@ public class CommandManager {
                 return toBuild.buildMessage();
 //Activating production
             case "ActivateProduction":
+                showDevelopmentCards();
+                showMarketBoard();
                 toBuild = new ActivateProductionMessageBuilder(nickname);
                 return toBuild.buildMessage();
 //Activating leader card(s)
@@ -54,6 +56,7 @@ public class CommandManager {
                 return toBuild.buildMessage();
 //Activating TakeResourceFromMarket
             case "TakeResourcesFromMarket":
+                showMarketBoard();
                 toBuild = new TakeResourceFromMarketMessageBuilder(nickname);
                 return toBuild.buildMessage();
 //Activating InsertResourceIntoWarehouse
@@ -62,6 +65,8 @@ public class CommandManager {
                 return toBuild.buildMessage();
 //Activating BuyDevelopmentCard
             case "BuyDevelopmentCard":
+                showDeckGrid();
+                showDevelopmentCards();
                 toBuild = new BuyDevelopmentCardMessageBuilder(nickname);
                 return toBuild.buildMessage();
 //Starting single player mode
@@ -82,13 +87,14 @@ public class CommandManager {
                 return toBuild.buildMessage();
 //Selecting the leader cards from the 4 choosable cards
             case "LeaderCardSelection":
+                showChoosableLeaderCards();
                 toBuild = new LeaderCardSelectionMessageBuilder(nickname);
                 return toBuild.buildMessage();
 // Ending turn
             case "EndTurnRequest":
                 toBuild = new EndTurnRequestMessageBuilder(nickname);
                 return toBuild.buildMessage();
-                //TODO FORSE FARE SHOW CURRENT PLAYER E SHOW PERSONAL BOARD
+                //TODO FORSE FARE SHOW CURRENT PLAYER E SHOW PERSONAL BOARD e TEMPORARY RESOURCES
             //__________________________SHOW CASES________________________
             case "show warehouse":
                 showWarehouse();

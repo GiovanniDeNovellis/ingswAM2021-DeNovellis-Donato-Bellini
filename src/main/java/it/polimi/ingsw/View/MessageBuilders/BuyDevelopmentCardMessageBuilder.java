@@ -47,7 +47,7 @@ public class BuyDevelopmentCardMessageBuilder extends MessageBuilder {
 
         do{
             try {
-                System.out.println("Write the slot of the Development Card you want to buy: [\"0\",\"1\",\"2\"]");
+                System.out.println("Write the slot number where you want to place your development card: [\"0\",\"1\",\"2\"]");
                 slot = input.nextInt();
             }
             catch (InputMismatchException e){

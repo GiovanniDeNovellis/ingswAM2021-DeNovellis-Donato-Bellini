@@ -225,6 +225,8 @@ public class PersonalBoardPrinter implements Printable{
 
     private void printDevelopmentCards(){
 
+        System.out.println(ownerNickname + "'s development cards slots:");
+
         DevelopmentCard firstCard = developmentCards[0];
         DevelopmentCard secondCard = developmentCards[1];
         DevelopmentCard thirdCard = developmentCards[2];
@@ -413,7 +415,7 @@ public class PersonalBoardPrinter implements Printable{
                 + secondDrawingColour + "\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d"
                 + "    "
                 + thirdDrawingColour + "\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d"
-                + Colours.RESET);
+                + Colours.RESET + "\n");
     }
 
     private StringBuilder getCost(DevelopmentCard card){
@@ -596,6 +598,11 @@ public class PersonalBoardPrinter implements Printable{
     }
 
     private void printAllInsertedDevCards(){
+        if( allCardsInserted.isEmpty() ) {
+            System.out.println(ownerNickname + " has not inserted development cards yet.");
+            return;
+        }
+        System.out.println(ownerNickname + "'s development cards inserted (all cards inserted):");
         for( DevelopmentCard card : allCardsInserted ) {
 
             String colour = getColour(card);
@@ -661,7 +668,7 @@ public class PersonalBoardPrinter implements Printable{
                     "\u2551");
 
             System.out.println(drawingColour + "\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d"
-                    + Colours.RESET);
+                    + Colours.RESET + "\n");
         }
     }
 }

@@ -51,4 +51,7 @@ public class LeaderCardDeck {
            leaderCards.remove(0);
        }
     }
+    public ArrayList<LeaderCard> getLeaderCards(){
+        return this.leaderCards;
+    }
 }
