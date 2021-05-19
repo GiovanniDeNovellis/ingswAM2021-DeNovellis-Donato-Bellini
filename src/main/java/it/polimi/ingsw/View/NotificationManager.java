@@ -217,7 +217,8 @@ public class NotificationManager {
                 reader.readNotification(notification);
                 break;
             case"TakeResourceFromMarketFailureNotification":
-                System.out.println("Wrong index(row,column) chosen. Try again.");
+                    System.out.println("Wrong index(row,column) chosen. Try again.\n" +
+                            "If you have chosen a correct index, it means you can't take resources now.");
                 break;
             case "MarketGridChangedMessage":
                 reader = new MarketGridChanged(modelPrinter);

@@ -88,7 +88,7 @@ public abstract class LeaderCard {
  * When you buy a Development Card, you can pay its cost with a discount of
  * the indicated Resource (if the card you are buying has that Resource as a cost).
  */
-class LeaderCardDiscount extends LeaderCard{
+ class LeaderCardDiscount extends LeaderCard{
     /** The colour of the first card required to activate the ability */
     Colour singleColour1;
     /** The colour of the second card required to activate the ability */
