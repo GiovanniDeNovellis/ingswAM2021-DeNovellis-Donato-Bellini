@@ -13,13 +13,12 @@ public class TemporaryResourcesChanged extends NotificationReader{
     @Override
     public void readNotification(String notification) {
         Gson gson = new Gson();
-        System.out.println(notification);
         TemporaryResourcesChangedMessage data = gson.fromJson(notification, TemporaryResourcesChangedMessage.class);
         printNotification();
         modelPrinter.getMarketBoardPrinter().setTemporaryResources(data.getTemporaryResourcesConfiguration());
     }
 
     public void printNotification(){
-        System.out.println("Write \"ShowInsertableResources\" to see the remaining resource(s)");
+        System.out.println("Write \"show temporary resources\" to see the remaining resource(s)");
     }
 }

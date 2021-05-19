@@ -17,19 +17,18 @@ public class PersonalBoardPrinter implements Printable{
     private ExtraDeposit extraDeposit1 = new ExtraDeposit(null);
     private ExtraDeposit extraDeposit2 = new ExtraDeposit(null);
     private final Map<ResourceType, Colours> resourceTypeColoursMap = new HashMap<>();
+    private int[] faithCards = {2,3,4};
+    private int faithPoints=0;
 
     public int getFaithPoints() {
         return faithPoints;
     }
 
-    private int faithPoints=0;
-    private int[] faithCards = {2,3,4};
-
     public PersonalBoardPrinter() {
         resourceTypeColoursMap.put(ResourceType.COINS,Colours.ANSI_YELLOW);
         resourceTypeColoursMap.put(ResourceType.SERVANTS, Colours.ANSI_PURPLE);
         resourceTypeColoursMap.put(ResourceType.SHIELDS,Colours.ANSI_CYAN);
-        resourceTypeColoursMap.put(ResourceType.STONES,Colours.ANSI_BLACK);
+        resourceTypeColoursMap.put(ResourceType.STONES,Colours.ANSI_WHITE);
     }
 
     @Override
@@ -567,7 +566,7 @@ public class PersonalBoardPrinter implements Printable{
     }
 
     private String getColour(DevelopmentCard card){
-        String cardColour = "EMPTY SLOT      ";;
+        String cardColour = "EMPTY SLOT      ";
         if( card==null)
             cardColour = "EMPTY SLOT      ";
         else if( card.getColour() == Colour.GREEN )

@@ -117,6 +117,9 @@ public class CommandManager {
             case "show deck grid":
                 showDeckGrid();
                 return "show";
+            case "show temporary resources":
+                showTemporaryResources();
+                return "show";
             case "show market board":
                 showMarketBoard();
                 return "show";
@@ -298,6 +301,11 @@ public class CommandManager {
                 modelPrinter.print(p, "extraDeposit");
             }
         }
+    }
+
+    public void showTemporaryResources(){
+        MarketBoardPrinter printable = modelPrinter.getMarketBoardPrinter();
+        modelPrinter.print(printable, "temporaryResources");
     }
 
     public void showMarketBoard(){

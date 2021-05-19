@@ -19,17 +19,13 @@ public class TakeResourcesFromMarketManager implements Manageable{
             notification.setMessageType("GameNotStartedNotification");
             return gson.toJson(notification);
         }
-        System.out.println("t1");
         Gson gson = new Gson();
         int[] faithCardsBefore = controller.getVaticanReport().clone();
         TakeResourceFromMarketMessage takeResourceFromMarketMessage = gson.fromJson(jsonContent, TakeResourceFromMarketMessage.class);
-        System.out.println("t2");
         if (controller.getGame().getCurrentPlayer().getNickname().equals(takeResourceFromMarketMessage.getSenderNickname())) {
-            System.out.println("t3");
             if(controller.getGame().takeResourcesFromMarket(takeResourceFromMarketMessage.getMarketIndex()[0],takeResourceFromMarketMessage.getMarketIndex()[1])){
                 Message mex = new Message();
                 mex.setMessageType("TakeResourceFromMarketSuccessNotification");
-                System.out.println("t4");
                 TemporaryResourcesChangedMessage notification = new TemporaryResourcesChangedMessage();
                 notification.setMessageType("TemporaryResourcesChanged");
                 notification.setNickname(controller.getGame().getCurrentPlayer().getNickname());

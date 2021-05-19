@@ -23,17 +23,18 @@ public class HelpMessageBuilder extends MessageBuilder{
                 "EndTurnRequest - To end the turn \n" +
                 "show warehouse - To see a player's warehouse \n" +
                 "show strongbox - To see a player's strongbox \n" +
-                "show warehouse - To see a player's active development cards \n" +
-                "show warehouse - To see a player's faith track \n" +
-                "show warehouse - To see a player's extra deposits \n" +
-                "show warehouse - To see your choosable leader cards \n" +
-                "show warehouse - To see your chosen leader cards \n" +
-                "show warehouse - To see a player's active leader cards \n" +
-                "show warehouse - To see the deck grid \n" +
-                "show warehouse - To see the market board \n" +
-                "show warehouse - To see the connected players \n" +
-                "show warehouse - To see all inserted development cards of a player\n" +
+                "show development cards - To see a player's active development cards \n" +
+                "show faith track - To see a player's faith track \n" +
+                "show extra deposits - To see a player's extra deposits \n" +
+                "show choosable leader cards - To see your choosable leader cards \n" +
+                "show chosen leader cards - To see your chosen leader cards \n" +
+                "show active leader cards - To see a player's active leader cards \n" +
+                "show deck grid - To see the deck grid \n" +
+                "show market board - To see the market board \n" +
+                "show temporary resources - To see the temporary resources of the market \n" +
+                "show players - To see the connected players \n" +
+                "show all inserted development cards - To see all inserted development cards of a player\n" +
                 "");
-        return "Show";
+        return "show";
     }
 }

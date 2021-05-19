@@ -3,10 +3,11 @@ package it.polimi.ingsw.View.Printers;
 import it.polimi.ingsw.ExtraDeposit;
 import it.polimi.ingsw.ResourceType;
 import it.polimi.ingsw.Strongbox;
+import it.polimi.ingsw.View.Colours;
 import it.polimi.ingsw.WareHouseDepot;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+
 
 class PersonalBoardPrinterTest {
     @Test
