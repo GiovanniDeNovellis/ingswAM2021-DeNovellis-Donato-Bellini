@@ -3,6 +3,7 @@ package it.polimi.ingsw.View.MessageBuilders;
 import com.google.gson.Gson;
 import it.polimi.ingsw.Controller.Messages.SwitchLevelMessage;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class SwitchLevelMessageBuilder extends MessageBuilder {
@@ -21,13 +22,28 @@ public class SwitchLevelMessageBuilder extends MessageBuilder {
         message.setMessageType("SwitchLevels");
         message.setSenderNickname(nickname);
         do {
-            System.out.println("Write the first level you want to switch: [\"1\",\"2\",\"3\"]");
-            firstLevel = input.nextInt();
+            try {
+                System.out.println("Write the first level you want to switch: [\"1\",\"2\",\"3\"]");
+                firstLevel = input.nextInt();
+            }
+            catch (InputMismatchException e){
+                System.out.println("Please write a number");
+                firstLevel=4;
+                input.nextLine();
+            }
         } while (firstLevel != 1 && firstLevel != 2 && firstLevel != 3);
         levelToSwitch[0]=firstLevel;
+
         do {
-            System.out.println("Write the second level you want to switch: [\"1\",\"2\",\"3\"]");
-            secondLevel = input.nextInt();
+            try {
+                System.out.println("Write the second level you want to switch: [\"1\",\"2\",\"3\"]");
+                secondLevel = input.nextInt();
+            }
+            catch (InputMismatchException e){
+                System.out.println("Please write a number");
+                secondLevel=4;
+                input.nextLine();
+            }
         } while (secondLevel != 1 && secondLevel != 2 && secondLevel != 3);
         levelToSwitch[1]=secondLevel;
 

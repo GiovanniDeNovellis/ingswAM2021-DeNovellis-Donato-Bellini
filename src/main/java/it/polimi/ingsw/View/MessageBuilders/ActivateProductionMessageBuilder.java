@@ -5,6 +5,7 @@ import it.polimi.ingsw.Controller.Messages.ActivateProductionMessage;
 import it.polimi.ingsw.Controller.Messages.Message;
 import it.polimi.ingsw.ResourceType;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ActivateProductionMessageBuilder extends MessageBuilder{
@@ -102,11 +103,29 @@ public class ActivateProductionMessageBuilder extends MessageBuilder{
             resourceFromLeader[1]=ResourceType.valueOf(resp);
         }
         message.setResourceFromLeader(resourceFromLeader);
-        int[] payUsingExtraDeposit = {0,0};
-        System.out.println("Do you want to pay any resource from the first extra deposit? (0 if you don't have it)");
-        payUsingExtraDeposit[0]=input.nextInt();
-        System.out.println("Do you want to pay any resource from the first extra deposit? (0 if you don't have it)");
-        payUsingExtraDeposit[1]=input.nextInt();
+        int[] payUsingExtraDeposit = {-1,-1};
+        do {
+            try {
+                System.out.println("Do you want to pay any resource from the first extra deposit? (0 if you don't have it)");
+                payUsingExtraDeposit[0] = input.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Please write a number");
+                payUsingExtraDeposit[0]=-1;
+                input.nextLine();
+            }
+        }while(payUsingExtraDeposit[0]<0);
+
+        do{
+            try{
+                System.out.println("Do you want to pay any resource from the first extra deposit? (0 if you don't have it)");
+                payUsingExtraDeposit[1]=input.nextInt();
+            }
+            catch (InputMismatchException e){
+                System.out.println("Please write a number");
+                payUsingExtraDeposit[1]=-1;
+                input.nextLine();
+            }
+        }while(payUsingExtraDeposit[1]<0);
         message.setPayUsingExtraDeposit(payUsingExtraDeposit);
         return gson.toJson(message);
     }

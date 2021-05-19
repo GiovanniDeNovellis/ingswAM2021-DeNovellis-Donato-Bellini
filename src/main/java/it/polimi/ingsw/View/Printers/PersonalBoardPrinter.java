@@ -47,6 +47,9 @@ public class PersonalBoardPrinter implements Printable{
             case "extraDeposit":
                 printExtraDeposits();
                 break;
+            case "faithTrack":
+                printFaithTrack();
+                break;
             default:
                 System.out.println("Print non riconosciuta");
         }
@@ -140,7 +143,7 @@ public class PersonalBoardPrinter implements Printable{
         }
         else{
             ResourceType res = wareHouseDepot.getLevel(2).getResourceType();
-            int i,max=3,curr=wareHouseDepot.getLevel(2).getCurrNumResources();
+            int i,max=2,curr=wareHouseDepot.getLevel(2).getCurrNumResources();
             for(i=curr; i>0;i--){
                 for(int j=0;j<8;j++)
                     System.out.print(resourceTypeColoursMap.get(res).escape()+"\u2550");
@@ -182,12 +185,18 @@ public class PersonalBoardPrinter implements Printable{
             }
             System.out.print("\n");
         }
+        System.out.print(Colours.RESET + "\n");
+        System.out.print(Colours.RESET + "\n");
     }
 
     private void printStrongbox(){
         System.out.println(ownerNickname + "'s strongbox");
-        for(ResourceType r: strongbox.keySet()){
-            System.out.println(resourceTypeColoursMap.get(r).escape() + "\u2550\u2550\u2550 " + r + ":" + strongbox.get(r) + Colours.RESET);
+        if(strongbox.isEmpty())
+            System.out.println("Strongbox not created");
+        else {
+            for (ResourceType r : strongbox.keySet()) {
+                System.out.println(resourceTypeColoursMap.get(r).escape() + "\u2550\u2550\u2550 " + r + ":" + strongbox.get(r) + Colours.RESET);
+            }
         }
     }
 
@@ -206,5 +215,9 @@ public class PersonalBoardPrinter implements Printable{
         else{
             System.out.println(resourceTypeColoursMap.get(extraDeposit2.getResourceType()).escape()+"\u2550\u2550\u2550\u2550\u2550\u2550 "+ extraDeposit2.getResourceType()+":"+extraDeposit2.getCurrentQuantity()+"\u2550\u2550\u2550\u2550\u2550\u2550"+Colours.RESET);
         }
+    }
+
+    private void printFaithTrack(){
+
     }
 }

@@ -6,6 +6,7 @@ import it.polimi.ingsw.Controller.Messages.TakeResourceFromMarketMessage;
 import it.polimi.ingsw.ResourceType;
 
 import javax.naming.spi.ResolveResult;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class InsertResourcesIntoWarehouseMessageBuilder extends MessageBuilder {
@@ -39,8 +40,15 @@ public class InsertResourcesIntoWarehouseMessageBuilder extends MessageBuilder {
         message.setIntoExtraDeposit(intoExtraDep.equals("Y"));
 
         do {
-            System.out.println("How many of this resource do you want to insert? Write the number:\n");
-            quantity = input.nextInt();
+            try {
+                System.out.println("How many of this resource do you want to insert? Write the number:\n");
+                quantity = input.nextInt();
+            }
+            catch (InputMismatchException e){
+                System.out.println("Please write a number");
+                quantity=-1;
+                input.nextLine();
+            }
         } while (quantity<=0);
         message.setQuantityToInsert(quantity);
 

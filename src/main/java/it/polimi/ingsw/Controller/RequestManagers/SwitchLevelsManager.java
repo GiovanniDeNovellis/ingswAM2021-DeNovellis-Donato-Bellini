@@ -29,7 +29,7 @@ public class SwitchLevelsManager implements Manageable {
                 Message mex = new Message();
                 mex.setMessageType("SwitchLevelsSuccessNotification");
                 NotifyWarehouseChangedMessage notification = new NotifyWarehouseChangedMessage();
-                notification.setMessageType("NotifyWarehouseChangedMessage");
+                notification.setMessageType("NotifyWareHouseChangedMessage");
                 notification.setNickname(controller.getGame().getCurrentPlayer().getNickname());
                 notification.setWarehouseConfiguration(controller.getGame().getCurrentPlayer().getPersonalBoard().getWarehouseDepot());
                 for (ClientHandler clientHandler : controller.getConnectedClients()) {

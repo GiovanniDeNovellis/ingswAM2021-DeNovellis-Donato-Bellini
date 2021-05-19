@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import it.polimi.ingsw.Colour;
 import it.polimi.ingsw.Controller.Messages.BuyDevelopmentCardMessage;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class BuyDevelopmentCardMessageBuilder extends MessageBuilder {
@@ -32,24 +33,53 @@ public class BuyDevelopmentCardMessageBuilder extends MessageBuilder {
 
 
         do{
-            System.out.println("Write the level of the Development Card you want to buy: [\"1\",\"2\",\"3\"]");
-            level = input.nextInt();
+            try {
+                System.out.println("Write the level of the Development Card you want to buy: [\"1\",\"2\",\"3\"]");
+                level = input.nextInt();
+            }
+            catch (InputMismatchException e){
+                System.out.println("Please write a number");
+                level=4;
+                input.nextLine();
+            }
         }while(level !=1 && level !=2 && level !=3);
         message.setLevel(level);
 
         do{
-            System.out.println("Write the slot of the Development Card you want to buy: [\"0\",\"1\",\"2\"]");
-            slot = input.nextInt();
+            try {
+                System.out.println("Write the slot of the Development Card you want to buy: [\"0\",\"1\",\"2\"]");
+                slot = input.nextInt();
+            }
+            catch (InputMismatchException e){
+                System.out.println("Please write a number");
+                slot=4;
+                input.nextLine();
+            }
         }while(slot !=0 && slot !=1 && slot !=2);
         message.setSlot(slot);
 
         do{
-            System.out.println("Write how many resources from the extra deposit1 you want to use: [\"0\",\"1\",\"2\"]");
-             extradep1 = input.nextInt();
+            try {
+                System.out.println("Write how many resources from the extra deposit1 you want to use: [\"0\",\"1\",\"2\"]");
+                extradep1 = input.nextInt();
+            }
+            catch (InputMismatchException e){
+                System.out.println("Please write a number");
+                extradep1=4;
+                input.nextLine();
+            }
         }while(extradep1 !=0 && extradep1 !=1 && extradep1 !=2);
+
         do{
-            System.out.println("Write how many resources from the extra deposit2 you want to use: [\"0\",\"1\",\"2\"]");
-            extradep2 = input.nextInt();
+            try {
+                System.out.println("Write how many resources from the extra deposit2 you want to use: [\"0\",\"1\",\"2\"]");
+                extradep2 = input.nextInt();
+            }
+            catch (InputMismatchException e){
+                System.out.println("Please write a number");
+                extradep2=4;
+                input.nextLine();
+            }
         }while(extradep2!=0 && extradep2 !=1 && extradep2 !=2);
         message.setPayUsingExtraDeposit(extradep1,extradep2);
 

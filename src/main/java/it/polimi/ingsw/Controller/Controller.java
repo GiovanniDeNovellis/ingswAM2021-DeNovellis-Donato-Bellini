@@ -21,6 +21,8 @@ public class Controller {
     }
 
     public synchronized String startAction(String jsonContent){
+        if(jsonContent.charAt(0)!='{')
+            return "end";
         Gson gson = new Gson();
         Message message = gson.fromJson(jsonContent,Message.class);
         switch (message.getMessageType()) {
