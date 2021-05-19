@@ -3,6 +3,7 @@ package it.polimi.ingsw.View.MessageBuilders;
 public class HelpMessageBuilder extends MessageBuilder{
     @Override
     public String buildMessage() {
+        //TODO FIX MESSAGE
         System.out.print("List of possible commands: \n" +
                 "help - To see all commands \n" +
                 "login - To log in the game \n" +
