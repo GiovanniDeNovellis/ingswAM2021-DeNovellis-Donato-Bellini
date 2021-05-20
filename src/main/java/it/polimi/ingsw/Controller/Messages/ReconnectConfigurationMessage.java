@@ -16,6 +16,7 @@ public class ReconnectConfigurationMessage extends Message{
     private DevelopmentCard[] developmentCardsConfiguration;
     private ArrayList<Integer> choosableLeaderCards = new ArrayList<>();
     private ArrayList<Integer> choosedLeaderCards = new ArrayList<>();
+    private boolean[] activeLeaderCards;
 
     public String[][] getMarbleGridConfiguration() {
         return marbleGridConfiguration;
@@ -103,5 +104,13 @@ public class ReconnectConfigurationMessage extends Message{
 
     public void setSenderNickname(String senderNickname) {
         this.senderNickname = senderNickname;
+    }
+
+    public boolean[] getActiveLeaderCards() {
+        return activeLeaderCards;
+    }
+
+    public void setActiveLeaderCards(boolean[] activeLeaderCards) {
+        this.activeLeaderCards = activeLeaderCards;
     }
 }

@@ -103,9 +103,14 @@ public class ClientHandler implements Runnable {
                                         reconnectConfigurationMessage.setDevelopmentCardsConfiguration(player.getPersonalBoard().getDevelopmentCard());
                                         if(player.getNickname().equals(tempNickname)){
                                             if(player.hasChosenLeaderCards()){
+                                                int k=0;
+                                                boolean[] actives = {false,false};
                                                 for(LeaderCard l: player.getChoosedLeaderCards()){
+                                                    actives[k]=l.isActive();
                                                     reconnectConfigurationMessage.getChoosedLeaderCards().add(l.getLeaderCardNumber());
+                                                    k++;
                                                 }
+                                                reconnectConfigurationMessage.setActiveLeaderCards(actives);
                                             }
                                             else{
                                                 for(LeaderCard l: player.getChoosableLeaderCards()){
@@ -114,11 +119,14 @@ public class ClientHandler implements Runnable {
                                             }
                                         }
                                         else if(player.hasChosenLeaderCards()){
+                                            int k=0;
+                                            boolean[] actives = {false,false};
                                            for(LeaderCard l: player.getChoosedLeaderCards()){
-                                               if(l.isActive()){
+                                                    actives[k]=l.isActive();
                                                    reconnectConfigurationMessage.getChoosedLeaderCards().add(l.getLeaderCardNumber());
-                                               }
+                                                   k++;
                                            }
+                                           reconnectConfigurationMessage.setActiveLeaderCards(actives);
                                         }
                                         out.println(gson.toJson(reconnectConfigurationMessage));
                                     }

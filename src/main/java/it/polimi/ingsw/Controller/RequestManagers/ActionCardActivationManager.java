@@ -48,6 +48,7 @@ public class ActionCardActivationManager implements Manageable{
                 }
             }
             VaticanReportMessage vaticanReportMessage = new VaticanReportMessage();
+            vaticanReportMessage.setNickname(controller.getGame().getCurrentPlayer().getNickname());
             vaticanReportMessage.setMessageType("VaticanReportMessage");
             vaticanReportMessage.setOccurred(vaticanReportOccurred);
             vaticanReportMessage.setWhichOne(whichReport);

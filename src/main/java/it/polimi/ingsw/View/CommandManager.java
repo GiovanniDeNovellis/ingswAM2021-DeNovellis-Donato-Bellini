@@ -284,6 +284,7 @@ public class CommandManager {
             for (PersonalBoardPrinter p : modelPrinter.getPersonalBoards()) {
                 modelPrinter.print(p, "faithTrack");
             }
+            System.out.println("Done printing the faith tracks");
         }
     }
 
