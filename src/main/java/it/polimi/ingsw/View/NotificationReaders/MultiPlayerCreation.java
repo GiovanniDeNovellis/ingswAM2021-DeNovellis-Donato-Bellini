@@ -17,6 +17,9 @@ public class MultiPlayerCreation extends NotificationReader{
         Gson gson = new Gson();
         MultiplayerCreationMessage data = gson.fromJson(notification, MultiplayerCreationMessage.class);
         printNotification();
+        for(LeaderCardsPrinter l : modelPrinter.getLeaderCardsPrinters()){
+            l.setBuilt(true);
+        }
 
         modelPrinter.getDeckGridPrinter().setDeckgrid(data.getDeckgridConfiguration());
         modelPrinter.getMarketBoardPrinter().setMarbleGrid(data.getMarbleGridConfiguration());
