@@ -492,7 +492,7 @@ class GameTest {
         assertTrue(game.activateLeaderCard(0));
         assertTrue(game.takeResourcesFromMarket(2,4));
         assertEquals(1,game.getCurrentPlayer().getNumTransformationAbility());
-        assertTrue(game.getCurrentPlayer().isCanEndTurn());
+        assertTrue(game.getCurrentPlayer().canEndTurn());
         if(game.getMarketBoard().getWhiteMarblesSelected()>0){
             assertFalse(game.endTurn());
             while(game.getMarketBoard().getWhiteMarblesSelected()>0){
@@ -553,7 +553,7 @@ class GameTest {
         assertFalse(game.activateLeaderCard(1));
         assertTrue(game.takeResourcesFromMarket(2,4));
         assertEquals(2,game.getCurrentPlayer().getNumTransformationAbility());
-        assertTrue(game.getCurrentPlayer().isCanEndTurn());
+        assertTrue(game.getCurrentPlayer().canEndTurn());
         if(game.getMarketBoard().getWhiteMarblesSelected()>0){
             int num=1;
             assertFalse(game.endTurn());

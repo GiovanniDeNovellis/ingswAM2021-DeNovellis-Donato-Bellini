@@ -136,6 +136,7 @@ public class Game {
         lorenzo.setGame(this);
         gameStarted = true;
         players.get(0).setInitialDistribution(true);
+        actionCardDone = true;
         return true;
     }
 
@@ -187,7 +188,7 @@ public class Game {
             currentPlayer=players.get(number+1);
             return true;
         }
-        if( currentPlayer.doneInitialDistribution() || !currentPlayer.isCanEndTurn() || !currentPlayer.hasChosenLeaderCards()){
+        if( currentPlayer.doneInitialDistribution() || !currentPlayer.canEndTurn() || !currentPlayer.hasChosenLeaderCards()){
             return false;
         }
         if(currentPlayer.getNumTransformationAbility()>0&&marketBoard.getWhiteMarblesSelected()>0) return false;
@@ -308,7 +309,7 @@ public class Game {
      * @return true if the player can buy that card and if the player can insert that card into the chosen slot
      */
     public boolean buyDevelopmentCard( int level, Colour colour, int slot , int payUsingExtraDep1, int payUsingExtraDep2 ) {
-        if (currentPlayer.doneInitialDistribution() || currentPlayer.isCanEndTurn() || !currentPlayer.hasChosenLeaderCards())
+        if (currentPlayer.doneInitialDistribution() || currentPlayer.canEndTurn() || !currentPlayer.hasChosenLeaderCards())
             return false;
         if (payUsingExtraDep1 < 0 || payUsingExtraDep1 > 2 || (payUsingExtraDep1 > 0 && currentPlayer.getPersonalBoard().getExtraDeposit1() == null))
             return false;
@@ -354,7 +355,7 @@ public class Game {
                                       ResourceType resourceType1, ResourceType resourceType2, ResourceType obtainedResource,
                                       ResourceType[] resourceObtainedFromLeader, int payUsingExtraDep1, int payUsingExtraDep2 ){
 
-        if( currentPlayer.doneInitialDistribution() || currentPlayer.isCanEndTurn() || !currentPlayer.hasChosenLeaderCards()  )
+        if( currentPlayer.doneInitialDistribution() || currentPlayer.canEndTurn() || !currentPlayer.hasChosenLeaderCards()  )
             return false;
 
         if (payUsingExtraDep1 < 0 || payUsingExtraDep1 > 2 || (payUsingExtraDep1 > 0 && currentPlayer.getPersonalBoard().getExtraDeposit1() == null))
@@ -401,7 +402,7 @@ public class Game {
      * @return true if player selects a correct row or column.
      */
     public boolean takeResourcesFromMarket( int row, int column ){
-        if( currentPlayer.doneInitialDistribution() || currentPlayer.isCanEndTurn() || !currentPlayer.hasChosenLeaderCards())
+        if( currentPlayer.doneInitialDistribution() || currentPlayer.canEndTurn() || !currentPlayer.hasChosenLeaderCards())
             return false;
         if( marketBoard.getResourcesFromMarket(row, column) ) {
             currentPlayer.setCanEndTurn(true);
@@ -540,7 +541,7 @@ public class Game {
      * @return true if it can be done.
      */
     public boolean activateActionCard(){
-        if(players.size()!=1 || !currentPlayer.isCanEndTurn() || actionCardDone) return false;
+        if(players.size()!=1 || !currentPlayer.canEndTurn() || actionCardDone) return false;
         actionCardStack.activateCard();
         actionCardDone=true;
         return true;

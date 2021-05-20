@@ -67,16 +67,19 @@ public class MarketBoardPrinter implements Printable {
             return;
         }
         System.out.println("MarketBoard:");
+        int j;
         for(int i=0; i<3; i++){
             System.out.print("\n");
-            for(int j=0; j<4; j++){
+            for( j=0; j<4; j++){
                 if(marbleGrid[i][j].equals("white"))
                     System.out.print(Colours.RESET + "\u2551" + Colours.RESET + marbleGrid[i][j] + Colours.RESET);
                 else
                     System.out.print(Colours.RESET + "\u2551" + marbleColours.get(marbleGrid[i][j]).escape() + marbleGrid[i][j] + Colours.RESET);
             }
-            System.out.print(Colours.RESET + "\u2551 \n");
+            System.out.print(Colours.RESET + "\u2551");
+            System.out.println("\t(" + i +"," + j + ")\n");
         }
+        System.out.println("(3,0) (3,1) (3,2) (3,3)");
         System.out.println();
         if(marbleOut.equals("white"))
             System.out.print("Out: " + Colours.RESET + marbleOut + Colours.RESET + "\n");

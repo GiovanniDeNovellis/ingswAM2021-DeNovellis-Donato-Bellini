@@ -3,38 +3,100 @@ package it.polimi.ingsw.View.LeaderCardsBuilder;
 import it.polimi.ingsw.Colour;
 import it.polimi.ingsw.ResourceType;
 
-public class LeaderCardTransformation {
+public class LeaderCardTransformation extends LeaderCards{
     ResourceType resourceType;
     Colour doubleCardColour;
     Colour singleCardColour;
     String type;
     int leaderCardNumber;
+    int victoryPoints;
 
-    public LeaderCardTransformation(Colour doubleCardColour, Colour singleCardColour, ResourceType resourceType, int leaderCardNumber) {
+    public LeaderCardTransformation(Colour doubleCardColour, Colour singleCardColour, ResourceType resourceType, int leaderCardNumber, int victoryPoints) {
         this.resourceType = resourceType;
         this.doubleCardColour = doubleCardColour;
         this.singleCardColour = singleCardColour;
         this.type = "Transformation";
         this.leaderCardNumber=leaderCardNumber;
+        this.victoryPoints = victoryPoints;
     }
 
+    @Override
+    public int getVictoryPoints() {
+        return victoryPoints;
+    }
+
+    @Override
     public ResourceType getResourceType() {
         return resourceType;
     }
 
-    public Colour getDoubleCardColour() {
-        return doubleCardColour;
+    @Override
+    public ResourceType getResourceRequired() {
+        return null;
     }
 
-    public Colour getSingleCardColour() {
-        return singleCardColour;
-    }
-
+    @Override
     public String getType() {
         return type;
     }
 
+    @Override
     public int getLeaderCardNumber() {
         return leaderCardNumber;
     }
+
+    @Override
+    public Colour getSingleColour1() {
+        return null;
+    }
+
+    @Override
+    public Colour getSingleColour2() {
+        return null;
+    }
+
+    @Override
+    public String getLevel2CardColour() {
+        return null;
+    }
+
+    @Override
+    public Colour getDoubleCardColour() {
+        return doubleCardColour;
+    }
+
+    @Override
+    public Colour getSingleCardColour() {
+        return singleCardColour;
+    }
+/*
+    @Override
+    public ResourceType getResourceType() {
+        return resourceType;
+    }
+
+    @Override
+    public Colour getDoubleCardColour() {
+        return doubleCardColour;
+    }
+
+    @Override
+    public Colour getSingleCardColour() {
+        return singleCardColour;
+    }
+
+    @Override
+    public String getType() {
+        return type;
+    }
+
+    @Override
+    public int getLeaderCardNumber() {
+        return leaderCardNumber;
+    }
+
+    @Override
+    public int getVictoryPoints() {
+        return victoryPoints;
+    }*/
 }

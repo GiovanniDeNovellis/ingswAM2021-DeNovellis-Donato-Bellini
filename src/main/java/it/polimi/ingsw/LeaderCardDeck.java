@@ -3,6 +3,7 @@ package it.polimi.ingsw;
 import java.util.ArrayList;
 import java.util.Collections;
 
+
 /** This class represent a deck of ActionCards */
 public class LeaderCardDeck {
 

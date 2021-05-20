@@ -1,3 +1,4 @@
+
 package it.polimi.ingsw;
 //TODO VICTORY POINTS
 /** Abstracted class that represent the four different types of LeaderCard */
