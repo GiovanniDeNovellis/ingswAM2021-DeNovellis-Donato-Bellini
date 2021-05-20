@@ -26,7 +26,7 @@ public class LeaderCardsPrinter implements Printable {
 
     private void printChoosableCards(){
 
-        LeaderCards leaderCard1, leaderCard2, leaderCard3, leaderCard4;
+        LeaderCards leaderCard;
 
         String[] requirements = new String[4];
         String[] victoryPoints = new String[4];
@@ -36,8 +36,8 @@ public class LeaderCardsPrinter implements Printable {
 
         for (int i = 0; i < 4; i++) {
             if( choosableLeaderCards[i]>=1 && choosableLeaderCards[i] <=4 ) {
-                leaderCard1 = deck.getLeaderCards().get(choosableLeaderCards[i]-1);
-                String[] info = buildDiscountType(leaderCard1);
+                leaderCard = deck.getLeaderCards().get(choosableLeaderCards[i]-1);
+                String[] info = buildDiscountType(leaderCard);
                 requirements[i] = info[0];
                 victoryPoints[i] = info[1];
                 powers[i] = info[2];
@@ -45,24 +45,24 @@ public class LeaderCardsPrinter implements Printable {
 
             }
             else if( choosableLeaderCards[i]>=5 && choosableLeaderCards[i] <=8 ) {
-                leaderCard2 = deck.getLeaderCards().get(choosableLeaderCards[i]-1);
-                String[] info = buildDepositType(leaderCard2);
+                leaderCard = deck.getLeaderCards().get(choosableLeaderCards[i]-1);
+                String[] info = buildDepositType(leaderCard);
                 requirements[i] = info[0];
                 victoryPoints[i] = info[1];
                 powers[i] = info[2];
                 resources[i] = info[3];
             }
             else if( choosableLeaderCards[i]>=9 && choosableLeaderCards[i] <=12 ) {
-                leaderCard3 = deck.getLeaderCards().get(choosableLeaderCards[i]-1);
-                String[] info = buildTransformationType(leaderCard3);
+                leaderCard = deck.getLeaderCards().get(choosableLeaderCards[i]-1);
+                String[] info = buildTransformationType(leaderCard);
                 requirements[i] = info[0];
                 victoryPoints[i] = info[1];
                 powers[i] = info[2];
                 resources[i] = info[3];
             }
             else if( choosableLeaderCards[i]>=13 && choosableLeaderCards[i] <=16 ) {
-                leaderCard4 = deck.getLeaderCards().get(choosableLeaderCards[i]-1);
-                String[] info = buildProductionType(leaderCard4);
+                leaderCard = deck.getLeaderCards().get(choosableLeaderCards[i]-1);
+                String[] info = buildProductionType(leaderCard);
                 requirements[i] = info[0];
                 victoryPoints[i] = info[1];
                 powers[i] = info[2];

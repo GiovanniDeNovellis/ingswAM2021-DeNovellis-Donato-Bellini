@@ -69,7 +69,7 @@ public class MarketBoardPrinter implements Printable {
         System.out.println("MarketBoard:");
         int j;
         for(int i=0; i<3; i++){
-            System.out.println("\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550");
+            System.out.println("\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550 \u2550");
             for( j=0; j<4; j++){
                 String marble = marbleGrid[i][j];
                 for( int h = marble.length(); h<6; h++ ){
@@ -83,9 +83,9 @@ public class MarketBoardPrinter implements Printable {
             System.out.print(Colours.RESET + "\u2551");
             System.out.println("\t(" + i +"," + j + ")");
         }
-        System.out.println("\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550");
-        System.out.println(" (3,0)  (3,1)   (3,2)  (3,3)");
-        System.out.println();
+        System.out.println("\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550 \u2550");
+        System.out.println(" \u2551   \u2551  \u2551   \u2551  \u2551   \u2551  \u2551   \u2551  ");
+        System.out.println(" (3,0)  (3,1)  (3,2)  (3,3)");
         if(marbleOut.equals("white"))
             System.out.print("Out: " + Colours.RESET + marbleOut + Colours.RESET + "\n");
         else
