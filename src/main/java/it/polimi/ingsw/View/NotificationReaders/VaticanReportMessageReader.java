@@ -26,25 +26,25 @@ public class VaticanReportMessageReader extends NotificationReader{
                 if (p1.getOwnerNickname().equals(nickname)) {
                     if (data.getWhichOne() == 1) {
                         if(data.getNewFaithPoints()>4)
-                            vatReport = "First vatican report occurred." + nickname + " was inside the vatican space";
+                            vatReport = "First vatican report occurred. " + nickname + " was inside the vatican space";
                         else
-                            vatReport = "First vatican report occurred" + nickname + " wasn't inside the vatican space";
+                            vatReport = "First vatican report occurred. " + nickname + " wasn't inside the vatican space";
                         p1.getFaithCards()[0]=0;
                     } else if (data.getWhichOne() == 2) {
                         if(data.getNewFaithPoints()>11)
-                            vatReport = "Second vatican report occurred." + nickname + " was inside the vatican space";
+                            vatReport = "Second vatican report occurred. " + nickname + " was inside the vatican space";
                         else
-                            vatReport = "Second vatican report occurred." + nickname + " wasn't inside the vatican space";
+                            vatReport = "Second vatican report occurred. " + nickname + " wasn't inside the vatican space";
                         p1.getFaithCards()[1]=0;
                     } else if (data.getWhichOne() == 3) {
                         if(data.getNewFaithPoints()>18)
-                            vatReport = "Third vatican report occurred." + nickname + " was inside the vatican space";
+                            vatReport = "Third vatican report occurred. " + nickname + " was inside the vatican space";
                         else
-                            vatReport = "Third vatican report occurred." + nickname + " wasn't inside the vatican space";
+                            vatReport = "Third vatican report occurred. " + nickname + " wasn't inside the vatican space";
                         p1.getFaithCards()[2]=0;
                     }
+                    printNotification();
                 }
-                printNotification();
             }
         }
     }

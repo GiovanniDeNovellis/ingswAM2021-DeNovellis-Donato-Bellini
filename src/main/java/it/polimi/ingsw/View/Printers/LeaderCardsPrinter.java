@@ -45,4 +45,8 @@ public class LeaderCardsPrinter implements Printable{
     public String getOwnerNickname() {
         return ownerNickname;
     }
+
+    public void setActivatedLeaderCards(boolean[] activatedLeaderCards) {
+        this.activatedLeaderCards = activatedLeaderCards;
+    }
 }

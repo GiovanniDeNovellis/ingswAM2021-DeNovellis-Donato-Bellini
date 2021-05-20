@@ -45,7 +45,6 @@ public class DistributionSecondThirdManager implements Manageable{
                 mex.setNickname(nickname);
                 mex.setMessageType("NotifyWareHouseChangedMessage");
                 String notificationForAll = gson.toJson(mex);
-                System.out.println(notificationForAll);
                     for(ClientHandler c : controller.getConnectedClients()){
                         c.notifyInterface(notificationForAll);
                     }

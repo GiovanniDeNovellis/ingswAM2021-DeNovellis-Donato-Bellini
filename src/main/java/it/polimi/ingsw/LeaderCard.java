@@ -10,7 +10,7 @@ public abstract class LeaderCard {
     protected boolean active = false;
 
     /** The victory points that the card give to the player */
-    private int victoryPoints;
+    protected int victoryPoints;
 
     /** The resource type associate to the card */
     ResourceType resourceType;
@@ -100,12 +100,13 @@ public abstract class LeaderCard {
      * @param singleColour2 the second requirement of the card
      * @param resourceType the type of resource to which you'll have a discount
      */
-    public LeaderCardDiscount(Colour singleColour1,Colour singleColour2,ResourceType resourceType, int leaderCardNumber) {
+    public LeaderCardDiscount(Colour singleColour1,Colour singleColour2,ResourceType resourceType, int leaderCardNumber, int victoryPoints) {
         this.resourceType = resourceType;
         this.singleColour1 = singleColour1;
         this.singleColour2 = singleColour2;
         this.type = "Discount";
         this.leaderCardNumber=leaderCardNumber;
+        this.victoryPoints=victoryPoints;
     }
 
     /**
@@ -158,11 +159,12 @@ class LeaderCardDeposit extends LeaderCard{
      * @param resourceRequired the requirement of the card
      * @param resourceType the type of deposit that will be created
      */
-    public LeaderCardDeposit(ResourceType resourceRequired, ResourceType resourceType, int leaderCardNumber) {
+    public LeaderCardDeposit(ResourceType resourceRequired, ResourceType resourceType, int leaderCardNumber, int victoryPoints) {
         this.resourceType = resourceType;
         this.resourceRequired = resourceRequired;
         this.type = "Deposit";
         this.leaderCardNumber=leaderCardNumber;
+        this.victoryPoints=victoryPoints;
     }
 
     /**
@@ -211,11 +213,12 @@ class LeaderCardProduction extends LeaderCard{
      * @param level2CardColour the requirement of the card
      * @param resourceType the resource that want to produce
      */
-    public LeaderCardProduction(Colour level2CardColour,ResourceType resourceType, int leaderCardNumber) {
+    public LeaderCardProduction(Colour level2CardColour,ResourceType resourceType, int leaderCardNumber, int victoryPoints) {
         this.resourceType = resourceType;
         this.level2CardColour = level2CardColour;
         this.type = "Production";
         this.leaderCardNumber=leaderCardNumber;
+        this.victoryPoints=victoryPoints;
     }
 
     /**
@@ -270,12 +273,13 @@ class LeaderCardTransformation extends LeaderCard{
      * @param singleCardColour the second requirement of the card
      * @param resourceType the resource that the card transform for the player
      */
-    public LeaderCardTransformation(Colour doubleCardColour, Colour singleCardColour,ResourceType resourceType, int leaderCardNumber) {
+    public LeaderCardTransformation(Colour doubleCardColour, Colour singleCardColour,ResourceType resourceType, int leaderCardNumber, int victoryPoints) {
         this.resourceType = resourceType;
         this.doubleCardColour = doubleCardColour;
         this.singleCardColour = singleCardColour;
         this.type = "Transformation";
         this.leaderCardNumber=leaderCardNumber;
+        this.victoryPoints=victoryPoints;
     }
 
     /**
