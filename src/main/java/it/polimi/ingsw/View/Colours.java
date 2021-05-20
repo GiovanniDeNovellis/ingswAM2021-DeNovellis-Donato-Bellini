@@ -2,6 +2,7 @@ package it.polimi.ingsw.View;
 
 public enum Colours {
 
+    ANSI_BRIGHTBLACK("\u001B[30;1m"),
     ANSI_BLACK("\u001B[30m"),
     ANSI_RED ("\u001B[31m"),
     ANSI_GREEN("\u001B[32m"),

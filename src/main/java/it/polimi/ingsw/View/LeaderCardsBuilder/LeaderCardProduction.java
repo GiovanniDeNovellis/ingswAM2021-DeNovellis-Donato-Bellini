@@ -3,18 +3,26 @@ package it.polimi.ingsw.View.LeaderCardsBuilder;
 import it.polimi.ingsw.Colour;
 import it.polimi.ingsw.ResourceType;
 
-public class LeaderCardProduction extends LeaderCards{
+public class LeaderCardProduction extends LeaderCards {
 
     ResourceType resourceType;
     Colour level2CardColour;
     String type;
     int leaderCardNumber;
 
-    public LeaderCardProduction(Colour level2CardColour, ResourceType resourceType, int leaderCardNumber) {
+    @Override
+    public int getVictoryPoints() {
+        return victoryPoints;
+    }
+
+    int victoryPoints;
+
+    public LeaderCardProduction(Colour level2CardColour, ResourceType resourceType, int leaderCardNumber, int victoryPoints) {
         this.resourceType = resourceType;
         this.level2CardColour = level2CardColour;
         this.type = "Production";
-        this.leaderCardNumber=leaderCardNumber;
+        this.leaderCardNumber = leaderCardNumber;
+        this.victoryPoints = victoryPoints;
     }
 
     @Override

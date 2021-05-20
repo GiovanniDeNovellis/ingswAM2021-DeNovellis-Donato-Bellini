@@ -6,11 +6,20 @@ public class LeaderCardDeposit extends LeaderCards{
     ResourceType resourceRequired;
     String type;
     int leaderCardNumber;
-    public LeaderCardDeposit(ResourceType resourceRequired, ResourceType resourceType, int leaderCardNumber) {
+
+    @Override
+    public int getVictoryPoints() {
+        return victoryPoints;
+    }
+
+    int victoryPoints;
+
+    public LeaderCardDeposit(ResourceType resourceRequired, ResourceType resourceType, int leaderCardNumber, int victoryPoints) {
         this.resourceType = resourceType;
         this.resourceRequired = resourceRequired;
         this.type = "Deposit";
         this.leaderCardNumber=leaderCardNumber;
+        this.victoryPoints=victoryPoints;
     }
 
     public ResourceType getResourceType() {

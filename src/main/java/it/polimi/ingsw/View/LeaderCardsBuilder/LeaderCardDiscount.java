@@ -9,12 +9,20 @@ public class LeaderCardDiscount extends LeaderCards{
         Colour singleColour2;
         String type;
         int leaderCardNumber;
-        LeaderCardDiscount(Colour singleColour1,Colour singleColour2,ResourceType resourceType, int leaderCardNumber) {
+
+        @Override
+        public int getVictoryPoints() {
+                return victoryPoints;
+        }
+
+        int victoryPoints;
+        LeaderCardDiscount(Colour singleColour1,Colour singleColour2,ResourceType resourceType, int leaderCardNumber, int victoryPoints) {
                 this.resourceType = resourceType;
                 this.singleColour1 = singleColour1;
                 this.singleColour2 = singleColour2;
                 this.type = "Discount";
                 this.leaderCardNumber=leaderCardNumber;
+                this.victoryPoints=victoryPoints;
         }
 
         public ResourceType getResourceType() {

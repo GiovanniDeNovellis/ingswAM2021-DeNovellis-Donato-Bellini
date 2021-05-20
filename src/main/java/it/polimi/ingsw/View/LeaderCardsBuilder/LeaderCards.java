@@ -13,6 +13,11 @@ public class LeaderCards {
     Colour level2CardColour;
     Colour doubleCardColour;
     Colour singleCardColour;
+    int victoryPoints;
+
+    public int getVictoryPoints() {
+        return victoryPoints;
+    }
 
     public ResourceType getResourceType() {
         return resourceType;

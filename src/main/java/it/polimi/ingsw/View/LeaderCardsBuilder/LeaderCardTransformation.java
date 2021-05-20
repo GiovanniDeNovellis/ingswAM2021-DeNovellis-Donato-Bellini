@@ -10,12 +10,20 @@ public class LeaderCardTransformation extends LeaderCards{
     String type;
     int leaderCardNumber;
 
-    public LeaderCardTransformation(Colour doubleCardColour, Colour singleCardColour, ResourceType resourceType, int leaderCardNumber) {
+    @Override
+    public int getVictoryPoints() {
+        return victoryPoints;
+    }
+
+    int victoryPoints;
+
+    public LeaderCardTransformation(Colour doubleCardColour, Colour singleCardColour, ResourceType resourceType, int leaderCardNumber, int victoryPoints) {
         this.resourceType = resourceType;
         this.doubleCardColour = doubleCardColour;
         this.singleCardColour = singleCardColour;
         this.type = "Transformation";
         this.leaderCardNumber=leaderCardNumber;
+        this.victoryPoints = victoryPoints;
     }
 
     public ResourceType getResourceType() {
