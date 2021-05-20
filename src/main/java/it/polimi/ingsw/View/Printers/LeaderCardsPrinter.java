@@ -629,7 +629,7 @@ public class LeaderCardsPrinter implements Printable {
                 cardResource= Colours.ANSI_BLUE.escape() + "1SHIELD-->1?1FP ";
                 break;
             case "STONES":
-                cardResource= Colours.ANSI_BLACK.escape() + "1STONE-->1?1FP  ";
+                cardResource= Colours.ANSI_WHITE.escape() + "1STONE-->1?1FP  ";
                 break;
             case "SERVANTS":
                 cardResource= Colours.ANSI_PURPLE.escape() + "1SERVANT-->1?1FP";
@@ -671,7 +671,7 @@ public class LeaderCardsPrinter implements Printable {
                     cardResource= Colours.ANSI_BLUE.escape() + "WHITE-->SHIELDS ";
                     break;
                 case "STONES":
-                    cardResource= Colours.ANSI_BLACK.escape() + "WHITE-->STONES  ";
+                    cardResource= Colours.ANSI_WHITE.escape() + "WHITE-->STONES  ";
                     break;
                 case "SERVANTS":
                     cardResource= Colours.ANSI_PURPLE.escape() + "WHITE-->SERVANTS";
@@ -725,7 +725,7 @@ public class LeaderCardsPrinter implements Printable {
                 cardRequirement = Colours.ANSI_BLUE.escape() + "5 SHIELDS       ";
                 break;
             case "STONES":
-                cardRequirement = Colours.ANSI_BLACK.escape() + "5 STONES        ";
+                cardRequirement = Colours.ANSI_WHITE.escape() + "5 STONES        ";
                 break;
             case "SERVANTS":
                 cardRequirement = Colours.ANSI_PURPLE.escape() + "5 SERVANTS      ";
@@ -744,7 +744,7 @@ public class LeaderCardsPrinter implements Printable {
                 cardResource= Colours.ANSI_BLUE.escape() + "2 SHIELDS       ";
                 break;
             case "STONES":
-                cardResource= Colours.ANSI_BLACK.escape() + "2 STONES        ";
+                cardResource= Colours.ANSI_WHITE.escape() + "2 STONES        ";
                 break;
             case "SERVANTS":
                 cardResource= Colours.ANSI_PURPLE.escape() + "2 SERVANTS      ";
@@ -764,7 +764,7 @@ public class LeaderCardsPrinter implements Printable {
                 cardResource= Colours.ANSI_BLUE.escape() + "-1 SHIELD       ";
                 break;
             case "STONES":
-                cardResource= Colours.ANSI_BLACK.escape() + "-1 STONE        ";
+                cardResource= Colours.ANSI_WHITE.escape() + "-1 STONE        ";
                 break;
             case "SERVANTS":
                 cardResource= Colours.ANSI_PURPLE.escape() + "-1 SERVANT      ";
