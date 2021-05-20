@@ -1,10 +1,7 @@
 package it.polimi.ingsw.View.Printers;
 
-import it.polimi.ingsw.Colour;
 import it.polimi.ingsw.View.Colours;
 import it.polimi.ingsw.View.LeaderCardsBuilder.*;
-
-import java.util.ArrayList;
 
 public class LeaderCardsPrinter implements Printable {
     private String ownerNickname;
@@ -13,7 +10,6 @@ public class LeaderCardsPrinter implements Printable {
     private boolean[] activatedLeaderCards = {false, false};
     private boolean built = false;
     private final LeaderCardsDeck deck = new LeaderCardsDeck();
-    private final ArrayList<LeaderCards> leaderCards = deck.getLeaderCards();
 
     @Override
     public void print(String whatIHaveToPrint) {
@@ -36,11 +32,6 @@ public class LeaderCardsPrinter implements Printable {
         String[] victoryPoints = new String[4];
         String[] powers = new String[4];
         String[] resources = new String[4];
-
-        /*choosableLeaderCards[0] = 1;
-        choosableLeaderCards[1] = 5;
-        choosableLeaderCards[2] = 9;
-        choosableLeaderCards[3] = 13;*/
 
         for (int i = 0; i < 4; i++) {
             if( choosableLeaderCards[i]>=1 && choosableLeaderCards[i] <=4 ) {

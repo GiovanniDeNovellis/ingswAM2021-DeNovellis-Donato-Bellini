@@ -571,7 +571,7 @@ public class Player {
     public int[] getChoosableLeadercardsNumber(){
         int i = 0;
         int[] numbers = new int[4];
-        for( LeaderCard l : choosedLeaderCards ) {
+        for( LeaderCard l : choosableLeaderCards ) {
             numbers[i] = l.getLeaderCardNumber();
             i++;
         }
