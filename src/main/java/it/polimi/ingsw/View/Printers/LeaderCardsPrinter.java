@@ -13,10 +13,10 @@ public class LeaderCardsPrinter implements Printable {
 
     @Override
     public void print(String whatIHaveToPrint) {
-        /*if(!built){
+        if(!built){
             System.out.println("Game not started!!!");
             return;
-        }*/
+        }
 
         System.out.println("Legend: SH=SHIELDS, C=COINS, ST=STONES, SE=SERVANTS, FP=FAITH POINTS, ?=ANY RESOURCE\n" +
                 "1Y=ONE YELLOW CARD, 1B=ONE BLUE CARD, 1G=ONE GREEN CARD, 1P=ONE PURPLE CARD");
@@ -32,6 +32,7 @@ public class LeaderCardsPrinter implements Printable {
         String[] victoryPoints = new String[4];
         String[] powers = new String[4];
         String[] resources = new String[4];
+
 
         for (int i = 0; i < 4; i++) {
             if( choosableLeaderCards[i]>=1 && choosableLeaderCards[i] <=4 ) {
@@ -566,5 +567,13 @@ public class LeaderCardsPrinter implements Printable {
 
     public String getOwnerNickname() {
         return ownerNickname;
+    }
+
+    public void setActivatedLeaderCards(boolean[] activatedLeaderCards) {
+        this.activatedLeaderCards = activatedLeaderCards;
+    }
+
+    public void setBuilt(boolean built) {
+        this.built = built;
     }
 }

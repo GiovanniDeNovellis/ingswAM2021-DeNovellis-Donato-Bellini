@@ -14,7 +14,7 @@ public class ModelPrinter {
 
     public void print(Printable p, String whatIHaveToPrint){
         if(whatIHaveToPrint.equals("blackFaithPoints")){
-         //TODO FAITH TRACK DI LORENZO
+             printLorenzoTrack();
         }
         else {
             p.print(whatIHaveToPrint);
@@ -59,5 +59,69 @@ public class ModelPrinter {
     public void setMultiplayerGameStarted(boolean multiplayerGameStarted) {
         this.multiplayerGameStarted = multiplayerGameStarted;
         System.out.println("Game started in multiplayer mode!");
+    }
+
+    public void printLorenzoTrack(){
+        System.out.println("Lorenzo's track: ");
+        int i;
+        for(i=0;i<=65;i++){
+            if(i==0)
+                System.out.print(Colours.RESET + "\u2554");
+            else if(i==65)
+                System.out.print(Colours.ANSI_YELLOW.escape() + "\u2557");
+            else if((i>=1 && i<=9)||(i>=18&&i<=25)||(i>=41&&i<=46))
+                System.out.print(Colours.RESET + "\u2550");
+            else
+                System.out.print(Colours.ANSI_YELLOW.escape() + "\u2550");
+        }
+        System.out.print(Colours.RESET + "\n");
+        for(i=0; i<=4; i++){
+            if(i==blackFaithPoints)
+                System.out.print(Colours.ANSI_RED.escape() + "\u2551" + "\u2327");
+            else
+                System.out.print(Colours.RESET + "\u2551" + i);
+        }
+        for(;i<=8;i++){
+            if(i==blackFaithPoints)
+                System.out.print(Colours.ANSI_RED.escape() + "\u2551" + "\u2327");
+            else
+                System.out.print(Colours.ANSI_YELLOW.escape() + "\u2551" + i);
+        }
+        for(;i<=11;i++){
+            if(i==blackFaithPoints)
+                System.out.print(Colours.ANSI_RED.escape() + "\u2551" + "\u2327");
+            else
+                System.out.print(Colours.RESET + "\u2551" + i);
+        }
+        for(;i<=16;i++){
+            if(i==blackFaithPoints)
+                System.out.print(Colours.ANSI_RED.escape() + "\u2551" + "\u2327");
+            else
+                System.out.print(Colours.ANSI_YELLOW.escape() + "\u2551" + i);
+        }
+        for(;i<=18;i++){
+            if(i==blackFaithPoints)
+                System.out.print(Colours.ANSI_RED.escape() + "\u2551" + "\u2327");
+            else
+                System.out.print(Colours.RESET + "\u2551" + i);
+        }
+        for(;i<=24;i++){
+            if(i==blackFaithPoints)
+                System.out.print(Colours.ANSI_RED.escape() + "\u2551" + "\u2327");
+            else
+                System.out.print(Colours.ANSI_YELLOW.escape() + "\u2551" + i);
+        }
+        System.out.print(Colours.ANSI_YELLOW.escape() + "\u2551" + Colours.RESET + "\n");
+        for(i=0;i<=65;i++){
+            if(i==0)
+                System.out.print(Colours.RESET + "\u255A");
+            else if(i==65)
+                System.out.print(Colours.ANSI_YELLOW.escape() + "\u255D");
+            else if((i>=1 && i<=9)||(i>=18&&i<=25)||(i>=41&&i<=46))
+                System.out.print(Colours.RESET + "\u2550");
+            else
+                System.out.print(Colours.ANSI_YELLOW.escape() + "\u2550");
+        }
+        System.out.print(Colours.RESET + "\n");
     }
 }

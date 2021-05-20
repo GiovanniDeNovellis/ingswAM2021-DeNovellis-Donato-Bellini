@@ -28,19 +28,20 @@ public class ReconnectConfigurationMessageReader extends NotificationReader{
         LeaderCardsPrinter l = new LeaderCardsPrinter();
         l.setOwnerNickname(reconnectConfigurationMessage.getSenderNickname());
         if(!reconnectConfigurationMessage.getChoosableLeaderCards().isEmpty()){
-            int[] leads = new int[3];
+            int[] leads = new int[4];
             for(int i=0; i<reconnectConfigurationMessage.getChoosableLeaderCards().size();i++){
                 leads[i]=reconnectConfigurationMessage.getChoosableLeaderCards().get(i);
             }
             l.setChoosableLeaderCards(leads);
         }
         if(!reconnectConfigurationMessage.getChoosedLeaderCards().isEmpty()){
-            int[] leads = new int[3];
+            int[] leads = new int[2];
             for(int i=0; i<reconnectConfigurationMessage.getChoosedLeaderCards().size();i++){
                 leads[i]=reconnectConfigurationMessage.getChoosedLeaderCards().get(i);
             }
             l.setChosenLeaderCards(leads);
         }
+        l.setActivatedLeaderCards(reconnectConfigurationMessage.getActiveLeaderCards());
         modelPrinter.getPersonalBoards().add(p);
         modelPrinter.getLeaderCardsPrinters().add(l);
         modelPrinter.getMarketBoardPrinter().setMarbleGrid(reconnectConfigurationMessage.getMarbleGridConfiguration());
