@@ -1,10 +1,7 @@
 package it.polimi.ingsw.View.Printers;
 
-import it.polimi.ingsw.Colour;
 import it.polimi.ingsw.View.Colours;
 import it.polimi.ingsw.View.LeaderCardsBuilder.*;
-
-import java.util.ArrayList;
 
 public class LeaderCardsPrinter implements Printable {
     private String ownerNickname;
@@ -13,7 +10,6 @@ public class LeaderCardsPrinter implements Printable {
     private boolean[] activatedLeaderCards = {false, false};
     private boolean built = false;
     private final LeaderCardsDeck deck = new LeaderCardsDeck();
-    private final ArrayList<LeaderCards> leaderCards = deck.getLeaderCards();
 
     @Override
     public void print(String whatIHaveToPrint) {
@@ -25,12 +21,22 @@ public class LeaderCardsPrinter implements Printable {
         System.out.println("Legend: SH=SHIELDS, C=COINS, ST=STONES, SE=SERVANTS, FP=FAITH POINTS, ?=ANY RESOURCE\n" +
                 "1Y=ONE YELLOW CARD, 1B=ONE BLUE CARD, 1G=ONE GREEN CARD, 1P=ONE PURPLE CARD");
 
-    printChoosableCards();
+    switch (whatIHaveToPrint){
+        case "choosableLeaderCards":
+            printChoosableCards();
+            break;
+        case "choosenLeaderCards":
+            printChoosenCards();
+            break;
+        case "activeLeaderCards":
+            printActiveCards();
+            break;
+    }
 }
 
     private void printChoosableCards(){
 
-        LeaderCards leaderCard1, leaderCard2, leaderCard3, leaderCard4;
+        LeaderCards leaderCard;
 
         String[] requirements = new String[4];
         String[] victoryPoints = new String[4];
@@ -40,8 +46,8 @@ public class LeaderCardsPrinter implements Printable {
 
         for (int i = 0; i < 4; i++) {
             if( choosableLeaderCards[i]>=1 && choosableLeaderCards[i] <=4 ) {
-                leaderCard1 = deck.getLeaderCards().get(choosableLeaderCards[i]-1);
-                String[] info = buildDiscountType(leaderCard1);
+                leaderCard = deck.getLeaderCards().get(choosableLeaderCards[i]-1);
+                String[] info = buildDiscountType(leaderCard);
                 requirements[i] = info[0];
                 victoryPoints[i] = info[1];
                 powers[i] = info[2];
@@ -49,24 +55,24 @@ public class LeaderCardsPrinter implements Printable {
 
             }
             else if( choosableLeaderCards[i]>=5 && choosableLeaderCards[i] <=8 ) {
-                leaderCard2 = deck.getLeaderCards().get(choosableLeaderCards[i]-1);
-                String[] info = buildDepositType(leaderCard2);
+                leaderCard = deck.getLeaderCards().get(choosableLeaderCards[i]-1);
+                String[] info = buildDepositType(leaderCard);
                 requirements[i] = info[0];
                 victoryPoints[i] = info[1];
                 powers[i] = info[2];
                 resources[i] = info[3];
             }
             else if( choosableLeaderCards[i]>=9 && choosableLeaderCards[i] <=12 ) {
-                leaderCard3 = deck.getLeaderCards().get(choosableLeaderCards[i]-1);
-                String[] info = buildTransformationType(leaderCard3);
+                leaderCard = deck.getLeaderCards().get(choosableLeaderCards[i]-1);
+                String[] info = buildTransformationType(leaderCard);
                 requirements[i] = info[0];
                 victoryPoints[i] = info[1];
                 powers[i] = info[2];
                 resources[i] = info[3];
             }
             else if( choosableLeaderCards[i]>=13 && choosableLeaderCards[i] <=16 ) {
-                leaderCard4 = deck.getLeaderCards().get(choosableLeaderCards[i]-1);
-                String[] info = buildProductionType(leaderCard4);
+                leaderCard = deck.getLeaderCards().get(choosableLeaderCards[i]-1);
+                String[] info = buildProductionType(leaderCard);
                 requirements[i] = info[0];
                 victoryPoints[i] = info[1];
                 powers[i] = info[2];
@@ -254,58 +260,317 @@ public class LeaderCardsPrinter implements Printable {
                 + "\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d"
                 + ("    "));
     }
+    private void printChoosenCards(){
 
-    /*private void printActiveCards(){
+        LeaderCards leaderCard;
+
+        String[] requirements = new String[2];
+        String[] victoryPoints = new String[2];
+        String[] powers = new String[2];
+        String[] resources = new String[2];
+        String title1 ="LEADER CARD 1   ", title2="LEADER CARD 2   ";
+
+        for (int i = 0; i < 2; i++) {
+            if (chosenLeaderCards[i] == 0) {
+                if (i==0){
+                    title1 = "CARD NOT CHOSEN ";
+                }
+                else{
+                    title2 = "CARD NOT CHOSEN ";
+                }
+                requirements[i] = "                ";
+                victoryPoints[i] = "                ";
+                powers[i] = "                ";
+                resources[i] = "                ";
+            } else {
+                if (chosenLeaderCards[i] >= 1 && chosenLeaderCards[i] <= 4) {
+                    leaderCard = deck.getLeaderCards().get(chosenLeaderCards[i] - 1);
+                    String[] info = buildDiscountType(leaderCard);
+                    requirements[i] = info[0];
+                    victoryPoints[i] = info[1];
+                    powers[i] = info[2];
+                    resources[i] = info[3];
+
+                } else if (chosenLeaderCards[i] >= 5 && chosenLeaderCards[i] <= 8) {
+                    leaderCard = deck.getLeaderCards().get(chosenLeaderCards[i] - 1);
+                    String[] info = buildDepositType(leaderCard);
+                    requirements[i] = info[0];
+                    victoryPoints[i] = info[1];
+                    powers[i] = info[2];
+                    resources[i] = info[3];
+                } else if (chosenLeaderCards[i] >= 9 && chosenLeaderCards[i] <= 12) {
+                    leaderCard = deck.getLeaderCards().get(chosenLeaderCards[i] - 1);
+                    String[] info = buildTransformationType(leaderCard);
+                    requirements[i] = info[0];
+                    victoryPoints[i] = info[1];
+                    powers[i] = info[2];
+                    resources[i] = info[3];
+                } else if (chosenLeaderCards[i] >= 13 && chosenLeaderCards[i] <= 16) {
+                    leaderCard = deck.getLeaderCards().get(chosenLeaderCards[i] - 1);
+                    String[] info = buildProductionType(leaderCard);
+                    requirements[i] = info[0];
+                    victoryPoints[i] = info[1];
+                    powers[i] = info[2];
+                    resources[i] = info[3];
+                }
+            }
+        }
 
         //RIGA APERTURA
-        System.out.println("\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557");
+        System.out.println("\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557"
+                + "    " +
+                "\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557");
 
         //NOME CARTA
         System.out.println("\u2551" +
-                "LEADER CARD ⓵" +
-                "\u2551");
-
-        //COSTO
-        System.out.println("\u2551" +
-                "CARD COST:" +
-                "      "+
+                title1 +
                 "\u2551" +
                 "    " +
+                "\u2551" +
+                title2 +
                 "\u2551");
 
-        StringBuilder leaderCard1Cost;
+        //REQUIREMENT
+        System.out.println("\u2551" +
+                "REQUIREMENT:" +
+                "    "+
+                "\u2551" +
+                "    " +
+                "\u2551" +
+                "REQUIREMENT:" +
+                "    "+
+                "\u2551");
 
         System.out.println("\u2551" +
-
+                requirements[0] +
+                "\u2551" +
+                "    " +
+                "\u2551" +
+                requirements[1] +
                 "\u2551");
 
         //PUNTI VITTORIA
         System.out.println("\u2551" +
                 "VICTORY POINTS:" +
                 " " +
-                "\u2551");
-
-
-
-        System.out.println("\u2551" +
                 "\u2551" +
                 "    " +
+                "\u2551" +
+                "VICTORY POINTS:" +
+                " " +
+                "\u2551");
+
+        System.out.println("\u2551" +
+                victoryPoints[0] +
+                "\u2551" +
+                "    " +
+                "\u2551" +
+                victoryPoints[1] +
                 "\u2551");
 
         //TIPO ABILITA' SPECIALE
         System.out.println("\u2551" +
-                "SPECIAL ABILITY TYPE:" +
-                " " +
+                "POWER TYPE:" +
+                "     " +
+                "\u2551" +
+                "    " +
+                "\u2551" +
+                "POWER TYPE:" +
+                "     " +
+                "\u2551");
+
+        System.out.println("\u2551" +
+                powers[0] +
+                "\u2551" +
+                "    " +
+                "\u2551" +
+                powers[1] +
+                "\u2551");
+
+        System.out.println("\u2551" +
+                "INVOLVED RES:" +
+                "   " +
+                "\u2551" +
+                "    " +
+                "\u2551" +
+                "INVOLVED RES:" +
+                "   " +
+                "\u2551");
+        System.out.println("\u2551" +
+                resources[0] +
+                "\u2551" +
+                "    " +
+                "\u2551" +
+                resources[1] +
                 "\u2551");
 
         //RIGA CHIUSURA
-        System.out.println("\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d");
-    }*/
+        System.out.println("\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d"
+                + "    "
+                + "\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d");
+    }
+
+    private void printActiveCards(){
+        LeaderCards leaderCard;
+
+        String[] requirements = new String[2];
+        String[] victoryPoints = new String[2];
+        String[] powers = new String[2];
+        String[] resources = new String[2];
+        String title1 =null ,title2 = null;
+
+
+        for (int i = 0; i < 2; i++) {
+                if (activatedLeaderCards[i]) {
+                    if(i==0){
+                        title1 = "LeaderCard 1    ";
+                    }
+                    else{
+                        title2 = "LeaderCard 2     ";
+                    }
+                    if (chosenLeaderCards[i] >= 1 && chosenLeaderCards[i] <= 4) {
+                        leaderCard = deck.getLeaderCards().get(chosenLeaderCards[i] - 1);
+                        String[] info = buildDiscountType(leaderCard);
+                        requirements[i] = info[0];
+                        victoryPoints[i] = info[1];
+                        powers[i] = info[2];
+                        resources[i] = info[3];
+
+                    } else if (chosenLeaderCards[i] >= 5 && chosenLeaderCards[i] <= 8) {
+                        leaderCard = deck.getLeaderCards().get(chosenLeaderCards[i] - 1);
+                        String[] info = buildDepositType(leaderCard);
+                        requirements[i] = info[0];
+                        victoryPoints[i] = info[1];
+                        powers[i] = info[2];
+                        resources[i] = info[3];
+                    } else if (chosenLeaderCards[i] >= 9 && chosenLeaderCards[i] <= 12) {
+                        leaderCard = deck.getLeaderCards().get(chosenLeaderCards[i] - 1);
+                        String[] info = buildTransformationType(leaderCard);
+                        requirements[i] = info[0];
+                        victoryPoints[i] = info[1];
+                        powers[i] = info[2];
+                        resources[i] = info[3];
+                    } else if (chosenLeaderCards[i] >= 13 && chosenLeaderCards[i] <= 16) {
+                        leaderCard = deck.getLeaderCards().get(chosenLeaderCards[i] - 1);
+                        String[] info = buildProductionType(leaderCard);
+                        requirements[i] = info[0];
+                        victoryPoints[i] = info[1];
+                        powers[i] = info[2];
+                        resources[i] = info[3];
+                    }
+                }
+                else {
+                    if (i==0){
+                        title1 = "CARD NOT ACTIVE ";
+                    }
+                    else{
+                        title2 = "CARD NOT ACTIVE ";
+                    }
+                    requirements[i] = "                ";
+                    victoryPoints[i] = "                ";
+                    powers[i] = "                ";
+                    resources[i] = "                ";
+                }
+        }
+
+        //RIGA APERTURA
+        System.out.println("\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557"
+                + "    " +
+                "\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557");
+
+        //NOME CARTA
+        System.out.println("\u2551" +
+                title1 +
+                "\u2551" +
+                "    " +
+                "\u2551" +
+                title2 +
+                "\u2551");
+
+        //REQUIREMENT
+        System.out.println("\u2551" +
+                "REQUIREMENT:" +
+                "    "+
+                "\u2551" +
+                "    " +
+                "\u2551" +
+                "REQUIREMENT:" +
+                "    "+
+                "\u2551");
+
+        System.out.println("\u2551" +
+                requirements[0] +
+                "\u2551" +
+                "    " +
+                "\u2551" +
+                requirements[1] +
+                "\u2551");
+
+        //PUNTI VITTORIA
+        System.out.println("\u2551" +
+                "VICTORY POINTS:" +
+                " " +
+                "\u2551" +
+                "    " +
+                "\u2551" +
+                "VICTORY POINTS:" +
+                " " +
+                "\u2551");
+
+        System.out.println("\u2551" +
+                victoryPoints[0] +
+                "\u2551" +
+                "    " +
+                "\u2551" +
+                victoryPoints[1] +
+                "\u2551");
+
+        //TIPO ABILITA' SPECIALE
+        System.out.println("\u2551" +
+                "POWER TYPE:" +
+                "     " +
+                "\u2551" +
+                "    " +
+                "\u2551" +
+                "POWER TYPE:" +
+                "     " +
+                "\u2551");
+
+        System.out.println("\u2551" +
+                powers[0] +
+                "\u2551" +
+                "    " +
+                "\u2551" +
+                powers[1] +
+                "\u2551");
+
+        System.out.println("\u2551" +
+                "INVOLVED RES:" +
+                "   " +
+                "\u2551" +
+                "    " +
+                "\u2551" +
+                "INVOLVED RES:" +
+                "   " +
+                "\u2551");
+        System.out.println("\u2551" +
+                resources[0] +
+                "\u2551" +
+                "    " +
+                "\u2551" +
+                resources[1] +
+                "\u2551");
+
+        //RIGA CHIUSURA
+        System.out.println("\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d"
+                + "    "
+                + "\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d");
+    }
 
     private String[] buildDiscountType(LeaderCards card){
         String requirement = getRequirementDiscount(card);
         String victoryPoint = getVictoryPoints(card);
-        String power = "Discount on res:";
+        String power = "Discount on Res ";
         String resource = getResourceDiscount(card);
         String[] info = new String[4];
         info[0] = requirement;
@@ -318,7 +583,7 @@ public class LeaderCardsPrinter implements Printable {
     private String[] buildDepositType(LeaderCards card){
         String requirement = getRequirementDeposit(card);
         String victoryPoint = getVictoryPoints(card);
-        String power = "ExtraDeposit :  ";
+        String power = "ExtraDeposit    ";
         String resource = getResourceDeposit(card);
         String[] info = new String[4];
         info[0] = requirement;
@@ -330,7 +595,7 @@ public class LeaderCardsPrinter implements Printable {
     private String[] buildTransformationType(LeaderCards card){
         String requirement = getRequirementTransformation(card);
         String victoryPoint = getVictoryPoints(card);
-        String power = "Transformation :";
+        String power = "Transformation  ";
         String resource = getResourceTransformation(card);
         String[] info = new String[4];
         info[0] = requirement;
@@ -343,7 +608,7 @@ public class LeaderCardsPrinter implements Printable {
     private String[] buildProductionType(LeaderCards card){
         String requirement = getRequirementProduction(card);
         String victoryPoint = getVictoryPoints(card);
-        String power = "ExtraProduction:";
+        String power = "ExtraProduction ";
         String resource = getResourceProduction(card);
         String[] info = new String[4];
         info[0] = requirement;
@@ -364,7 +629,7 @@ public class LeaderCardsPrinter implements Printable {
                 cardResource= Colours.ANSI_BLUE.escape() + "1SHIELD-->1?1FP ";
                 break;
             case "STONES":
-                cardResource= Colours.ANSI_BRIGHTBLACK.escape() + "1STONE-->1?1FP  ";
+                cardResource= Colours.ANSI_BLACK.escape() + "1STONE-->1?1FP  ";
                 break;
             case "SERVANTS":
                 cardResource= Colours.ANSI_PURPLE.escape() + "1SERVANT-->1?1FP";
@@ -406,7 +671,7 @@ public class LeaderCardsPrinter implements Printable {
                     cardResource= Colours.ANSI_BLUE.escape() + "WHITE-->SHIELDS ";
                     break;
                 case "STONES":
-                    cardResource= Colours.ANSI_BRIGHTBLACK.escape() + "WHITE-->STONES  ";
+                    cardResource= Colours.ANSI_BLACK.escape() + "WHITE-->STONES  ";
                     break;
                 case "SERVANTS":
                     cardResource= Colours.ANSI_PURPLE.escape() + "WHITE-->SERVANTS";
@@ -460,7 +725,7 @@ public class LeaderCardsPrinter implements Printable {
                 cardRequirement = Colours.ANSI_BLUE.escape() + "5 SHIELDS       ";
                 break;
             case "STONES":
-                cardRequirement = Colours.ANSI_BRIGHTBLACK.escape() + "5 STONES        ";
+                cardRequirement = Colours.ANSI_BLACK.escape() + "5 STONES        ";
                 break;
             case "SERVANTS":
                 cardRequirement = Colours.ANSI_PURPLE.escape() + "5 SERVANTS      ";
@@ -479,7 +744,7 @@ public class LeaderCardsPrinter implements Printable {
                 cardResource= Colours.ANSI_BLUE.escape() + "2 SHIELDS       ";
                 break;
             case "STONES":
-                cardResource= Colours.ANSI_BRIGHTBLACK.escape() + "2 STONES        ";
+                cardResource= Colours.ANSI_BLACK.escape() + "2 STONES        ";
                 break;
             case "SERVANTS":
                 cardResource= Colours.ANSI_PURPLE.escape() + "2 SERVANTS      ";
@@ -499,7 +764,7 @@ public class LeaderCardsPrinter implements Printable {
                 cardResource= Colours.ANSI_BLUE.escape() + "-1 SHIELD       ";
                 break;
             case "STONES":
-                cardResource= Colours.ANSI_BRIGHTBLACK.escape() + "-1 STONE        ";
+                cardResource= Colours.ANSI_BLACK.escape() + "-1 STONE        ";
                 break;
             case "SERVANTS":
                 cardResource= Colours.ANSI_PURPLE.escape() + "-1 SERVANT      ";
