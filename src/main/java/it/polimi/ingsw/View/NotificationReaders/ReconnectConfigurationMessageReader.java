@@ -41,6 +41,7 @@ public class ReconnectConfigurationMessageReader extends NotificationReader{
             }
             l.setChosenLeaderCards(leads);
         }
+        l.setBuilt(true);
         l.setActivatedLeaderCards(reconnectConfigurationMessage.getActiveLeaderCards());
         modelPrinter.getPersonalBoards().add(p);
         modelPrinter.getLeaderCardsPrinters().add(l);
