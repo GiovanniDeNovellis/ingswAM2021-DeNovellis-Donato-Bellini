@@ -23,10 +23,10 @@ public class LeaderCardsDeck {
             leaderCards.add(new LeaderCardTransformation(Colour.GREEN,Colour.PURPLE,ResourceType.SHIELDS,10,5));
             leaderCards.add(new LeaderCardTransformation(Colour.BLUE,Colour.YELLOW,ResourceType.STONES,11,5));
             leaderCards.add(new LeaderCardTransformation(Colour.PURPLE,Colour.GREEN,ResourceType.COINS,12,5));
-            leaderCards.add(new LeaderCardProduction(Colour.YELLOW,ResourceType.SHIELDS,13,4));
-            leaderCards.add(new LeaderCardProduction(Colour.BLUE,ResourceType.SERVANTS,14,4));
-            leaderCards.add(new LeaderCardProduction(Colour.PURPLE,ResourceType.STONES,15,4));
-            leaderCards.add(new LeaderCardProduction(Colour.GREEN,ResourceType.COINS,16,4));
+            leaderCards.add(new LeaderCardProduction("YELLOW",ResourceType.SHIELDS,13,4));
+            leaderCards.add(new LeaderCardProduction("BLUE",ResourceType.SERVANTS,14,4));
+            leaderCards.add(new LeaderCardProduction("PURPLE",ResourceType.STONES,15,4));
+            leaderCards.add(new LeaderCardProduction("GREEN",ResourceType.COINS,16,4));
     }
 
     public ArrayList<LeaderCards> getLeaderCards() {

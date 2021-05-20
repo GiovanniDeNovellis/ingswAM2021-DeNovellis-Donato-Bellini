@@ -9,12 +9,6 @@ public class LeaderCardTransformation extends LeaderCards{
     Colour singleCardColour;
     String type;
     int leaderCardNumber;
-
-    @Override
-    public int getVictoryPoints() {
-        return victoryPoints;
-    }
-
     int victoryPoints;
 
     public LeaderCardTransformation(Colour doubleCardColour, Colour singleCardColour, ResourceType resourceType, int leaderCardNumber, int victoryPoints) {
@@ -26,6 +20,57 @@ public class LeaderCardTransformation extends LeaderCards{
         this.victoryPoints = victoryPoints;
     }
 
+    @Override
+    public int getVictoryPoints() {
+        return victoryPoints;
+    }
+
+    @Override
+    public ResourceType getResourceType() {
+        return resourceType;
+    }
+
+    @Override
+    public ResourceType getResourceRequired() {
+        return null;
+    }
+
+    @Override
+    public String getType() {
+        return type;
+    }
+
+    @Override
+    public int getLeaderCardNumber() {
+        return leaderCardNumber;
+    }
+
+    @Override
+    public Colour getSingleColour1() {
+        return null;
+    }
+
+    @Override
+    public Colour getSingleColour2() {
+        return null;
+    }
+
+    @Override
+    public String getLevel2CardColour() {
+        return null;
+    }
+
+    @Override
+    public Colour getDoubleCardColour() {
+        return doubleCardColour;
+    }
+
+    @Override
+    public Colour getSingleCardColour() {
+        return singleCardColour;
+    }
+/*
+    @Override
     public ResourceType getResourceType() {
         return resourceType;
     }
@@ -49,4 +94,9 @@ public class LeaderCardTransformation extends LeaderCards{
     public int getLeaderCardNumber() {
         return leaderCardNumber;
     }
+
+    @Override
+    public int getVictoryPoints() {
+        return victoryPoints;
+    }*/
 }

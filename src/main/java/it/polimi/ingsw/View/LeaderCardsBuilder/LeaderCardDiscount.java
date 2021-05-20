@@ -9,12 +9,6 @@ public class LeaderCardDiscount extends LeaderCards{
         Colour singleColour2;
         String type;
         int leaderCardNumber;
-
-        @Override
-        public int getVictoryPoints() {
-                return victoryPoints;
-        }
-
         int victoryPoints;
         LeaderCardDiscount(Colour singleColour1,Colour singleColour2,ResourceType resourceType, int leaderCardNumber, int victoryPoints) {
                 this.resourceType = resourceType;
@@ -25,6 +19,57 @@ public class LeaderCardDiscount extends LeaderCards{
                 this.victoryPoints=victoryPoints;
         }
 
+        @Override
+        public int getVictoryPoints() {
+                return victoryPoints;
+        }
+
+        @Override
+        public ResourceType getResourceType() {
+                return resourceType;
+        }
+
+        @Override
+        public ResourceType getResourceRequired() {
+                return null;
+        }
+
+        @Override
+        public String getType() {
+                return type;
+        }
+
+        @Override
+        public int getLeaderCardNumber() {
+                return leaderCardNumber;
+        }
+
+        @Override
+        public Colour getSingleColour1() {
+                return singleColour1;
+        }
+
+        @Override
+        public Colour getSingleColour2() {
+                return singleColour2;
+        }
+
+        @Override
+        public String getLevel2CardColour() {
+                return null;
+        }
+
+        @Override
+        public Colour getDoubleCardColour() {
+                return null;
+        }
+
+        @Override
+        public Colour getSingleCardColour() {
+                return null;
+        }
+/*
+        @Override
         public ResourceType getResourceType() {
                 return resourceType;
         }
@@ -48,4 +93,8 @@ public class LeaderCardDiscount extends LeaderCards{
         public int getLeaderCardNumber() {
                 return leaderCardNumber;
         }
+        @Override
+        public int getVictoryPoints() {
+                return victoryPoints;
+        }*/
 }

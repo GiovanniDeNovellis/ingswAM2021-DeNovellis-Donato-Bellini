@@ -3,6 +3,7 @@ package it.polimi.ingsw;
 import java.util.ArrayList;
 import java.util.Collections;
 
+
 /** This class represent a deck of ActionCards */
 public class LeaderCardDeck {
 
@@ -20,7 +21,7 @@ public class LeaderCardDeck {
      * with different parameters.
      */
     public LeaderCardDeck() {
-        leaderCards.add(new LeaderCardDiscount(Colour.YELLOW,Colour.GREEN,ResourceType.SERVANTS,1));
+        leaderCards.add(new LeaderCardDiscount(Colour.YELLOW, Colour.GREEN,ResourceType.SERVANTS,1));
         leaderCards.add(new LeaderCardDiscount(Colour.BLUE,Colour.PURPLE,ResourceType.SHIELDS,2));
         leaderCards.add(new LeaderCardDiscount(Colour.GREEN,Colour.BLUE,ResourceType.STONES,3));
         leaderCards.add(new LeaderCardDiscount(Colour.YELLOW,Colour.PURPLE,ResourceType.COINS,4));
@@ -31,7 +32,7 @@ public class LeaderCardDeck {
         leaderCards.add(new LeaderCardTransformation(Colour.YELLOW,Colour.BLUE,ResourceType.SERVANTS,9));
         leaderCards.add(new LeaderCardTransformation(Colour.GREEN,Colour.PURPLE,ResourceType.SHIELDS,10));
         leaderCards.add(new LeaderCardTransformation(Colour.BLUE,Colour.YELLOW,ResourceType.STONES,11));
-        leaderCards.add(new LeaderCardTransformation(Colour.PURPLE,Colour.GREEN,ResourceType.COINS,12));
+        leaderCards.add(new LeaderCardTransformation(Colour.PURPLE, Colour.GREEN,ResourceType.COINS,12));
         leaderCards.add(new LeaderCardProduction(Colour.YELLOW,ResourceType.SHIELDS,13));
         leaderCards.add(new LeaderCardProduction(Colour.BLUE,ResourceType.SERVANTS,14));
         leaderCards.add(new LeaderCardProduction(Colour.PURPLE,ResourceType.STONES,15));

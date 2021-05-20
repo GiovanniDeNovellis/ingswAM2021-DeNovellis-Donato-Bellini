@@ -1,3 +1,4 @@
+
 package it.polimi.ingsw;
 
 /** Abstracted class that represent the four different types of LeaderCard */

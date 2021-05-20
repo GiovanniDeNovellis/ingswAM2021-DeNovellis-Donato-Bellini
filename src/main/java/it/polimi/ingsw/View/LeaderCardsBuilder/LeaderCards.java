@@ -3,55 +3,33 @@ package it.polimi.ingsw.View.LeaderCardsBuilder;
 import it.polimi.ingsw.Colour;
 import it.polimi.ingsw.ResourceType;
 
-public class LeaderCards {
-    ResourceType resourceType;
-    ResourceType resourceRequired;
-    String type;
-    int leaderCardNumber;
-    Colour singleColour1;
-    Colour singleColour2;
-    Colour level2CardColour;
-    Colour doubleCardColour;
-    Colour singleCardColour;
-    int victoryPoints;
+public abstract class LeaderCards {
+    /*protected ResourceType resourceType;
+    protected ResourceType resourceRequired;
+    protected String type;
+    protected int leaderCardNumber;
+    protected Colour singleColour1;
+    protected Colour singleColour2;
+    protected String level2CardColour;
+    protected Colour doubleCardColour;
+    protected Colour singleCardColour;
+    protected int victoryPoints;*/
 
-    public int getVictoryPoints() {
-        return victoryPoints;
-    }
+    public abstract int getVictoryPoints();
 
-    public ResourceType getResourceType() {
-        return resourceType;
-    }
+    public abstract ResourceType getResourceType();
 
-    public ResourceType getResourceRequired() {
-        return resourceRequired;
-    }
+    public abstract ResourceType getResourceRequired();
 
-    public String getType() {
-        return type;
-    }
+    public abstract String getType();
 
-    public int getLeaderCardNumber() {
-        return leaderCardNumber;
-    }
+    public abstract int getLeaderCardNumber();
+    public abstract Colour getSingleColour1();
 
-    public Colour getSingleColour1() {
-        return singleColour1;
-    }
+    public abstract Colour getSingleColour2();
+    public abstract String getLevel2CardColour();
 
-    public Colour getSingleColour2() {
-        return singleColour2;
-    }
+    public abstract Colour getDoubleCardColour();
 
-    public Colour getLevel2CardColour() {
-        return level2CardColour;
-    }
-
-    public Colour getDoubleCardColour() {
-        return doubleCardColour;
-    }
-
-    public Colour getSingleCardColour() {
-        return singleCardColour;
-    }
+    public abstract Colour getSingleCardColour();
 }
