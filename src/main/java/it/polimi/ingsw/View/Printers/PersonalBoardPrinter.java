@@ -221,29 +221,30 @@ public class PersonalBoardPrinter implements Printable{
 
     private void printFaithTrack(){
         System.out.println(ownerNickname + "'s faith track:");
-        System.out.print("             ");
+        System.out.print("                                          ");
         if(faithCards[0]==0)
-            System.out.print("FC:X");
+            System.out.print(Colours.ANSI_YELLOW.escape() +"FCX");
         else
-            System.out.print("FC:2");
-        System.out.print("                  ");
+            System.out.print(Colours.ANSI_YELLOW.escape() +"FC2");
+        System.out.print("                                              ");
         if(faithCards[1]==0)
-            System.out.print("FC:X");
+            System.out.print(Colours.ANSI_YELLOW.escape() +"FCX");
         else
-            System.out.print("FC:3");
-        System.out.print("                      ");
+            System.out.print(Colours.ANSI_YELLOW.escape() +"FC3");
+        System.out.print("                                                  ");
         if(faithCards[1]==0)
-            System.out.print("FC:X");
+            System.out.print(Colours.ANSI_YELLOW.escape() +"FCX");
         else
-            System.out.print("FC:4");
-        System.out.print("\n");
+            System.out.print(Colours.ANSI_YELLOW.escape() +"FC4");
+        System.out.print("\n" + Colours.RESET);
+
         int i;
-        for(i=0;i<=65;i++){
+        for(i=0;i<=166;i++){
             if(i==0)
                 System.out.print(Colours.RESET + "\u2554");
-            else if(i==65)
+            else if(i==166)
                 System.out.print(Colours.ANSI_YELLOW.escape() + "\u2557");
-            else if((i>=1 && i<=9)||(i>=18&&i<=25)||(i>=41&&i<=46))
+            else if((i>=1 && i<=30)||(i>=55&&i<=74)||(i>=110&&i<=123))
                 System.out.print(Colours.RESET + "\u2550");
             else
                 System.out.print(Colours.ANSI_YELLOW.escape() + "\u2550");
@@ -251,53 +252,53 @@ public class PersonalBoardPrinter implements Printable{
         System.out.print(Colours.RESET + "\n");
         for(i=0; i<=4; i++){
             if(i==faithPoints)
-                System.out.print(Colours.ANSI_RED.escape() + "\u2551" + "\u2327");
+                System.out.print(Colours.ANSI_RED.escape() + "\u2551  " + "\u271F   ");
             else
-                System.out.print(Colours.RESET + "\u2551" + i);
+                System.out.print(Colours.RESET + "\u2551  " + i + "  ");
         }
         for(;i<=8;i++){
             if(i==faithPoints)
-                System.out.print(Colours.ANSI_RED.escape() + "\u2551" + "\u2327");
+                System.out.print(Colours.ANSI_RED.escape() + "\u2551  " + "\u271F   ");
             else
-                System.out.print(Colours.ANSI_YELLOW.escape() + "\u2551" + i);
+                System.out.print(Colours.ANSI_YELLOW.escape() + "\u2551  " + i + "  ");
         }
         for(;i<=11;i++){
             if(i==faithPoints)
-                System.out.print(Colours.ANSI_RED.escape() + "\u2551" + "\u2327");
+                System.out.print(Colours.ANSI_RED.escape() + "\u2551  " + "\u271F   ");
             else
-                System.out.print(Colours.RESET + "\u2551" + i);
+                System.out.print(Colours.RESET + "\u2551  " + i + "  ");
         }
         for(;i<=16;i++){
             if(i==faithPoints)
-                System.out.print(Colours.ANSI_RED.escape() + "\u2551" + "\u2327");
+                System.out.print(Colours.ANSI_RED.escape() + "\u2551  " + "\u271F   ");
             else
-                System.out.print(Colours.ANSI_YELLOW.escape() + "\u2551" + i);
+                System.out.print(Colours.ANSI_YELLOW.escape() + "\u2551  " + i + "  ");
         }
         for(;i<=18;i++){
             if(i==faithPoints)
-                System.out.print(Colours.ANSI_RED.escape() + "\u2551" + "\u2327");
+                System.out.print(Colours.ANSI_RED.escape() + "\u2551  " + "\u271F   ");
             else
-                System.out.print(Colours.RESET + "\u2551" + i);
+                System.out.print(Colours.RESET + "\u2551  " + i + "  ");
         }
         for(;i<=24;i++){
             if(i==faithPoints)
-                System.out.print(Colours.ANSI_RED.escape() + "\u2551" + "\u2327");
+                System.out.print(Colours.ANSI_RED.escape() + "\u2551  " + "\u271F   ");
             else
-                System.out.print(Colours.ANSI_YELLOW.escape() + "\u2551" + i);
+                System.out.print(Colours.ANSI_YELLOW.escape() + "\u2551  " + i + "  ");
         }
         System.out.print(Colours.ANSI_YELLOW.escape() + "\u2551" + Colours.RESET + "\n");
-        for(i=0;i<=65;i++){
+        for(i=0;i<=166;i++){
             if(i==0)
                 System.out.print(Colours.RESET + "\u255A");
-            else if(i==65)
+            else if(i==166)
                 System.out.print(Colours.ANSI_YELLOW.escape() + "\u255D");
-            else if((i>=1 && i<=9)||(i>=18&&i<=25)||(i>=41&&i<=46))
+            else if((i>=1 && i<=30)||(i>=55&&i<=74)||(i>=110&&i<=123))
                 System.out.print(Colours.RESET + "\u2550");
             else
                 System.out.print(Colours.ANSI_YELLOW.escape() + "\u2550");
         }
         System.out.print(Colours.RESET + "\n");
-        System.out.println(Colours.ANSI_CYAN.escape() + "VP:1         2     4       6        9        12       16       20  ");
+        System.out.println(Colours.ANSI_CYAN.escape() + "VP:                   1                 2                 4                   6                    9                    12                   16                   20");
         System.out.print(Colours.RESET + "\n");
     }
 
