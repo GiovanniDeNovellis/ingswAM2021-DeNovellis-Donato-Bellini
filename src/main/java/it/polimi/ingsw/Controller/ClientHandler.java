@@ -78,6 +78,10 @@ public class ClientHandler implements Runnable {
                             for (Player p : controller.getGame().getPlayers()) {
                                 if (p.isAFK() && p.getNickname().equals(tempNickname)) {
                                     //Il player era disconnesso e si è riconnesso
+                                    LoginOkNotificationMessage me = new LoginOkNotificationMessage();
+                                    me.setSenderNickname(tempNickname);
+                                    me.setMessageType("LoginOkNotification");
+                                    out.println(gson.toJson(me));
                                     p.setIsAFK(false);
                                     mex = new Message();
                                     mex.setMessageType("ReconnectOkNotification");

@@ -33,65 +33,66 @@ public class CommandManager {
                 toBuild = new LoginMessageBuilder();
                 return toBuild.buildMessage();
 //Activating production
-            case "ActivateProduction":
+            case "activate prod":
                 showDevelopmentCards();
                 showMarketBoard();
                 toBuild = new ActivateProductionMessageBuilder(nickname);
                 return toBuild.buildMessage();
 //Activating leader card(s)
-            case "ActivateLeaderCard":
+            case "activate leader card":
                 toBuild = new ActivateLeaderCardMessageBuilder(nickname);
                 return toBuild.buildMessage();
 //Activating leader ability
-            case "ActivateLeaderAbility":
+            case "activate leader ability":
                 toBuild = new ActivateLeaderAbilityMessageBuilder(nickname);
                 return toBuild.buildMessage();
 //Activating action card
-            case "ActionCardActivation":
+            case "take action token":
                 toBuild = new ActivateActionCardMessageBuilder();
                 return toBuild.buildMessage();
 //Activating SwitchLevels
-            case "SwitchLevels":
+            case "switch levels":
                 toBuild = new SwitchLevelMessageBuilder(nickname);
                 return toBuild.buildMessage();
 //Activating TakeResourceFromMarket
-            case "TakeResourcesFromMarket":
+            case "take res from market":
                 showMarketBoard();
                 toBuild = new TakeResourceFromMarketMessageBuilder(nickname);
                 return toBuild.buildMessage();
 //Activating InsertResourceIntoWarehouse
-            case "InsertResourcesIntoWarehouse":
+            case "insert res":
                 toBuild = new InsertResourcesIntoWarehouseMessageBuilder(nickname);
                 return toBuild.buildMessage();
 //Activating BuyDevelopmentCard
-            case "BuyDevelopmentCard":
+            case "buy dev card":
                 showDeckGrid();
                 showDevelopmentCards();
                 toBuild = new BuyDevelopmentCardMessageBuilder(nickname);
                 return toBuild.buildMessage();
 //Starting single player mode
-            case "StartSinglePlayer":
+            case "start single player":
                 toBuild = new StartSinglePlayerMessageBuilder();
                 return toBuild.buildMessage();
 //Starting a multi player game
-            case "StartMultiPlayer":
+            case "start multi player":
                 toBuild = new StartMultiPlayerMessageBuilder();
                 return toBuild.buildMessage();
 //Activating an initial resource distribution for the second or the third player
-            case "DistributionSecondThird":
+            case "initial res second player":
+            case "initial res third player":
                 toBuild = new DistributionSecondThirdMessageBuilder(nickname);
                 return toBuild.buildMessage();
 //Activating an initial resource distribution for the fourth player
-            case "DistributionFourth":
+            case "initial res fourth player":
                 toBuild = new DistributionFourthMessageBuilder(nickname);
                 return toBuild.buildMessage();
 //Selecting the leader cards from the 4 choosable cards
-            case "LeaderCardSelection":
+            case "select leader cards":
                 showChoosableLeaderCards();
                 toBuild = new LeaderCardSelectionMessageBuilder(nickname);
                 return toBuild.buildMessage();
 // Ending turn
-            case "EndTurnRequest":
+            case "end turn":
                 toBuild = new EndTurnRequestMessageBuilder(nickname);
                 return toBuild.buildMessage();
                 //TODO FORSE FARE SHOW CURRENT PLAYER E SHOW PERSONAL BOARD e TEMPORARY RESOURCES

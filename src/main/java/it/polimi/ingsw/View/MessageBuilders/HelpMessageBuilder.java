@@ -6,20 +6,21 @@ public class HelpMessageBuilder extends MessageBuilder{
         System.out.print("List of possible commands: \n" +
                 "help - To see all commands \n" +
                 "login - To log in the game \n" +
-                "ActivateProduction - To activate a production \n" +
-                "ActivateLeaderCard - To activate a leader card \n" +
-                "ActivateLeaderAbility - To activate a leader ability \n" +
-                "ActionCardActivation - To activate an action card in a single player game \n" +
-                "SwitchLevels - To switch two levels of the warehouse \n" +
-                "TakeResourcesFromMarket - To take resources from the market \n" +
-                "InsertResourcesIntoWarehouse - To insert resources taken from the market \n" +
-                "BuyDevelopmentCard - To buy a development card \n" +
-                "StartSinglePLayer - To start a single player game \n" +
-                "StartMultiPlayer - To start a multi player game \n" +
-                "DistributionSecondThird - To get a free resource if you are the second or the third player \n" +
-                "DistributionFourth - To get two free resources if you are the fourth player \n" +
-                "LeaderCardSelection - To choose your two leader cards \n" +
-                "EndTurnRequest - To end the turn \n" +
+                "activate prod - To activate a production \n" +
+                "activate leader card - To activate a leader card \n" +
+                "activate leader ability - To activate a leader ability \n" +
+                "take action token - To activate an action card in a single player game \n" +
+                "switch levels - To switch two levels of the warehouse \n" +
+                "take res from market - To take resources from the market \n" +
+                "insert res - To insert resources taken from the market \n" +
+                "buy dev card - To buy a development card \n" +
+                "start single player - To start a single player game \n" +
+                "start multi player - To start a multi player game \n" +
+                "initial res second player - To get a free resource if you are the second or the third player \n" +
+                "initial res third player - To get a free resource if you are the second or the third player \n" +
+                "initial res fourth player - To get two free resources if you are the fourth player \n" +
+                "select leader cards - To choose your two leader cards \n" +
+                "end turn - To end the turn \n" +
                 "show warehouse - To see a player's warehouse \n" +
                 "show strongbox - To see a player's strongbox \n" +
                 "show development cards - To see a player's active development cards \n" +
