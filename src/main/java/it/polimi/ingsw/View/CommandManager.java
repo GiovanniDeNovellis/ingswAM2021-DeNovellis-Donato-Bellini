@@ -35,15 +35,18 @@ public class CommandManager {
 //Activating production
             case "activate prod":
                 showDevelopmentCards();
-                showMarketBoard();
+                showActiveLeaderCards();
+                showWarehouse();
                 toBuild = new ActivateProductionMessageBuilder(nickname);
                 return toBuild.buildMessage();
 //Activating leader card(s)
             case "activate leader card":
+                showChosenLeaderCards();
                 toBuild = new ActivateLeaderCardMessageBuilder(nickname);
                 return toBuild.buildMessage();
 //Activating leader ability
             case "activate leader ability":
+                showActiveLeaderCards();
                 toBuild = new ActivateLeaderAbilityMessageBuilder(nickname);
                 return toBuild.buildMessage();
 //Activating action card
@@ -52,15 +55,18 @@ public class CommandManager {
                 return toBuild.buildMessage();
 //Activating SwitchLevels
             case "switch levels":
+                showWarehouse();
                 toBuild = new SwitchLevelMessageBuilder(nickname);
                 return toBuild.buildMessage();
 //Activating TakeResourceFromMarket
             case "take res from market":
                 showMarketBoard();
+                showWarehouse();
                 toBuild = new TakeResourceFromMarketMessageBuilder(nickname);
                 return toBuild.buildMessage();
 //Activating InsertResourceIntoWarehouse
             case "insert res":
+                showWarehouse();
                 toBuild = new InsertResourcesIntoWarehouseMessageBuilder(nickname);
                 return toBuild.buildMessage();
 //Activating BuyDevelopmentCard

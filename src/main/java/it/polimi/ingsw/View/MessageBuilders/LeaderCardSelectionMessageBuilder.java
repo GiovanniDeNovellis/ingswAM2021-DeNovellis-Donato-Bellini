@@ -25,7 +25,7 @@ public class LeaderCardSelectionMessageBuilder extends MessageBuilder{
         int position1;
         do{
             try {
-                System.out.println("Write position of first Leader card you want to keep: [\"0\",\"1\",\"2\",\"3\"]");
+                System.out.println("Write position of first Leader card you want to keep: [\"1\",\"2\",\"3\",\"4\"]");
                 position1 = input.nextInt();
             }
             catch(InputMismatchException e){
@@ -33,8 +33,8 @@ public class LeaderCardSelectionMessageBuilder extends MessageBuilder{
                 position1=4;
                 input.nextLine();
             }
-        }while(position1 !=0 && position1 !=1 && position1 !=2 && position1 !=3);
-        message.setLeaderCardPosition1(position1);
+        }while(position1 !=1 && position1 !=2 && position1 !=3 && position1 !=4);
+        message.setLeaderCardPosition1(position1-1);
 
         do {
             setPos2(message, input);
@@ -48,7 +48,7 @@ public class LeaderCardSelectionMessageBuilder extends MessageBuilder{
         int position2;
         do{
             try {
-                System.out.println("Write position of second Leader card you want to keep: [\"0\",\"1\",\"2\",\"3\"]");
+                System.out.println("Write position of second Leader card you want to keep: [\"1\",\"2\",\"3\",\"4\"]");
                 position2 = input.nextInt();
             }
             catch (InputMismatchException e){
@@ -56,7 +56,7 @@ public class LeaderCardSelectionMessageBuilder extends MessageBuilder{
                 position2=4;
                 input.nextLine();
             }
-        }while( position2 !=0 && position2 !=1 && position2 !=2 && position2 !=3);
-        message.setLeaderCardPosition2(position2);
+        }while( position2 !=1 && position2 !=2 && position2 !=3 && position2 !=4);
+        message.setLeaderCardPosition2(position2-1);
     }
 }
