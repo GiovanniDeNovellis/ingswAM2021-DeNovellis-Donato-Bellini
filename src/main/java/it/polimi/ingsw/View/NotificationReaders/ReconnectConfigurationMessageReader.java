@@ -17,6 +17,7 @@ public class ReconnectConfigurationMessageReader extends NotificationReader{
         ReconnectConfigurationMessage reconnectConfigurationMessage = gson.fromJson(notification,ReconnectConfigurationMessage.class);
         PersonalBoardPrinter p = new PersonalBoardPrinter();
         p.setOwnerNickname(reconnectConfigurationMessage.getSenderNickname());
+        p.setPlayerNumber(reconnectConfigurationMessage.getPlayerNumber());
         p.setWareHouseDepot(reconnectConfigurationMessage.getWareHouseConfiguration());
         p.setStrongbox(reconnectConfigurationMessage.getStrongboxConfiguration().getResourcesContained());
         if(reconnectConfigurationMessage.getExtraDepositConfiguration().get(0)!=null)
