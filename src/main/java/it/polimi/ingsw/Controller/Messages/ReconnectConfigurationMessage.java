@@ -13,6 +13,7 @@ public class ReconnectConfigurationMessage extends Message{
     private Strongbox strongboxConfiguration;
     private ArrayList<ExtraDeposit> extraDepositConfiguration;
     private int newFaithPoints;
+    private int playerNumber;
     private DevelopmentCard[] developmentCardsConfiguration;
     private ArrayList<Integer> choosableLeaderCards = new ArrayList<>();
     private ArrayList<Integer> choosedLeaderCards = new ArrayList<>();
@@ -112,5 +113,13 @@ public class ReconnectConfigurationMessage extends Message{
 
     public void setActiveLeaderCards(boolean[] activeLeaderCards) {
         this.activeLeaderCards = activeLeaderCards;
+    }
+
+    public int getPlayerNumber() {
+        return playerNumber;
+    }
+
+    public void setPlayerNumber(int playerNumber) {
+        this.playerNumber = playerNumber;
     }
 }

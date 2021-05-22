@@ -43,9 +43,11 @@ public class ServerReader implements Runnable {
                     //System.out.println(serverOutput); // DEBUG
                 }
             }
+            System.err.println("Il server è crashato, la partita termina.");
+            System.exit(1);
         }
          catch (SocketTimeoutException e) {
-                System.out.println("Il server non risponde, la partita termina.");
+                System.err.println("Il server non risponde, la partita termina.");
                 System.exit(1);
         } catch (IOException e) {
                 System.err.println("Il server è crashato, la partita termina.");

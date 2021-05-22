@@ -93,6 +93,7 @@ public class ClientHandler implements Runnable {
                                     for(Player player: controller.getGame().getPlayers()){
                                         ReconnectConfigurationMessage reconnectConfigurationMessage= new ReconnectConfigurationMessage();
                                         reconnectConfigurationMessage.setMessageType("ReconnectConfigurationMessage");
+                                        reconnectConfigurationMessage.setPlayerNumber(player.getPlayerNumber());
                                         reconnectConfigurationMessage.setSenderNickname(player.getNickname());
                                         reconnectConfigurationMessage.setMarbleGridConfiguration(controller.getGame().getMarketBoard().getMarketboardColours());
                                         reconnectConfigurationMessage.setMarbleOut(controller.getGame().getMarketBoard().getMarbleOut().getColour());
@@ -174,11 +175,11 @@ public class ClientHandler implements Runnable {
                 }
             }
             // Chiudo lo stream e i socket
+            System.err.println("Un client si è disconnesso");
             this.serverPing.setRunning(false);
             in.close();
             out.close();
             socket.close();
-            return;
         } catch(SocketTimeoutException e){
             System.err.println("Il client non risponde");
         } catch (IOException e) {

@@ -1,20 +1,27 @@
 package it.polimi.ingsw;
 
-import it.polimi.ingsw.Controller.Server;
-import it.polimi.ingsw.View.Client;
+        import it.polimi.ingsw.Controller.Server;
+        import it.polimi.ingsw.View.Client;
 
-import java.io.FileNotFoundException;
+        import java.io.FileNotFoundException;
+        import java.util.Scanner;
 
 public class Starter {
     public static void main(String[] args) throws FileNotFoundException {
-        if(args==null || args.length==0)
-            Server.main(null);
-        switch(args[0]){
+        String start;
+        do {
+            System.out.println("Write \"CLI\" to start CLIENT, or \"SERVER\" to start SERVER\n");
+            Scanner input = new Scanner(System.in);
+            start = input.nextLine();
+        }while(!start.equals("CLI") && !start.equals("SERVER"));
+        // if(start==null || args.length==0)
+        // Server.main(null);
+        switch(start){
             case "CLI":
                 Client.main(new String[]{"CLI"});
             case "SERVER":
                 Server.main(null);
-            case "GUI":
+                //case "GUI":
                 //TODO GUI
                 //Client.main(new String[]{"GUI"});
         }
