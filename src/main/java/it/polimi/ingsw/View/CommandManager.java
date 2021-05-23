@@ -67,12 +67,16 @@ public class CommandManager {
 //Activating InsertResourceIntoWarehouse
             case "insert res":
                 showWarehouse();
+                showTemporaryResources();
                 toBuild = new InsertResourcesIntoWarehouseMessageBuilder(nickname);
                 return toBuild.buildMessage();
 //Activating BuyDevelopmentCard
             case "buy dev card":
                 showDeckGrid();
                 showDevelopmentCards();
+                showWarehouse();
+                showStrongbox();
+                showExtraDeposits();
                 toBuild = new BuyDevelopmentCardMessageBuilder(nickname);
                 return toBuild.buildMessage();
 //Starting single player mode

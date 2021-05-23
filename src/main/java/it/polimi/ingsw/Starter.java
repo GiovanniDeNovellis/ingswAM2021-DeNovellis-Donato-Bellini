@@ -10,10 +10,10 @@ public class Starter {
     public static void main(String[] args) throws FileNotFoundException {
         String start;
         do {
-            System.out.println("Write \"CLI\" to start CLIENT, or \"SERVER\" to start SERVER\n");
+            System.out.println("Write \"CLI\" or \"GUI\" to start CLIENT, or \"SERVER\" to start SERVER\n");
             Scanner input = new Scanner(System.in);
             start = input.nextLine();
-        }while(!start.equals("CLI") && !start.equals("SERVER"));
+        }while(!start.equals("CLI") && !start.equals("SERVER") && !start.equals("GUI"));
         // if(start==null || args.length==0)
         // Server.main(null);
         switch(start){
@@ -21,8 +21,8 @@ public class Starter {
                 Client.main(new String[]{"CLI"});
             case "SERVER":
                 Server.main(null);
-                //case "GUI":
-                //TODO GUI
+                case "GUI":
+                App.main(args);
                 //Client.main(new String[]{"GUI"});
         }
         System.out.println("Wrong start config");

@@ -3,6 +3,7 @@ package it.polimi.ingsw.View;
 import com.google.gson.Gson;
 import it.polimi.ingsw.Controller.Messages.Message;
 import it.polimi.ingsw.View.NotificationReaders.*;
+import it.polimi.ingsw.View.Printers.PersonalBoardPrinter;
 
 import java.sql.SQLOutput;
 
@@ -27,7 +28,9 @@ public class NotificationManager {
                 System.out.println("Successfully reconnected");
                 break;
             case "InvalidLoginNotification":
-                System.out.println("Nickname already used. Choose another nickname.");
+                System.out.println("Nickname already used. Choose another nickname.\n" +
+                        "If you are reconnecting, you have chosen an invalid nickname. Please choose " +
+                        "the nickname you were logged with.");
                 break;
             case"ConnectionAcceptedPleaseLoginNotification":
                 System.out.println("Connection accepted. Please log in.");
