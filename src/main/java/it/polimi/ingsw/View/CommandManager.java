@@ -38,6 +38,9 @@ public class CommandManager {
                 showMarketBoard();
                 toBuild = new ActivateProductionMessageBuilder(nickname);
                 return toBuild.buildMessage();
+            case "discard leader card":
+                toBuild = new DiscardLeaderMessageBuilder(nickname);
+                return toBuild.buildMessage();
 //Activating leader card(s)
             case "activate leader card":
                 toBuild = new ActivateLeaderCardMessageBuilder(nickname);

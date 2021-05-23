@@ -845,4 +845,12 @@ public class LeaderCardsPrinter implements Printable {
     public void setBuilt(boolean built) {
         this.built = built;
     }
+
+    public int[] getChosenLeaderCards() {
+        return chosenLeaderCards;
+    }
+
+    public boolean[] getActivatedLeaderCards() {
+        return activatedLeaderCards;
+    }
 }

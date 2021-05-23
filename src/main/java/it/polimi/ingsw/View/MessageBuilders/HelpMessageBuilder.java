@@ -8,6 +8,7 @@ public class HelpMessageBuilder extends MessageBuilder{
                 "login - To log in the game \n" +
                 "activate prod - To activate a production \n" +
                 "activate leader card - To activate a leader card \n" +
+                "discard leader card - To discard a leader card \n" +
                 "activate leader ability - To activate a leader ability \n" +
                 "take action token - To activate an action card in a single player game \n" +
                 "switch levels - To switch two levels of the warehouse \n" +

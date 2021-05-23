@@ -43,6 +43,16 @@ public class NotificationManager {
             case"ExpectedLoginRequestNotification":
                 System.out.println("Expected login. Please log in before doing this action.");
                 break;
+            case"DiscardLeaderCardSuccessNotification":
+                System.out.println("You successfully discarded the leader card.");
+                break;
+            case"DiscardLeaderCardFailureNotification":
+                System.out.println("You can't discard this leader card.");
+                break;
+            case"NotifyDiscardLeaderCard":
+                reader = new NotifyDiscardLeaderCardReader(modelPrinter);
+                reader.readNotification(notification);
+                break;
             case"ReconnectConfigurationMessage":
                 reader = new ReconnectConfigurationMessageReader(modelPrinter);
                 reader.readNotification(notification);

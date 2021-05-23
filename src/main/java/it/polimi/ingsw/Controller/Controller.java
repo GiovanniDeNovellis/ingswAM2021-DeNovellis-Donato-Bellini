@@ -38,6 +38,9 @@ public class Controller {
             case "ActivateLeaderCard":
                 Manageable activateLeaderCard = new ActivateLeaderCardManager(this);
                 return activateLeaderCard.manageRequest(jsonContent);
+            case "DiscardLeaderCard":
+                Manageable discardLeaderCard = new DiscardLeaderCardManager(this);
+                return discardLeaderCard.manageRequest(jsonContent);
 //Activating leader ability
             case "ActivateLeaderAbility":
                 Manageable activateLeaderAbility = new ActivateLeaderAbilityManager(this);
