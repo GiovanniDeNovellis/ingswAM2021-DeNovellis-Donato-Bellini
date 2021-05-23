@@ -333,9 +333,14 @@ class GameTest {
         assertEquals(ResourceType.COINS,game.getCurrentPlayer().getPersonalBoard().getWarehouseDepot().getLevel(1).getResourceType());
     }
 
+
+
+
+
+
     //                          --comment line 40 in LeaderCardDeck class to execute those test--
 
-
+    /*
     @Test
     public void LeaderAbilityDiscountAndExtraDepositTest() throws FileNotFoundException {
         Game game = new Game();
@@ -686,5 +691,5 @@ class GameTest {
         assertEquals(1,game.getCurrentPlayer().getPersonalBoard().getStrongbox().getNumOf(ResourceType.COINS));
         assertEquals(oldFaith+2,game.getCurrentPlayer().getFaithPoints());
     }
-
+*/
 }

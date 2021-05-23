@@ -23,7 +23,7 @@ public class ActivateLeaderCardMessageBuilder extends MessageBuilder{
         int position;
         do {
             try {
-                System.out.println("Write position of Leader card you want to activate: [\"0\",\"1\"]");
+                System.out.println("Write position of Leader card you want to activate: [\"1\",\"2\"]");
                 position = input.nextInt();
             }
             catch (InputMismatchException e ){
@@ -31,8 +31,8 @@ public class ActivateLeaderCardMessageBuilder extends MessageBuilder{
                 position=4;
                 input.nextLine();
             }
-        }while(position!=0&&position!=1);
-        message.setPosition(position);
+        }while(position!=1&&position!=2);
+        message.setPosition(position-1);
         return gson.toJson(message);
     }
 }

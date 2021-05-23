@@ -10,8 +10,6 @@ import it.polimi.ingsw.Controller.Messages.VaticanReportMessage;
 import it.polimi.ingsw.Player;
 import it.polimi.ingsw.ResourceType;
 
-import java.awt.*;
-
 public class EndTurnManager implements Manageable{
     private final Controller controller;
 

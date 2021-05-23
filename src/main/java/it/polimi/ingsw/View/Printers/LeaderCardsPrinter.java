@@ -18,8 +18,8 @@ public class LeaderCardsPrinter implements Printable {
             return;
         }
 
-        System.out.println("Legend: SH=SHIELDS, C=COINS, ST=STONES, SE=SERVANTS, FP=FAITH POINTS, ?=ANY RESOURCE\n" +
-                "1Y=ONE YELLOW CARD, 1B=ONE BLUE CARD, 1G=ONE GREEN CARD, 1P=ONE PURPLE CARD");
+        System.out.println(Colours.ANSI_RED.escape() + "Legend: SH=SHIELDS, C=COINS, ST=STONES, SE=SERVANTS, FP=FAITH POINTS, ?=ANY RESOURCE\n" +
+                "1Y=ONE YELLOW CARD, 1B=ONE BLUE CARD, 1G=ONE GREEN CARD, 1P=ONE PURPLE CARD" +Colours.RESET);
 
     switch (whatIHaveToPrint){
         case "choosableLeaderCards":
@@ -570,7 +570,7 @@ public class LeaderCardsPrinter implements Printable {
     private String[] buildDiscountType(LeaderCards card){
         String requirement = getRequirementDiscount(card);
         String victoryPoint = getVictoryPoints(card);
-        String power = "Discount on Res ";
+        String power = Colours.ANSI_RED.escape() + "Discount on Res " + Colours.RESET;
         String resource = getResourceDiscount(card);
         String[] info = new String[4];
         info[0] = requirement;
@@ -583,7 +583,7 @@ public class LeaderCardsPrinter implements Printable {
     private String[] buildDepositType(LeaderCards card){
         String requirement = getRequirementDeposit(card);
         String victoryPoint = getVictoryPoints(card);
-        String power = "ExtraDeposit    ";
+        String power = Colours.ANSI_RED.escape() + "ExtraDeposit    " + Colours.RESET;
         String resource = getResourceDeposit(card);
         String[] info = new String[4];
         info[0] = requirement;
@@ -595,7 +595,7 @@ public class LeaderCardsPrinter implements Printable {
     private String[] buildTransformationType(LeaderCards card){
         String requirement = getRequirementTransformation(card);
         String victoryPoint = getVictoryPoints(card);
-        String power = "Transformation  ";
+        String power = Colours.ANSI_RED.escape() + "Transformation  " + Colours.RESET;
         String resource = getResourceTransformation(card);
         String[] info = new String[4];
         info[0] = requirement;
@@ -608,7 +608,7 @@ public class LeaderCardsPrinter implements Printable {
     private String[] buildProductionType(LeaderCards card){
         String requirement = getRequirementProduction(card);
         String victoryPoint = getVictoryPoints(card);
-        String power = "ExtraProduction ";
+        String power = Colours.ANSI_RED.escape() + "ExtraProduction " + Colours.RESET;
         String resource = getResourceProduction(card);
         String[] info = new String[4];
         info[0] = requirement;
@@ -812,9 +812,9 @@ public class LeaderCardsPrinter implements Printable {
         if( card == null )
             cardsVictoryPoints = "                ";
         else if (card.getVictoryPoints()>9)
-            cardsVictoryPoints = card.getVictoryPoints() + "              ";
+            cardsVictoryPoints = Colours.ANSI_RED.escape() + card.getVictoryPoints() + "              " + Colours.RESET;
         else
-            cardsVictoryPoints = card.getVictoryPoints() + "               ";
+            cardsVictoryPoints = Colours.ANSI_RED.escape() + card.getVictoryPoints() + "               " + Colours.RESET;
         return cardsVictoryPoints;
     }
 
