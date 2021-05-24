@@ -40,7 +40,7 @@ public class CLI implements Runnable{
         this.nickname = nickname;
     }
 
-    public ModelPrinter getVirtualView() {
+    public ModelPrinter getModelPrinter() {
         return modelPrinter;
     }
 }

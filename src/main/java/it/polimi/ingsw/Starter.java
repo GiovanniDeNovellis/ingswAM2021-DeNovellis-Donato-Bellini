@@ -21,9 +21,8 @@ public class Starter {
                 Client.main(new String[]{"CLI"});
             case "SERVER":
                 Server.main(null);
-                case "GUI":
-                App.main(args);
-                //Client.main(new String[]{"GUI"});
+            case "GUI":
+                Client.main(new String[]{"GUI"});
         }
         System.out.println("Wrong start config");
         System.exit(0);

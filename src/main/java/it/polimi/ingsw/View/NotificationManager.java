@@ -4,15 +4,21 @@ import com.google.gson.Gson;
 import it.polimi.ingsw.Controller.Messages.Message;
 import it.polimi.ingsw.View.NotificationReaders.*;
 import it.polimi.ingsw.View.Printers.PersonalBoardPrinter;
+import javafx.application.Platform;
 
 import java.sql.SQLOutput;
 
 public class NotificationManager {
-    public NotificationManager(ModelPrinter modelPrinter){
+    public NotificationManager(ModelPrinter modelPrinter, boolean isCli, GUI gui){
+        this.isCli=isCli;
         this.modelPrinter = modelPrinter;
+        this.gui=gui;
     }
 
-    ModelPrinter modelPrinter;
+    private ModelPrinter modelPrinter;
+    private boolean isCli;
+    private GUI gui;
+
 
     public void manageNotification(String notification){
         Gson gson = new Gson();
@@ -22,7 +28,8 @@ public class NotificationManager {
 
         switch (messageType){
             case "LoginOkNotification":
-                System.out.println("Successfully logged in.");
+                if(isCli)
+                    System.out.println("Successfully logged in.");
                 break;
             case "ReconnectOkNotification":
                 System.out.println("Successfully reconnected");

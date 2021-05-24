@@ -1,5 +1,12 @@
 package it.polimi.ingsw.View;
 
+import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -7,15 +14,17 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
+import java.util.Objects;
 
-public class Client {
+
+public class Client{
+
+    private static Scene scene;
 
     public static void main(String[] args) {
             String hostName = "127.0.0.1";
             int portNumber = 1234;
-            //COMMENT FOR FIRST DEBUG
-            //String type=args[0];
-            String type = "CLI";
+            String type = args[0];
             try (
                     Socket socket = new Socket(hostName, portNumber);
                     PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
@@ -23,22 +32,12 @@ public class Client {
             ) {
                 socket.setSoTimeout(15000);
                 String userInput;
-                //System.out.println(in.readLine());
                 ClientPong clientPong = new ClientPong(out);
                 Thread t1 = new Thread(clientPong);
                 t1.start();
                 ServerReader serverReader = new ServerReader(in);
                 Thread t = new Thread(serverReader);
                 t.start();
-                //UNCOMMENT FOR FIRST DEBUG
-                /*while (true) {
-                    if((userInput = stdIn.readLine()) != null) {
-                        out.println(userInput);
-                    }
-                }
-                /*
-                */
-
                 if (type.equals("CLI")) {
                     CLI cli = new CLI();
                     serverReader.setCli(cli);
@@ -54,7 +53,10 @@ public class Client {
                         }
                     }
                 } else if (type.equals("GUI")) {
-                    //TODO GUI
+                    PrinterSingleton.getPrinterSingleton().setPrintWriter(out);
+                    GUI gui = new GUI();
+                    serverReader.setGui(gui);
+                    GUI.main(args);
                 }
                 else{
                     System.err.println("Wrong config");

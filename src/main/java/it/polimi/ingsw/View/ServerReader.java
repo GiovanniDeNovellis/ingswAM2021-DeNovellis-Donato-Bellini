@@ -11,6 +11,7 @@ import java.net.SocketTimeoutException;
 public class ServerReader implements Runnable {
     private final BufferedReader in;
     private CLI cli;
+    private GUI gui;
 
     public ServerReader(BufferedReader in) {
         this.in = in;
@@ -26,6 +27,7 @@ public class ServerReader implements Runnable {
                     System.err.println("Hai mandato al server un messaggio non riconosciuto");
                 }
                 else if (!serverOutput.equals("Ping")) {
+                    System.out.println(serverOutput);
                     Message mex=gson.fromJson(serverOutput,Message.class);
                     if(mex.getMessageType()==null){
                         System.err.println("Ricevuto messaggio senza tipo!");
@@ -33,14 +35,21 @@ public class ServerReader implements Runnable {
                     else if(mex.getMessageType().equals("LoginOkNotification") && cli!=null ){
                         LoginOkNotificationMessage log = gson.fromJson(serverOutput,LoginOkNotificationMessage.class);
                         cli.setNickname(log.getSenderNickname());
-                        NotificationManager notificationManager = new NotificationManager(cli.getVirtualView());
+                        NotificationManager notificationManager = new NotificationManager(cli.getModelPrinter(),true,null);
                         notificationManager.manageNotification(serverOutput);
                     }
                     else if(cli!=null){
-                        NotificationManager notificationManager = new NotificationManager(cli.getVirtualView());
+                        NotificationManager notificationManager = new NotificationManager(cli.getModelPrinter(),true,null);
                         notificationManager.manageNotification(serverOutput);
                     }
-                    //System.out.println(serverOutput); // DEBUG
+                    //SONO IN MODALITA' GUI
+                    else if(gui!=null){
+                        NotificationManager notificationManager = new NotificationManager(null,false,gui);
+                        notificationManager.manageNotification(serverOutput);
+                    }
+                    else{
+                        System.err.println("GUI o CLI non trovati");
+                    }
                 }
             }
             System.err.println("Il server è crashato, la partita termina.");
@@ -57,5 +66,9 @@ public class ServerReader implements Runnable {
 
     public void setCli(CLI cli) {
         this.cli = cli;
+    }
+
+    public void setGui(GUI gui) {
+        this.gui = gui;
     }
 }
