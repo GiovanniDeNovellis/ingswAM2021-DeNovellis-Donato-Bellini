@@ -2,6 +2,7 @@ package it.polimi.ingsw;
 
         import it.polimi.ingsw.Controller.Server;
         import it.polimi.ingsw.View.Client;
+        import it.polimi.ingsw.View.GUI;
 
         import java.io.FileNotFoundException;
         import java.util.Scanner;
@@ -19,10 +20,13 @@ public class Starter {
         switch(start){
             case "CLI":
                 Client.main(new String[]{"CLI"});
+                break;
             case "SERVER":
                 Server.main(null);
-            case "GUI":
+                break;
+            default:
                 Client.main(new String[]{"GUI"});
+                break;
         }
         System.out.println("Wrong start config");
         System.exit(0);

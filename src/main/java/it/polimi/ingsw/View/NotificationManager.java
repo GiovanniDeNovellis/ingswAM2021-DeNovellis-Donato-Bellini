@@ -2,10 +2,18 @@ package it.polimi.ingsw.View;
 
 import com.google.gson.Gson;
 import it.polimi.ingsw.Controller.Messages.Message;
+import it.polimi.ingsw.View.GUIControllers.LoginController;
 import it.polimi.ingsw.View.NotificationReaders.*;
 import it.polimi.ingsw.View.Printers.PersonalBoardPrinter;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
 
+import java.io.IOException;
 import java.sql.SQLOutput;
 
 public class NotificationManager {
@@ -30,14 +38,21 @@ public class NotificationManager {
             case "LoginOkNotification":
                 if(isCli)
                     System.out.println("Successfully logged in.");
+
                 break;
             case "ReconnectOkNotification":
                 System.out.println("Successfully reconnected");
                 break;
             case "InvalidLoginNotification":
-                System.out.println("Nickname already used. Choose another nickname.\n" +
+                if(isCli)
+                    System.out.println("Nickname already used. Choose another nickname.\n" +
                         "If you are reconnecting, you have chosen an invalid nickname. Please choose " +
                         "the nickname you were logged with.");
+                else {
+                    Platform.runLater(()->{
+                            GUI.getLoginController().setLoginError();
+                    });
+                }
                 break;
             case"ConnectionAcceptedPleaseLoginNotification":
                 System.out.println("Connection accepted. Please log in.");

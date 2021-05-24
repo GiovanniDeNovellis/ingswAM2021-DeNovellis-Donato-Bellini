@@ -1,5 +1,6 @@
 package it.polimi.ingsw.View;
 
+import it.polimi.ingsw.View.GUIControllers.LoginController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,11 +12,12 @@ import java.util.Objects;
 
 public class GUI extends Application {
     private static Scene scene;
+    private static LoginController loginController;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         scene = new Scene(loadFXML("login_scene"));
-        primaryStage.setTitle("Hello world");
+        primaryStage.setTitle("Masters of Renaissance");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
@@ -32,4 +34,11 @@ public class GUI extends Application {
         launch(args);
     }
 
+    public static void setLoginController(LoginController loginController) {
+        GUI.loginController = loginController;
+    }
+
+    public static LoginController getLoginController() {
+        return loginController;
+    }
 }
