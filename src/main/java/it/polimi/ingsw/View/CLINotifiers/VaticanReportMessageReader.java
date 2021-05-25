@@ -1,11 +1,11 @@
-package it.polimi.ingsw.View.NotificationReaders;
+package it.polimi.ingsw.View.CLINotifiers;
 
 import com.google.gson.Gson;
 import it.polimi.ingsw.Controller.Messages.VaticanReportMessage;
 import it.polimi.ingsw.View.ModelPrinter;
 import it.polimi.ingsw.View.Printers.PersonalBoardPrinter;
 
-public class VaticanReportMessageReader extends NotificationReader{
+public class VaticanReportMessageReader extends CLINotifier {
     public VaticanReportMessageReader(ModelPrinter modelPrinter) {
         super(modelPrinter);
     }
@@ -13,7 +13,7 @@ public class VaticanReportMessageReader extends NotificationReader{
     String vatReport;
 
     @Override
-    public void readNotification(String notification) {
+    public void notifyCLI(String notification) {
         Gson gson = new Gson();
         VaticanReportMessage data = gson.fromJson(notification,VaticanReportMessage.class);
         for(PersonalBoardPrinter p : modelPrinter.getPersonalBoards()){

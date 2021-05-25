@@ -1,16 +1,16 @@
-package it.polimi.ingsw.View.NotificationReaders;
+package it.polimi.ingsw.View.CLINotifiers;
 
 import com.google.gson.Gson;
 import it.polimi.ingsw.Controller.Messages.NoitifyDeckgridChangedMessage;
 import it.polimi.ingsw.View.ModelPrinter;
 
-public class NotifyDeckgridChandedReader extends NotificationReader{
+public class NotifyDeckgridChandedReader extends CLINotifier {
     public NotifyDeckgridChandedReader(ModelPrinter modelPrinter) {
         super(modelPrinter);
     }
 
     @Override
-    public void readNotification(String notification) {
+    public void notifyCLI(String notification) {
         Gson gson = new Gson();
         NoitifyDeckgridChangedMessage m = gson.fromJson(notification,NoitifyDeckgridChangedMessage.class);
         modelPrinter.getDeckGridPrinter().setDeckgrid(m.getDeckgridConfiguration());

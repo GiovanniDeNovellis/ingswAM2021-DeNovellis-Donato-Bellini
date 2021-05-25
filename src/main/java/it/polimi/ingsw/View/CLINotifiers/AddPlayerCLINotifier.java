@@ -1,4 +1,4 @@
-package it.polimi.ingsw.View.NotificationReaders;
+package it.polimi.ingsw.View.CLINotifiers;
 
 import com.google.gson.Gson;
 import it.polimi.ingsw.Controller.Messages.AddPlayerMessage;
@@ -6,12 +6,12 @@ import it.polimi.ingsw.View.ModelPrinter;
 import it.polimi.ingsw.View.Printers.LeaderCardsPrinter;
 import it.polimi.ingsw.View.Printers.PersonalBoardPrinter;
 
-public class AddPlayerNotificationForEveryoneReader extends NotificationReader{
+public class AddPlayerCLINotifier extends CLINotifier {
     String nickname;
-    public AddPlayerNotificationForEveryoneReader(ModelPrinter modelPrinter){super(modelPrinter);}
+    public AddPlayerCLINotifier(ModelPrinter modelPrinter){super(modelPrinter);}
 
     @Override
-    public void readNotification(String notification) {
+    public void notifyCLI(String notification) {
         Gson gson = new Gson();
         AddPlayerMessage data = gson.fromJson(notification,AddPlayerMessage.class);
         nickname = data.getSenderNickname();

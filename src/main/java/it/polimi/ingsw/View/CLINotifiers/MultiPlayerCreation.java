@@ -1,4 +1,4 @@
-package it.polimi.ingsw.View.NotificationReaders;
+package it.polimi.ingsw.View.CLINotifiers;
 
 import com.google.gson.Gson;
 import it.polimi.ingsw.Controller.Messages.MultiplayerCreationMessage;
@@ -6,14 +6,14 @@ import it.polimi.ingsw.View.ModelPrinter;
 import it.polimi.ingsw.View.Printers.LeaderCardsPrinter;
 import it.polimi.ingsw.View.Printers.PersonalBoardPrinter;
 
-public class MultiPlayerCreation extends NotificationReader{
+public class MultiPlayerCreation extends CLINotifier {
 
     public MultiPlayerCreation(ModelPrinter modelPrinter){
         super(modelPrinter);
     }
 
     @Override
-    public void readNotification(String notification) {
+    public void notifyCLI(String notification) {
         Gson gson = new Gson();
         MultiplayerCreationMessage data = gson.fromJson(notification, MultiplayerCreationMessage.class);
         printNotification();

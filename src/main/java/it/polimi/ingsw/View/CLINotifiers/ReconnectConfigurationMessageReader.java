@@ -1,4 +1,4 @@
-package it.polimi.ingsw.View.NotificationReaders;
+package it.polimi.ingsw.View.CLINotifiers;
 
 import com.google.gson.Gson;
 import it.polimi.ingsw.Controller.Messages.ReconnectConfigurationMessage;
@@ -6,13 +6,13 @@ import it.polimi.ingsw.View.ModelPrinter;
 import it.polimi.ingsw.View.Printers.LeaderCardsPrinter;
 import it.polimi.ingsw.View.Printers.PersonalBoardPrinter;
 
-public class ReconnectConfigurationMessageReader extends NotificationReader{
+public class ReconnectConfigurationMessageReader extends CLINotifier {
     public ReconnectConfigurationMessageReader(ModelPrinter modelPrinter) {
         super(modelPrinter);
     }
 
     @Override
-    public void readNotification(String notification) {
+    public void notifyCLI(String notification) {
         Gson gson = new Gson();
         ReconnectConfigurationMessage reconnectConfigurationMessage = gson.fromJson(notification,ReconnectConfigurationMessage.class);
         PersonalBoardPrinter p = new PersonalBoardPrinter();

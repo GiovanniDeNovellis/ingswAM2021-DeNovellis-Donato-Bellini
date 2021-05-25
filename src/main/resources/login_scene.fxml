@@ -9,16 +9,16 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="484.0" prefWidth="805.0" style="-fx-background-color: beige;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.View.GUIControllers.LoginController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: beige;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.View.GUIControllers.LoginController">
    <children>
-      <Label layoutX="176.0" layoutY="40.0" prefHeight="56.0" prefWidth="483.0" text="Masters of Renaissance" textFill="#ae0f0f">
+      <Label layoutX="238.0" layoutY="38.0" prefHeight="56.0" prefWidth="483.0" text="Masters of Renaissance" textFill="#ae0f0f">
          <font>
             <Font name="System Italic" size="46.0" />
          </font>
       </Label>
-      <Label contentDisplay="CENTER" layoutX="309.0" layoutY="129.0" text="Nickname:" />
-      <TextField fx:id="nicknameField" alignment="CENTER" layoutX="309.0" layoutY="157.0" style="-fx-background-color: #ffd312;" />
-      <Button fx:id="loginButton" layoutX="376.0" layoutY="211.0" mnemonicParsing="false" onAction="#login" text="login" />
+      <Label contentDisplay="CENTER" layoutX="357.0" layoutY="131.0" text="Nickname:" />
+      <TextField fx:id="nicknameField" alignment="CENTER" layoutX="357.0" layoutY="159.0" style="-fx-background-color: #ffd312;" />
+      <Button fx:id="loginButton" layoutX="423.0" layoutY="211.0" mnemonicParsing="false" onAction="#login" text="login" />
       <Label fx:id="loginFailed" layoutX="206.0" layoutY="367.0" text="Nickname already used. Please chose another nickname." textFill="RED" visible="false" />
       <Label fx:id="loginFailedReconnection" layoutX="26.0" layoutY="413.0" prefHeight="21.0" prefWidth="771.0" text="If you are reconnecting, you have chosen an invalid nickname. Please choose the nickname you were logged with." textFill="RED" visible="false" />
    </children>

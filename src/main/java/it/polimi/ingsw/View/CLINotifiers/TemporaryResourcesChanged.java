@@ -1,17 +1,17 @@
-package it.polimi.ingsw.View.NotificationReaders;
+package it.polimi.ingsw.View.CLINotifiers;
 
 import com.google.gson.Gson;
 import it.polimi.ingsw.Controller.Messages.TemporaryResourcesChangedMessage;
 import it.polimi.ingsw.View.ModelPrinter;
 
-public class TemporaryResourcesChanged extends NotificationReader{
+public class TemporaryResourcesChanged extends CLINotifier {
 
     public TemporaryResourcesChanged(ModelPrinter modelPrinter){
         super(modelPrinter);
     }
 
     @Override
-    public void readNotification(String notification) {
+    public void notifyCLI(String notification) {
         Gson gson = new Gson();
         TemporaryResourcesChangedMessage data = gson.fromJson(notification, TemporaryResourcesChangedMessage.class);
         printNotification();

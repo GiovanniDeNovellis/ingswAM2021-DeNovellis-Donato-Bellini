@@ -1,11 +1,11 @@
-package it.polimi.ingsw.View.NotificationReaders;
+package it.polimi.ingsw.View.CLINotifiers;
 
 import com.google.gson.Gson;
 import it.polimi.ingsw.Controller.Messages.NotifyInsertedOkMessage;
 import it.polimi.ingsw.View.Printers.PersonalBoardPrinter;
 import it.polimi.ingsw.View.ModelPrinter;
 
-public class InsertedResourceChanged extends NotificationReader{
+public class InsertedResourceChanged extends CLINotifier {
     String nickname;
 
     public InsertedResourceChanged(ModelPrinter modelPrinter) {
@@ -13,7 +13,7 @@ public class InsertedResourceChanged extends NotificationReader{
     }
 
     @Override
-    public void readNotification(String notification) {
+    public void notifyCLI(String notification) {
         Gson gson = new Gson();
         NotifyInsertedOkMessage data = gson.fromJson(notification, NotifyInsertedOkMessage.class);
         nickname = data.getNickname();

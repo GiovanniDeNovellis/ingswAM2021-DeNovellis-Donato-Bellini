@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-image: url(C:\Users\emanu\Desktop\pdfs\board\PERSONALbOARD);" styleClass="fx-background-image" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="1080.0" fitWidth="1920.0" layoutX="420.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../Desktop/pdfs/board/PERSONALbOARD.png" />
+         </image>
+      </ImageView>
+      <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="85.0" prefWidth="420.0" text="VIEW DECK GRID" />
+      <Button alignment="TOP_LEFT" layoutY="85.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="420.0" text="VIEW MARKET BOARD" />
+      <Button alignment="TOP_LEFT" layoutY="170.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="420.0" text="VIEW LEADER CARDS" />
+      <Button alignment="TOP_LEFT" layoutY="255.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="420.0" text="PLAYER 1" />
+      <Button alignment="TOP_LEFT" layoutY="340.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="420.0" text="PLAYER 2" />
+      <Button alignment="TOP_LEFT" layoutY="425.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="420.0" text="PLAYER3" />
+      <Button alignment="TOP_LEFT" layoutY="510.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="420.0" text="PLAYER4" />
+      <ImageView fitHeight="320.0" fitWidth="210.0" layoutY="595.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../Desktop/pdfs/front/Masters%20of%20Renaissance_Cards_FRONT_3mmBleed_1-57-1.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="320.0" fitWidth="210.0" layoutX="210.0" layoutY="595.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../Desktop/pdfs/front/Masters%20of%20Renaissance_Cards_FRONT_3mmBleed_1-61-1.png" />
+         </image>
+      </ImageView>
+      <Button layoutY="912.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="210.0" text="Button" />
+      <Button layoutX="210.0" layoutY="912.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="210.0" text="Button" />
+   </children>
+</Pane>

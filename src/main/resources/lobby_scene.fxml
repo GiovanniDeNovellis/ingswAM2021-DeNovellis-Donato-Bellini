@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: beige;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.View.GUIControllers.LobbyController">
+   <children>
+      <Label fx:id="firstPlayer" layoutX="52.0" layoutY="145.0" prefHeight="21.0" prefWidth="340.0" text="Label" visible="false">
+         <font>
+            <Font size="35.0" />
+         </font></Label>
+      <Label fx:id="secondPlayer" layoutX="52.0" layoutY="211.0" prefHeight="21.0" prefWidth="340.0" text="Label" visible="false">
+         <font>
+            <Font size="35.0" />
+         </font></Label>
+      <Label fx:id="thirdPlayer" layoutX="52.0" layoutY="278.0" prefHeight="21.0" prefWidth="340.0" text="Label" visible="false">
+         <font>
+            <Font size="35.0" />
+         </font></Label>
+      <Label fx:id="fourthPlayer" layoutX="52.0" layoutY="350.0" prefHeight="21.0" prefWidth="340.0" text="Label" visible="false">
+         <font>
+            <Font size="35.0" />
+         </font></Label>
+      <Button fx:id="single" layoutX="139.0" layoutY="542.0" mnemonicParsing="false" onAction="#startSinglePlayer" prefHeight="102.0" prefWidth="236.0" text="START SINGLE PLAYER" textFill="#b9abab">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="multi" layoutX="536.0" layoutY="542.0" mnemonicParsing="false" onAction="#startMultiPlayer" prefHeight="102.0" prefWidth="236.0" text="START MULTIPLAYER" textFill="b9abab">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Label layoutX="52.0" layoutY="77.0" text="Connected players:" textFill="RED">
+         <font>
+            <Font size="46.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" prefHeight="51.0" prefWidth="900.0" style="-fx-background-color: red;" text="LOBBY">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>

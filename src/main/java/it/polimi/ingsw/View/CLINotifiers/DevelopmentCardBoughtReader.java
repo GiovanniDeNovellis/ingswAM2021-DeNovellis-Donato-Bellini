@@ -1,18 +1,18 @@
-package it.polimi.ingsw.View.NotificationReaders;
+package it.polimi.ingsw.View.CLINotifiers;
 import com.google.gson.Gson;
 import it.polimi.ingsw.Controller.Messages.NotifyDevelopmentCardInsertedOKMessage;
 
 import it.polimi.ingsw.View.ModelPrinter;
 import it.polimi.ingsw.View.Printers.PersonalBoardPrinter;
 
-public class DevelopmentCardBoughtReader extends NotificationReader{
+public class DevelopmentCardBoughtReader extends CLINotifier {
     String nickname;
     public DevelopmentCardBoughtReader(ModelPrinter modelPrinter) {
         super(modelPrinter);
     }
 
     @Override
-    public void readNotification(String notification) {
+    public void notifyCLI(String notification) {
         Gson gson = new Gson();
         NotifyDevelopmentCardInsertedOKMessage data = gson.fromJson(notification, NotifyDevelopmentCardInsertedOKMessage.class);
         modelPrinter.getDeckGridPrinter().setDeckgrid(data.getDeckgridConfiguration());

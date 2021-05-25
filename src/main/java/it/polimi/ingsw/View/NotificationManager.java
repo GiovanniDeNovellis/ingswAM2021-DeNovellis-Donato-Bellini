@@ -2,19 +2,14 @@ package it.polimi.ingsw.View;
 
 import com.google.gson.Gson;
 import it.polimi.ingsw.Controller.Messages.Message;
-import it.polimi.ingsw.View.GUIControllers.LoginController;
-import it.polimi.ingsw.View.NotificationReaders.*;
-import it.polimi.ingsw.View.Printers.PersonalBoardPrinter;
+import it.polimi.ingsw.View.CLINotifiers.*;
+import it.polimi.ingsw.View.GUINotifiers.ConnectedPlayersGUINotifier;
+import it.polimi.ingsw.View.GUINotifiers.GUINotifier;
+import it.polimi.ingsw.View.GUINotifiers.LoginErrorGUINotifier;
+import it.polimi.ingsw.View.GUINotifiers.PlayerConnectionGUINotifier;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
 
 import java.io.IOException;
-import java.sql.SQLOutput;
 
 public class NotificationManager {
     public NotificationManager(ModelPrinter modelPrinter, boolean isCli, GUI gui){
@@ -32,13 +27,19 @@ public class NotificationManager {
         Gson gson = new Gson();
         Message toRead = gson.fromJson(notification, Message.class);
         String messageType = toRead.getMessageType();
-        NotificationReader reader;
+        CLINotifier reader;
 
         switch (messageType){
             case "LoginOkNotification":
                 if(isCli)
                     System.out.println("Successfully logged in.");
-
+                else {
+                    try {
+                        GUI.setRoot("lobby_scene");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
                 break;
             case "ReconnectOkNotification":
                 System.out.println("Successfully reconnected");
@@ -49,21 +50,26 @@ public class NotificationManager {
                         "If you are reconnecting, you have chosen an invalid nickname. Please choose " +
                         "the nickname you were logged with.");
                 else {
-                    Platform.runLater(()->{
-                            GUI.getLoginController().setLoginError();
-                    });
+                    GUINotifier notifier = new LoginErrorGUINotifier();
+                    notifier.notifyGui(null);
                 }
                 break;
             case"ConnectionAcceptedPleaseLoginNotification":
                 System.out.println("Connection accepted. Please log in.");
                 break;
             case"PlayerInNotification":
-                reader = new PlayerInNotificationReader(modelPrinter);
-                reader.readNotification(notification);
+                reader = new PlayerInCLINotifier(modelPrinter);
+                reader.notifyCLI(notification);
                 break;
             case"ConnectedPlayersMessage":
-                reader = new ConnectedPlayersMessageReader(modelPrinter);
-                reader.readNotification(notification);
+                if( isCli ) {
+                    reader = new ConnectedPlayersMessageReader(modelPrinter);
+                    reader.notifyCLI(notification);
+                }
+                else {
+                    GUINotifier notifier = new ConnectedPlayersGUINotifier();
+                    notifier.notifyGui(notification);
+                }
                 break;
             case"ExpectedLoginRequestNotification":
                 System.out.println("Expected login. Please log in before doing this action.");
@@ -76,30 +82,30 @@ public class NotificationManager {
                 break;
             case"NotifyDiscardLeaderCard":
                 reader = new NotifyDiscardLeaderCardReader(modelPrinter);
-                reader.readNotification(notification);
+                reader.notifyCLI(notification);
                 break;
             case"ReconnectConfigurationMessage":
                 reader = new ReconnectConfigurationMessageReader(modelPrinter);
-                reader.readNotification(notification);
+                reader.notifyCLI(notification);
                 break;
             case"PlayerOutNotification":
-                reader = new PlayerOutNotificationReader(modelPrinter);
-                reader.readNotification(notification);
+                reader = new PlayerOutCLINotifier(modelPrinter);
+                reader.notifyCLI(notification);
                 break;
             case"GameNotStartedNotification":
                 System.out.println("You can't do this action because the game has not started.");
                 break;
             case"MoveLorenzo":
                 reader = new MoveLorenzoReader(modelPrinter);
-                reader.readNotification(notification);
+                reader.notifyCLI(notification);
                 break;
             case"MoveAndShuffle":
                 reader = new MoveAndShuffleReader(modelPrinter);
-                reader.readNotification(notification);
+                reader.notifyCLI(notification);
                 break;
             case"NotifyDeckgridChanged":
                 reader = new NotifyDeckgridChandedReader(modelPrinter);
-                reader.readNotification(notification);
+                reader.notifyCLI(notification);
                 break;
             case"ActionCardActivationFailureNotification":
                 System.out.println("You can't activate an action card at this moment.");
@@ -109,19 +115,19 @@ public class NotificationManager {
                 break;
             case"ActivateLeaderAbilityDiscount":
                 reader = new ActivateLeaderAbilityDiscountReader(modelPrinter);
-                reader.readNotification(notification);
+                reader.notifyCLI(notification);
                 break;
             case"ActivateLeaderAbilityDeposit":
                 reader = new ActivateLeaderAbilityDepositReader(modelPrinter);
-                reader.readNotification(notification);
+                reader.notifyCLI(notification);
                 break;
             case"ActivateLeaderAbilityProduction":
                 reader = new ActivateLeaderAbilityProductionReader(modelPrinter);
-                reader.readNotification(notification);
+                reader.notifyCLI(notification);
                 break;
             case"ActivateLeaderAbilityTransformation":
                 reader = new ActivateLeaderAbilityTransformationReader(modelPrinter);
-                reader.readNotification(notification);
+                reader.notifyCLI(notification);
                 break;
             case"ActivateLeaderAbilityFailureNotification":
                 System.out.println("You can't activate this leader ability now.");
@@ -134,7 +140,7 @@ public class NotificationManager {
                 break;
             case"NotifyActivateLeaderCard":
                 reader = new NotifyActivateLeaderCardReader(modelPrinter);
-                reader.readNotification(notification);
+                reader.notifyCLI(notification);
                 break;
             case"ActivateLeaderCardFailureNotification":
                 System.out.println("You can't activate this leader card now.");
@@ -144,11 +150,11 @@ public class NotificationManager {
                 break;
             case"NotifyActivateProductionMessage":
                 reader = new NotifyActivateProductionReader(modelPrinter);
-                reader.readNotification(notification);
+                reader.notifyCLI(notification);
                 break;
             case"VaticanReportMessage":
                 reader = new VaticanReportMessageReader(modelPrinter);
-                reader.readNotification(notification);
+                reader.notifyCLI(notification);
                 break;
             case"ActivateProductionFailureNotification":
                 System.out.println("You can't activate the production now.");
@@ -157,8 +163,13 @@ public class NotificationManager {
                 System.out.println("You have been successfully added to the game.");
                 break;
             case"AddPlayerNotificationForEveryone":
-                reader = new AddPlayerNotificationForEveryoneReader(modelPrinter);
-                reader.readNotification(notification);
+                if( isCli ) {
+                    reader = new AddPlayerCLINotifier(modelPrinter);
+                    reader.notifyCLI(notification);
+                } else {
+                    GUINotifier notifier = new PlayerConnectionGUINotifier();
+                    notifier.notifyGui(notification);
+                }
                 break;
             case"InvalidPlayerAddNotification":
                 System.out.println("You can't be added to the game.");
@@ -168,7 +179,7 @@ public class NotificationManager {
                 break;
             case"DevelopmentCardBought":
                 reader = new DevelopmentCardBoughtReader(modelPrinter);
-                reader.readNotification(notification);
+                reader.notifyCLI(notification);
                 break;
             case"BuyDevelopmentCardFailureNotification":
                 System.out.println("You can't buy the development card now.");
@@ -178,25 +189,25 @@ public class NotificationManager {
                 break;
             case"NotifyWareHouseChangedMessage":
                 reader = new NotifyWarehouseChangedMessageReader(modelPrinter);
-                reader.readNotification(notification);
+                reader.notifyCLI(notification);
                 break;
             case"NotRightToDistributionNotification":
                 System.out.println("You can't receive free resource now.");
                 break;
             case"EndTurnNotificationMessage":
-                reader = new EndTurnNotificationReader(modelPrinter);
-                reader.readNotification(notification);
+                reader = new EndTurnCLINotifier(modelPrinter);
+                reader.notifyCLI(notification);
                 break;
             case"InsertedResourcesSuccessNotification":
                 System.out.println("You have correctly inserted resource(s) into your warehouse");
                 break;
             case"InsertedResourceChanged":
                 reader = new InsertedResourceChanged(modelPrinter);
-                reader.readNotification(notification);
+                reader.notifyCLI(notification);
                 break;
             case"ChosenLeaderCardsMessage":
                 reader = new ChosenLeaderCards(modelPrinter);
-                reader.readNotification(notification);
+                reader.notifyCLI(notification);
                 break;
             case"LeaderCardSelectionOkNotification":
                 System.out.println("You have correctly chosen your Leader cards!");
@@ -206,7 +217,7 @@ public class NotificationManager {
                 break;
             case"MultiPlayerCreationMessage":
                 reader = new MultiPlayerCreation(modelPrinter);
-                reader.readNotification(notification);
+                reader.notifyCLI(notification);
                 break;
             case"MultiPlayerCreationOkNotification":
                 System.out.println("You have just started the game in multiplayer mode!");
@@ -224,7 +235,7 @@ public class NotificationManager {
                 break;
             case"SinglePlayerCreationMessage":
                 reader = new SinglePlayerCreation(modelPrinter);
-                reader.readNotification(notification);
+                reader.notifyCLI(notification);
                 break;
             case"SinglePLayerCreationFailedNotification":
                 if( modelPrinter.isMultiplayerGameStarted() )
@@ -249,7 +260,7 @@ public class NotificationManager {
                 break;
             case"TemporaryResourcesChanged":
                 reader = new TemporaryResourcesChanged(modelPrinter);
-                reader.readNotification(notification);
+                reader.notifyCLI(notification);
                 break;
             case"TakeResourceFromMarketFailureNotification":
                     System.out.println("Wrong index(row,column) chosen. Try again.\n" +
@@ -257,7 +268,7 @@ public class NotificationManager {
                 break;
             case "MarketGridChangedMessage":
                 reader = new MarketGridChanged(modelPrinter);
-                reader.readNotification(notification);
+                reader.notifyCLI(notification);
                 break;
             case "EndTurnOkNotification":
                 break;

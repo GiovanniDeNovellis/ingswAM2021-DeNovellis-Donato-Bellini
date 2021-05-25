@@ -1,16 +1,16 @@
-package it.polimi.ingsw.View.NotificationReaders;
+package it.polimi.ingsw.View.CLINotifiers;
 
 import com.google.gson.Gson;
 import it.polimi.ingsw.Controller.Messages.MarketGridChangedMessage;
 import it.polimi.ingsw.View.ModelPrinter;
 
-public class MarketGridChanged extends NotificationReader{
+public class MarketGridChanged extends CLINotifier {
     public MarketGridChanged(ModelPrinter modelPrinter) {
         super(modelPrinter);
     }
 
     @Override
-    public void readNotification(String notification) {
+    public void notifyCLI(String notification) {
         Gson gson = new Gson();
         MarketGridChangedMessage data = gson.fromJson(notification,MarketGridChangedMessage.class);
         modelPrinter.getMarketBoardPrinter().setMarbleOut(data.getMarbleout());

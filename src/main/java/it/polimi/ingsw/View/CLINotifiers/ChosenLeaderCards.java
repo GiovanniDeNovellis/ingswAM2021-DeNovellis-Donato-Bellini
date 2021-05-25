@@ -1,11 +1,11 @@
-package it.polimi.ingsw.View.NotificationReaders;
+package it.polimi.ingsw.View.CLINotifiers;
 
 import com.google.gson.Gson;
 import it.polimi.ingsw.Controller.Messages.ChosenLeaderCardsMessage;
 import it.polimi.ingsw.View.ModelPrinter;
 import it.polimi.ingsw.View.Printers.LeaderCardsPrinter;
 
-public class ChosenLeaderCards extends NotificationReader{
+public class ChosenLeaderCards extends CLINotifier {
 
     String nickname;
 
@@ -14,7 +14,7 @@ public class ChosenLeaderCards extends NotificationReader{
     }
 
     @Override
-    public void readNotification(String notification) {
+    public void notifyCLI(String notification) {
         Gson gson = new Gson();
         ChosenLeaderCardsMessage data = gson.fromJson(notification, ChosenLeaderCardsMessage.class);
 

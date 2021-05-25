@@ -1,17 +1,17 @@
-package it.polimi.ingsw.View.NotificationReaders;
+package it.polimi.ingsw.View.CLINotifiers;
 
 import com.google.gson.Gson;
 import it.polimi.ingsw.Controller.Messages.NotifyActivateLeaderCard;
 import it.polimi.ingsw.View.ModelPrinter;
 import it.polimi.ingsw.View.Printers.LeaderCardsPrinter;
 
-public class NotifyActivateLeaderCardReader extends NotificationReader{
+public class NotifyActivateLeaderCardReader extends CLINotifier {
     public NotifyActivateLeaderCardReader(ModelPrinter modelPrinter) {
         super(modelPrinter);
     }
 
     @Override
-    public void readNotification(String notification) {
+    public void notifyCLI(String notification) {
         Gson gson = new Gson();
         NotifyActivateLeaderCard m = gson.fromJson(notification, NotifyActivateLeaderCard.class);
         for(LeaderCardsPrinter l : modelPrinter.getLeaderCardsPrinters()){

@@ -1,16 +1,16 @@
-package it.polimi.ingsw.View.NotificationReaders;
+package it.polimi.ingsw.View.CLINotifiers;
 
 import com.google.gson.Gson;
 import it.polimi.ingsw.Controller.Messages.MoveAndShuffleMessage;
 import it.polimi.ingsw.View.ModelPrinter;
 
-public class MoveAndShuffleReader extends NotificationReader{
+public class MoveAndShuffleReader extends CLINotifier {
     public MoveAndShuffleReader(ModelPrinter modelPrinter) {
         super(modelPrinter);
     }
 
     @Override
-    public void readNotification(String notification) {
+    public void notifyCLI(String notification) {
         Gson gson = new Gson();
         MoveAndShuffleMessage m = gson.fromJson(notification, MoveAndShuffleMessage.class);
         modelPrinter.setBlackFaithPoints(m.getNewBlackFaithPoints());

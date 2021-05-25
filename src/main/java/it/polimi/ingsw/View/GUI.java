@@ -1,5 +1,6 @@
 package it.polimi.ingsw.View;
 
+import it.polimi.ingsw.View.GUIControllers.LobbyController;
 import it.polimi.ingsw.View.GUIControllers.LoginController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +14,7 @@ import java.util.Objects;
 public class GUI extends Application {
     private static Scene scene;
     private static LoginController loginController;
+    private static LobbyController lobbyController;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -40,5 +42,13 @@ public class GUI extends Application {
 
     public static LoginController getLoginController() {
         return loginController;
+    }
+
+    public static LobbyController getLobbyController() {
+        return lobbyController;
+    }
+
+    public static void setLobbyController(LobbyController lobbyController) {
+        GUI.lobbyController = lobbyController;
     }
 }
