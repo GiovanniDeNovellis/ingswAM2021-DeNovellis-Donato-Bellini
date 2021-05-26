@@ -19,7 +19,7 @@ public class PrinterSingleton {
         this.out = out;
     }
 
-    public void print(String jsonContent){
+    public void sendMessage(String jsonContent){
         out.println(jsonContent);
     }
 }

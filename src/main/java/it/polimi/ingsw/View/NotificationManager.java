@@ -3,24 +3,18 @@ package it.polimi.ingsw.View;
 import com.google.gson.Gson;
 import it.polimi.ingsw.Controller.Messages.Message;
 import it.polimi.ingsw.View.CLINotifiers.*;
-import it.polimi.ingsw.View.GUINotifiers.ConnectedPlayersGUINotifier;
-import it.polimi.ingsw.View.GUINotifiers.GUINotifier;
-import it.polimi.ingsw.View.GUINotifiers.LoginErrorGUINotifier;
-import it.polimi.ingsw.View.GUINotifiers.PlayerConnectionGUINotifier;
-import javafx.application.Platform;
+import it.polimi.ingsw.View.GUINotifiers.*;
 
 import java.io.IOException;
 
 public class NotificationManager {
-    public NotificationManager(ModelPrinter modelPrinter, boolean isCli, GUI gui){
+    public NotificationManager(ModelPrinter modelPrinter, boolean isCli){
         this.isCli=isCli;
         this.modelPrinter = modelPrinter;
-        this.gui=gui;
     }
 
-    private ModelPrinter modelPrinter;
-    private boolean isCli;
-    private GUI gui;
+    private final ModelPrinter modelPrinter;
+    private final boolean isCli;
 
 
     public void manageNotification(String notification){
@@ -55,30 +49,34 @@ public class NotificationManager {
                 }
                 break;
             case"ConnectionAcceptedPleaseLoginNotification":
-                System.out.println("Connection accepted. Please log in.");
+                if(isCli)
+                    System.out.println("Connection accepted. Please log in.");
                 break;
             case"PlayerInNotification":
                 reader = new PlayerInCLINotifier(modelPrinter);
                 reader.notifyCLI(notification);
                 break;
             case"ConnectedPlayersMessage":
-                if( isCli ) {
+                if(isCli) {
                     reader = new ConnectedPlayersMessageReader(modelPrinter);
                     reader.notifyCLI(notification);
                 }
-                else {
-                    GUINotifier notifier = new ConnectedPlayersGUINotifier();
+                else{
+                    GUINotifier notifier = new ConnectedPlayersGUINotifier(modelPrinter);
                     notifier.notifyGui(notification);
                 }
                 break;
             case"ExpectedLoginRequestNotification":
-                System.out.println("Expected login. Please log in before doing this action.");
+                if(isCli)
+                    System.out.println("Expected login. Please log in before doing this action.");
                 break;
             case"DiscardLeaderCardSuccessNotification":
-                System.out.println("You successfully discarded the leader card.");
+                if(isCli)
+                    System.out.println("You successfully discarded the leader card.");
                 break;
             case"DiscardLeaderCardFailureNotification":
-                System.out.println("You can't discard this leader card.");
+                if(isCli)
+                    System.out.println("You can't discard this leader card.");
                 break;
             case"NotifyDiscardLeaderCard":
                 reader = new NotifyDiscardLeaderCardReader(modelPrinter);
@@ -93,7 +91,8 @@ public class NotificationManager {
                 reader.notifyCLI(notification);
                 break;
             case"GameNotStartedNotification":
-                System.out.println("You can't do this action because the game has not started.");
+                if(isCli)
+                    System.out.println("You can't do this action because the game has not started.");
                 break;
             case"MoveLorenzo":
                 reader = new MoveLorenzoReader(modelPrinter);
@@ -108,10 +107,12 @@ public class NotificationManager {
                 reader.notifyCLI(notification);
                 break;
             case"ActionCardActivationFailureNotification":
-                System.out.println("You can't activate an action card at this moment.");
+                if (isCli)
+                    System.out.println("You can't activate an action card at this moment.");
                 break;
             case"ActivateLeaderAbilitySuccessNotification":
-                System.out.println("You activated the leader ability successfully.");
+                if(isCli)
+                    System.out.println("You activated the leader ability successfully.");
                 break;
             case"ActivateLeaderAbilityDiscount":
                 reader = new ActivateLeaderAbilityDiscountReader(modelPrinter);
@@ -130,23 +131,28 @@ public class NotificationManager {
                 reader.notifyCLI(notification);
                 break;
             case"ActivateLeaderAbilityFailureNotification":
-                System.out.println("You can't activate this leader ability now.");
+                if(isCli)
+                    System.out.println("You can't activate this leader ability now.");
                 break;
             case"NotYourTurnNotification":
-                System.out.println("You can't do the action because it's not your turn.");
+                if(isCli)
+                    System.out.println("You can't do the action because it's not your turn.");
                 break;
             case"ActivateLeaderCardSuccessNotification":
-                System.out.println("Leader card successfully activated.");
+                if(isCli)
+                    System.out.println("Leader card successfully activated.");
                 break;
             case"NotifyActivateLeaderCard":
                 reader = new NotifyActivateLeaderCardReader(modelPrinter);
                 reader.notifyCLI(notification);
                 break;
             case"ActivateLeaderCardFailureNotification":
-                System.out.println("You can't activate this leader card now.");
+                if(isCli)
+                    System.out.println("You can't activate this leader card now.");
                 break;
             case"ActivateProductionSuccessNotification":
-                System.out.println("Production successfully activated.");
+                if(isCli)
+                    System.out.println("Production successfully activated.");
                 break;
             case"NotifyActivateProductionMessage":
                 reader = new NotifyActivateProductionReader(modelPrinter);
@@ -157,10 +163,12 @@ public class NotificationManager {
                 reader.notifyCLI(notification);
                 break;
             case"ActivateProductionFailureNotification":
-                System.out.println("You can't activate the production now.");
+                if(isCli)
+                    System.out.println("You can't activate the production now.");
                 break;
             case"PlayerAddedNotification":
-                System.out.println("You have been successfully added to the game.");
+                if(isCli)
+                    System.out.println("You have been successfully added to the game.");
                 break;
             case"AddPlayerNotificationForEveryone":
                 if( isCli ) {
@@ -172,34 +180,46 @@ public class NotificationManager {
                 }
                 break;
             case"InvalidPlayerAddNotification":
-                System.out.println("You can't be added to the game.");
+                if(isCli)
+                    System.out.println("You can't be added to the game.");
                 break;
             case"BuyDevelopmentCardSuccessNotification":
-                System.out.println("Card successfully bought.");
+                if(isCli)
+                    System.out.println("Card successfully bought.");
                 break;
             case"DevelopmentCardBought":
                 reader = new DevelopmentCardBoughtReader(modelPrinter);
                 reader.notifyCLI(notification);
                 break;
             case"BuyDevelopmentCardFailureNotification":
-                System.out.println("You can't buy the development card now.");
+                if(isCli)
+                    System.out.println("You can't buy the development card now.");
                 break;
             case"DistributionOkNotification":
-                System.out.println("Distribution successfully done, resource(s) received.");
+                if(isCli)
+                    System.out.println("Distribution successfully done, resource(s) received.");
                 break;
             case"NotifyWareHouseChangedMessage":
                 reader = new NotifyWarehouseChangedMessageReader(modelPrinter);
                 reader.notifyCLI(notification);
                 break;
             case"NotRightToDistributionNotification":
-                System.out.println("You can't receive free resource now.");
+                if(isCli)
+                    System.out.println("You can't receive free resource now.");
                 break;
             case"EndTurnNotificationMessage":
-                reader = new EndTurnCLINotifier(modelPrinter);
-                reader.notifyCLI(notification);
+                if(isCli) {
+                    reader = new EndTurnCLINotifier(modelPrinter);
+                    reader.notifyCLI(notification);
+                }
+                else{
+                    GUINotifier endTurnGUiNotifier = new EndTurnGuiNotifier(modelPrinter);
+                    endTurnGUiNotifier.notifyGui(notification);
+                }
                 break;
             case"InsertedResourcesSuccessNotification":
-                System.out.println("You have correctly inserted resource(s) into your warehouse");
+                if(isCli)
+                    System.out.println("You have correctly inserted resource(s) into your warehouse");
                 break;
             case"InsertedResourceChanged":
                 reader = new InsertedResourceChanged(modelPrinter);
@@ -210,59 +230,78 @@ public class NotificationManager {
                 reader.notifyCLI(notification);
                 break;
             case"LeaderCardSelectionOkNotification":
-                System.out.println("You have correctly chosen your Leader cards!");
+                if(isCli)
+                    System.out.println("You have correctly chosen your Leader cards!");
                 break;
             case"NotRightToLeaderCardSelectionNotification":
-                System.out.println("You have already chosen your Leader cards! Please try another game action.");
+                if(isCli)
+                    System.out.println("You have already chosen your Leader cards! Please try another game action.");
                 break;
             case"MultiPlayerCreationMessage":
-                reader = new MultiPlayerCreation(modelPrinter);
-                reader.notifyCLI(notification);
+                if (isCli) {
+                    reader = new MultiPlayerCreation(modelPrinter);
+                    reader.notifyCLI(notification);
+                }
+                else{
+                    GUINotifier notifier = new MultiPlayerCreationGUINotifier(modelPrinter);
+                    notifier.notifyGui(notification);
+                }
                 break;
             case"MultiPlayerCreationOkNotification":
-                System.out.println("You have just started the game in multiplayer mode!");
+                if(isCli)
+                    System.out.println("You have just started the game in multiplayer mode!");
                 break;
             case"MultiPlayerCreationErrorNotification":
-                if( modelPrinter.isMultiplayerGameStarted())
-                    System.out.println("Game already started in multiplayer mode.");
-                else
-                    System.out.println("There is only one player logged in. You need at least another player to play" +
-                        "multiplayer mode." +
-                        "\nIf you want to play in single player mode write \"StartSinglePlayer\".");
+                if(isCli) {
+                    if (modelPrinter.isMultiplayerGameStarted())
+                        System.out.println("Game already started in multiplayer mode.");
+                    else
+                        System.out.println("There is only one player logged in. You need at least another player to play" +
+                                "multiplayer mode." +
+                                "\nIf you want to play in single player mode write \"StartSinglePlayer\".");
+                }
                 break;
             case"SinglePLayerCreationOkNotification":
-                System.out.println("You have just started the game in single player mode!");
+                if(isCli)
+                    System.out.println("You have just started the game in single player mode!");
                 break;
             case"SinglePlayerCreationMessage":
                 reader = new SinglePlayerCreation(modelPrinter);
                 reader.notifyCLI(notification);
                 break;
             case"SinglePLayerCreationFailedNotification":
-                if( modelPrinter.isMultiplayerGameStarted() )
-                    System.out.println("Game already started in multiplayer mode.");
-                else if( modelPrinter.getPersonalBoards().size()==1)
-                    System.out.println("Game already started in single player mode");
-                else if( modelPrinter.getPersonalBoards().size()>1)
-                    System.out.println("There too many players logged in. Single player mode needs exactly one player." +
-                        "\nIf you want to play in multiplayer mode write \"StartMultiPlayer\".");
+                if(isCli) {
+                    if (modelPrinter.isMultiplayerGameStarted())
+                        System.out.println("Game already started in multiplayer mode.");
+                    else if (modelPrinter.getPersonalBoards().size() == 1)
+                        System.out.println("Game already started in single player mode");
+                    else if (modelPrinter.getPersonalBoards().size() > 1)
+                        System.out.println("There too many players logged in. Single player mode needs exactly one player." +
+                                "\nIf you want to play in multiplayer mode write \"StartMultiPlayer\".");
+                }
                 break;
             case"SwitchLevelsSuccessNotification":
-                System.out.println("You have correctly switched these two levels!");
+                if(isCli)
+                    System.out.println("You have correctly switched these two levels!");
                 break;
             case"SwitchLevelsFailureNotification":
-                System.out.println("You can't switch these two levels.");
+                if(isCli)
+                    System.out.println("You can't switch these two levels.");
                 break;
             case"InsertedResourcesFailureNotification":
-                System.out.println("Resource(s) insertion failed. Try again.");
+                if(isCli)
+                    System.out.println("Resource(s) insertion failed. Try again.");
                 break;
             case"TakeResourceFromMarketSuccessNotification":
-                System.out.println("You have correctly taken resources from market!Place them in your warehouse.");
+                if(isCli)
+                    System.out.println("You have correctly taken resources from market!Place them in your warehouse.");
                 break;
             case"TemporaryResourcesChanged":
                 reader = new TemporaryResourcesChanged(modelPrinter);
                 reader.notifyCLI(notification);
                 break;
             case"TakeResourceFromMarketFailureNotification":
+                if(isCli)
                     System.out.println("Wrong index(row,column) chosen. Try again.\n" +
                             "If you have chosen a correct index, it means you can't take resources now.");
                 break;
@@ -273,7 +312,8 @@ public class NotificationManager {
             case "EndTurnOkNotification":
                 break;
             case "NotRightToEndTurnNotification":
-                System.out.println("You have to do a basic action before ending your turn.");
+                if(isCli)
+                    System.out.println("You have to do a basic action before ending your turn.");
                 break;
             default:
                 System.out.println("Received wrong input message!");

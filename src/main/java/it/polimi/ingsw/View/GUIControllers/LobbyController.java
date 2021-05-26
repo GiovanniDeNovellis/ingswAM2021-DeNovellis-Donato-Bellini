@@ -40,13 +40,13 @@ public class LobbyController implements Initializable {
             Gson gson = new Gson();
             StartSinglePlayerMessage message = new StartSinglePlayerMessage();
             message.setMessageType("StartSinglePlayer");
-            PrinterSingleton.getPrinterSingleton().print(gson.toJson(message));    }
+            PrinterSingleton.getPrinterSingleton().sendMessage(gson.toJson(message));    }
 
     public void startMultiPlayer(ActionEvent actionEvent) {
         Gson gson = new Gson();
         StartMultiPlayerMessage message = new StartMultiPlayerMessage();
         message.setMessageType("StartMultiPlayer");
-        PrinterSingleton.getPrinterSingleton().print(gson.toJson(message));
+        PrinterSingleton.getPrinterSingleton().sendMessage(gson.toJson(message));
     }
 
     public void addPlayer(String playerNickname){

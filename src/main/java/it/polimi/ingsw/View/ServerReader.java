@@ -12,6 +12,7 @@ public class ServerReader implements Runnable {
     private final BufferedReader in;
     private CLI cli;
     private GUI gui;
+    private final ModelPrinter modelPrinter = new ModelPrinter();
 
     public ServerReader(BufferedReader in) {
         this.in = in;
@@ -35,16 +36,22 @@ public class ServerReader implements Runnable {
                     else if(mex.getMessageType().equals("LoginOkNotification") && cli!=null ){
                         LoginOkNotificationMessage log = gson.fromJson(serverOutput,LoginOkNotificationMessage.class);
                         cli.setNickname(log.getSenderNickname());
-                        NotificationManager notificationManager = new NotificationManager(cli.getModelPrinter(),true,null);
+                        NotificationManager notificationManager = new NotificationManager(modelPrinter,true);
                         notificationManager.manageNotification(serverOutput);
                     }
                     else if(cli!=null){
-                        NotificationManager notificationManager = new NotificationManager(cli.getModelPrinter(),true,null);
+                        NotificationManager notificationManager = new NotificationManager(modelPrinter,true);
                         notificationManager.manageNotification(serverOutput);
                     }
                     //SONO IN MODALITA' GUI
+                    else if(mex.getMessageType().equals("LoginOkNotification")){
+                        LoginOkNotificationMessage log = gson.fromJson(serverOutput,LoginOkNotificationMessage.class);
+                        GUI.setClientNickname(log.getSenderNickname());
+                        NotificationManager notificationManager = new NotificationManager(modelPrinter,false);
+                        notificationManager.manageNotification(serverOutput);
+                    }
                     else if(gui!=null){
-                        NotificationManager notificationManager = new NotificationManager(null,false,gui);
+                        NotificationManager notificationManager = new NotificationManager(modelPrinter,false);
                         notificationManager.manageNotification(serverOutput);
                     }
                     else{
@@ -66,6 +73,7 @@ public class ServerReader implements Runnable {
 
     public void setCli(CLI cli) {
         this.cli = cli;
+        cli.setModelPrinter(modelPrinter);
     }
 
     public void setGui(GUI gui) {

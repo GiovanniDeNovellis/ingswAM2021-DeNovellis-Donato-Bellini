@@ -853,4 +853,8 @@ public class LeaderCardsPrinter implements Printable {
     public boolean[] getActivatedLeaderCards() {
         return activatedLeaderCards;
     }
+
+    public int[] getChoosableLeaderCards() {
+        return choosableLeaderCards;
+    }
 }

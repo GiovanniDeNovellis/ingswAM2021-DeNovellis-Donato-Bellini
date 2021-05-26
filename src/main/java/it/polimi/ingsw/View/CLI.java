@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 
 public class CLI implements Runnable{
     private String userInput=null;
-    private final ModelPrinter modelPrinter = new ModelPrinter();
+    private  ModelPrinter modelPrinter;
     private String nickname;
 
     public void run(){
@@ -42,5 +42,9 @@ public class CLI implements Runnable{
 
     public ModelPrinter getModelPrinter() {
         return modelPrinter;
+    }
+
+    public void setModelPrinter(ModelPrinter modelPrinter) {
+        this.modelPrinter = modelPrinter;
     }
 }

@@ -20,7 +20,6 @@ public class MultiPlayerCreation extends CLINotifier {
         for(LeaderCardsPrinter l : modelPrinter.getLeaderCardsPrinters()){
             l.setBuilt(true);
         }
-
         modelPrinter.getDeckGridPrinter().setDeckgrid(data.getDeckgridConfiguration());
         modelPrinter.getMarketBoardPrinter().setMarbleGrid(data.getMarbleGridConfiguration());
         modelPrinter.getMarketBoardPrinter().setMarbleOut(data.getMarbleOut());

@@ -1,5 +1,6 @@
 package it.polimi.ingsw.View;
 
+import it.polimi.ingsw.View.GUIControllers.FirstTurnController;
 import it.polimi.ingsw.View.GUIControllers.LobbyController;
 import it.polimi.ingsw.View.GUIControllers.LoginController;
 import javafx.application.Application;
@@ -13,8 +14,10 @@ import java.util.Objects;
 
 public class GUI extends Application {
     private static Scene scene;
+    private static String clientNickname;
     private static LoginController loginController;
     private static LobbyController lobbyController;
+    private static FirstTurnController firstTurnController;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -50,5 +53,17 @@ public class GUI extends Application {
 
     public static void setLobbyController(LobbyController lobbyController) {
         GUI.lobbyController = lobbyController;
+    }
+
+    public static void setFirstTurnController(FirstTurnController firstTurnController) { GUI.firstTurnController = firstTurnController; }
+
+    public static FirstTurnController getFirstTurnController() { return firstTurnController; }
+
+    public static String getClientNickname() {
+        return clientNickname;
+    }
+
+    public static void setClientNickname(String clientNickname) {
+        GUI.clientNickname = clientNickname;
     }
 }
