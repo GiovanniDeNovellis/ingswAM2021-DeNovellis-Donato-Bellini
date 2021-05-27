@@ -18,6 +18,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -74,6 +75,8 @@ public class FirstTurnController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        Stage s = new Stage();
+        s.setFullScreen(true);
         GUI.setFirstTurnController(this);
         cardIndex.add("Images/LeaderCardImages/leader1.png");
         cardIndex.add("Images/LeaderCardImages/leader2.png");
@@ -245,8 +248,10 @@ public class FirstTurnController implements Initializable {
 
     private void oneResDistribution(ResourceType resourceType, Button button){
         if(resourcesSelected.size()==1){
-            resourcesSelected.remove(0);
-            button.setOpacity(0);
+            if( resourceType==resourcesSelected.get(0)) {
+                resourcesSelected.remove(0);
+                button.setOpacity(0);
+            }
         }
         else if(resourcesSelected.isEmpty()){
             resourcesSelected.add(resourceType);

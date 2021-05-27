@@ -1,36 +1,209 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-image: url(C:\Users\emanu\Desktop\pdfs\board\PERSONALbOARD);" styleClass="fx-background-image" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-image: url(C:\Users\emanu\Desktop\pdfs\board\PERSONALbOARD);" styleClass="fx-background-image" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.View.GUIControllers.MainSceneController">
    <children>
-      <ImageView fitHeight="1080.0" fitWidth="1920.0" layoutX="420.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="personalBoard" fitHeight="1080.0" fitWidth="1920.0" layoutX="420.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../Desktop/pdfs/board/PERSONALbOARD.png" />
          </image>
       </ImageView>
-      <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="85.0" prefWidth="420.0" text="VIEW DECK GRID" />
-      <Button alignment="TOP_LEFT" layoutY="85.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="420.0" text="VIEW MARKET BOARD" />
-      <Button alignment="TOP_LEFT" layoutY="170.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="420.0" text="VIEW LEADER CARDS" />
-      <Button alignment="TOP_LEFT" layoutY="255.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="420.0" text="PLAYER 1" />
-      <Button alignment="TOP_LEFT" layoutY="340.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="420.0" text="PLAYER 2" />
-      <Button alignment="TOP_LEFT" layoutY="425.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="420.0" text="PLAYER3" />
-      <Button alignment="TOP_LEFT" layoutY="510.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="420.0" text="PLAYER4" />
-      <ImageView fitHeight="320.0" fitWidth="210.0" layoutY="595.0" pickOnBounds="true" preserveRatio="true">
+      <Button fx:id="deckGrid" alignment="CENTER" mnemonicParsing="false" onAction="#viewDeckGrid" prefHeight="85.0" prefWidth="420.0" style="-fx-background-color: beige; -fx-position-shape: grey;" text="VIEW DECK GRID">
+         <font>
+            <Font size="34.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="marketBoard" alignment="CENTER" contentDisplay="CENTER" layoutY="85.0" mnemonicParsing="false" onAction="#viewMarketBoard" prefHeight="85.0" prefWidth="420.0" style="-fx-background-color: beige;" text="VIEW MARKET BOARD">
+         <font>
+            <Font size="34.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="player1" alignment="CENTER" layoutY="255.0" mnemonicParsing="false" onAction="#viewPlayer1" prefHeight="85.0" prefWidth="420.0" style="-fx-background-color: beige;" text="PLAYER 1">
+         <font>
+            <Font size="24.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="player2" alignment="CENTER" layoutY="340.0" mnemonicParsing="false" onAction="#viewPlayer2" prefHeight="85.0" prefWidth="420.0" style="-fx-background-color: beige;" text="PLAYER 2">
+         <font>
+            <Font size="24.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="player3" alignment="CENTER" layoutY="425.0" mnemonicParsing="false" onAction="#viewPlayer3" prefHeight="85.0" prefWidth="420.0" style="-fx-background-color: beige;" text="PLAYER3">
+         <font>
+            <Font size="24.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="player4" alignment="CENTER" layoutY="510.0" mnemonicParsing="false" onAction="#viewPlayer4" prefHeight="85.0" prefWidth="420.0" style="-fx-background-color: beige;" text="PLAYER4">
+         <font>
+            <Font size="24.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <ImageView fx:id="chosenLeadCard1" fitHeight="320.0" fitWidth="210.0" layoutY="595.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../Desktop/pdfs/front/Masters%20of%20Renaissance_Cards_FRONT_3mmBleed_1-57-1.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="320.0" fitWidth="210.0" layoutX="210.0" layoutY="595.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="chosenLeadCard2" fitHeight="320.0" fitWidth="210.0" layoutX="210.0" layoutY="595.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../Desktop/pdfs/front/Masters%20of%20Renaissance_Cards_FRONT_3mmBleed_1-61-1.png" />
          </image>
       </ImageView>
-      <Button layoutY="912.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="210.0" text="Button" />
-      <Button layoutX="210.0" layoutY="912.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="210.0" text="Button" />
+      <Button fx:id="activate1" layoutY="912.0" mnemonicParsing="false" onAction="#activateLeadCard1" prefHeight="35.0" prefWidth="210.0" style="-fx-background-color: beige;" text="ACTIVATE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="activate2" layoutX="210.0" layoutY="912.0" mnemonicParsing="false" onAction="#activateLeadCard2" prefHeight="35.0" prefWidth="210.0" style="-fx-background-color: beige;" text="ACTIVATE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="discard1" layoutY="947.0" mnemonicParsing="false" onAction="#discardLeadCard1" prefHeight="35.0" prefWidth="210.0" style="-fx-background-color: beige;" text="DISCARD">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="discard2" layoutX="210.0" layoutY="947.0" mnemonicParsing="false" onAction="#discardLeadCard2" prefHeight="35.0" prefWidth="210.0" style="-fx-background-color: beige;" text="DISCARD">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="production" layoutY="1017.0" mnemonicParsing="false" onAction="#activateProduction" prefHeight="62.0" prefWidth="420.0" style="-fx-background-color: beige;" text="ACTIVATE PRODUCTION">
+         <font>
+            <Font size="28.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <ImageView fx:id="coins" fitHeight="60.0" fitWidth="60.0" layoutX="465.0" layoutY="755.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Images/coin.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="stones" fitHeight="60.0" fitWidth="60.0" layoutX="465.0" layoutY="825.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Images/stone.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="shields" fitHeight="60.0" fitWidth="60.0" layoutX="465.0" layoutY="895.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Images/shield.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="servants" fitHeight="60.0" fitWidth="60.0" layoutX="465.0" layoutY="965.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Images/servant.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="coinsLabel" layoutX="548.0" layoutY="756.0" text="x0" textFill="#ffee00">
+         <font>
+            <Font size="34.0" />
+         </font>
+      </Label>
+      <Label fx:id="stonesLabel" layoutX="548.0" layoutY="828.0" text="x0" textFill="#ebebeb">
+         <font>
+            <Font size="34.0" />
+         </font>
+      </Label>
+      <Label fx:id="shieldsLabel" layoutX="548.0" layoutY="900.0" text="x0" textFill="#00bfff">
+         <font>
+            <Font size="34.0" />
+         </font>
+      </Label>
+      <Label fx:id="servantsLabel" layoutX="548.0" layoutY="967.0" text="x0" textFill="#d970ff">
+         <font>
+            <Font size="34.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="res4" fitHeight="50.0" fitWidth="50.0" layoutX="538.0" layoutY="666.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="res5" fitHeight="50.0" fitWidth="50.0" layoutX="596.0" layoutY="666.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="res6" fitHeight="50.0" fitWidth="50.0" layoutX="652.0" layoutY="666.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="res3" fitHeight="50.0" fitWidth="50.0" layoutX="621.0" layoutY="566.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="res2" fitHeight="50.0" fitWidth="50.0" layoutX="563.0" layoutY="566.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="re1" fitHeight="50.0" fitWidth="50.0" layoutX="602.0" layoutY="479.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="baseProd" layoutX="787.0" layoutY="725.0" mnemonicParsing="false" onAction="#baseProdTrue" opacity="0.0" prefHeight="179.0" prefWidth="186.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <ImageView fx:id="redCross" fitHeight="63.0" fitWidth="51.0" layoutX="487.0" layoutY="214.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Images/redCross.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="devCardImage1" fitHeight="407.0" fitWidth="267.0" layoutX="1002.0" layoutY="498.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="devCardImage3" fitHeight="407.0" fitWidth="267.0" layoutX="1589.0" layoutY="498.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="devCardImage2" fitHeight="407.0" fitWidth="267.0" layoutX="1291.0" layoutY="498.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="devCard0" layoutX="1002.0" layoutY="496.0" mnemonicParsing="false" onAction="#selectDevCard0" opacity="0.0" prefHeight="407.0" prefWidth="267.0" text="Button">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="devCard1" layoutX="1291.0" layoutY="496.0" mnemonicParsing="false" onAction="#selectDevCard1" opacity="0.0" prefHeight="407.0" prefWidth="267.0" text="Button">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="devCard2" layoutX="1589.0" layoutY="496.0" mnemonicParsing="false" onAction="#selectDevCard2" opacity="0.0" prefHeight="407.0" prefWidth="267.0" text="Button">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="activateAbility1" layoutY="982.0" mnemonicParsing="false" onAction="#activateLeaderAbility1" prefHeight="35.0" prefWidth="210.0" style="-fx-background-color: beige;" text="ACTIVATE ABILITY">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="activateAbility2" layoutX="210.0" layoutY="982.0" mnemonicParsing="false" onAction="#activateLeaderAbility2" prefHeight="35.0" prefWidth="210.0" style="-fx-background-color: beige;" text="ACTIVATE ABILTIY">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <ImageView fx:id="faithCard1" fitHeight="96.0" fitWidth="94.0" layoutX="797.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+         </image>
+      </ImageView>
+      <ImageView fx:id="faithCard3" fitHeight="96.0" fitWidth="94.0" layoutX="1610.0" layoutY="167.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+         </image>
+      </ImageView>
+      <ImageView fx:id="faithCard2" fitHeight="96.0" fitWidth="94.0" layoutX="1169.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+         </image>
+      </ImageView>
+      <ImageView fx:id="dep1" fitHeight="73.0" fitWidth="192.0" layoutX="803.0" layoutY="462.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="dep2" fitHeight="73.0" fitWidth="192.0" layoutX="803.0" layoutY="535.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="res1dep1" fitHeight="60.0" fitWidth="60.0" layoutX="810.0" layoutY="478.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="res2dep1" fitHeight="60.0" fitWidth="60.0" layoutX="912.0" layoutY="478.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="res1dep2" fitHeight="60.0" fitWidth="60.0" layoutX="810.0" layoutY="553.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="res2dep2" fitHeight="60.0" fitWidth="60.0" layoutX="912.0" layoutY="553.0" pickOnBounds="true" preserveRatio="true" />
+      <Line layoutX="420.0" layoutY="85.0" startX="-420.0" />
+      <Line layoutX="420.0" layoutY="170.0" startX="-420.0" />
+      <Line layoutX="420.0" layoutY="255.0" startX="-420.0" />
+      <Line layoutX="420.0" layoutY="340.0" startX="-420.0" />
+      <Line layoutX="420.0" layoutY="425.0" startX="-420.0" />
+      <Line layoutX="420.0" layoutY="510.0" startX="-420.0" />
+      <Line layoutX="420.0" layoutY="595.0" startX="-420.0" />
+      <Line layoutX="420.0" layoutY="913.0" startX="-420.0" />
+      <Line layoutX="420.0" layoutY="948.0" startX="-420.0" />
+      <Line layoutX="420.0" layoutY="983.0" startX="-420.0" />
+      <Line layoutX="420.0" layoutY="1018.0" startX="-420.0" />
+      <Line layoutX="-120.0" layoutY="540.0" rotate="270.0" startX="1080.0" />
+      <Line endX="100.0" layoutX="321.0" layoutY="807.0" rotate="270.0" startX="-322.0" />
+      <Label layoutY="170.0" prefHeight="85.0" prefWidth="420.0" style="-fx-background-color: #b8b8b8;" textFill="#b8b8b8" />
    </children>
 </Pane>
