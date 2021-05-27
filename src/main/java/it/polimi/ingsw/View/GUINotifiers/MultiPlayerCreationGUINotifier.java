@@ -25,6 +25,7 @@ public class MultiPlayerCreationGUINotifier extends GUINotifier{
         if(mex.getNickname().equals(GUI.getClientNickname())) {
             Platform.runLater(() -> {
                 try {
+                    GUI.getPrimaryStage().setFullScreen(true);
                     GUI.setRoot("first_turn_scene");
                     GUI.getFirstTurnController().printScene(modelPrinter, mex.getNickname());
                 } catch (IOException e) {

@@ -8,6 +8,8 @@ import it.polimi.ingsw.View.Printers.LeaderCardsPrinter;
 import it.polimi.ingsw.View.Printers.PersonalBoardPrinter;
 import javafx.application.Platform;
 
+import java.io.IOException;
+
 public class EndTurnGuiNotifier extends GUINotifier{
     private final ModelPrinter modelPrinter;
     int oldValue=0;
@@ -37,7 +39,15 @@ public class EndTurnGuiNotifier extends GUINotifier{
             }
         }
         else{
-            //TODO AGGIORNA SCHERMATA DI GIOCO GENERALE
+            Platform.runLater(()->{
+                try {
+                    GUI.getPrimaryStage().setFullScreen(true);
+                    GUI.setRoot("personalBoard_scene");
+                    //GUI.getFirstTurnController().printScene(modelPrinter, mex.getNickname());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
         }
     }
 

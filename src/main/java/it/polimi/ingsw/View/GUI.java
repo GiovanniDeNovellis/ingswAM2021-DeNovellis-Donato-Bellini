@@ -3,6 +3,7 @@ package it.polimi.ingsw.View;
 import it.polimi.ingsw.View.GUIControllers.FirstTurnController;
 import it.polimi.ingsw.View.GUIControllers.LobbyController;
 import it.polimi.ingsw.View.GUIControllers.LoginController;
+import it.polimi.ingsw.View.GUIControllers.MainSceneController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,10 +15,12 @@ import java.util.Objects;
 
 public class GUI extends Application {
     private static Scene scene;
+    private static Stage primaryStage;
     private static String clientNickname;
     private static LoginController loginController;
     private static LobbyController lobbyController;
     private static FirstTurnController firstTurnController;
+    private static MainSceneController mainSceneController;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -25,6 +28,7 @@ public class GUI extends Application {
         primaryStage.setTitle("Masters of Renaissance");
         primaryStage.setScene(scene);
         primaryStage.show();
+        setPrimaryStage(primaryStage);
     }
 
     public static Parent loadFXML(String fxml) throws IOException {
@@ -65,5 +69,21 @@ public class GUI extends Application {
 
     public static void setClientNickname(String clientNickname) {
         GUI.clientNickname = clientNickname;
+    }
+
+    public static Stage getPrimaryStage() {
+        return primaryStage;
+    }
+
+    public static void setPrimaryStage(Stage primaryStage) {
+        GUI.primaryStage = primaryStage;
+    }
+
+    public static MainSceneController getMainSceneController() {
+        return mainSceneController;
+    }
+
+    public static void setMainSceneController(MainSceneController mainSceneController) {
+        GUI.mainSceneController = mainSceneController;
     }
 }
