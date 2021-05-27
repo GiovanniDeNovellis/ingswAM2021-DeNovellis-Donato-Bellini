@@ -11,6 +11,9 @@ public class DevelopmentCard {
     /** Attribute level is referred to developmentCard's level */
     private int level;
 
+    /**Unique identifier of the card*/
+    private int number;
+
     /**
      * The three HashMaps are used to keep in memory ,respectively, the necessary resources to buy the development card,
      * cost expressed in resources to activate the developmentCard's production and resources obtained throw the production
@@ -249,5 +252,9 @@ public class DevelopmentCard {
 
     public Map<ResourceType,Integer> getProductionCost(){
         return this.productionCost;
+    }
+
+    public int getNumber() {
+        return number;
     }
 }

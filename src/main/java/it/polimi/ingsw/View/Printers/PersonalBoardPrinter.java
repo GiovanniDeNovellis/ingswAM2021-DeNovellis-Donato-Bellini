@@ -754,4 +754,16 @@ public class PersonalBoardPrinter implements Printable{
     public int[] getFaithCards() {
         return faithCards;
     }
+
+    public WareHouseDepot getWareHouseDepot() {
+        return wareHouseDepot;
+    }
+
+    public Map<ResourceType, Integer> getStrongbox() {
+        return strongbox;
+    }
+
+    public DevelopmentCard[] getDevelopmentCards() {
+        return developmentCards;
+    }
 }

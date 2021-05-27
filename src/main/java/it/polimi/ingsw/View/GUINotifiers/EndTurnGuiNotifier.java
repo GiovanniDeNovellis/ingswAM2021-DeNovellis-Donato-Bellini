@@ -27,8 +27,9 @@ public class EndTurnGuiNotifier extends GUINotifier{
         String nextPlayerNickname = data.getActualCurrentPlayer();
         for(LeaderCardsPrinter l: modelPrinter.getLeaderCardsPrinters()){
             if(l.getOwnerNickname().equals(nextPlayerNickname)){
-                if(l.getChosenLeaderCards()[0]==0)
-                    firstRound=true;
+                if(l.getChosenLeaderCards()[0]==0) {
+                    firstRound = true;
+                }
             }
         }
         if(firstRound){
@@ -43,6 +44,7 @@ public class EndTurnGuiNotifier extends GUINotifier{
                 try {
                     GUI.getPrimaryStage().setFullScreen(true);
                     GUI.setRoot("personalBoard_scene");
+                    GUI.getMainSceneController().printClientPlayer(modelPrinter);
                     //GUI.getFirstTurnController().printScene(modelPrinter, mex.getNickname());
                 } catch (IOException e) {
                     e.printStackTrace();

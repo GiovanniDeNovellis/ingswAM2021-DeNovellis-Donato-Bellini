@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import it.polimi.ingsw.Controller.Messages.Message;
 import it.polimi.ingsw.View.CLINotifiers.*;
 import it.polimi.ingsw.View.GUINotifiers.*;
+import javafx.application.Platform;
 
 import java.io.IOException;
 
@@ -133,6 +134,11 @@ public class NotificationManager {
             case"ActivateLeaderAbilityFailureNotification":
                 if(isCli)
                     System.out.println("You can't activate this leader ability now.");
+                else{
+                    Platform.runLater(()->{
+                        GUI.getMainSceneController().setErrorLabelText("This leader ability can't be activated more than once.");
+                    });
+                }
                 break;
             case"NotYourTurnNotification":
                 if(isCli)
@@ -149,6 +155,11 @@ public class NotificationManager {
             case"ActivateLeaderCardFailureNotification":
                 if(isCli)
                     System.out.println("You can't activate this leader card now.");
+                else{
+                    Platform.runLater(()->{
+                        GUI.getMainSceneController().setErrorLabelText("You don't have the requirements to activate this leader card now.");
+                    });
+                }
                 break;
             case"ActivateProductionSuccessNotification":
                 if(isCli)
@@ -175,7 +186,7 @@ public class NotificationManager {
                     reader = new AddPlayerCLINotifier(modelPrinter);
                     reader.notifyCLI(notification);
                 } else {
-                    GUINotifier notifier = new PlayerConnectionGUINotifier();
+                    GUINotifier notifier = new PlayerConnectionGUINotifier(modelPrinter);
                     notifier.notifyGui(notification);
                 }
                 break;

@@ -294,14 +294,12 @@ public class FirstTurnController implements Initializable {
         }
     }
 
-    public Button getConfirmButton() {
-        return confirmButton;
-    }
-
     private void generateMessageFirst(){
         if(leaderCardsSelected.size()==2){
             sendLeaderSelection();
             sendEndTurn();
+            confirmButton.setDisable(true);
+            selectCardsLabel.setText("Wait for the other players to make their choices.");
         }
         else{
             errorLabel.setText("Select two leader cards before confirming.");
@@ -319,6 +317,8 @@ public class FirstTurnController implements Initializable {
             message.setMessageType("DistributionSecondThird");
             PrinterSingleton.getPrinterSingleton().sendMessage(gson.toJson(message));
             sendEndTurn();
+            confirmButton.setDisable(true);
+            selectCardsLabel.setText("Wait for the other players to make their choices.");
         }
         else if(leaderCardsSelected.size()!=2&&resourcesSelected.isEmpty()){
             errorLabel.setText("Select two leader cards and one resource before confirming.");
@@ -345,6 +345,8 @@ public class FirstTurnController implements Initializable {
             mex.setSecondResourceToDistribute(resourcesSelected.get(1));
             PrinterSingleton.getPrinterSingleton().sendMessage(gson.toJson(mex));
             sendEndTurn();
+            confirmButton.setDisable(true);
+            selectCardsLabel.setText("Wait for the other players to make their choices.");
         }
         else if(leaderCardsSelected.size()!=2&&resourcesSelected.size()!=2){
             errorLabel.setText("Select two leader cards and two resource before confirming.");
