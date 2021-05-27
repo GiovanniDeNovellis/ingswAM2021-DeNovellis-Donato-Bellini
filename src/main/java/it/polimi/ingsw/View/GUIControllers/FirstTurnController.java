@@ -100,7 +100,7 @@ public class FirstTurnController implements Initializable {
         for(PersonalBoardPrinter p: modelPrinter.getPersonalBoards()){
             if(p.getOwnerNickname().equals(clientNickname)){
                 playerNumber=p.getPlayerNumber();
-                if(p.getPlayerNumber()==1){
+                if(p.getPlayerNumber()==1||p.getPlayerNumber()==0){
                     printFirstPlayer(modelPrinter, clientNickname);
                 }
                 else if(p.getPlayerNumber()==4){
@@ -130,7 +130,7 @@ public class FirstTurnController implements Initializable {
     }
 
     public void selectResAndLeaders(ActionEvent actionEvent) {
-        if(playerNumber==1)
+        if(playerNumber==1||playerNumber==0)
             generateMessageFirst();
         else if(playerNumber==4)
             generateMessageFourth();

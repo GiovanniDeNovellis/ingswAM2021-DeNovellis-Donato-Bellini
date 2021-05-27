@@ -266,8 +266,14 @@ public class NotificationManager {
                     System.out.println("You have just started the game in single player mode!");
                 break;
             case"SinglePlayerCreationMessage":
-                reader = new SinglePlayerCreation(modelPrinter);
-                reader.notifyCLI(notification);
+                if(isCli) {
+                    reader = new SinglePlayerCreation(modelPrinter);
+                    reader.notifyCLI(notification);
+                }
+                else{
+                GUINotifier notifier = new SinglePlayerCreationGUINotifier(modelPrinter);
+                notifier.notifyGui(notification);
+            }
                 break;
             case"SinglePLayerCreationFailedNotification":
                 if(isCli) {
