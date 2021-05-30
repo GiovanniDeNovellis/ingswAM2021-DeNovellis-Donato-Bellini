@@ -1,9 +1,6 @@
 package it.polimi.ingsw.View;
 
-import it.polimi.ingsw.View.GUIControllers.FirstTurnController;
-import it.polimi.ingsw.View.GUIControllers.LobbyController;
-import it.polimi.ingsw.View.GUIControllers.LoginController;
-import it.polimi.ingsw.View.GUIControllers.MainSceneController;
+import it.polimi.ingsw.View.GUIControllers.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -21,6 +18,7 @@ public class GUI extends Application {
     private static LobbyController lobbyController;
     private static FirstTurnController firstTurnController;
     private static MainSceneController mainSceneController;
+    private static MarketSceneController marketSceneController;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -83,7 +81,9 @@ public class GUI extends Application {
         return mainSceneController;
     }
 
-    public static void setMainSceneController(MainSceneController mainSceneController) {
-        GUI.mainSceneController = mainSceneController;
-    }
+    public static void setMainSceneController(MainSceneController mainSceneController) { GUI.mainSceneController = mainSceneController; }
+
+    public static MarketSceneController getMarketSceneController() { return marketSceneController; }
+
+    public static void setMarketSceneController(MarketSceneController marketSceneController) { GUI.marketSceneController = marketSceneController; }
 }

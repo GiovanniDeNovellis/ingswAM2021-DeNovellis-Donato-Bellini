@@ -14,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,6 +25,7 @@ public class MainSceneController implements Initializable {
     private final ArrayList<String> leaderCardsIndex = new ArrayList<>();
     private final Map<ResourceType, String> resourceImagesMap = new HashMap<>();
     private final ArrayList<String> developmentCardsIndex = new ArrayList<>();
+    private ModelPrinter modelPrinter;
     @FXML
     private ImageView personalBoard;
     @FXML
@@ -86,6 +88,14 @@ public class MainSceneController implements Initializable {
     private ImageView faithCard2;
     @FXML
     private ImageView faithCard3;
+    @FXML
+    private Button devCard0;
+    @FXML
+    private Button devCard1;
+    @FXML
+    private Button devCard2;
+    @FXML
+    private Button production;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -165,21 +175,42 @@ public class MainSceneController implements Initializable {
     }
 
     public void viewMarketBoard(ActionEvent actionEvent) {
+        try {
+            GUI.setRoot("market_scene");
+            GUI.getMarketSceneController().printScene(modelPrinter);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void viewPlayersNumber(ActionEvent actionEvent) {
     }
 
     public void viewPlayer1(ActionEvent actionEvent) {
+        viewPlayer(1);
     }
 
     public void viewPlayer2(ActionEvent actionEvent) {
+        viewPlayer(2);
     }
 
     public void viewPlayer3(ActionEvent actionEvent) {
+        viewPlayer(3);
     }
 
     public void viewPlayer4(ActionEvent actionEvent) {
+        viewPlayer(4);
+    }
+
+    private void viewPlayer(int number){
+        for(PersonalBoardPrinter p: modelPrinter.getPersonalBoards()){
+            if(p.getPlayerNumber()==number) {
+                if (p.getOwnerNickname().equals(GUI.getClientNickname()))
+                    printClientPlayer(modelPrinter);
+                else
+                    printOtherPlayer(p.getOwnerNickname());
+            }
+        }
     }
 
     public void activateLeadCard1(ActionEvent actionEvent) {
@@ -216,6 +247,9 @@ public class MainSceneController implements Initializable {
     }
 
     public void printClientPlayer(ModelPrinter modelPrinter) {
+        production.setVisible(true);
+        production.setDisable(false);
+        this.modelPrinter=modelPrinter;
         LeaderCardsPrinter leadToPrint = null;
         PersonalBoardPrinter personalToPrint = null;
         for (LeaderCardsPrinter l : modelPrinter.getLeaderCardsPrinters()) {
@@ -229,9 +263,9 @@ public class MainSceneController implements Initializable {
             }
         }
         assert leadToPrint != null;
-        printLeaders(leadToPrint);
-        printPlayerButtons(modelPrinter);
+        printLeadersMainPlayer(leadToPrint);
         assert personalToPrint != null;
+        printPlayerButtons(modelPrinter,personalToPrint.getPlayerNumber());
         printWarehouse(personalToPrint);
         printStrongBox(personalToPrint);
         printDevelopmentCards(personalToPrint);
@@ -239,10 +273,79 @@ public class MainSceneController implements Initializable {
     }
 
     public void printOtherPlayer(String playerNickname) {
-
+        LeaderCardsPrinter leadToPrint = null;
+        PersonalBoardPrinter personalToPrint = null;
+        for (LeaderCardsPrinter l : modelPrinter.getLeaderCardsPrinters()) {
+            if (l.getOwnerNickname().equals(playerNickname)) {
+                leadToPrint = l;
+            }
+        }
+        for (PersonalBoardPrinter p : modelPrinter.getPersonalBoards()) {
+            if (p.getOwnerNickname().equals(playerNickname)) {
+                personalToPrint = p;
+            }
+        }
+        disableButtons();
+        assert leadToPrint != null;
+        printLeadersOtherPlayer(leadToPrint);
+        assert personalToPrint != null;
+        printPlayerButtons(modelPrinter,personalToPrint.getPlayerNumber());
+        printWarehouse(personalToPrint);
+        printStrongBox(personalToPrint);
+        printDevelopmentCards(personalToPrint);
+        printFaithTrack(personalToPrint);
     }
 
-    private void printLeaders(LeaderCardsPrinter leadToPrint) {
+    private void disableButtons(){
+        activateLeadCard1.setDisable(true);
+        activateLeadCard1.setVisible(false);
+        activateLeadCard2.setDisable(true);
+        activateLeadCard2.setVisible(false);
+        discard1.setDisable(true);
+        discard1.setVisible(false);
+        discard2.setDisable(true);
+        discard2.setVisible(false);
+        activateAbility1.setDisable(true);
+        activateAbility1.setVisible(false);
+        activateAbility2.setDisable(true);
+        activateAbility2.setVisible(false);
+        devCard0.setDisable(true);
+        devCard1.setDisable(true);
+        devCard2.setDisable(true);
+        production.setDisable(true);
+        production.setVisible(false);
+    }
+
+    private void printLeadersOtherPlayer(LeaderCardsPrinter leadToPrint){
+        chosenLeadCard1.setVisible(false);
+        chosenLeadCard2.setVisible(false);
+        if(leadToPrint.getChosenLeaderCards()[0]!=0 && leadToPrint.getActivatedLeaderCards()[0]) {
+            //La prima carta esiste ed è stata attivata
+            chosenLeadCard1.setImage(new Image(leaderCardsIndex.get(leadToPrint.getChosenLeaderCards()[0] - 1)));
+            chosenLeadCard1.setVisible(true);
+        }
+        if(leadToPrint.getChosenLeaderCards()[1]!=0 && leadToPrint.getActivatedLeaderCards()[1]) {
+            //La seconda carta esiste ed è stata attivata
+            chosenLeadCard2.setImage(new Image(leaderCardsIndex.get(leadToPrint.getChosenLeaderCards()[1] - 1)));
+            chosenLeadCard2.setVisible(true);
+        }
+    }
+
+    private void printLeadersMainPlayer(LeaderCardsPrinter leadToPrint) {
+        chosenLeadCard1.setVisible(true);
+        chosenLeadCard2.setVisible(true);
+        activateLeadCard1.setDisable(false);
+        activateLeadCard1.setVisible(true);
+        activateLeadCard2.setDisable(false);
+        activateLeadCard2.setVisible(true);
+        discard1.setDisable(false);
+        discard1.setVisible(true);
+        discard2.setDisable(false);
+        discard2.setVisible(true);
+        activateAbility1.setDisable(false);
+        activateAbility1.setVisible(true);
+        activateAbility2.setDisable(false);
+        activateAbility2.setVisible(true);
         if (leadToPrint.getChosenLeaderCards()[0] != 0) {
             //La carta esiste
             chosenLeadCard1.setImage(new Image(leaderCardsIndex.get(leadToPrint.getChosenLeaderCards()[0] - 1)));
@@ -303,18 +406,55 @@ public class MainSceneController implements Initializable {
         }
     }
 
-    private void printPlayerButtons(ModelPrinter modelPrinter) {
+    private void printPlayerButtons(ModelPrinter modelPrinter, int numberToDisable) {
         for (PersonalBoardPrinter p : modelPrinter.getPersonalBoards()) {
             if (p.getPlayerNumber() == 1) {
                 player1.setText("Player 1: " + p.getOwnerNickname());
+                if (numberToDisable == 1) {
+                    player1.setDisable(true);
+                    player1.setOpacity(0.3);
+                    player1.setCursor(Cursor.DEFAULT);
+                } else {
+                    player1.setDisable(false);
+                    player1.setOpacity(1);
+                    player1.setCursor(Cursor.HAND);
+                }
             } else if (p.getPlayerNumber() == 2) {
                 player2.setText("Player 2: " + p.getOwnerNickname());
+                if (numberToDisable == 2) {
+                    player2.setDisable(true);
+                    player2.setOpacity(0.3);
+                    player2.setCursor(Cursor.DEFAULT);
+                } else {
+                    player2.setDisable(false);
+                    player2.setOpacity(1);
+                    player2.setCursor(Cursor.HAND);
+                }
             } else if (p.getPlayerNumber() == 3) {
                 player3.setText("Player 3: " + p.getOwnerNickname());
+                if (numberToDisable == 3) {
+                    player3.setDisable(true);
+                    player3.setOpacity(0.3);
+                    player3.setCursor(Cursor.DEFAULT);
+                } else {
+                    player3.setDisable(false);
+                    player3.setOpacity(1);
+                    player3.setCursor(Cursor.HAND);
+                }
             } else {
                 player4.setText("Player 4: " + p.getOwnerNickname());
+                if (numberToDisable == 4) {
+                    player4.setDisable(true);
+                    player4.setOpacity(0.3);
+                    player4.setCursor(Cursor.DEFAULT);
+                } else {
+                    player4.setDisable(false);
+                    player4.setOpacity(1);
+                    player4.setCursor(Cursor.HAND);
+                }
             }
         }
+
         if (modelPrinter.getPersonalBoards().size() == 1) {
             player1.setText(modelPrinter.getPersonalBoards().get(0).getOwnerNickname());
             player2.setText("Lorenzo");
@@ -350,27 +490,45 @@ public class MainSceneController implements Initializable {
     }
 
     private void printWarehouse(PersonalBoardPrinter p) {
+        res1.setVisible(false);
+        res2.setVisible(false);
+        res3.setVisible(false);
+        res4.setVisible(false);
+        res5.setVisible(false);
+        res6.setVisible(false);
         if (p.getWareHouseDepot().getLevel(1).getResourceType() != null) {
             res1.setImage(new Image(resourceImagesMap.get(p.getWareHouseDepot().getLevel(1).getResourceType())));
+            res1.setVisible(true);
         }
         if (p.getWareHouseDepot().getLevel(2).getResourceType() != null) {
-            if (p.getWareHouseDepot().getLevel(2).getCurrNumResources() == 1)
+            if (p.getWareHouseDepot().getLevel(2).getCurrNumResources() == 1) {
                 res2.setImage(new Image(resourceImagesMap.get(p.getWareHouseDepot().getLevel(2).getResourceType())));
+                res2.setVisible(true);
+            }
             else {
                 res2.setImage(new Image(resourceImagesMap.get(p.getWareHouseDepot().getLevel(2).getResourceType())));
                 res3.setImage(new Image(resourceImagesMap.get(p.getWareHouseDepot().getLevel(2).getResourceType())));
+                res2.setVisible(true);
+                res3.setVisible(true);
             }
         }
         if (p.getWareHouseDepot().getLevel(3).getResourceType() != null) {
-            if (p.getWareHouseDepot().getLevel(3).getCurrNumResources() == 1)
+            if (p.getWareHouseDepot().getLevel(3).getCurrNumResources() == 1) {
                 res4.setImage(new Image(resourceImagesMap.get(p.getWareHouseDepot().getLevel(3).getResourceType())));
+                res4.setVisible(true);
+            }
             else if (p.getWareHouseDepot().getLevel(3).getCurrNumResources() == 2) {
                 res4.setImage(new Image(resourceImagesMap.get(p.getWareHouseDepot().getLevel(3).getResourceType())));
                 res5.setImage(new Image(resourceImagesMap.get(p.getWareHouseDepot().getLevel(3).getResourceType())));
+                res4.setVisible(true);
+                res5.setVisible(true);
             } else {
                 res4.setImage(new Image(resourceImagesMap.get(p.getWareHouseDepot().getLevel(3).getResourceType())));
                 res5.setImage(new Image(resourceImagesMap.get(p.getWareHouseDepot().getLevel(3).getResourceType())));
                 res6.setImage(new Image(resourceImagesMap.get(p.getWareHouseDepot().getLevel(3).getResourceType())));
+                res4.setVisible(true);
+                res5.setVisible(true);
+                res6.setVisible(true);
             }
         }
     }
@@ -436,5 +594,9 @@ public class MainSceneController implements Initializable {
         else
             delay=2;
         return startY -offsetY*delay;
+    }
+
+    public void setModelPrinter(ModelPrinter modelPrinter) {
+        this.modelPrinter = modelPrinter;
     }
 }

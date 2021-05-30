@@ -14,7 +14,7 @@
             <Image url="@Images/personalBoard.png" />
          </image>
       </ImageView>
-      <Button fx:id="deckGrid" alignment="CENTER" mnemonicParsing="false" onAction="#viewDeckGrid" prefHeight="85.0" prefWidth="420.0" style="-fx-background-color: beige; -fx-position-shape: grey;" text="VIEW DECK GRID">
+      <Button fx:id="deckGrid" alignment="CENTER" mnemonicParsing="false" onAction="#viewDeckGrid" prefHeight="85.0" prefWidth="420.0" style="-fx-background-color: beige; " text="VIEW DECK GRID">
          <font>
             <Font name="System Bold" size="34.0" />
          </font>
@@ -64,14 +64,14 @@
          <image>
          </image>
       </ImageView>
-      <Button fx:id="activate1" layoutY="912.0" mnemonicParsing="false" onAction="#activateLeadCard1" prefHeight="35.0" prefWidth="210.0" style="-fx-background-color: beige;" text="ACTIVATE">
+      <Button fx:id="activateLeadCard1" layoutY="912.0" mnemonicParsing="false" onAction="#activateLeadCard1" prefHeight="35.0" prefWidth="210.0" style="-fx-background-color: beige;" text="ACTIVATE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
          <font>
             <Font name="System Bold" size="15.0" />
          </font></Button>
-      <Button fx:id="activate2" layoutX="210.0" layoutY="912.0" mnemonicParsing="false" onAction="#activateLeadCard2" prefHeight="35.0" prefWidth="210.0" style="-fx-background-color: beige;" text="ACTIVATE">
+      <Button fx:id="activateLeadCard2" layoutX="210.0" layoutY="912.0" mnemonicParsing="false" onAction="#activateLeadCard2" prefHeight="35.0" prefWidth="210.0" style="-fx-background-color: beige;" text="ACTIVATE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
