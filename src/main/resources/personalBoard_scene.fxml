@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.text.*?>
@@ -7,7 +8,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane  maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" styleClass="fx-background-image"  xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.View.GUIControllers.MainSceneController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" styleClass="fx-background-image" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.View.GUIControllers.MainSceneController">
    <children>
       <ImageView fx:id="personalBoard" fitHeight="1080.0" fitWidth="1920.0" layoutX="420.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -222,5 +223,7 @@
       <Line layoutX="-120.0" layoutY="540.0" rotate="270.0" startX="1080.0" />
       <Line endX="100.0" layoutX="321.0" layoutY="807.0" rotate="270.0" startX="-322.0" />
       <Label layoutY="170.0" prefHeight="85.0" prefWidth="420.0" style="-fx-background-color: #b8b8b8;" textFill="#b8b8b8" />
+      <Label fx:id="notificationLabel" layoutX="1.0" layoutY="171.0" prefHeight="21.0" prefWidth="420.0" textFill="RED" />
+      <Button fx:id="changementButton" disable="true" layoutX="138.0" layoutY="224.0" mnemonicParsing="false" onAction="#printChangedBoard" opacity="0.0" text="Show Personal Board" />
    </children>
 </Pane>

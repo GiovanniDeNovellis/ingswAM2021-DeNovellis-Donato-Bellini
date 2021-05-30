@@ -116,13 +116,9 @@ public class FirstTurnController implements Initializable {
         }
     }
 
-    public void selectFirst(ActionEvent actionEvent) {
-        addSelectedLeader(0,firstLeaderButton);
-    }
+    public void selectFirst(ActionEvent actionEvent) { addSelectedLeader(0,firstLeaderButton); }
 
-    public void selectSecond(ActionEvent actionEvent) {
-        addSelectedLeader(1,secondLeaderButton);
-    }
+    public void selectSecond(ActionEvent actionEvent) { addSelectedLeader(1,secondLeaderButton); }
 
     public void selectThird(ActionEvent actionEvent) {
         addSelectedLeader(2,thirdLeaderButton);

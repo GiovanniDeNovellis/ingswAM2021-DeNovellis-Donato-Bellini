@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -38,6 +39,12 @@ public class DeckgridSceneController implements Initializable {
     private Button deckGrid;
     @FXML
     private GridPane devCardsPane;
+    @FXML
+    private Label notificationLabel;
+    @FXML
+    private Button changementButton;
+    private String lastChangedNickname;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -105,6 +112,7 @@ public class DeckgridSceneController implements Initializable {
 
     public void viewMarketBoard(ActionEvent actionEvent) {
         try {
+            GUI.setStatus("Market");
             GUI.setRoot("market_scene");
             GUI.getMarketSceneController().printScene(modelPrinter);
         } catch (IOException e) {
@@ -118,6 +126,7 @@ public class DeckgridSceneController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        GUI.setStatus("Main");
         GUI.getMainSceneController().setModelPrinter(modelPrinter);
         GUI.getMainSceneController().viewPlayer1(actionEvent);
     }
@@ -128,6 +137,7 @@ public class DeckgridSceneController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        GUI.setStatus("Main");
         GUI.getMainSceneController().setModelPrinter(modelPrinter);
         GUI.getMainSceneController().viewPlayer2(actionEvent);
     }
@@ -138,6 +148,7 @@ public class DeckgridSceneController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        GUI.setStatus("Main");
         GUI.getMainSceneController().setModelPrinter(modelPrinter);
         GUI.getMainSceneController().viewPlayer3(actionEvent);
     }
@@ -148,11 +159,17 @@ public class DeckgridSceneController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        GUI.setStatus("Main");
         GUI.getMainSceneController().setModelPrinter(modelPrinter);
         GUI.getMainSceneController().viewPlayer4(actionEvent);
     }
 
     public void printScene(ModelPrinter modelPrinter) {
+        GUI.setStatus("Deck");
+        notificationLabel.setVisible(false);
+        changementButton.setDisable(true);
+        changementButton.setVisible(false);
+        changementButton.setCursor(Cursor.DEFAULT);
         this.modelPrinter = modelPrinter;
         printPlayerButtons();
         printDeckgrid();
@@ -212,5 +229,38 @@ public class DeckgridSceneController implements Initializable {
             ImageView im = (ImageView) n;
             im.setImage(new Image(developmentCardsIndex.get(modelPrinter.getDeckGridPrinter().getDeckgrid().readCard(cardLevelsMap.get(y),cardColoursMap.get(x)).getNumber()-1)));
         }
+    }
+
+    public void notifyChangement(String textToShow, String nickname){
+        notificationLabel.setText("Player " + nickname + " " + textToShow);
+        notificationLabel.setVisible(true);
+        changementButton.setDisable(false);
+        changementButton.setVisible(true);
+        changementButton.setOpacity(1);
+        changementButton.setCursor(Cursor.HAND);
+        lastChangedNickname=nickname;
+    }
+
+    public void printChangedBoard(ActionEvent actionEvent) {
+        int numToShow=-1;
+        for(PersonalBoardPrinter p: modelPrinter.getPersonalBoards()){
+            if(p.getOwnerNickname().equals(lastChangedNickname)){
+                numToShow=p.getPlayerNumber();
+            }
+        }
+        if(numToShow==1||numToShow==0)
+            viewPlayer1(actionEvent);
+        else if(numToShow==2)
+            viewPlayer2(actionEvent);
+        else if(numToShow==3)
+            viewPlayer3(actionEvent);
+        else if(numToShow==4)
+            viewPlayer4(actionEvent);
+        else
+            System.err.println("Unknown number");
+    }
+
+    public Label getNotificationLabel() {
+        return notificationLabel;
     }
 }

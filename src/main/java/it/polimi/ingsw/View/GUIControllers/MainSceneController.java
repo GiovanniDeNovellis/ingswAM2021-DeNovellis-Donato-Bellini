@@ -96,6 +96,11 @@ public class MainSceneController implements Initializable {
     private Button devCard2;
     @FXML
     private Button production;
+    @FXML
+    private Label notificationLabel;
+    @FXML
+    private Button changementButton;
+    private String lastChangedNickname;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -253,6 +258,11 @@ public class MainSceneController implements Initializable {
     }
 
     public void printClientPlayer(ModelPrinter modelPrinter) {
+        GUI.setStatus("Main");
+        notificationLabel.setVisible(false);
+        changementButton.setDisable(true);
+        changementButton.setVisible(false);
+        changementButton.setCursor(Cursor.DEFAULT);
         production.setVisible(true);
         production.setDisable(false);
         this.modelPrinter=modelPrinter;
@@ -279,6 +289,11 @@ public class MainSceneController implements Initializable {
     }
 
     public void printOtherPlayer(String playerNickname) {
+        GUI.setStatus("Main");
+        notificationLabel.setVisible(false);
+        changementButton.setDisable(true);
+        changementButton.setVisible(false);
+        changementButton.setCursor(Cursor.DEFAULT);
         LeaderCardsPrinter leadToPrint = null;
         PersonalBoardPrinter personalToPrint = null;
         for (LeaderCardsPrinter l : modelPrinter.getLeaderCardsPrinters()) {
@@ -604,5 +619,38 @@ public class MainSceneController implements Initializable {
 
     public void setModelPrinter(ModelPrinter modelPrinter) {
         this.modelPrinter = modelPrinter;
+    }
+
+    public void notifyChangement(String textToShow, String nickname){
+        notificationLabel.setText("Player " + nickname + " " + textToShow);
+        notificationLabel.setVisible(true);
+        changementButton.setDisable(false);
+        changementButton.setVisible(true);
+        changementButton.setOpacity(1);
+        changementButton.setCursor(Cursor.HAND);
+        lastChangedNickname=nickname;
+    }
+
+    public void printChangedBoard(ActionEvent actionEvent) {
+        int numToShow=-1;
+        for(PersonalBoardPrinter p: modelPrinter.getPersonalBoards()){
+            if(p.getOwnerNickname().equals(lastChangedNickname)){
+                numToShow=p.getPlayerNumber();
+            }
+        }
+        if(numToShow==1||numToShow==0)
+            viewPlayer1(actionEvent);
+        else if(numToShow==2)
+            viewPlayer2(actionEvent);
+        else if(numToShow==3)
+            viewPlayer3(actionEvent);
+        else if(numToShow==4)
+            viewPlayer4(actionEvent);
+        else
+            System.err.println("Unknown number");
+    }
+
+    public Label getNotificationLabel() {
+        return notificationLabel;
     }
 }

@@ -58,18 +58,6 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button fx:id="first_level_button" disable="true" layoutX="1604.0" layoutY="147.0" mnemonicParsing="false" onAction="#switchFirstLevel" opacity="0.0" prefHeight="84.0" prefWidth="158.0" style="-fx-background-color: GOLD;">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></Button>
-      <Button fx:id="second_level_button" disable="true" layoutX="1565.0" layoutY="279.0" mnemonicParsing="false" onAction="#switchSecondLevel" opacity="0.0" prefHeight="84.0" prefWidth="215.0" style="-fx-background-color: GOLD;">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></Button>
-      <Button fx:id="third_level_button" layoutX="1526.0" layoutY="422.0" mnemonicParsing="false" onAction="#switchThirdLevel" opacity="0.0" prefHeight="94.0" prefWidth="293.0" style="-fx-background-color: GOLD;">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></Button>
       <Button fx:id="switch_levels_button" layoutX="1378.0" layoutY="562.0" mnemonicParsing="false" onAction="#switchLevels" prefHeight="80.0" prefWidth="541.0" text="SWITCH TWO LEVELS">
          <font>
             <Font size="34.0" />
@@ -191,6 +179,20 @@
             <Cursor fx:constant="HAND" />
          </cursor></Button>
       <Button fx:id="buttonRes4" disable="true" layoutX="1790.0" layoutY="789.0" mnemonicParsing="false" onAction="#insertRes4" prefHeight="42.0" prefWidth="116.0" text="Insert resource">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Label fx:id="notificationLabel" layoutY="179.0" prefHeight="21.0" prefWidth="420.0" textFill="RED" />
+      <Button fx:id="changementButton" disable="true" layoutX="136.0" layoutY="235.0" mnemonicParsing="false" onAction="#printChangedBoard" opacity="0.0" text="Show Personal Board" />
+      <Button fx:id="first_level_button" disable="true" layoutX="1604.0" layoutY="147.0" mnemonicParsing="false" onAction="#switchFirstLevel" opacity="0.0" prefHeight="84.0" prefWidth="158.0" style="-fx-background-color: GOLD;">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="second_level_button" disable="true" layoutX="1565.0" layoutY="279.0" mnemonicParsing="false" onAction="#switchSecondLevel" opacity="0.0" prefHeight="84.0" prefWidth="215.0" style="-fx-background-color: GOLD;">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="third_level_button" layoutX="1526.0" layoutY="422.0" mnemonicParsing="false" onAction="#switchThirdLevel" opacity="0.0" prefHeight="94.0" prefWidth="293.0" style="-fx-background-color: GOLD;">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>

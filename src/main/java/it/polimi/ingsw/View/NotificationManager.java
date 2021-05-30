@@ -146,6 +146,10 @@ public class NotificationManager {
             case"NotYourTurnNotification":
                 if(isCli)
                     System.out.println("You can't do the action because it's not your turn.");
+                else{
+                    GUINotifier notifier = new NotYourTurnGUINotifier(modelPrinter);
+                    notifier.notifyGui(null);
+                }
                 break;
             case"ActivateLeaderCardSuccessNotification":
                 if(isCli)
@@ -214,8 +218,14 @@ public class NotificationManager {
                     System.out.println("Distribution successfully done, resource(s) received.");
                 break;
             case"NotifyWareHouseChangedMessage":
-                reader = new NotifyWarehouseChangedMessageReader(modelPrinter);
-                reader.notifyCLI(notification);
+                if(isCli) {
+                    reader = new NotifyWarehouseChangedMessageReader(modelPrinter);
+                    reader.notifyCLI(notification);
+                }
+                else{
+                    GUINotifier notifier = new WarehouseChangedGUINotifier(modelPrinter);
+                    notifier.notifyGui(notification);
+                }
                 break;
             case"NotRightToDistributionNotification":
                 if(isCli)
@@ -303,10 +313,18 @@ public class NotificationManager {
             case"SwitchLevelsSuccessNotification":
                 if(isCli)
                     System.out.println("You have correctly switched these two levels!");
+                else{
+                    GUINotifier notifier = new SwitchSuccessGUINotifier(modelPrinter);
+                    notifier.notifyGui(null);
+                }
                 break;
             case"SwitchLevelsFailureNotification":
                 if(isCli)
                     System.out.println("You can't switch these two levels.");
+                else{
+                    GUINotifier notifier = new SwitchLevelsFailGUINotifier();
+                    notifier.notifyGui(null);
+                }
                 break;
             case"InsertedResourcesFailureNotification":
                 if(isCli)
