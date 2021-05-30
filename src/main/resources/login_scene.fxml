@@ -1,32 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.effect.*?>
-<?import javafx.scene.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.paint.*?>
+<?import javafx.scene.image.*?>
 <?import java.lang.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <Pane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: beige;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.View.GUIControllers.LoginController">
    <children>
-      <Label layoutX="516.0" layoutY="14.0" prefHeight="158.0" prefWidth="889.0" text="Masters of Renaissance" textFill="#ae0f0f">
+      <ImageView fitHeight="1108.0" fitWidth="1948.0" layoutX="-14.0" layoutY="-14.0">
+         <image>
+            <Image url="@Images/login_background.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="CROSSHAIR" />
+         </cursor>
+      </ImageView>
+      <Label layoutX="516.0" layoutY="14.0" prefHeight="158.0" prefWidth="993.0" text="Masters of Renaissance" textFill="#ae0f0f">
          <font>
-            <Font name="System Bold Italic" size="80.0" />
+            <Font name="Candara" size="90.0" />
          </font>
+         <effect>
+            <Glow level="1.0">
+               <input>
+                  <InnerShadow>
+                     <input>
+                        <Lighting>
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </input>
+                  </InnerShadow>
+               </input>
+            </Glow>
+         </effect>
       </Label>
-      <Label contentDisplay="CENTER" layoutX="575.0" layoutY="143.0" prefHeight="103.0" prefWidth="216.0" text="Nickname:">
+      <Label contentDisplay="CENTER" layoutX="177.0" layoutY="159.0" prefHeight="103.0" prefWidth="216.0" text="Nickname:" textFill="#ae0f0f">
          <font>
             <Font size="45.0" />
          </font></Label>
-      <TextField fx:id="nicknameField" alignment="CENTER" layoutX="575.0" layoutY="246.0" prefHeight="111.0" prefWidth="771.0" style="-fx-background-color: #ffd312;">
+      <TextField fx:id="nicknameField" alignment="CENTER" layoutX="181.0" layoutY="256.0" prefHeight="111.0" prefWidth="771.0" style="-fx-background-color: #9A4600;">
          <font>
             <Font size="40.0" />
          </font></TextField>
-      <Button fx:id="loginButton" layoutX="787.0" layoutY="434.0" mnemonicParsing="false" onAction="#login" prefHeight="92.0" prefWidth="347.0" text="login">
+      <Button fx:id="loginButton" layoutX="685.0" layoutY="385.0" mnemonicParsing="false" onAction="#login" prefHeight="4.0" prefWidth="267.0" text="login">
          <font>
-            <Font size="45.0" />
+            <Font name="Candara Italic" size="45.0" />
          </font></Button>
       <Label fx:id="loginFailed" layoutX="662.0" layoutY="691.0" text="Nickname already used. Please chose another nickname." textFill="RED" visible="false">
          <font>
