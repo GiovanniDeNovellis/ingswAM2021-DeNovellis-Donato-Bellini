@@ -450,5 +450,7 @@ public class DeckGridPrinter implements Printable{
             return card.getLevel() + "               ";
     }
 
-
+    public Deckgrid getDeckgrid() {
+        return deckgrid;
+    }
 }
