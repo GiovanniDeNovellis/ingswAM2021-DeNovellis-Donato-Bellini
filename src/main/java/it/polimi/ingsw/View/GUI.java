@@ -21,6 +21,7 @@ public class GUI extends Application {
     private static FirstTurnController firstTurnController;
     private static MainSceneController mainSceneController;
     private static MarketSceneController marketSceneController;
+    private static DeckgridSceneController deckgridSceneController;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -105,4 +106,8 @@ public class GUI extends Application {
     public static MarketSceneController getMarketSceneController() { return marketSceneController; }
 
     public static void setMarketSceneController(MarketSceneController marketSceneController) { GUI.marketSceneController = marketSceneController; }
+
+    public static DeckgridSceneController getDeckgridSceneController() { return deckgridSceneController; }
+
+    public static void setDeckgridSceneController(DeckgridSceneController deckgridSceneController) { GUI.deckgridSceneController = deckgridSceneController; }
 }

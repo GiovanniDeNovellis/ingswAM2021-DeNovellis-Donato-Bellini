@@ -172,6 +172,12 @@ public class MainSceneController implements Initializable {
     }
 
     public void viewDeckGrid(ActionEvent actionEvent) {
+        try {
+            GUI.setRoot("deckgrid_scene");
+            GUI.getDeckgridSceneController().printScene(modelPrinter);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void viewMarketBoard(ActionEvent actionEvent) {
