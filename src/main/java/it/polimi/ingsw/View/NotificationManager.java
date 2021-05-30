@@ -47,9 +47,9 @@ public class NotificationManager {
                 else {
                     GUINotifier notifier = new LoginErrorGUINotifier();
                     if(modelPrinter.isMultiplayerGameStarted())
-                        notifier.notifyGui(null);
-                    else
                         notifier.notifyGui("game started");
+                    else
+                        notifier.notifyGui(null);
                 }
                 break;
             case"ConnectionAcceptedPleaseLoginNotification":
