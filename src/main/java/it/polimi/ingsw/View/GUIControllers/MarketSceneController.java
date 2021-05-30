@@ -224,4 +224,49 @@ public class MarketSceneController implements Initializable {
             }
         }
     }
+
+    public void firstRightIndex(ActionEvent actionEvent) {
+    }
+
+    public void switchFirstLevel(ActionEvent actionEvent) {
+    }
+
+    public void switchSecondLevel(ActionEvent actionEvent) {
+    }
+
+    public void switchThirdLevel(ActionEvent actionEvent) {
+    }
+
+    public void switchLevels(ActionEvent actionEvent) {
+    }
+
+    public void firstBottomIndex(ActionEvent actionEvent) {
+    }
+
+    public void secondBottomIndex(ActionEvent actionEvent) {
+    }
+
+    public void thirdBottomIndex(ActionEvent actionEvent) {
+    }
+
+    public void fourthBottomIndex(ActionEvent actionEvent) {
+    }
+
+    public void secondRightIndex(ActionEvent actionEvent) {
+    }
+
+    public void thirdRightIndex(ActionEvent actionEvent) {
+    }
+
+    public void insertRes1(ActionEvent actionEvent) {
+    }
+
+    public void insertRes2(ActionEvent actionEvent) {
+    }
+
+    public void insertRes3(ActionEvent actionEvent) {
+    }
+
+    public void insertRes4(ActionEvent actionEvent) {
+    }
 }

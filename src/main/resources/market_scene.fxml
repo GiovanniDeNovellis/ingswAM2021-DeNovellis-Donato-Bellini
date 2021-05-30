@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
+<?import java.lang.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
@@ -30,15 +32,16 @@
           <RowConstraints maxHeight="194.0" minHeight="10.0" prefHeight="95.0" vgrow="SOMETIMES" />
           <RowConstraints maxHeight="106.0" minHeight="10.0" prefHeight="87.0" vgrow="SOMETIMES" />
           <RowConstraints maxHeight="86.0" minHeight="10.0" prefHeight="86.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="86.0" minHeight="10.0" prefHeight="86.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <ImageView fx:id="marble00" fitHeight="94.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-            <ImageView fx:id="marble01" fitHeight="94.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="0" GridPane.columnIndex="1" />
-            <ImageView fx:id="marble02" fitHeight="94.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="0" GridPane.columnIndex="2" />
-            <ImageView fx:id="marble10" fitHeight="94.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+            <ImageView fx:id="marble01" fitHeight="94.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            <ImageView fx:id="marble02" fitHeight="94.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+            <ImageView fx:id="marble10" fitHeight="94.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.rowIndex="1" />
             <ImageView fx:id="marble11" fitHeight="94.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <ImageView fx:id="marble12" fitHeight="94.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <ImageView fx:id="marble03" fitHeight="94.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="0"/>
+            <ImageView fx:id="marble03" fitHeight="94.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="0" />
             <ImageView fx:id="marble13" fitHeight="94.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="1" />
             <ImageView fx:id="marble20" fitHeight="94.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.rowIndex="2" />
             <ImageView fx:id="marble21" fitHeight="94.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
@@ -47,22 +50,38 @@
          </children>
       </GridPane>
       <ImageView fx:id="marbleOut" fitHeight="84.0" fitWidth="84.0" layoutX="1156.0" layoutY="518.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="warehouse" fitHeight="470.0" fitWidth="380.0" layoutX="1542.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="warehouse" fitHeight="566.0" fitWidth="541.0" layoutX="1378.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Images/warehouse_pic.PNG" />
          </image>
       </ImageView>
-      <Button layoutX="1302.0" layoutY="262.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="80.0" text="Button" />
-      <Button fx:id="first_level_button" layoutX="1668.0" layoutY="90.0" mnemonicParsing="false" opacity="0.0" prefHeight="84.0" prefWidth="158.0" text="Button" />
-      <Button fx:id="second_level_button" layoutX="1640.0" layoutY="202.0" mnemonicParsing="false" opacity="0.0" prefHeight="84.0" prefWidth="215.0" text="Button" />
-      <Button fx:id="third_level_button" layoutX="1585.0" layoutY="301.0" mnemonicParsing="false" opacity="0.0" prefHeight="94.0" prefWidth="293.0" text="Button" />
-      <Button fx:id="switch_levels_button" layoutX="1621.0" layoutY="420.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="226.0" text="Button" />
-      <Button layoutX="1302.0" layoutY="359.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="80.0" text="Button" />
-      <Button layoutX="1302.0" layoutY="455.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="80.0" text="Button" />
-      <Button layoutX="1084.0" layoutY="672.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="80.0" text="Button" />
-      <Button layoutX="991.0" layoutY="672.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="80.0" text="Button" />
-      <Button layoutX="888.0" layoutY="672.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="80.0" text="Button" />
-      <Button layoutX="792.0" layoutY="672.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="80.0" text="Button" />
+      <Button fx:id="firstRight" layoutX="1276.0" layoutY="260.0" mnemonicParsing="false" onAction="#firstRightIndex" opacity="0.0" prefHeight="61.0" prefWidth="101.0" text="Button">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="first_level_button" disable="true" layoutX="1604.0" layoutY="147.0" mnemonicParsing="false" onAction="#switchFirstLevel" opacity="0.0" prefHeight="84.0" prefWidth="158.0" style="-fx-background-color: GOLD;">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="second_level_button" disable="true" layoutX="1565.0" layoutY="279.0" mnemonicParsing="false" onAction="#switchSecondLevel" opacity="0.0" prefHeight="84.0" prefWidth="215.0" style="-fx-background-color: GOLD;">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="third_level_button" layoutX="1526.0" layoutY="422.0" mnemonicParsing="false" onAction="#switchThirdLevel" opacity="0.0" prefHeight="94.0" prefWidth="293.0" style="-fx-background-color: GOLD;">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="switch_levels_button" layoutX="1378.0" layoutY="562.0" mnemonicParsing="false" onAction="#switchLevels" prefHeight="80.0" prefWidth="541.0" text="SWITCH TWO LEVELS">
+         <font>
+            <Font size="34.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="firstBottom" layoutX="801.0" layoutY="635.0" mnemonicParsing="false" onAction="#firstBottomIndex" opacity="0.0" prefHeight="146.0" prefWidth="65.0" text="Button">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
       <Label layoutY="180.0" prefHeight="85.0" prefWidth="420.0" style="-fx-background-color: #b8b8b8;" textFill="#b8b8b8" />
       <Button fx:id="player4" alignment="CENTER" layoutY="520.0" mnemonicParsing="false" onAction="#viewPlayer4" prefHeight="85.0" prefWidth="420.0" style="-fx-background-color: beige;" text="PLAYER4">
          <cursor>
@@ -120,11 +139,49 @@
       <Line endX="420.0" layoutY="95.0" startX="-0.0" />
       <Line endX="420.0" layoutY="180.0" startX="-0.0" />
       <Line layoutX="-110.0" layoutY="532.0" rotate="270.0" startX="1060.0" />
-      <ImageView fx:id="res1" fitHeight="43.0" fitWidth="47.0" layoutX="1732.0" layoutY="118.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="res2" fitHeight="43.0" fitWidth="40.0" layoutX="1688.0" layoutY="216.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="res3" fitHeight="47.0" fitWidth="47.0" layoutX="1745.0" layoutY="214.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="res4" fitHeight="43.0" fitWidth="47.0" layoutX="1659.0" layoutY="323.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="res5" fitHeight="42.0" fitWidth="42.0" layoutX="1725.0" layoutY="310.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="res6" fitHeight="47.0" fitWidth="47.0" layoutX="1780.0" layoutY="316.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="res1" fitHeight="65.0" fitWidth="65.0" layoutX="1645.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="res2" fitHeight="65.0" fitWidth="65.0" layoutX="1594.0" layoutY="299.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="res3" fitHeight="65.0" fitWidth="65.0" layoutX="1678.0" layoutY="299.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="res4" fitHeight="65.0" fitWidth="65.0" layoutX="1558.0" layoutY="436.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="res5" fitHeight="65.0" fitWidth="65.0" layoutX="1640.0" layoutY="436.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="res6" fitHeight="65.0" fitWidth="65.0" layoutX="1715.0" layoutY="436.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="secondBottom" layoutX="895.0" layoutY="635.0" mnemonicParsing="false" onAction="#secondBottomIndex" opacity="0.0" prefHeight="146.0" prefWidth="65.0" text="Button">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="thirdBottom" layoutX="993.0" layoutY="635.0" mnemonicParsing="false" onAction="#thirdBottomIndex" opacity="0.0" prefHeight="146.0" prefWidth="65.0" text="Button">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="fourthBottom" layoutX="1091.0" layoutY="635.0" mnemonicParsing="false" onAction="#fourthBottomIndex" opacity="0.0" prefHeight="146.0" prefWidth="65.0" text="Button">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="secondRight" layoutX="1276.0" layoutY="352.0" mnemonicParsing="false" onAction="#secondRightIndex" opacity="0.0" prefHeight="61.0" prefWidth="101.0" text="Button">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="thirdRight" layoutX="1276.0" layoutY="452.0" mnemonicParsing="false" onAction="#thirdRightIndex" opacity="0.0" prefHeight="61.0" prefWidth="101.0" text="Button">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <ImageView fitHeight="150.0" fitWidth="541.0" layoutX="1377.0" layoutY="660.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Images/TEMPORARY_RESOURCES.PNG" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="tempRes1" fitHeight="94.0" fitWidth="101.0" layoutX="1412.0" layoutY="677.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="tempRes2" fitHeight="94.0" fitWidth="101.0" layoutX="1539.0" layoutY="677.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="tempRes3" fitHeight="94.0" fitWidth="101.0" layoutX="1660.0" layoutY="677.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="tempRes4" fitHeight="94.0" fitWidth="101.0" layoutX="1786.0" layoutY="677.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="buttonRes1" disable="true" layoutX="1392.0" layoutY="788.0" mnemonicParsing="false" onAction="#insertRes1" prefHeight="42.0" prefWidth="116.0" text="Insert resource" />
+      <Button fx:id="buttonRes2" layoutX="1528.0" layoutY="787.0" mnemonicParsing="false" onAction="#insertRes2" prefHeight="42.0" prefWidth="116.0" text="Insert resource" />
+      <Button fx:id="buttonRes3" disable="true" layoutX="1657.0" layoutY="788.0" mnemonicParsing="false" onAction="#insertRes3" prefHeight="42.0" prefWidth="116.0" text="Insert resource" />
+      <Button fx:id="buttonRes4" layoutX="1790.0" layoutY="789.0" mnemonicParsing="false" onAction="#insertRes4" prefHeight="42.0" prefWidth="116.0" text="Insert resource" />
    </children>
 </Pane>
