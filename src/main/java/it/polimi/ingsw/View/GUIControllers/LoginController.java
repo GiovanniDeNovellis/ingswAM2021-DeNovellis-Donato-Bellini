@@ -26,8 +26,6 @@ public class LoginController implements Initializable {
     @FXML
     private Label gameStartedError;
 
-    private Button button;
-
     public void login(ActionEvent actionEvent) {
         Gson gson = new Gson();
         AddPlayerMessage addPlayerMessage = new AddPlayerMessage();
@@ -39,15 +37,16 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        loginFailed.setVisible(false);
-        loginFailedReconnection.setVisible(false);
         GUI.setLoginController(this);
     }
 
     public void setLoginError(){
+        gameStartedError.setVisible(false);
+        loginFailedReconnection.setVisible(false);
         loginFailed.setVisible(true);
     }
     public void setGameStartedError(){
+        loginFailed.setVisible(false);
         gameStartedError.setVisible(true);
         loginFailedReconnection.setVisible(true);
     }
