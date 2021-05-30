@@ -98,4 +98,12 @@ public class MarketBoardPrinter implements Printable {
             System.out.println(resourceTypeColoursMap.get(r).escape() + "\u2550\u2550\u2550 " + r + ":" + temporaryResources.get(r) + Colours.RESET);
         }
     }
+
+    public String[][] getMarbleGrid() {
+        return marbleGrid;
+    }
+
+    public String getMarbleOut() {
+        return marbleOut;
+    }
 }
