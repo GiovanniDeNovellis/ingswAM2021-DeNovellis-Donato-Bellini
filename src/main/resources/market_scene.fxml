@@ -21,7 +21,7 @@
             <Image url="@Images/grigliaBiglie.PNG" />
          </image>
       </ImageView>
-      <GridPane fx:id="marbles_grid_pane" layoutX="792.0" layoutY="245.0" prefHeight="268.0" prefWidth="372.0">
+      <GridPane fx:id="marbles_grid_pane" layoutX="792.0" layoutY="245.0" prefHeight="267.0" prefWidth="361.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -32,7 +32,6 @@
           <RowConstraints maxHeight="194.0" minHeight="10.0" prefHeight="95.0" vgrow="SOMETIMES" />
           <RowConstraints maxHeight="106.0" minHeight="10.0" prefHeight="87.0" vgrow="SOMETIMES" />
           <RowConstraints maxHeight="86.0" minHeight="10.0" prefHeight="86.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="86.0" minHeight="10.0" prefHeight="86.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <ImageView fx:id="marble00" fitHeight="94.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.rowIndex="0" />
@@ -179,9 +178,21 @@
       <ImageView fx:id="tempRes2" fitHeight="94.0" fitWidth="101.0" layoutX="1539.0" layoutY="677.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="tempRes3" fitHeight="94.0" fitWidth="101.0" layoutX="1660.0" layoutY="677.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="tempRes4" fitHeight="94.0" fitWidth="101.0" layoutX="1786.0" layoutY="677.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="buttonRes1" disable="true" layoutX="1392.0" layoutY="788.0" mnemonicParsing="false" onAction="#insertRes1" prefHeight="42.0" prefWidth="116.0" text="Insert resource" />
-      <Button fx:id="buttonRes2" layoutX="1528.0" layoutY="787.0" mnemonicParsing="false" onAction="#insertRes2" prefHeight="42.0" prefWidth="116.0" text="Insert resource" />
-      <Button fx:id="buttonRes3" disable="true" layoutX="1657.0" layoutY="788.0" mnemonicParsing="false" onAction="#insertRes3" prefHeight="42.0" prefWidth="116.0" text="Insert resource" />
-      <Button fx:id="buttonRes4" layoutX="1790.0" layoutY="789.0" mnemonicParsing="false" onAction="#insertRes4" prefHeight="42.0" prefWidth="116.0" text="Insert resource" />
+      <Button fx:id="buttonRes1" disable="true" layoutX="1392.0" layoutY="788.0" mnemonicParsing="false" onAction="#insertRes1" prefHeight="42.0" prefWidth="116.0" text="Insert resource">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="buttonRes2" disable="true" layoutX="1528.0" layoutY="787.0" mnemonicParsing="false" onAction="#insertRes2" prefHeight="42.0" prefWidth="116.0" text="Insert resource">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="buttonRes3" disable="true" layoutX="1657.0" layoutY="788.0" mnemonicParsing="false" onAction="#insertRes3" prefHeight="42.0" prefWidth="116.0" text="Insert resource">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="buttonRes4" disable="true" layoutX="1790.0" layoutY="789.0" mnemonicParsing="false" onAction="#insertRes4" prefHeight="42.0" prefWidth="116.0" text="Insert resource">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
    </children>
 </Pane>
