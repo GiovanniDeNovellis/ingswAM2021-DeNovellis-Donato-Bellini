@@ -9,18 +9,38 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: beige;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.View.GUIControllers.LoginController">
+<Pane  prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: beige;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.View.GUIControllers.LoginController">
    <children>
-      <Label layoutX="238.0" layoutY="38.0" prefHeight="56.0" prefWidth="483.0" text="Masters of Renaissance" textFill="#ae0f0f">
+      <Label layoutX="214.0" layoutY="14.0" prefHeight="158.0" prefWidth="889.0" text="Masters of Renaissance" textFill="#ae0f0f">
          <font>
-            <Font name="System Italic" size="46.0" />
+            <Font name="System Bold Italic" size="80.0" />
          </font>
       </Label>
-      <Label contentDisplay="CENTER" layoutX="357.0" layoutY="131.0" text="Nickname:" />
-      <TextField fx:id="nicknameField" alignment="CENTER" layoutX="357.0" layoutY="159.0" style="-fx-background-color: #ffd312;" />
-      <Button fx:id="loginButton" layoutX="423.0" layoutY="211.0" mnemonicParsing="false" onAction="#login" text="login" />
-      <Label fx:id="loginFailed" layoutX="206.0" layoutY="367.0" text="Nickname already used. Please chose another nickname." textFill="RED" visible="false" />
-      <Label fx:id="loginFailedReconnection" layoutX="26.0" layoutY="413.0" prefHeight="21.0" prefWidth="771.0" text="If you are reconnecting, you have chosen an invalid nickname. Please choose the nickname you were logged with." textFill="RED" visible="false" />
+      <Label contentDisplay="CENTER" layoutX="532.0" layoutY="177.0" prefHeight="103.0" prefWidth="216.0" text="Nickname:">
+         <font>
+            <Font size="45.0" />
+         </font></Label>
+      <TextField fx:id="nicknameField" alignment="CENTER" layoutX="273.0" layoutY="267.0" prefHeight="111.0" prefWidth="771.0" style="-fx-background-color: #ffd312;">
+         <font>
+            <Font size="40.0" />
+         </font></TextField>
+      <Button fx:id="loginButton" layoutX="485.0" layoutY="401.0" mnemonicParsing="false" onAction="#login" prefHeight="92.0" prefWidth="347.0" text="login">
+         <font>
+            <Font size="45.0" />
+         </font></Button>
+      <Label fx:id="loginFailed" layoutX="342.0" layoutY="512.0" text="Nickname already used. Please chose another nickname." textFill="RED" visible="false">
+         <font>
+            <Font size="24.0" />
+         </font></Label>
+      <Label fx:id="loginFailedReconnection" layoutX="32.0" layoutY="613.0" prefHeight="58.0" prefWidth="1755.0" text="If you are reconnecting, you have chosen an invalid nickname. Please choose the nickname you were logged with." textFill="RED" visible="false">
+         <font>
+            <Font size="24.0" />
+         </font></Label>
+      <Label fx:id="gameStartedError" layoutX="532.0" layoutY="562.0" prefHeight="51.0" prefWidth="345.0" text="Game already started." textFill="RED" visible="false">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
    </children>
    <opaqueInsets>
       <Insets />

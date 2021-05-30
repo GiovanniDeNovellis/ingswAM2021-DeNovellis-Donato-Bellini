@@ -6,7 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane style="-fx-background-color: beige;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.View.GUIControllers.FirstTurnController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: beige;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.View.GUIControllers.FirstTurnController">
    <children>
       <Label fx:id="waitLabel" layoutX="792.0" layoutY="-28.0" prefHeight="141.0" prefWidth="437.0" text="Wait your selection turn" textFill="#d11313">
          <font>
