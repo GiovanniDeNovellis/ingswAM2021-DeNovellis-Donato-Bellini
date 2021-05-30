@@ -28,7 +28,7 @@ public class ServerReader implements Runnable {
                     System.err.println("Hai mandato al server un messaggio non riconosciuto");
                 }
                 else if (!serverOutput.equals("Ping")) {
-                    System.out.println(serverOutput);
+                    //System.out.println(serverOutput);
                     Message mex=gson.fromJson(serverOutput,Message.class);
                     if(mex.getMessageType()==null){
                         System.err.println("Ricevuto messaggio senza tipo!");

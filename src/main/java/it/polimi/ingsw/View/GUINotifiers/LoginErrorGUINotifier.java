@@ -7,8 +7,14 @@ public class LoginErrorGUINotifier extends GUINotifier{
 
     @Override
     public void notifyGui(String notification) {
-        Platform.runLater(()->{
-            GUI.getLoginController().setLoginError();
-        });
+        if( notification==null ) {
+            Platform.runLater(() -> {
+                GUI.getLoginController().setLoginError();
+            });
+        } else if( notification.equals("game started")){
+            Platform.runLater(() -> {
+                GUI.getLoginController().setGameStartedError();
+            });
+        }
     }
 }

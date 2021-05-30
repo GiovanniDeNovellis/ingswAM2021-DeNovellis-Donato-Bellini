@@ -46,7 +46,10 @@ public class NotificationManager {
                         "the nickname you were logged with.");
                 else {
                     GUINotifier notifier = new LoginErrorGUINotifier();
-                    notifier.notifyGui(null);
+                    if(modelPrinter.isMultiplayerGameStarted())
+                        notifier.notifyGui(null);
+                    else
+                        notifier.notifyGui("game started");
                 }
                 break;
             case"ConnectionAcceptedPleaseLoginNotification":

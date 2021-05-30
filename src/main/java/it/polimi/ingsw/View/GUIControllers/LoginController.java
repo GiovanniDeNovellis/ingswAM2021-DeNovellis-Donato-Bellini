@@ -23,6 +23,8 @@ public class LoginController implements Initializable {
     private Label loginFailed;
     @FXML
     private Label loginFailedReconnection;
+    @FXML
+    private Label gameStartedError;
 
     private Button button;
 
@@ -44,6 +46,9 @@ public class LoginController implements Initializable {
 
     public void setLoginError(){
         loginFailed.setVisible(true);
+    }
+    public void setGameStartedError(){
+        gameStartedError.setVisible(true);
         loginFailedReconnection.setVisible(true);
     }
 }

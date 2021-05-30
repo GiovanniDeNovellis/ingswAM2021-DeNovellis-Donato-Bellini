@@ -42,7 +42,7 @@ public class EndTurnGuiNotifier extends GUINotifier{
         else{
             Platform.runLater(()->{
                 try {
-                    GUI.getPrimaryStage().setFullScreen(true);
+                    //GUI.getPrimaryStage().setFullScreen(true);
                     GUI.setRoot("personalBoard_scene");
                     GUI.getMainSceneController().printClientPlayer(modelPrinter);
                     //GUI.getFirstTurnController().printScene(modelPrinter, mex.getNickname());
