@@ -23,12 +23,15 @@ public class WarehouseChangedGUINotifier extends GUINotifier {
             Platform.runLater(() -> {
                 switch (GUI.getStatus()) {
                     case "Market":
+                        GUI.getMarketSceneController().printScene(modelPrinter);
                         GUI.getMarketSceneController().notifyChangement("has changed his warehouse.", data.getNickname());
                         break;
                     case "Deck":
+                        GUI.getDeckgridSceneController().printScene(modelPrinter);
                         GUI.getDeckgridSceneController().notifyChangement("has changed his warehouse.", data.getNickname());
                         break;
                     case "Main":
+                        GUI.getMainSceneController().printClientPlayer(modelPrinter);
                         GUI.getMainSceneController().notifyChangement("has changed his warehouse.", data.getNickname());
                         break;
                 }

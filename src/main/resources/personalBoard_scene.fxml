@@ -225,5 +225,15 @@
       <Label layoutY="170.0" prefHeight="85.0" prefWidth="420.0" style="-fx-background-color: #b8b8b8;" textFill="#b8b8b8" />
       <Label fx:id="notificationLabel" layoutX="1.0" layoutY="171.0" prefHeight="21.0" prefWidth="420.0" textFill="RED" />
       <Button fx:id="changementButton" disable="true" layoutX="138.0" layoutY="224.0" mnemonicParsing="false" onAction="#printChangedBoard" opacity="0.0" text="Show Personal Board" />
+      <Button fx:id="endTurnButton" layoutX="1111.0" mnemonicParsing="false" onAction="#endTurn" prefHeight="50.0" prefWidth="192.0" style="-fx-background-color: beige;" text="End Turn" />
+      <Label fx:id="currentPlayerLabel" alignment="BOTTOM_LEFT" layoutX="421.0" layoutY="-2.0" prefHeight="85.0" prefWidth="192.0" style="-fx-background-color: beige;" textFill="RED">
+         <font>
+            <Font size="24.0" />
+         </font></Label>
+      <Label layoutX="420.0" layoutY="4.0" prefHeight="21.0" prefWidth="192.0" text="Current player:" textFill="RED">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

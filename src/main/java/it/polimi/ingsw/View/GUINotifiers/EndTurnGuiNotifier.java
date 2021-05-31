@@ -45,6 +45,7 @@ public class EndTurnGuiNotifier extends GUINotifier{
                     //GUI.getPrimaryStage().setFullScreen(true);
                     GUI.setRoot("personalBoard_scene");
                     GUI.getMainSceneController().printClientPlayer(modelPrinter);
+                    GUI.getMainSceneController().getNotificationLabel().setVisible(true);
                     //GUI.getFirstTurnController().printScene(modelPrinter, mex.getNickname());
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -58,6 +59,7 @@ public class EndTurnGuiNotifier extends GUINotifier{
             int diff = data.getBlackFaithPoints() - modelPrinter.getBlackFaithPoints();
             modelPrinter.setBlackFaithPoints(data.getBlackFaithPoints());
         }
+        modelPrinter.setCurrentPlayerNickname(data.getActualCurrentPlayer());
         for (PersonalBoardPrinter p : modelPrinter.getPersonalBoards()) {
             oldValue = p.getFaithPoints();
             p.setFaithPoints(data.getNumResourcesDiscarded() + oldValue);

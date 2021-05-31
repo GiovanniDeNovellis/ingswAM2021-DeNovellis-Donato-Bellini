@@ -17,6 +17,7 @@ public class EndTurnCLINotifier extends CLINotifier {
         Gson gson = new Gson();
         EndTurnNotificationMessage data = gson.fromJson(notification, EndTurnNotificationMessage.class);
         nextPlayer = data.getActualCurrentPlayer();
+        modelPrinter.setCurrentPlayerNickname(nextPlayer);
         printNotification0();
         if(modelPrinter.getBlackFaithPoints()!=-1) {
             int diff = data.getBlackFaithPoints()   - modelPrinter.getBlackFaithPoints();

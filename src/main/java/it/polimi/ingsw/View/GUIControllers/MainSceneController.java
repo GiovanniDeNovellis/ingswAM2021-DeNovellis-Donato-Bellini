@@ -1,8 +1,11 @@
 package it.polimi.ingsw.View.GUIControllers;
 
+import com.google.gson.Gson;
+import it.polimi.ingsw.Controller.Messages.EndTurnRequestMessage;
 import it.polimi.ingsw.ResourceType;
 import it.polimi.ingsw.View.GUI;
 import it.polimi.ingsw.View.ModelPrinter;
+import it.polimi.ingsw.View.PrinterSingleton;
 import it.polimi.ingsw.View.Printers.LeaderCardsPrinter;
 import it.polimi.ingsw.View.Printers.PersonalBoardPrinter;
 import javafx.event.ActionEvent;
@@ -101,6 +104,10 @@ public class MainSceneController implements Initializable {
     @FXML
     private Button changementButton;
     private String lastChangedNickname;
+    @FXML
+    private Button endTurnButton;
+    @FXML
+    private Label currentPlayerLabel;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -259,12 +266,16 @@ public class MainSceneController implements Initializable {
 
     public void printClientPlayer(ModelPrinter modelPrinter) {
         GUI.setStatus("Main");
+        endTurnButton.setDisable(false);
+        endTurnButton.setVisible(true);
+        endTurnButton.setCursor(Cursor.HAND);
         notificationLabel.setVisible(false);
         changementButton.setDisable(true);
         changementButton.setVisible(false);
         changementButton.setCursor(Cursor.DEFAULT);
         production.setVisible(true);
         production.setDisable(false);
+        currentPlayerLabel.setText(modelPrinter.getCurrentPlayerNickname());
         this.modelPrinter=modelPrinter;
         LeaderCardsPrinter leadToPrint = null;
         PersonalBoardPrinter personalToPrint = null;
@@ -290,9 +301,13 @@ public class MainSceneController implements Initializable {
 
     public void printOtherPlayer(String playerNickname) {
         GUI.setStatus("Main");
+        endTurnButton.setDisable(true);
+        endTurnButton.setVisible(false);
+        endTurnButton.setCursor(Cursor.DEFAULT);
         notificationLabel.setVisible(false);
         changementButton.setDisable(true);
         changementButton.setVisible(false);
+        currentPlayerLabel.setText(modelPrinter.getCurrentPlayerNickname());
         changementButton.setCursor(Cursor.DEFAULT);
         LeaderCardsPrinter leadToPrint = null;
         PersonalBoardPrinter personalToPrint = null;
@@ -652,5 +667,13 @@ public class MainSceneController implements Initializable {
 
     public Label getNotificationLabel() {
         return notificationLabel;
+    }
+
+    public void endTurn(ActionEvent actionEvent) {
+        Gson gson = new Gson();
+        EndTurnRequestMessage message = new EndTurnRequestMessage();
+        message.setSenderNickname(GUI.getClientNickname());
+        message.setMessageType("EndTurnRequest");
+        PrinterSingleton.getPrinterSingleton().sendMessage(gson.toJson(message));
     }
 }

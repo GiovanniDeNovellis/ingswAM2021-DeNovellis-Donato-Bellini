@@ -11,6 +11,7 @@ public class ModelPrinter {
     private ArrayList<LeaderCardsPrinter> leaderCardsPrinters = new ArrayList<>();
     private int blackFaithPoints = -1;
     private boolean multiplayerGameStarted = false;
+    private String currentPlayerNickname;
 
     public void print(Printable p, String whatIHaveToPrint) {
         if (whatIHaveToPrint.equals("blackFaithPoints")) {
@@ -124,5 +125,13 @@ public class ModelPrinter {
         System.out.print(Colours.RESET + "\n");
         System.out.println(Colours.ANSI_CYAN.escape() + "VP:                   1                 2                 4                   6                    9                    12                   16                   20");
         System.out.print(Colours.RESET + "\n");
+    }
+
+    public String getCurrentPlayerNickname() {
+        return currentPlayerNickname;
+    }
+
+    public void setCurrentPlayerNickname(String currentPlayerNickname) {
+        this.currentPlayerNickname = currentPlayerNickname;
     }
 }

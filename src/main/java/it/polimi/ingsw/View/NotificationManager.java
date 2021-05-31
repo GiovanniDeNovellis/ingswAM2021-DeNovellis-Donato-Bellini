@@ -246,8 +246,14 @@ public class NotificationManager {
                     System.out.println("You have correctly inserted resource(s) into your warehouse");
                 break;
             case"InsertedResourceChanged":
-                reader = new InsertedResourceChanged(modelPrinter);
-                reader.notifyCLI(notification);
+                if(isCli) {
+                    reader = new InsertedResourceChanged(modelPrinter);
+                    reader.notifyCLI(notification);
+                }
+                else{
+                    GUINotifier notifier = new InsertedResGUINotifier(modelPrinter);
+                    notifier.notifyGui(notification);
+                }
                 break;
             case"ChosenLeaderCardsMessage":
                 reader = new ChosenLeaderCards(modelPrinter);
@@ -329,29 +335,53 @@ public class NotificationManager {
             case"InsertedResourcesFailureNotification":
                 if(isCli)
                     System.out.println("Resource(s) insertion failed. Try again.");
+                else{
+                    GUINotifier notifier = new InsertedFailGUINotifier();
+                    notifier.notifyGui(null);
+                }
                 break;
             case"TakeResourceFromMarketSuccessNotification":
                 if(isCli)
                     System.out.println("You have correctly taken resources from market!Place them in your warehouse.");
                 break;
             case"TemporaryResourcesChanged":
-                reader = new TemporaryResourcesChanged(modelPrinter);
-                reader.notifyCLI(notification);
+                if(isCli) {
+                    reader = new TemporaryResourcesChanged(modelPrinter);
+                    reader.notifyCLI(notification);
+                }
+                else{
+                    GUINotifier notifier = new TempResChangeGUINotifier(modelPrinter);
+                    notifier.notifyGui(notification);
+                }
                 break;
             case"TakeResourceFromMarketFailureNotification":
                 if(isCli)
                     System.out.println("Wrong index(row,column) chosen. Try again.\n" +
                             "If you have chosen a correct index, it means you can't take resources now.");
+                else{
+                    GUINotifier notifier = new TakeResFailGUINotifier();
+                    notifier.notifyGui(null);
+                }
                 break;
             case "MarketGridChangedMessage":
-                reader = new MarketGridChanged(modelPrinter);
-                reader.notifyCLI(notification);
+                if(isCli) {
+                    reader = new MarketGridChanged(modelPrinter);
+                    reader.notifyCLI(notification);
+                }
+                else{
+                    GUINotifier notifier = new MarketChangeGUINotifier(modelPrinter);
+                    notifier.notifyGui(notification);
+                }
                 break;
             case "EndTurnOkNotification":
                 break;
             case "NotRightToEndTurnNotification":
                 if(isCli)
                     System.out.println("You have to do a basic action before ending your turn.");
+                else{
+                    GUINotifier notifier = new EndTurnFailGUINotifier();
+                    notifier.notifyGui(null);
+                }
                 break;
             default:
                 System.out.println("Received wrong input message!");

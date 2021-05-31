@@ -24,7 +24,7 @@ public class ActivateLeaderAbilityManager implements Manageable{
         Gson gson = new Gson();
         ActivateLeaderAbilityMessage activateLeaderAbilityMessage = gson.fromJson(jsonContent,ActivateLeaderAbilityMessage.class);
         if(controller.getGame().getCurrentPlayer().getNickname().equals(activateLeaderAbilityMessage.getSenderNickname())) {
-            if (controller.getGame().activateLeaderCard(activateLeaderAbilityMessage.getPosition())) {
+            if (controller.getGame().activateLeaderAbility(activateLeaderAbilityMessage.getPosition())) {
                 Message mex = new Message();
                 mex.setMessageType("ActivateLeaderAbilitySuccessNotification");
                 switch (controller.getGame().getCurrentPlayer().getChoosedLeaderCards().get(activateLeaderAbilityMessage.getPosition()).getType()) {
