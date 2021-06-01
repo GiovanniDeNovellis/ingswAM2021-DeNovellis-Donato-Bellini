@@ -21,7 +21,7 @@ public class NotYourTurnGUINotifier extends GUINotifier{
                     GUI.getMarketSceneController().getNotificationLabel().setText("It's not your turn!");
                     break;
                 case "Deck":
-                    GUI.getMarketSceneController().printScene(modelPrinter);
+                    GUI.getDeckgridSceneController().printScene(modelPrinter);
                     GUI.getDeckgridSceneController().getNotificationLabel().setVisible(true);
                     GUI.getDeckgridSceneController().getNotificationLabel().setText("It's not your turn!");
                     break;

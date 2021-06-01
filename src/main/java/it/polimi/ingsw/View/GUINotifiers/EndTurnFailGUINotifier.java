@@ -2,6 +2,7 @@ package it.polimi.ingsw.View.GUINotifiers;
 
 import it.polimi.ingsw.View.GUI;
 import javafx.application.Platform;
+import javafx.scene.text.Font;
 
 public class EndTurnFailGUINotifier extends GUINotifier{
     @Override

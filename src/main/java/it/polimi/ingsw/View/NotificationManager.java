@@ -204,14 +204,28 @@ public class NotificationManager {
             case"BuyDevelopmentCardSuccessNotification":
                 if(isCli)
                     System.out.println("Card successfully bought.");
+                else{
+                    GUINotifier notifier = new CardBoughtSuccessfullyGUINotifier(modelPrinter);
+                    notifier.notifyGui(null);
+                }
                 break;
             case"DevelopmentCardBought":
-                reader = new DevelopmentCardBoughtReader(modelPrinter);
-                reader.notifyCLI(notification);
+                if( isCli ) {
+                    reader = new DevelopmentCardBoughtReader(modelPrinter);
+                    reader.notifyCLI(notification);
+                } else {
+                    GUINotifier notifier = new CardBoughtGUINotifier(modelPrinter);
+                    notifier.notifyGui(notification);
+                }
+
                 break;
             case"BuyDevelopmentCardFailureNotification":
                 if(isCli)
                     System.out.println("You can't buy the development card now.");
+                else{
+                    GUINotifier notifier = new BuyCardFailGUINotifier(modelPrinter);
+                    notifier.notifyGui(null);
+                }
                 break;
             case"DistributionOkNotification":
                 if(isCli)

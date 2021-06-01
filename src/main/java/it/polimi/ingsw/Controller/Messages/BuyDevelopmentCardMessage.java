@@ -24,29 +24,23 @@ public class BuyDevelopmentCardMessage extends Message{
     private Colour colour;
     private int slot;
     private final int[] payUsingExtraDeposit = new int[2];
+    private String senderNickname;
 
     public void setSenderNickname(String senderNickname) {
         this.senderNickname = senderNickname;
     }
-
-    private String senderNickname;
-
-
     public String getSenderNickname() {
         return senderNickname;
     }
     public int getLevel() {
         return level;
     }
-
     public Colour getColour() {
         return colour;
     }
-
     public int getSlot() {
         return slot;
     }
-
     public int[] getPayUsingExtraDeposit() {
         return payUsingExtraDeposit;
     }

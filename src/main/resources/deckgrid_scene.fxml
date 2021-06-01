@@ -66,8 +66,8 @@
       <Line endX="420.0" layoutY="255.0" startX="-0.0" />
       <Line endX="420.0" layoutY="170.0" startX="-0.0" />
       <Line endX="420.0" layoutY="595.0" startX="-0.0" />
-      <Line layoutX="-110.0" layoutY="532.0" rotate="270.0" startX="1060.0" />
-      <GridPane fx:id="devCardsPane" layoutX="664.0" layoutY="116.0" prefHeight="776.0" prefWidth="1064.0">
+      <Line layoutX="-120.0" layoutY="540.0" rotate="270.0" startX="1080.0" />
+      <GridPane fx:id="devCardsPane" layoutX="559.0" layoutY="58.0" prefHeight="776.0" prefWidth="1064.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="266.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="266.0" />
@@ -92,9 +92,125 @@
             <ImageView fitHeight="259.0" fitWidth="266.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <ImageView fitHeight="259.0" fitWidth="266.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="2" />
             <ImageView fitHeight="259.0" fitWidth="266.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <Button fx:id="cardButton10" disable="true" mnemonicParsing="false" onAction="#buyCard2G" opacity="0.0" prefHeight="259.0" prefWidth="172.0" style="-fx-background-color: green;" GridPane.rowIndex="1">
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </Button>
+            <Button fx:id="cardButton03" disable="true" layoutX="10.0" layoutY="268.0" mnemonicParsing="false" onAction="#buyCard3P" opacity="0.0" prefHeight="259.0" prefWidth="172.0" style="-fx-background-color: purple;" GridPane.columnIndex="3" />
+            <Button fx:id="cardButton02" disable="true" layoutX="10.0" layoutY="268.0" mnemonicParsing="false" onAction="#buyCard3Y" opacity="0.0" prefHeight="259.0" prefWidth="172.0" style="-fx-background-color: gold;" GridPane.columnIndex="2" />
+            <Button fx:id="cardButton01" disable="true" layoutX="10.0" layoutY="268.0" mnemonicParsing="false" onAction="#buyCard3B" opacity="0.0" prefHeight="259.0" prefWidth="172.0" style="-fx-background-color: blue;" GridPane.columnIndex="1" />
+            <Button fx:id="cardButton13" disable="true" layoutX="10.0" layoutY="268.0" mnemonicParsing="false" onAction="#buyCard2P" opacity="0.0" prefHeight="259.0" prefWidth="172.0" style="-fx-background-color: purple;" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <Button fx:id="cardButton12" disable="true" layoutX="10.0" layoutY="268.0" mnemonicParsing="false" onAction="#buyCard2Y" opacity="0.0" prefHeight="259.0" prefWidth="172.0" style="-fx-background-color: gold;" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Button fx:id="cardButton11" disable="true" layoutX="10.0" layoutY="268.0" mnemonicParsing="false" onAction="#buyCard2B" opacity="0.0" prefHeight="259.0" prefWidth="172.0" style="-fx-background-color: blue;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button fx:id="cardButton23" disable="true" layoutX="10.0" layoutY="268.0" mnemonicParsing="false" onAction="#buyCard1P" opacity="0.0" prefHeight="259.0" prefWidth="172.0" style="-fx-background-color: purple;" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <Button fx:id="cardButton22" disable="true" layoutX="10.0" layoutY="268.0" mnemonicParsing="false" onAction="#buyCard1Y" opacity="0.0" prefHeight="259.0" prefWidth="172.0" style="-fx-background-color: gold;" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Button fx:id="cardButton21" disable="true" layoutX="10.0" layoutY="268.0" mnemonicParsing="false" onAction="#buyCard1B" opacity="0.0" prefHeight="259.0" prefWidth="172.0" style="-fx-background-color: blue;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button fx:id="cardButton20" disable="true" layoutX="10.0" layoutY="268.0" mnemonicParsing="false" onAction="#buyCard1G" opacity="0.0" prefHeight="259.0" prefWidth="172.0" style="-fx-background-color: green;" GridPane.rowIndex="2" />
+            <Button fx:id="cardButton00" disable="true" mnemonicParsing="false" onAction="#buyCard3G" opacity="0.0" prefHeight="259.0" prefWidth="172.0" style="-fx-background-color: green;" />
          </children>
       </GridPane>
       <Label fx:id="notificationLabel" layoutY="171.0" prefHeight="21.0" prefWidth="420.0" textFill="RED" />
       <Button fx:id="changementButton" disable="true" layoutX="130.0" layoutY="225.0" mnemonicParsing="false" onAction="#printChangedBoard" opacity="0.0" text="Show Personal Board" />
+      <Label layoutX="1198.0" layoutY="5.0" text="Yellow" textFill="#eeff33">
+         <font>
+            <Font name="System Bold Italic" size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="945.0" layoutY="4.0" text="Blue" textFill="#3a00da">
+         <font>
+            <Font name="System Bold Italic" size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="665.0" layoutY="4.0" text="Green" textFill="#369410">
+         <font>
+            <Font name="System Bold Italic" size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="1476.0" layoutY="5.0" text="Purple" textFill="#900480">
+         <font>
+            <Font name="System Bold Italic" size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="434.0" layoutY="167.0" text="Level 3">
+         <font>
+            <Font name="System Bold Italic" size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="431.0" layoutY="430.0" text="Level 2">
+         <font>
+            <Font name="System Bold Italic" size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="431.0" layoutY="685.0" text="Level 1">
+         <font>
+            <Font name="System Bold Italic" size="30.0" />
+         </font>
+      </Label>
+      <Button fx:id="buyButton" layoutX="958.0" layoutY="913.0" mnemonicParsing="false" onAction="#tryBuyCard" prefHeight="85.0" prefWidth="266.0" text="Buy development card">
+         <font>
+            <Font size="22.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <ImageView fitHeight="129.0" fitWidth="346.0" layoutX="48.0" layoutY="622.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="129.0" fitWidth="346.0" layoutX="48.0" layoutY="836.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="res1dep1" fitHeight="120.0" fitWidth="132.0" layoutX="42.0" layoutY="630.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="res2dep1" fitHeight="120.0" fitWidth="132.0" layoutX="224.0" layoutY="630.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="res1dep2" fitHeight="120.0" fitWidth="132.0" layoutX="42.0" layoutY="844.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="res2dep2" fitHeight="120.0" fitWidth="132.0" layoutX="224.0" layoutY="844.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="confirmButtonDep1" layoutX="46.0" layoutY="752.0" mnemonicParsing="false" onAction="#confirmPayFromExtra1" opacity="0.0" prefHeight="45.0" prefWidth="309.0" text="CONFIRM">
+         <font>
+            <Font size="20.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="confirmButtonDep2" layoutX="46.0" layoutY="975.0" mnemonicParsing="false" onAction="#confirmPayFromExtra2" opacity="0.0" prefHeight="45.0" prefWidth="309.0" text="CONFIRM">
+         <font>
+            <Font size="20.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="button1dep1" layoutX="46.0" layoutY="622.0" mnemonicParsing="false" onAction="#selectRes1dep1" opacity="0.0" prefHeight="129.0" prefWidth="132.0" style="-fx-background-color: gold;">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="button2dep1" layoutX="225.0" layoutY="622.0" mnemonicParsing="false" onAction="#selectRes2dep1" opacity="0.0" prefHeight="129.0" prefWidth="132.0" style="-fx-background-color: gold;">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="button1dep2" layoutX="46.0" layoutY="840.0" mnemonicParsing="false" onAction="#selectRes1dep2" opacity="0.0" prefHeight="129.0" prefWidth="132.0" style="-fx-background-color: gold;">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="button2dep2" layoutX="224.0" layoutY="836.0" mnemonicParsing="false" onAction="#selectRes2dep2" opacity="0.0" prefHeight="129.0" prefWidth="132.0" style="-fx-background-color: gold;">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <ImageView fx:id="imageSlot0" fitHeight="337.0" fitWidth="223.0" layoutX="1694.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true">
+      </ImageView>
+      <ImageView fx:id="imageSlot1" fitHeight="337.0" fitWidth="223.0" layoutX="1694.0" layoutY="393.0" pickOnBounds="true" preserveRatio="true">
+      </ImageView>
+      <ImageView fx:id="imageSlot2" fitHeight="337.0" fitWidth="223.0" layoutX="1694.0" layoutY="732.0" pickOnBounds="true" preserveRatio="true">
+      </ImageView>
+      <Label layoutX="1708.0" layoutY="4.0" prefHeight="47.0" prefWidth="196.0" text="YOUR CARDS">
+         <font>
+            <Font size="32.0" />
+         </font>
+      </Label>
+      <Line endX="1080.0" layoutX="1137.0" layoutY="540.0" rotate="90.0" />
+      <Button fx:id="buttonSlot2" layoutX="1694.0" layoutY="732.0" mnemonicParsing="false" onAction="#selectSlot2" opacity="0.1" prefHeight="337.0" prefWidth="223.0" style="-fx-background-color: RED;" />
+      <Button fx:id="buttonSlot1" layoutX="1694.0" layoutY="392.0" mnemonicParsing="false" onAction="#selectSlot1" opacity="0.1" prefHeight="337.0" prefWidth="223.0" style="-fx-background-color: RED;" />
+      <Button fx:id="buttonSlot0" layoutX="1694.0" layoutY="52.0" mnemonicParsing="false" onAction="#selectSlot0" opacity="0.1" prefHeight="337.0" prefWidth="223.0" style="-fx-background-color: RED;" />
    </children>
 </Pane>
