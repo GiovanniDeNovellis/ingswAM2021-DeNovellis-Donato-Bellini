@@ -157,20 +157,20 @@
             <Image url="@Images/redCross.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="devCardImage1" fitHeight="407.0" fitWidth="267.0" layoutX="1002.0" layoutY="498.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="devCardImage3" fitHeight="407.0" fitWidth="267.0" layoutX="1589.0" layoutY="498.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="devCardImage2" fitHeight="407.0" fitWidth="267.0" layoutX="1291.0" layoutY="498.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="devCard0" layoutX="1002.0" layoutY="496.0" mnemonicParsing="false" onAction="#selectDevCard0" opacity="0.0" prefHeight="407.0" prefWidth="267.0" text="Button">
+      <ImageView fx:id="devCardImage1lvl1" fitHeight="407.0" fitWidth="267.0" layoutX="1002.0" layoutY="583.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="devCardImage3lvl1" fitHeight="407.0" fitWidth="267.0" layoutX="1591.0" layoutY="583.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="devCardImage2lvl1" fitHeight="407.0" fitWidth="267.0" layoutX="1293.0" layoutY="583.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="devCard0" layoutX="1002.0" layoutY="463.0" mnemonicParsing="false" onAction="#selectDevCard0" opacity="0.0" prefHeight="525.0" prefWidth="267.0" text="Button">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="devCard1" layoutX="1291.0" layoutY="496.0" mnemonicParsing="false" onAction="#selectDevCard1" opacity="0.0" prefHeight="407.0" prefWidth="267.0" text="Button">
+      <Button fx:id="devCard1" layoutX="1293.0" layoutY="463.0" mnemonicParsing="false" onAction="#selectDevCard1" opacity="0.0" prefHeight="525.0" prefWidth="267.0" text="Button">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="devCard2" layoutX="1589.0" layoutY="496.0" mnemonicParsing="false" onAction="#selectDevCard2" opacity="0.0" prefHeight="407.0" prefWidth="267.0" text="Button">
+      <Button fx:id="devCard2" layoutX="1591.0" layoutY="469.0" mnemonicParsing="false" onAction="#selectDevCard2" opacity="0.0" prefHeight="519.0" prefWidth="267.0" text="Button">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -235,5 +235,11 @@
             <Font size="24.0" />
          </font>
       </Label>
+      <ImageView fx:id="devCardImage1lvl2" fitHeight="407.0" fitWidth="267.0" layoutX="1002.0" layoutY="523.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="devCardImage1lvl3" fitHeight="407.0" fitWidth="267.0" layoutX="1002.0" layoutY="464.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="devCardImage2lvl2" fitHeight="407.0" fitWidth="267.0" layoutX="1293.0" layoutY="524.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="devCardImage2lvl3" fitHeight="407.0" fitWidth="267.0" layoutX="1293.0" layoutY="464.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="devCardImage3lvl2" fitHeight="407.0" fitWidth="267.0" layoutX="1591.0" layoutY="524.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="devCardImage3lvl3" fitHeight="407.0" fitWidth="267.0" layoutX="1591.0" layoutY="468.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </Pane>

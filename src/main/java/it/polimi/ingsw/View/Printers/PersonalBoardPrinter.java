@@ -20,6 +20,10 @@ public class PersonalBoardPrinter implements Printable{
     private int[] faithCards = {2,3,4};
     private int faithPoints=0;
 
+    private final DevelopmentCard[] level1cards = new DevelopmentCard[3];
+    private final DevelopmentCard[] level2cards = new DevelopmentCard[3];
+    private final DevelopmentCard[] level3cards = new DevelopmentCard[3];
+
     public int getFaithPoints() {
         return faithPoints;
     }
@@ -59,6 +63,17 @@ public class PersonalBoardPrinter implements Printable{
 
     public void setDevelopmentCards(DevelopmentCard[] developmentCards) {
         this.developmentCards = developmentCards;
+        for(int i=0; i<3; i++ ) {
+            if (developmentCards[i] != null) {
+                if (developmentCards[i].getLevel() == 1) {
+                    level1cards[i] = developmentCards[i];
+                } else if (developmentCards[i].getLevel() == 2) {
+                    level2cards[i] = developmentCards[i];
+                } else if( developmentCards[i].getLevel() == 3) {
+                    level3cards[i] = developmentCards[i];
+                }
+            }
+        }
     }
 
     public void setWareHouseDepot(WareHouseDepot wareHouseDepot) {
@@ -765,5 +780,17 @@ public class PersonalBoardPrinter implements Printable{
 
     public DevelopmentCard[] getDevelopmentCards() {
         return developmentCards;
+    }
+
+    public DevelopmentCard[] getLevel1cards() {
+        return level1cards;
+    }
+
+    public DevelopmentCard[] getLevel2cards() {
+        return level2cards;
+    }
+
+    public DevelopmentCard[] getLevel3cards() {
+        return level3cards;
     }
 }

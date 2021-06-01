@@ -105,6 +105,8 @@ public class Game {
      * @return true if has correctly added a player in the game
      */
     public boolean addPlayer( String nickname ){
+        if( nickname.length()<1 || nickname.length()>20 )
+            return false;
         if( players.size() >= 4 || gameStarted ) {
             return false;
         }

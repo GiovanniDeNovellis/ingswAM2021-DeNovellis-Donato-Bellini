@@ -78,11 +78,23 @@ public class MainSceneController implements Initializable {
     @FXML
     private Label coinsLabel;
     @FXML
-    private ImageView devCardImage1;
+    private ImageView devCardImage1lvl1;
     @FXML
-    private ImageView devCardImage2;
+    private ImageView devCardImage2lvl1;
     @FXML
-    private ImageView devCardImage3;
+    private ImageView devCardImage3lvl1;
+    @FXML
+    private ImageView devCardImage1lvl2;
+    @FXML
+    private ImageView devCardImage2lvl2;
+    @FXML
+    private ImageView devCardImage3lvl2;
+    @FXML
+    private ImageView devCardImage1lvl3;
+    @FXML
+    private ImageView devCardImage2lvl3;
+    @FXML
+    private ImageView devCardImage3lvl3;
     @FXML
     private ImageView redCross;
     @FXML
@@ -275,6 +287,15 @@ public class MainSceneController implements Initializable {
         changementButton.setCursor(Cursor.DEFAULT);
         production.setVisible(true);
         production.setDisable(false);
+        devCardImage1lvl1.setVisible(false);
+        devCardImage1lvl2.setVisible(false);
+        devCardImage1lvl3.setVisible(false);
+        devCardImage2lvl1.setVisible(false);
+        devCardImage2lvl2.setVisible(false);
+        devCardImage2lvl3.setVisible(false);
+        devCardImage3lvl1.setVisible(false);
+        devCardImage3lvl2.setVisible(false);
+        devCardImage3lvl3.setVisible(false);
         currentPlayerLabel.setText(modelPrinter.getCurrentPlayerNickname());
         this.modelPrinter=modelPrinter;
         LeaderCardsPrinter leadToPrint = null;
@@ -307,6 +328,15 @@ public class MainSceneController implements Initializable {
         notificationLabel.setVisible(false);
         changementButton.setDisable(true);
         changementButton.setVisible(false);
+        devCardImage1lvl1.setVisible(false);
+        devCardImage1lvl2.setVisible(false);
+        devCardImage1lvl3.setVisible(false);
+        devCardImage2lvl1.setVisible(false);
+        devCardImage2lvl2.setVisible(false);
+        devCardImage2lvl3.setVisible(false);
+        devCardImage3lvl1.setVisible(false);
+        devCardImage3lvl2.setVisible(false);
+        devCardImage3lvl3.setVisible(false);
         currentPlayerLabel.setText(modelPrinter.getCurrentPlayerNickname());
         changementButton.setCursor(Cursor.DEFAULT);
         LeaderCardsPrinter leadToPrint = null;
@@ -583,12 +613,51 @@ public class MainSceneController implements Initializable {
     }
 
     private void printDevelopmentCards(PersonalBoardPrinter p){
-        if(p.getDevelopmentCards()[0]!=null)
-            devCardImage1.setImage(new Image(developmentCardsIndex.get(p.getDevelopmentCards()[0].getNumber()-1)));
-        if(p.getDevelopmentCards()[1]!=null)
-            devCardImage2.setImage(new Image(developmentCardsIndex.get(p.getDevelopmentCards()[1].getNumber()-1)));
-        if(p.getDevelopmentCards()[2]!=null)
-            devCardImage3.setImage(new Image(developmentCardsIndex.get(p.getDevelopmentCards()[2].getNumber()-1)));
+        //LVL 1 CARDS
+        for( int i=0; i<3; i++ ){
+            if( i==0 && p.getLevel1cards()[i]!=null) {
+                devCardImage1lvl1.setImage(new Image(developmentCardsIndex.get(p.getLevel1cards()[i].getNumber() - 1)));
+                devCardImage1lvl1.setVisible(true);
+            }
+            if( i==1 && p.getLevel1cards()[i]!=null) {
+                devCardImage2lvl1.setImage(new Image(developmentCardsIndex.get(p.getLevel1cards()[i].getNumber() - 1)));
+                devCardImage2lvl1.setVisible(true);
+            }
+            if( i==2 && p.getLevel1cards()[i]!=null) {
+                devCardImage3lvl1.setImage(new Image(developmentCardsIndex.get(p.getLevel1cards()[i].getNumber() - 1)));
+                devCardImage3lvl1.setVisible(true);
+            }
+        }
+        //LVL 2 CARDS
+        for( int i=0; i<3; i++ ){
+            if( i==0 && p.getLevel2cards()[i]!=null) {
+                devCardImage1lvl2.setImage(new Image(developmentCardsIndex.get(p.getLevel2cards()[i].getNumber() - 1)));
+                devCardImage1lvl2.setVisible(true);
+            }
+            if( i==1 && p.getLevel2cards()[i]!=null) {
+                devCardImage2lvl2.setImage(new Image(developmentCardsIndex.get(p.getLevel2cards()[i].getNumber() - 1)));
+                devCardImage2lvl2.setVisible(true);
+            }
+            if( i==2 && p.getLevel2cards()[i]!=null){
+                devCardImage3lvl2.setImage(new Image(developmentCardsIndex.get(p.getLevel2cards()[i].getNumber() -1 )));
+                devCardImage3lvl2.setVisible(true);
+            }
+        }
+        //LVL 3 CARDS
+        for( int i=0; i<3; i++ ){
+            if( i==0 && p.getLevel3cards()[i]!=null) {
+                devCardImage1lvl3.setImage(new Image(developmentCardsIndex.get(p.getLevel3cards()[i].getNumber() - 1)));
+                devCardImage1lvl3.setVisible(true);
+            }
+            if( i==1 && p.getLevel3cards()[i]!=null) {
+                devCardImage2lvl3.setImage(new Image(developmentCardsIndex.get(p.getLevel3cards()[i].getNumber() - 1)));
+                devCardImage2lvl3.setVisible(true);
+            }
+            if( i==2 && p.getLevel3cards()[i]!=null) {
+                devCardImage3lvl3.setImage(new Image(developmentCardsIndex.get(p.getLevel3cards()[i].getNumber() - 1)));
+                devCardImage3lvl3.setVisible(true);
+            }
+        }
     }
 
     private void printFaithTrack(PersonalBoardPrinter p){
