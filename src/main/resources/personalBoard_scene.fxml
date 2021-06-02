@@ -147,9 +147,9 @@
       <ImageView fx:id="res3" fitHeight="50.0" fitWidth="50.0" layoutX="621.0" layoutY="566.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="res2" fitHeight="50.0" fitWidth="50.0" layoutX="563.0" layoutY="566.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="res1" fitHeight="50.0" fitWidth="50.0" layoutX="602.0" layoutY="479.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="baseProd" layoutX="787.0" layoutY="725.0" mnemonicParsing="false" onAction="#baseProdTrue" opacity="0.0" prefHeight="179.0" prefWidth="186.0">
+      <Button fx:id="baseProd" disable="true" layoutX="787.0" layoutY="725.0" mnemonicParsing="false" onAction="#baseProdTrue" opacity="0.0" prefHeight="179.0" prefWidth="186.0" style="-fx-background-color: gold;">
          <cursor>
-            <Cursor fx:constant="HAND" />
+            <Cursor fx:constant="DEFAULT" />
          </cursor>
       </Button>
       <ImageView fx:id="redCross" fitHeight="63.0" fitWidth="51.0" layoutX="488.0" layoutY="215.0" pickOnBounds="true" preserveRatio="true">
@@ -160,21 +160,6 @@
       <ImageView fx:id="devCardImage1lvl1" fitHeight="407.0" fitWidth="267.0" layoutX="1002.0" layoutY="583.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="devCardImage3lvl1" fitHeight="407.0" fitWidth="267.0" layoutX="1591.0" layoutY="583.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="devCardImage2lvl1" fitHeight="407.0" fitWidth="267.0" layoutX="1293.0" layoutY="583.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="devCard0" layoutX="1002.0" layoutY="463.0" mnemonicParsing="false" onAction="#selectDevCard0" opacity="0.0" prefHeight="525.0" prefWidth="267.0" text="Button">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <Button fx:id="devCard1" layoutX="1293.0" layoutY="463.0" mnemonicParsing="false" onAction="#selectDevCard1" opacity="0.0" prefHeight="525.0" prefWidth="267.0" text="Button">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <Button fx:id="devCard2" layoutX="1591.0" layoutY="469.0" mnemonicParsing="false" onAction="#selectDevCard2" opacity="0.0" prefHeight="519.0" prefWidth="267.0" text="Button">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
       <Button fx:id="activateAbility1" layoutY="982.0" mnemonicParsing="false" onAction="#activateLeaderAbility1" prefHeight="35.0" prefWidth="210.0" style="-fx-background-color: beige;" text="ACTIVATE ABILITY">
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -241,5 +226,66 @@
       <ImageView fx:id="devCardImage2lvl3" fitHeight="407.0" fitWidth="267.0" layoutX="1293.0" layoutY="464.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="devCardImage3lvl2" fitHeight="407.0" fitWidth="267.0" layoutX="1591.0" layoutY="524.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="devCardImage3lvl3" fitHeight="407.0" fitWidth="267.0" layoutX="1591.0" layoutY="468.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="stones1" fitHeight="50.0" fitWidth="50.0" layoutX="772.0" layoutY="905.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Images/stone.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="coins1" fitHeight="50.0" fitWidth="50.0" layoutX="825.0" layoutY="905.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Images/coin.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="shields1" fitHeight="50.0" fitWidth="50.0" layoutX="885.0" layoutY="905.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Images/shield.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="servants1" fitHeight="50.0" fitWidth="50.0" layoutX="935.0" layoutY="905.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Images/servant.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="baseObtainCoinButton" disable="true" layoutX="825.0" layoutY="906.0" mnemonicParsing="false" onAction="#baseObtainsCoin" opacity="0.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: gold;">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </Button>
+      <Button fx:id="baseObtainStoneButton" disable="true" layoutX="772.0" layoutY="906.0" mnemonicParsing="false" onAction="#baseObtainsStone" opacity="0.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: gold;">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </Button>
+      <Button fx:id="baseObtainShieldButton" disable="true" layoutX="881.0" layoutY="903.0" mnemonicParsing="false" onAction="#baseObtainsShield" opacity="0.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: gold;">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </Button>
+      <Button fx:id="baseObtainServantButton" disable="true" layoutX="935.0" layoutY="906.0" mnemonicParsing="false" onAction="#baseObtainsServant" opacity="0.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: gold;">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </Button>
+      <Button fx:id="basePayButton1" layoutX="596.0" layoutY="474.0" mnemonicParsing="false" onAction="#baseSetPayRes1" opacity="0.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: gold;" />
+      <Button fx:id="devCard0" disable="true" layoutX="1002.0" layoutY="463.0" mnemonicParsing="false" onAction="#selectDevCard0" opacity="0.0" prefHeight="525.0" prefWidth="267.0" style="-fx-background-color: gold;" text="Button">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </Button>
+      <Button fx:id="devCard1" disable="true" layoutX="1293.0" layoutY="463.0" mnemonicParsing="false" onAction="#selectDevCard1" opacity="0.0" prefHeight="525.0" prefWidth="267.0" style="-fx-background-color: gold;" text="Button">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </Button>
+      <Button fx:id="devCard2" disable="true" layoutX="1591.0" layoutY="469.0" mnemonicParsing="false" onAction="#selectDevCard2" opacity="0.0" prefHeight="519.0" prefWidth="267.0" style="-fx-background-color: gold;" text="Button">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </Button>
+      <Button fx:id="basePayButton2" layoutX="563.0" layoutY="570.0" mnemonicParsing="false" onAction="#baseSetPayRes2" opacity="0.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: gold;" />
+      <Button fx:id="basePayButton3" layoutX="621.0" layoutY="566.0" mnemonicParsing="false" onAction="#baseSetPayRes3" opacity="0.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: gold;" />
+      <Button fx:id="basePayButton4" layoutX="538.0" layoutY="666.0" mnemonicParsing="false" onAction="#baseSetPayRes4" opacity="0.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: gold;" />
+      <Button fx:id="basePayButton5" layoutX="596.0" layoutY="666.0" mnemonicParsing="false" onAction="#baseSetPayRes5" opacity="0.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: gold;" />
+      <Button fx:id="basePayButton6" layoutX="646.0" layoutY="666.0" mnemonicParsing="false" onAction="#baseSetPayRes6" opacity="0.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: gold;" />
    </children>
 </Pane>

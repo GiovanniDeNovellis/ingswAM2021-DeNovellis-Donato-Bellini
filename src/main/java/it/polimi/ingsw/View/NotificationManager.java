@@ -171,10 +171,19 @@ public class NotificationManager {
             case"ActivateProductionSuccessNotification":
                 if(isCli)
                     System.out.println("Production successfully activated.");
+                else{
+                    GUINotifier notifier = new ProductionSuccessGUINotifier(modelPrinter);
+                    notifier.notifyGui(null);
+                }
                 break;
             case"NotifyActivateProductionMessage":
-                reader = new NotifyActivateProductionReader(modelPrinter);
-                reader.notifyCLI(notification);
+                if(isCli) {
+                    reader = new NotifyActivateProductionReader(modelPrinter);
+                    reader.notifyCLI(notification);
+                } else {
+                    GUINotifier notifier = new ProductionActivatedGUINotifier(modelPrinter);
+                    notifier.notifyGui(notification);
+                }
                 break;
             case"VaticanReportMessage":
                 reader = new VaticanReportMessageReader(modelPrinter);
@@ -183,6 +192,10 @@ public class NotificationManager {
             case"ActivateProductionFailureNotification":
                 if(isCli)
                     System.out.println("You can't activate the production now.");
+                else {
+                    GUINotifier notifier = new ProductionFailedGUINotifier();
+                    notifier.notifyGui(null);
+                }
                 break;
             case"PlayerAddedNotification":
                 if(isCli)

@@ -1,6 +1,7 @@
 package it.polimi.ingsw.View.GUIControllers;
 
 import com.google.gson.Gson;
+import it.polimi.ingsw.Controller.Messages.ActivateProductionMessage;
 import it.polimi.ingsw.Controller.Messages.EndTurnRequestMessage;
 import it.polimi.ingsw.ResourceType;
 import it.polimi.ingsw.View.GUI;
@@ -29,6 +30,15 @@ public class MainSceneController implements Initializable {
     private final Map<ResourceType, String> resourceImagesMap = new HashMap<>();
     private final ArrayList<String> developmentCardsIndex = new ArrayList<>();
     private ModelPrinter modelPrinter;
+
+    private boolean[] whichDevCardSlot = new boolean[]{false,false,false};
+    private boolean fromPersonalBoard = false;
+    private boolean[] whichLeaderCard = new boolean[]{false,false};
+    private ResourceType[] resourceBaseProduction = new ResourceType[]{null,null,null};
+    private ResourceType[] resourceFromLeader = null;
+    private int[] payUsingExtraDeposit = new int[]{0,0};
+    private boolean[] clicked = new boolean[]{false,false,false,false,false,false};
+
     @FXML
     private ImageView personalBoard;
     @FXML
@@ -120,6 +130,28 @@ public class MainSceneController implements Initializable {
     private Button endTurnButton;
     @FXML
     private Label currentPlayerLabel;
+    @FXML
+    private Button basePayButton1;
+    @FXML
+    private Button basePayButton2;
+    @FXML
+    private Button basePayButton3;
+    @FXML
+    private Button basePayButton4;
+    @FXML
+    private Button basePayButton5;
+    @FXML
+    private Button basePayButton6;
+    @FXML
+    Button baseObtainServantButton;
+    @FXML
+    Button baseObtainShieldButton;
+    @FXML
+    Button baseObtainStoneButton;
+    @FXML
+    Button baseObtainCoinButton;
+    @FXML
+    Button baseProd;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -256,18 +288,152 @@ public class MainSceneController implements Initializable {
     }
 
     public void activateProduction(ActionEvent actionEvent) {
+        if( production.getText().equals("ACTIVATE PRODUCTION")){
+            production.setDisable(true);
+            production.setCursor(Cursor.DEFAULT);
+            production.setText("CONFIRM");
+            baseProd.setDisable(false);
+            baseProd.setCursor(Cursor.HAND);
+            devCard0.setDisable(false);
+            devCard0.setCursor(Cursor.HAND);
+            devCard1.setDisable(false);
+            devCard1.setCursor(Cursor.HAND);
+            devCard2.setDisable(false);
+            devCard2.setCursor(Cursor.HAND);
+
+        } else if( production.getText().equals("CONFIRM")){
+            PrinterSingleton.getPrinterSingleton().sendMessage(parseMessage());
+        }
+    }
+
+    private String parseMessage(){
+        Gson gson = new Gson();
+        ActivateProductionMessage message = new ActivateProductionMessage();
+        message.setMessageType("ActivateProduction");
+        message.setSenderNickname(GUI.getClientNickname());
+        message.setFromPersonalBoard(fromPersonalBoard);
+        message.setPayUsingExtraDeposit(payUsingExtraDeposit);
+        message.setResourceBaseProduction(resourceBaseProduction);
+        message.setResourceFromLeader(resourceFromLeader);
+        message.setWhichDevCardSlot(whichDevCardSlot);
+        message.setWhichLeaderCard(whichLeaderCard);
+        return gson.toJson(message);
     }
 
     public void baseProdTrue(ActionEvent actionEvent) {
+        if(!fromPersonalBoard){
+            fromPersonalBoard=true;
+            activateBaseProdButtons();
+            baseProd.setOpacity(0.3);
+            baseProd.setDisable(false);
+            baseProd.setCursor(Cursor.HAND);
+        } else {
+            fromPersonalBoard=false;
+            deactivateBaseProdButtons();
+            baseProd.setOpacity(0);
+            baseProd.setDisable(false);
+            baseProd.setCursor(Cursor.HAND);
+        }
+    }
+
+    private void activateBaseProdButtons(){
+        //Risorse da ottenere
+        baseObtainStoneButton.setDisable(false);
+        baseObtainStoneButton.setCursor(Cursor.HAND);
+        baseObtainShieldButton.setDisable(false);
+        baseObtainShieldButton.setCursor(Cursor.HAND);
+        baseObtainServantButton.setDisable(false);
+        baseObtainServantButton.setCursor(Cursor.HAND);
+        baseObtainCoinButton.setDisable(false);
+        baseObtainCoinButton.setCursor(Cursor.HAND);
+        //Risorse da pagare
+        if( res1.getImage()!=null ) {
+            basePayButton1.setDisable(false);
+            basePayButton1.setCursor(Cursor.HAND);
+        }
+        if( res2.getImage()!=null ) {
+            basePayButton2.setDisable(false);
+            basePayButton2.setCursor(Cursor.HAND);
+        }
+        if( res3.getImage()!=null ) {
+            basePayButton3.setDisable(false);
+            basePayButton3.setCursor(Cursor.HAND);
+        }
+        if( res4.getImage()!=null ) {
+            basePayButton4.setDisable(false);
+            basePayButton4.setCursor(Cursor.HAND);
+        }
+        if( res5.getImage()!=null ) {
+            basePayButton5.setDisable(false);
+            basePayButton5.setCursor(Cursor.HAND);
+        }
+        if( res6.getImage()!=null ) {
+            basePayButton6.setDisable(false);
+            basePayButton6.setCursor(Cursor.HAND);
+        }
+    }
+
+    private void deactivateBaseProdButtons(){
+        //Risorse da ottenere
+        baseObtainStoneButton.setDisable(true);
+        baseObtainStoneButton.setCursor(Cursor.DEFAULT);
+        baseObtainStoneButton.setOpacity(0);
+        baseObtainShieldButton.setDisable(true);
+        baseObtainShieldButton.setCursor(Cursor.DEFAULT);
+        baseObtainShieldButton.setOpacity(0);
+        baseObtainServantButton.setDisable(true);
+        baseObtainServantButton.setCursor(Cursor.DEFAULT);
+        baseObtainServantButton.setOpacity(0);
+        baseObtainCoinButton.setDisable(true);
+        baseObtainCoinButton.setCursor(Cursor.DEFAULT);
+        baseObtainCoinButton.setOpacity(0);
+        //Risorse da pagare
+        basePayButton1.setDisable(true);
+        basePayButton1.setCursor(Cursor.DEFAULT);
+        basePayButton1.setOpacity(0);
+        basePayButton2.setDisable(true);
+        basePayButton2.setCursor(Cursor.DEFAULT);
+        basePayButton2.setOpacity(0);
+        basePayButton3.setDisable(true);
+        basePayButton3.setCursor(Cursor.DEFAULT);
+        basePayButton3.setOpacity(0);
+        basePayButton4.setDisable(true);
+        basePayButton4.setCursor(Cursor.DEFAULT);
+        basePayButton4.setOpacity(0);
+        basePayButton5.setDisable(true);
+        basePayButton5.setCursor(Cursor.DEFAULT);
+        basePayButton5.setOpacity(0);
+        basePayButton6.setDisable(true);
+        basePayButton6.setCursor(Cursor.DEFAULT);
+        basePayButton6.setOpacity(0);
+        //svuoto array di risorse
+        for( int i=0; i<3; i++ )
+            resourceBaseProduction[i] = null;
+    }
+
+    private void selectDevCard(Button devCard, int slot ){
+        if( !whichDevCardSlot[slot] ){
+            devCard.setOpacity(0.3);
+            whichDevCardSlot[slot] = true;
+        } else {
+            devCard.setOpacity(0);
+            whichDevCardSlot[slot] = false;
+        }
     }
 
     public void selectDevCard0(ActionEvent actionEvent) {
+        selectDevCard(devCard0,0);
+        checkConfirmButton();
     }
 
     public void selectDevCard1(ActionEvent actionEvent) {
+        selectDevCard(devCard1,1);
+        checkConfirmButton();
     }
 
     public void selectDevCard2(ActionEvent actionEvent) {
+        selectDevCard(devCard2,2);
+        checkConfirmButton();
     }
 
     public void activateLeaderAbility1(ActionEvent actionEvent) {
@@ -318,6 +484,16 @@ public class MainSceneController implements Initializable {
         printStrongBox(personalToPrint);
         printDevelopmentCards(personalToPrint);
         printFaithTrack(personalToPrint);
+        deactivateBaseProdButtons();
+        devCard0.setDisable(true);
+        devCard0.setOpacity(0);
+        devCard1.setDisable(true);
+        devCard1.setOpacity(0);
+        devCard2.setDisable(true);
+        devCard2.setOpacity(0);
+        baseProd.setOpacity(0);
+        baseProd.setDisable(true);
+        production.setText("ACTIVATE PRODUCTION");
     }
 
     public void printOtherPlayer(String playerNickname) {
@@ -360,6 +536,7 @@ public class MainSceneController implements Initializable {
         printStrongBox(personalToPrint);
         printDevelopmentCards(personalToPrint);
         printFaithTrack(personalToPrint);
+        deactivateBaseProdButtons();
     }
 
     private void disableButtons(){
@@ -376,10 +553,16 @@ public class MainSceneController implements Initializable {
         activateAbility2.setDisable(true);
         activateAbility2.setVisible(false);
         devCard0.setDisable(true);
+        devCard0.setOpacity(0);
         devCard1.setDisable(true);
+        devCard1.setOpacity(0);
         devCard2.setDisable(true);
+        devCard2.setOpacity(0);
         production.setDisable(true);
         production.setVisible(false);
+        baseProd.setOpacity(0);
+        baseProd.setDisable(true);
+        production.setText("ACTIVATE PRODUCTION");
     }
 
     private void printLeadersOtherPlayer(LeaderCardsPrinter leadToPrint){
@@ -745,4 +928,120 @@ public class MainSceneController implements Initializable {
         message.setMessageType("EndTurnRequest");
         PrinterSingleton.getPrinterSingleton().sendMessage(gson.toJson(message));
     }
+
+    public void baseObtainsCoin(ActionEvent actionEvent) {
+        if( resourceBaseProduction[2]== null ) {
+            baseObtainCoinButton.setOpacity(0.3);
+            resourceBaseProduction[2] = ResourceType.COINS;
+        } else if( resourceBaseProduction[2] == ResourceType.COINS ){
+            baseObtainCoinButton.setOpacity(0);
+            resourceBaseProduction[2] = null;
+        }
+        checkConfirmButton();
+    }
+
+    public void baseObtainsStone(ActionEvent actionEvent) {
+        if( resourceBaseProduction[2]== null ) {
+            baseObtainStoneButton.setOpacity(0.3);
+            resourceBaseProduction[2] = ResourceType.STONES;
+        } else if( resourceBaseProduction[2] == ResourceType.STONES ){
+            baseObtainStoneButton.setOpacity(0);
+            resourceBaseProduction[2] = null;
+        }
+        checkConfirmButton();
+    }
+
+    public void baseObtainsShield(ActionEvent actionEvent) {
+        if( resourceBaseProduction[2]== null ) {
+            baseObtainShieldButton.setOpacity(0.3);
+            resourceBaseProduction[2] = ResourceType.SHIELDS;
+        } else if( resourceBaseProduction[2] == ResourceType.SHIELDS ){
+            baseObtainShieldButton.setOpacity(0);
+            resourceBaseProduction[2] = null;
+        }
+        checkConfirmButton();
+    }
+
+    public void baseObtainsServant(ActionEvent actionEvent) {
+        if( resourceBaseProduction[2]== null ) {
+            baseObtainServantButton.setOpacity(0.3);
+            resourceBaseProduction[2] = ResourceType.SERVANTS;
+        } else if( resourceBaseProduction[2] == ResourceType.SERVANTS ){
+            baseObtainServantButton.setOpacity(0);
+            resourceBaseProduction[2] = null;
+        }
+        checkConfirmButton();
+    }
+
+    public void baseSetPayRes1(ActionEvent actionEvent) {
+        baseSetPayRes(1, 1, 0, basePayButton1);
+        checkConfirmButton();
+    }
+    public void baseSetPayRes2(ActionEvent actionEvent) {
+        baseSetPayRes(2, 1, 1, basePayButton2);
+        checkConfirmButton();
+    }
+    public void baseSetPayRes3(ActionEvent actionEvent) {
+        baseSetPayRes(2, 2, 2, basePayButton3);
+        checkConfirmButton();
+    }
+    public void baseSetPayRes4(ActionEvent actionEvent) {
+        baseSetPayRes(3, 1, 3, basePayButton4);
+        checkConfirmButton();
+    }
+    public void baseSetPayRes5(ActionEvent actionEvent) {
+        baseSetPayRes(3, 2, 4, basePayButton5);
+        checkConfirmButton();
+    }
+    public void baseSetPayRes6(ActionEvent actionEvent) {
+        baseSetPayRes(3, 3, 5, basePayButton6);
+        checkConfirmButton();
+    }
+
+    private void baseSetPayRes(int level, int levelPos, int button, Button resButton ){
+        ResourceType res = getResFromWarehouse(level, levelPos);
+        if( !clicked[button] &&( resourceBaseProduction[0]==null || resourceBaseProduction[1]==null ) ) {
+            clicked[button] = true;
+            if( res != null ){
+                if (resourceBaseProduction[0] == null)
+                    resourceBaseProduction[0] = res;
+                else if (resourceBaseProduction[1] == null)
+                    resourceBaseProduction[1] = res;
+                resButton.setOpacity(0.3);
+            }
+        } else if( clicked[button] ){
+            clicked[button] = false;
+            resButton.setOpacity(0);
+            if( resourceBaseProduction[0]==res )
+                resourceBaseProduction[0] = null;
+            else if( resourceBaseProduction[1]==res )
+                resourceBaseProduction[1] = null;
+        }
+    }
+
+    private void checkConfirmButton(){
+        if( fromPersonalBoard &&( resourceBaseProduction[0]==null || resourceBaseProduction[1]==null || resourceBaseProduction[2]==null)){
+            production.setDisable(true);
+            production.setCursor(Cursor.DEFAULT);
+        } else if ( fromPersonalBoard ){
+            production.setDisable(false);
+            production.setCursor(Cursor.HAND);
+        } else if( whichDevCardSlot[0] || whichDevCardSlot[1] || whichDevCardSlot[2] ){
+            production.setDisable(false);
+            production.setCursor(Cursor.HAND);
+        }
+    }
+
+    private ResourceType getResFromWarehouse(int level, int levelPos){
+        for( PersonalBoardPrinter p: modelPrinter.getPersonalBoards() ) {
+            if( p.getOwnerNickname().equals(GUI.getClientNickname())) {
+                if( p.getWareHouseDepot().getLevel(level).getCurrNumResources()>=levelPos )
+                    return p.getWareHouseDepot().getLevel(level).getResourceType();
+            }
+        }
+        return null;
+    }
+
+
+
 }
