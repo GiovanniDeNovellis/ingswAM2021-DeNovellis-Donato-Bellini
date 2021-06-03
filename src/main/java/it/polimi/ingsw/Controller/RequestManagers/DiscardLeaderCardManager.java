@@ -3,10 +3,7 @@ package it.polimi.ingsw.Controller.RequestManagers;
 import com.google.gson.Gson;
 import it.polimi.ingsw.Controller.ClientHandler;
 import it.polimi.ingsw.Controller.Controller;
-import it.polimi.ingsw.Controller.Messages.DiscardLeaderMessage;
-import it.polimi.ingsw.Controller.Messages.Message;
-import it.polimi.ingsw.Controller.Messages.NotifyDiscardLeaderCard;
-import it.polimi.ingsw.Controller.Messages.VaticanReportMessage;
+import it.polimi.ingsw.Controller.Messages.*;
 import it.polimi.ingsw.Player;
 
 public class DiscardLeaderCardManager implements Manageable{
@@ -29,8 +26,9 @@ public class DiscardLeaderCardManager implements Manageable{
         DiscardLeaderMessage discardLeaderMessage = gson.fromJson(jsonContent, DiscardLeaderMessage.class);
         if(controller.getGame().getCurrentPlayer().getNickname().equals(discardLeaderMessage.getSenderNickname())){
             if(controller.getGame().discardLeaderCard(discardLeaderMessage.getPosition())){
-                Message mex = new Message();
+                DiscardSuccessMessage mex = new DiscardSuccessMessage();
                 mex.setMessageType("DiscardLeaderCardSuccessNotification");
+                mex.setPosition(discardLeaderMessage.getPosition());
                 NotifyDiscardLeaderCard notification = new NotifyDiscardLeaderCard();
                 notification.setMessageType("NotifyDiscardLeaderCard");
                 notification.setWhoDiscardedLeaderCard(controller.getGame().getCurrentPlayer().getNickname());

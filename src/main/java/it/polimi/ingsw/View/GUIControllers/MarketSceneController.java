@@ -1,6 +1,7 @@
 package it.polimi.ingsw.View.GUIControllers;
 
 import com.google.gson.Gson;
+import it.polimi.ingsw.Controller.Messages.ActivateLeaderAbilityMessage;
 import it.polimi.ingsw.Controller.Messages.InsertResourceMessage;
 import it.polimi.ingsw.Controller.Messages.SwitchLevelMessage;
 import it.polimi.ingsw.Controller.Messages.TakeResourceFromMarketMessage;
@@ -8,6 +9,7 @@ import it.polimi.ingsw.ResourceType;
 import it.polimi.ingsw.View.GUI;
 import it.polimi.ingsw.View.ModelPrinter;
 import it.polimi.ingsw.View.PrinterSingleton;
+import it.polimi.ingsw.View.Printers.LeaderCardsPrinter;
 import it.polimi.ingsw.View.Printers.PersonalBoardPrinter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -32,6 +34,8 @@ public class MarketSceneController implements Initializable {
     private final Map<ResourceType, String> resourceImagesMap = new HashMap<>();
     private final Map<String, String> marbleImagesMap = new HashMap<>();
     private final ArrayList<ResourceType> temporaryResources = new ArrayList<>();
+    private final Map<ResourceType,String> extraDepResourceMap = new HashMap<>();
+    private final ArrayList<String> leaderCardsIndex = new ArrayList<>();
     private ModelPrinter modelPrinter;
     @FXML
     private Button player1;
@@ -88,6 +92,35 @@ public class MarketSceneController implements Initializable {
     private Button buttonRes3;
     @FXML
     private Button buttonRes4;
+    @FXML
+    private ImageView dep1;
+    @FXML
+    private ImageView dep2;
+    @FXML
+    private ImageView res1dep1;
+    @FXML
+    private ImageView res2dep1;
+    @FXML
+    private ImageView res1dep2;
+    @FXML
+    private ImageView res2dep2;
+    @FXML
+    private Button buttonRes1extra;
+    @FXML
+    private Button buttonRes2extra;
+    @FXML
+    private Button buttonRes3extra;
+    @FXML
+    private Button buttonRes4extra;
+    @FXML
+    private ImageView firstLeaderImage;
+    @FXML
+    private ImageView secondLeaderImage;
+    @FXML
+    private Button firstLeaderButton;
+    @FXML
+    private Button secondLeaderButton;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -103,6 +136,26 @@ public class MarketSceneController implements Initializable {
         marbleImagesMap.put("yellow", "Images/yellow_marble.png");
         marbleImagesMap.put("blue", "Images/lightblue_marble.png");
         marbleImagesMap.put("grey", "Images/grey_marble.png");
+        extraDepResourceMap.put(ResourceType.COINS,"Images/ExtraDeposits/COINS.PNG");
+        extraDepResourceMap.put(ResourceType.SERVANTS,"Images/ExtraDeposits/SERVANTS.PNG");
+        extraDepResourceMap.put(ResourceType.SHIELDS,"Images/ExtraDeposits/SHIELDS.PNG");
+        extraDepResourceMap.put(ResourceType.STONES,"Images/ExtraDeposits/STONES.PNG");
+        leaderCardsIndex.add("Images/LeaderCardImages/leader1.png");
+        leaderCardsIndex.add("Images/LeaderCardImages/leader2.png");
+        leaderCardsIndex.add("Images/LeaderCardImages/leader3.png");
+        leaderCardsIndex.add("Images/LeaderCardImages/leader4.png");
+        leaderCardsIndex.add("Images/LeaderCardImages/leader5.png");
+        leaderCardsIndex.add("Images/LeaderCardImages/leader6.png");
+        leaderCardsIndex.add("Images/LeaderCardImages/leader7.png");
+        leaderCardsIndex.add("Images/LeaderCardImages/leader8.png");
+        leaderCardsIndex.add("Images/LeaderCardImages/leader9.png");
+        leaderCardsIndex.add("Images/LeaderCardImages/leader10.png");
+        leaderCardsIndex.add("Images/LeaderCardImages/leader11.png");
+        leaderCardsIndex.add("Images/LeaderCardImages/leader12.png");
+        leaderCardsIndex.add("Images/LeaderCardImages/leader13.png");
+        leaderCardsIndex.add("Images/LeaderCardImages/leader14.png");
+        leaderCardsIndex.add("Images/LeaderCardImages/leader15.png");
+        leaderCardsIndex.add("Images/LeaderCardImages/leader16.png");
     }
 
     public void viewPlayer1(ActionEvent actionEvent) {
@@ -164,6 +217,14 @@ public class MarketSceneController implements Initializable {
     }
 
     public void printScene(ModelPrinter modelPrinter) {
+        firstLeaderImage.setVisible(false);
+        secondLeaderImage.setVisible(false);
+        firstLeaderButton.setDisable(true);
+        secondLeaderButton.setDisable(true);
+        firstLeaderButton.setOpacity(0);
+        secondLeaderButton.setOpacity(0);
+        firstLeaderButton.setCursor(Cursor.DEFAULT);
+        secondLeaderButton.setCursor(Cursor.DEFAULT);
         tempRes1.setVisible(false);
         tempRes2.setVisible(false);
         tempRes3.setVisible(false);
@@ -188,14 +249,41 @@ public class MarketSceneController implements Initializable {
         buttonRes2.setDisable(true);
         buttonRes3.setDisable(true);
         buttonRes4.setDisable(true);
+        buttonRes1extra.setDisable(true);
+        buttonRes2extra.setDisable(true);
+        buttonRes3extra.setDisable(true);
+        buttonRes4extra.setDisable(true);
         this.modelPrinter = modelPrinter;
         printPlayerButtons();
         for (PersonalBoardPrinter p : modelPrinter.getPersonalBoards()) {
-            if (p.getOwnerNickname().equals(GUI.getClientNickname()))
+            if (p.getOwnerNickname().equals(GUI.getClientNickname())) {
                 printWarehouse(p);
+                printExtraDeposits(p);
+            }
+        }
+        for(LeaderCardsPrinter l: modelPrinter.getLeaderCardsPrinters()){
+            if(l.getOwnerNickname().equals(GUI.getClientNickname()))
+                printLeaders(l);
         }
         printMarbleGrid();
         printTemporaryResources();
+    }
+
+    private void printLeaders(LeaderCardsPrinter l){
+        if(l.getActivatedLeaderCards()[0] && l.getChosenLeaderCards()[0]>=9 && l.getChosenLeaderCards()[0]<=12){
+            firstLeaderImage.setVisible(true);
+            firstLeaderImage.setImage(new Image(leaderCardsIndex.get(l.getChosenLeaderCards()[0]-1)));
+            firstLeaderButton.setDisable(false);
+            firstLeaderButton.setOpacity(1);
+            firstLeaderButton.setCursor(Cursor.HAND);
+        }
+        if(l.getActivatedLeaderCards()[1] && l.getChosenLeaderCards()[1]>=9 && l.getChosenLeaderCards()[1]<=12){
+            secondLeaderImage.setVisible(true);
+            secondLeaderImage.setImage(new Image(leaderCardsIndex.get(l.getChosenLeaderCards()[1]-1)));
+            secondLeaderButton.setDisable(false);
+            secondLeaderButton.setOpacity(1);
+            secondLeaderButton.setCursor(Cursor.HAND);
+        }
     }
 
     private void printMarbleGrid() {
@@ -206,6 +294,47 @@ public class MarketSceneController implements Initializable {
             im.setImage(new Image(marbleImagesMap.get(modelPrinter.getMarketBoardPrinter().getMarbleGrid()[x][y])));
         }
         marbleOut.setImage(new Image(marbleImagesMap.get(modelPrinter.getMarketBoardPrinter().getMarbleOut())));
+    }
+
+    private void printExtraDeposits(PersonalBoardPrinter p){
+        //Leggo il primo extra deposit
+        if (p.getExtraDeposit1().getResourceType() != null) {
+            dep1.setImage(new Image(extraDepResourceMap.get(p.getExtraDeposit1().getResourceType())));
+            if(p.getExtraDeposit1().getCurrentQuantity()==1) {
+                res1dep1.setImage(new Image(resourceImagesMap.get(p.getExtraDeposit1().getResourceType())));
+                res1dep1.setVisible(true);
+                res2dep1.setVisible(false);
+            }
+            else if(p.getExtraDeposit1().getCurrentQuantity()==2){
+                res1dep1.setImage(new Image(resourceImagesMap.get(p.getExtraDeposit1().getResourceType())));
+                res2dep1.setImage(new Image(resourceImagesMap.get(p.getExtraDeposit1().getResourceType())));
+                res1dep1.setVisible(true);
+                res2dep1.setVisible(true);
+            }
+            else{
+                res1dep1.setVisible(false);
+                res2dep1.setVisible(false);
+            }
+        }
+        //Leggo il secondo extra deposit
+        if (p.getExtraDeposit2().getResourceType() != null) {
+            dep2.setImage(new Image(extraDepResourceMap.get(p.getExtraDeposit2().getResourceType())));
+            if(p.getExtraDeposit2().getCurrentQuantity()==1) {
+                res1dep2.setImage(new Image(resourceImagesMap.get(p.getExtraDeposit2().getResourceType())));
+                res1dep2.setVisible(true);
+                res2dep2.setVisible(false);
+            }
+            else if(p.getExtraDeposit2().getCurrentQuantity()==2){
+                res1dep2.setImage(new Image(resourceImagesMap.get(p.getExtraDeposit2().getResourceType())));
+                res2dep2.setImage(new Image(resourceImagesMap.get(p.getExtraDeposit2().getResourceType())));
+                res1dep2.setVisible(true);
+                res2dep2.setVisible(true);
+            }
+            else{
+                res1dep2.setVisible(false);
+                res2dep2.setVisible(false);
+            }
+        }
     }
 
     private void printPlayerButtons() {
@@ -529,23 +658,92 @@ public class MarketSceneController implements Initializable {
                 tempRes1.setImage(new Image(resourceImagesMap.get(r)));
                 tempRes1.setVisible(true);
                 buttonRes1.setDisable(false);
+                buttonRes1extra.setDisable(false);
             }
             else if(counter==1){
                 tempRes2.setImage(new Image(resourceImagesMap.get(r)));
                 tempRes2.setVisible(true);
                 buttonRes2.setDisable(false);
+                buttonRes2extra.setDisable(false);
             }
             else if(counter==2){
                 tempRes3.setImage(new Image(resourceImagesMap.get(r)));
                 tempRes3.setVisible(true);
                 buttonRes3.setDisable(false);
+                buttonRes3extra.setDisable(false);
             }
             else if(counter==3){
                 tempRes4.setImage(new Image(resourceImagesMap.get(r)));
                 tempRes4.setVisible(true);
                 buttonRes4.setDisable(false);
+                buttonRes4extra.setDisable(false);
             }
             counter++;
         }
+    }
+
+    public void insertRes1Extra(ActionEvent actionEvent) {
+        Gson gson = new Gson();
+        InsertResourceMessage message = new InsertResourceMessage();
+        message.setMessageType("InsertResourcesIntoWarehouse");
+        message.setSenderNickname(GUI.getClientNickname());
+        message.setResourceToInsert(temporaryResources.get(0));
+        message.setQuantityToInsert(1);
+        message.setIntoExtraDeposit(true);
+        PrinterSingleton.getPrinterSingleton().sendMessage(gson.toJson(message));
+    }
+
+    public void insertRes2Extra(ActionEvent actionEvent) {
+        Gson gson = new Gson();
+        InsertResourceMessage message = new InsertResourceMessage();
+        message.setMessageType("InsertResourcesIntoWarehouse");
+        message.setSenderNickname(GUI.getClientNickname());
+        message.setResourceToInsert(temporaryResources.get(1));
+        message.setQuantityToInsert(1);
+        message.setIntoExtraDeposit(true);
+        PrinterSingleton.getPrinterSingleton().sendMessage(gson.toJson(message));
+    }
+
+    public void insertRes3Extra(ActionEvent actionEvent) {
+        Gson gson = new Gson();
+        InsertResourceMessage message = new InsertResourceMessage();
+        message.setMessageType("InsertResourcesIntoWarehouse");
+        message.setSenderNickname(GUI.getClientNickname());
+        message.setResourceToInsert(temporaryResources.get(2));
+        message.setQuantityToInsert(1);
+        message.setIntoExtraDeposit(true);
+        PrinterSingleton.getPrinterSingleton().sendMessage(gson.toJson(message));
+    }
+
+    public void insertRes4Extra(ActionEvent actionEvent) {
+        Gson gson = new Gson();
+        InsertResourceMessage message = new InsertResourceMessage();
+        message.setMessageType("InsertResourcesIntoWarehouse");
+        message.setSenderNickname(GUI.getClientNickname());
+        message.setResourceToInsert(temporaryResources.get(3));
+        message.setQuantityToInsert(1);
+        message.setIntoExtraDeposit(true);
+        PrinterSingleton.getPrinterSingleton().sendMessage(gson.toJson(message));
+    }
+
+    public void activateFirstLeader(ActionEvent actionEvent) {
+        Gson gson = new Gson();
+        ActivateLeaderAbilityMessage mex = new ActivateLeaderAbilityMessage();
+        mex.setSenderNickname(GUI.getClientNickname());
+        mex.setMessageType("ActivateLeaderAbility");
+        mex.setPosition(0);
+        PrinterSingleton.getPrinterSingleton().sendMessage(gson.toJson(mex));
+    }
+
+    public void activateSecondLeader(ActionEvent actionEvent) {
+        Gson gson = new Gson();
+        ActivateLeaderAbilityMessage mex = new ActivateLeaderAbilityMessage();
+        mex.setSenderNickname(GUI.getClientNickname());
+        mex.setMessageType("ActivateLeaderAbility");
+        if(modelPrinter.hasDiscardedFirst())
+            mex.setPosition(0);
+        else
+            mex.setPosition(1);
+        PrinterSingleton.getPrinterSingleton().sendMessage(gson.toJson(mex));
     }
 }

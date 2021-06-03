@@ -4,8 +4,8 @@ import com.google.gson.Gson;
 import it.polimi.ingsw.Controller.Messages.NoitifyDeckgridChangedMessage;
 import it.polimi.ingsw.View.ModelPrinter;
 
-public class NotifyDeckgridChandedReader extends CLINotifier {
-    public NotifyDeckgridChandedReader(ModelPrinter modelPrinter) {
+public class NotifyDeckgridChangedReader extends CLINotifier {
+    public NotifyDeckgridChangedReader(ModelPrinter modelPrinter) {
         super(modelPrinter);
     }
 

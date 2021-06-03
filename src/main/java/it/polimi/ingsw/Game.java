@@ -424,11 +424,15 @@ public class Game {
         int maxAddable = marketBoard.getTemporaryResources().get(resourceType);
         if( quantityToAdd > maxAddable || quantityToAdd <= 0 )
             return false;
-        if (intoExtraDeposit){
-            if (currentPlayer.getPersonalBoard().addToExtraDeposit1(resourceType,quantityToAdd)){
+        if (intoExtraDeposit) {
+            if (currentPlayer.getPersonalBoard().addToExtraDeposit1(resourceType, quantityToAdd)) {
+                marketBoard.getTemporaryResources().put(resourceType, maxAddable - quantityToAdd);
+                return true;
+            } else if (currentPlayer.getPersonalBoard().addToExtraDeposit2(resourceType, quantityToAdd)) {
+                marketBoard.getTemporaryResources().put(resourceType, maxAddable - quantityToAdd);
                 return true;
             }
-            else return currentPlayer.getPersonalBoard().addToExtraDeposit2(resourceType, quantityToAdd);
+            return false;
         }
         if( currentPlayer.getPersonalBoard().insertResources(resourceType, 1, quantityToAdd) ) {
             marketBoard.getTemporaryResources().put(resourceType, maxAddable - quantityToAdd);

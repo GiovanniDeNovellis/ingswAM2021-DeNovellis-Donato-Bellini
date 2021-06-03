@@ -51,6 +51,7 @@ public class ServerReader implements Runnable {
                         notificationManager.manageNotification(serverOutput);
                     }
                     else if(gui!=null){
+                        //System.out.println(serverOutput);
                         NotificationManager notificationManager = new NotificationManager(modelPrinter,false);
                         notificationManager.manageNotification(serverOutput);
                     }

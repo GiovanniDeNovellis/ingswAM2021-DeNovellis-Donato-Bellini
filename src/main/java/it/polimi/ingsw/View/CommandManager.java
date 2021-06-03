@@ -40,17 +40,17 @@ public class CommandManager {
                 toBuild = new ActivateProductionMessageBuilder(nickname);
                 return toBuild.buildMessage();
             case "discard leader card":
-                toBuild = new DiscardLeaderMessageBuilder(nickname);
+                toBuild = new DiscardLeaderMessageBuilder(nickname, modelPrinter);
                 return toBuild.buildMessage();
 //Activating leader card(s)
             case "activate leader card":
                 showChosenLeaderCards();
-                toBuild = new ActivateLeaderCardMessageBuilder(nickname);
+                toBuild = new ActivateLeaderCardMessageBuilder(nickname, modelPrinter);
                 return toBuild.buildMessage();
 //Activating leader ability
             case "activate leader ability":
                 showActiveLeaderCards();
-                toBuild = new ActivateLeaderAbilityMessageBuilder(nickname);
+                toBuild = new ActivateLeaderAbilityMessageBuilder(nickname, modelPrinter);
                 return toBuild.buildMessage();
 //Activating action card
             case "take action token":
@@ -108,7 +108,6 @@ public class CommandManager {
             case "end turn":
                 toBuild = new EndTurnRequestMessageBuilder(nickname);
                 return toBuild.buildMessage();
-                //TODO FORSE FARE SHOW CURRENT PLAYER E SHOW PERSONAL BOARD e TEMPORARY RESOURCES
             //__________________________SHOW CASES________________________
             case "show warehouse":
                 showWarehouse();

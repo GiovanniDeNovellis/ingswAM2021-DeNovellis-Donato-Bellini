@@ -16,7 +16,10 @@ public class NotifyActivateLeaderCardReader extends CLINotifier {
         NotifyActivateLeaderCard m = gson.fromJson(notification, NotifyActivateLeaderCard.class);
         for(LeaderCardsPrinter l : modelPrinter.getLeaderCardsPrinters()){
             if(l.getOwnerNickname().equals(m.getWhoActivatedLeaderCard()))
-                l.activateLeaderCard(m.getActivatedLeaderCardPosition());
+                if(m.getActivatedLeaderCardPosition()==0&&l.getChosenLeaderCards()[0]==0)
+                    l.activateLeaderCard(1);
+                else
+                    l.activateLeaderCard(m.getActivatedLeaderCardPosition());
         }
         System.out.println(m.getWhoActivatedLeaderCard() + " activated a Leader Card in position: " + m.getActivatedLeaderCardPosition());
     }

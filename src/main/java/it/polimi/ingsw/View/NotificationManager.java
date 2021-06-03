@@ -1,6 +1,7 @@
 package it.polimi.ingsw.View;
 
 import com.google.gson.Gson;
+import it.polimi.ingsw.Controller.Messages.DiscardSuccessMessage;
 import it.polimi.ingsw.Controller.Messages.Message;
 import it.polimi.ingsw.View.CLINotifiers.*;
 import it.polimi.ingsw.View.GUINotifiers.*;
@@ -38,6 +39,7 @@ public class NotificationManager {
                 break;
             case "ReconnectOkNotification":
                 System.out.println("Successfully reconnected");
+                //TODO FARE UN CONTROLLO COI PLAYER NUMBERS(0 SE IL GAME NON E' INIZIATO DIVERSO SE E' INIZIATO) E PRINT SCENE SUL LOBBY CONTROLLER
                 break;
             case "InvalidLoginNotification":
                 if(isCli)
@@ -75,16 +77,37 @@ public class NotificationManager {
                     System.out.println("Expected login. Please log in before doing this action.");
                 break;
             case"DiscardLeaderCardSuccessNotification":
+                DiscardSuccessMessage mex = gson.fromJson(notification, DiscardSuccessMessage.class);
+                if(mex.getPosition()==0)
+                    modelPrinter.setHasDiscardedFirstLeader(true);
                 if(isCli)
                     System.out.println("You successfully discarded the leader card.");
+                else{
+                    Platform.runLater(()->{
+                        GUI.getMainSceneController().printClientPlayer(modelPrinter);
+                    });
+                }
                 break;
             case"DiscardLeaderCardFailureNotification":
                 if(isCli)
                     System.out.println("You can't discard this leader card.");
+                else{
+                    Platform.runLater(()->{
+                        GUI.getMainSceneController().printClientPlayer(modelPrinter);
+                        GUI.getMainSceneController().getNotificationLabel().setText("You can't discard this leader card.");
+                        GUI.getMainSceneController().getNotificationLabel().setVisible(true);
+                    });
+                }
                 break;
             case"NotifyDiscardLeaderCard":
-                reader = new NotifyDiscardLeaderCardReader(modelPrinter);
-                reader.notifyCLI(notification);
+                if(isCli) {
+                    reader = new NotifyDiscardLeaderCardReader(modelPrinter);
+                    reader.notifyCLI(notification);
+                }
+                else{
+                    GUINotifier notifier = new DiscardLeaderGUINotifier(modelPrinter);
+                    notifier.notifyGui(notification);
+                }
                 break;
             case"ReconnectConfigurationMessage":
                 reader = new ReconnectConfigurationMessageReader(modelPrinter);
@@ -107,7 +130,7 @@ public class NotificationManager {
                 reader.notifyCLI(notification);
                 break;
             case"NotifyDeckgridChanged":
-                reader = new NotifyDeckgridChandedReader(modelPrinter);
+                reader = new NotifyDeckgridChangedReader(modelPrinter);
                 reader.notifyCLI(notification);
                 break;
             case"ActionCardActivationFailureNotification":
@@ -119,27 +142,52 @@ public class NotificationManager {
                     System.out.println("You activated the leader ability successfully.");
                 break;
             case"ActivateLeaderAbilityDiscount":
-                reader = new ActivateLeaderAbilityDiscountReader(modelPrinter);
-                reader.notifyCLI(notification);
+                if(isCli) {
+                    reader = new ActivateLeaderAbilityDiscountReader(modelPrinter);
+                    reader.notifyCLI(notification);
+                }
+                else{
+                    GUINotifier notifier = new ActivateDiscountGUINotifier(modelPrinter);
+                    notifier.notifyGui(notification);
+                }
                 break;
             case"ActivateLeaderAbilityDeposit":
-                reader = new ActivateLeaderAbilityDepositReader(modelPrinter);
-                reader.notifyCLI(notification);
+                if(isCli) {
+                    reader = new ActivateLeaderAbilityDepositReader(modelPrinter);
+                    reader.notifyCLI(notification);
+                }
+                else{
+                    GUINotifier notifier = new ActivateDepositGUINotifier(modelPrinter);
+                    notifier.notifyGui(notification);
+                }
                 break;
             case"ActivateLeaderAbilityProduction":
-                reader = new ActivateLeaderAbilityProductionReader(modelPrinter);
-                reader.notifyCLI(notification);
+                if(isCli) {
+                    reader = new ActivateLeaderAbilityProductionReader(modelPrinter);
+                    reader.notifyCLI(notification);
+                }
+                else{
+                    GUINotifier notifier = new ActivateAbilityProductionGUINotifier(modelPrinter);
+                    notifier.notifyGui(notification);
+                }
                 break;
             case"ActivateLeaderAbilityTransformation":
-                reader = new ActivateLeaderAbilityTransformationReader(modelPrinter);
-                reader.notifyCLI(notification);
+                if(isCli) {
+                    reader = new ActivateLeaderAbilityTransformationReader(modelPrinter);
+                    reader.notifyCLI(notification);
+                }
+                else{
+                    GUINotifier notifier = new ActivateTransformationGUINotifier(modelPrinter);
+                    notifier.notifyGui(notification);
+                }
                 break;
             case"ActivateLeaderAbilityFailureNotification":
                 if(isCli)
                     System.out.println("You can't activate this leader ability now.");
                 else{
                     Platform.runLater(()->{
-                        GUI.getMainSceneController().setErrorLabelText("This leader ability can't be activated more than once.");
+                        GUI.getMainSceneController().getNotificationLabel().setText("This leader ability can't be activated more than once.");
+                        GUI.getMainSceneController().getNotificationLabel().setVisible(true);
                     });
                 }
                 break;
@@ -154,17 +202,28 @@ public class NotificationManager {
             case"ActivateLeaderCardSuccessNotification":
                 if(isCli)
                     System.out.println("Leader card successfully activated.");
+                else{
+                    GUINotifier notifier = new ActivateLeaderSuccessGUINotifier(modelPrinter);
+                    notifier.notifyGui(null);
+                }
                 break;
             case"NotifyActivateLeaderCard":
-                reader = new NotifyActivateLeaderCardReader(modelPrinter);
-                reader.notifyCLI(notification);
+                if(isCli) {
+                    reader = new NotifyActivateLeaderCardReader(modelPrinter);
+                    reader.notifyCLI(notification);
+                }
+                else{
+                    GUINotifier notifier = new LeaderActivatedGUINotifier(modelPrinter);
+                    notifier.notifyGui(notification);
+                }
                 break;
             case"ActivateLeaderCardFailureNotification":
                 if(isCli)
                     System.out.println("You can't activate this leader card now.");
                 else{
                     Platform.runLater(()->{
-                        GUI.getMainSceneController().setErrorLabelText("You don't have the requirements to activate this leader card now.");
+                        GUI.getMainSceneController().getNotificationLabel().setText("(\"You don't have the requirements to activate this leader card now.\")");
+                        GUI.getMainSceneController().getNotificationLabel().setVisible(true);
                     });
                 }
                 break;

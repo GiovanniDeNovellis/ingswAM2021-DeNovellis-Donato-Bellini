@@ -49,8 +49,10 @@ public class ProductionActivatedGUINotifier extends GUINotifier{
         for(PersonalBoardPrinter p: modelPrinter.getPersonalBoards() ) {
             if( p.getOwnerNickname().equals(data.getWhoActivatesProduction())) {
                 p.setWareHouseDepot(data.getWarehouseConfiguration() );
-                p.setExtraDeposit1(data.getExtraDepositConfiguration()[0]);
-                p.setExtraDeposit2(data.getExtraDepositConfiguration()[1]);
+                if(data.getExtraDepositConfiguration()[0]!=null)
+                    p.setExtraDeposit1(data.getExtraDepositConfiguration()[0]);
+                if(data.getExtraDepositConfiguration()[1]!=null)
+                    p.setExtraDeposit2(data.getExtraDepositConfiguration()[1]);
                 p.setStrongbox(data.getStrongboxConfiguration());
                 p.setFaithPoints(data.getNewFaithPoints());
             }

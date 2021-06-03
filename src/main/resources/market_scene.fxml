@@ -166,22 +166,34 @@
       <ImageView fx:id="tempRes2" fitHeight="94.0" fitWidth="101.0" layoutX="1542.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="tempRes3" fitHeight="94.0" fitWidth="101.0" layoutX="1663.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="tempRes4" fitHeight="94.0" fitWidth="101.0" layoutX="1789.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="buttonRes1" disable="true" layoutX="1395.0" layoutY="137.0" mnemonicParsing="false" onAction="#insertRes1" prefHeight="42.0" prefWidth="116.0" text="Insert resource">
+      <Button fx:id="buttonRes1" disable="true" layoutX="1395.0" layoutY="137.0" mnemonicParsing="false" onAction="#insertRes1" prefHeight="42.0" prefWidth="116.0" text="Insert into warehouse">
          <cursor>
             <Cursor fx:constant="HAND" />
-         </cursor></Button>
-      <Button fx:id="buttonRes2" disable="true" layoutX="1531.0" layoutY="136.0" mnemonicParsing="false" onAction="#insertRes2" prefHeight="42.0" prefWidth="116.0" text="Insert resource">
+         </cursor>
+         <font>
+            <Font size="10.0" />
+         </font></Button>
+      <Button fx:id="buttonRes2" disable="true" layoutX="1531.0" layoutY="136.0" mnemonicParsing="false" onAction="#insertRes2" prefHeight="42.0" prefWidth="116.0" text="Insert into warehouse">
          <cursor>
             <Cursor fx:constant="HAND" />
-         </cursor></Button>
-      <Button fx:id="buttonRes3" disable="true" layoutX="1660.0" layoutY="137.0" mnemonicParsing="false" onAction="#insertRes3" prefHeight="42.0" prefWidth="116.0" text="Insert resource">
+         </cursor>
+         <font>
+            <Font size="10.0" />
+         </font></Button>
+      <Button fx:id="buttonRes3" disable="true" layoutX="1660.0" layoutY="137.0" mnemonicParsing="false" onAction="#insertRes3" prefHeight="42.0" prefWidth="116.0" text="Insert into warehouse">
          <cursor>
             <Cursor fx:constant="HAND" />
-         </cursor></Button>
-      <Button fx:id="buttonRes4" disable="true" layoutX="1793.0" layoutY="138.0" mnemonicParsing="false" onAction="#insertRes4" prefHeight="42.0" prefWidth="116.0" text="Insert resource">
+         </cursor>
+         <font>
+            <Font size="10.0" />
+         </font></Button>
+      <Button fx:id="buttonRes4" disable="true" layoutX="1793.0" layoutY="138.0" mnemonicParsing="false" onAction="#insertRes4" prefHeight="42.0" prefWidth="116.0" text="Insert into warehouse">
          <cursor>
             <Cursor fx:constant="HAND" />
-         </cursor></Button>
+         </cursor>
+         <font>
+            <Font size="10.0" />
+         </font></Button>
       <Label fx:id="notificationLabel" layoutY="179.0" prefHeight="21.0" prefWidth="420.0" textFill="RED" />
       <Button fx:id="changementButton" disable="true" layoutX="136.0" layoutY="235.0" mnemonicParsing="false" onAction="#printChangedBoard" opacity="0.0" text="Show Personal Board" />
       <Button fx:id="first_level_button" disable="true" layoutX="1609.0" layoutY="582.0" mnemonicParsing="false" onAction="#switchFirstLevel" opacity="0.0" prefHeight="84.0" prefWidth="158.0" style="-fx-background-color: GOLD;">
@@ -196,5 +208,47 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
+      <ImageView fx:id="dep2" fitHeight="94.0" fitWidth="238.0" layoutX="1669.0" layoutY="324.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="dep1" fitHeight="94.0" fitWidth="238.0" layoutX="1417.0" layoutY="322.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="res1dep1" fitHeight="94.0" fitWidth="94.0" layoutX="1417.0" layoutY="322.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="res2dep1" fitHeight="94.0" fitWidth="94.0" layoutX="1552.0" layoutY="324.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="res1dep2" fitHeight="94.0" fitWidth="94.0" layoutX="1669.0" layoutY="322.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="res2dep2" fitHeight="94.0" fitWidth="94.0" layoutX="1804.0" layoutY="322.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="buttonRes1extra" disable="true" layoutX="1395.0" layoutY="179.0" mnemonicParsing="false" onAction="#insertRes1Extra" prefHeight="42.0" prefWidth="116.0" text="Insert into extradep">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Button>
+      <Button fx:id="buttonRes2extra" disable="true" layoutX="1531.0" layoutY="179.0" mnemonicParsing="false" onAction="#insertRes2Extra" prefHeight="42.0" prefWidth="116.0" text="Insert into extradep">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Button>
+      <Button fx:id="buttonRes3extra" disable="true" layoutX="1662.0" layoutY="179.0" mnemonicParsing="false" onAction="#insertRes3Extra" prefHeight="42.0" prefWidth="116.0" text="Insert into extradep">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Button>
+      <Button fx:id="buttonRes4extra" disable="true" layoutX="1793.0" layoutY="179.0" mnemonicParsing="false" onAction="#insertRes4Extra" prefHeight="42.0" prefWidth="116.0" text="Insert into extradep">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Button>
+      <ImageView fx:id="firstLeaderImage" fitHeight="362.0" fitWidth="187.0" layoutY="606.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="secondLeaderImage" fitHeight="362.0" fitWidth="187.0" layoutX="233.0" layoutY="606.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="firstLeaderButton" layoutY="889.0" mnemonicParsing="false" onAction="#activateFirstLeader" prefHeight="31.0" prefWidth="187.0" text="Activate ability" />
+      <Button fx:id="secondLeaderButton" layoutX="233.0" layoutY="889.0" mnemonicParsing="false" onAction="#activateSecondLeader" prefHeight="31.0" prefWidth="187.0" text="Activate ability" />
    </children>
 </Pane>

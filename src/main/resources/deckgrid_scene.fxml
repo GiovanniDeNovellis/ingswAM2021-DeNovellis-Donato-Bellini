@@ -155,28 +155,12 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <ImageView fitHeight="129.0" fitWidth="346.0" layoutX="48.0" layoutY="622.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fitHeight="129.0" fitWidth="346.0" layoutX="48.0" layoutY="836.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="dep1" fitHeight="129.0" fitWidth="346.0" layoutX="48.0" layoutY="622.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="dep2" fitHeight="129.0" fitWidth="346.0" layoutX="48.0" layoutY="836.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="res1dep1" fitHeight="120.0" fitWidth="132.0" layoutX="42.0" layoutY="630.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="res2dep1" fitHeight="120.0" fitWidth="132.0" layoutX="224.0" layoutY="630.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="res1dep2" fitHeight="120.0" fitWidth="132.0" layoutX="42.0" layoutY="844.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="res2dep2" fitHeight="120.0" fitWidth="132.0" layoutX="224.0" layoutY="844.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="confirmButtonDep1" layoutX="46.0" layoutY="752.0" mnemonicParsing="false" onAction="#confirmPayFromExtra1" opacity="0.0" prefHeight="45.0" prefWidth="309.0" text="CONFIRM">
-         <font>
-            <Font size="20.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <Button fx:id="confirmButtonDep2" layoutX="46.0" layoutY="975.0" mnemonicParsing="false" onAction="#confirmPayFromExtra2" opacity="0.0" prefHeight="45.0" prefWidth="309.0" text="CONFIRM">
-         <font>
-            <Font size="20.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
       <Button fx:id="button1dep1" layoutX="46.0" layoutY="622.0" mnemonicParsing="false" onAction="#selectRes1dep1" opacity="0.0" prefHeight="129.0" prefWidth="132.0" style="-fx-background-color: gold;">
          <cursor>
             <Cursor fx:constant="HAND" />

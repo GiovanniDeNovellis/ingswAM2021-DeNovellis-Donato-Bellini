@@ -12,6 +12,7 @@ public class ModelPrinter {
     private int blackFaithPoints = -1;
     private boolean multiplayerGameStarted = false;
     private String currentPlayerNickname;
+    private boolean discardedFirstLeader = false;
 
     public void print(Printable p, String whatIHaveToPrint) {
         if (whatIHaveToPrint.equals("blackFaithPoints")) {
@@ -133,5 +134,13 @@ public class ModelPrinter {
 
     public void setCurrentPlayerNickname(String currentPlayerNickname) {
         this.currentPlayerNickname = currentPlayerNickname;
+    }
+
+    public boolean hasDiscardedFirst() {
+        return discardedFirstLeader;
+    }
+
+    public void setHasDiscardedFirstLeader(boolean discardedFirstLeader) {
+        this.discardedFirstLeader = discardedFirstLeader;
     }
 }

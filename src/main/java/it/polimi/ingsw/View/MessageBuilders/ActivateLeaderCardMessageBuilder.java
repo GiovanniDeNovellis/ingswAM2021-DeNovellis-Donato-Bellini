@@ -2,15 +2,18 @@ package it.polimi.ingsw.View.MessageBuilders;
 
 import com.google.gson.Gson;
 import it.polimi.ingsw.Controller.Messages.ActivateLeaderCardMessage;
+import it.polimi.ingsw.View.ModelPrinter;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ActivateLeaderCardMessageBuilder extends MessageBuilder{
     String nickname;
+    private final ModelPrinter modelPrinter;
 
-    public ActivateLeaderCardMessageBuilder(String nickname) {
+    public ActivateLeaderCardMessageBuilder(String nickname, ModelPrinter modelPrinter) {
         this.nickname = nickname;
+        this.modelPrinter=modelPrinter;
     }
 
     @Override
@@ -32,7 +35,10 @@ public class ActivateLeaderCardMessageBuilder extends MessageBuilder{
                 input.nextLine();
             }
         }while(position!=1&&position!=2);
-        message.setPosition(position-1);
+        if(modelPrinter.hasDiscardedFirst())
+            message.setPosition(0);
+        else
+            message.setPosition(position-1);
         return gson.toJson(message);
     }
 }

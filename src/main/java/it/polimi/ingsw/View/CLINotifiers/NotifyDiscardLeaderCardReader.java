@@ -21,8 +21,14 @@ public class NotifyDiscardLeaderCardReader extends CLINotifier {
         nickname=data.getWhoDiscardedLeaderCard();
         for(LeaderCardsPrinter l : modelPrinter.getLeaderCardsPrinters()){
             if(l.getOwnerNickname().equals(data.getWhoDiscardedLeaderCard())){
-                l.getChosenLeaderCards()[data.getDiscardedPosition()]=0;
-                l.getActivatedLeaderCards()[data.getDiscardedPosition()]=false;
+                if(data.getDiscardedPosition()==0&&l.getChosenLeaderCards()[0]==0){
+                    l.getChosenLeaderCards()[1]=0;
+                    l.getActivatedLeaderCards()[1]=false;
+                }
+                else {
+                    l.getChosenLeaderCards()[data.getDiscardedPosition()] = 0;
+                    l.getActivatedLeaderCards()[data.getDiscardedPosition()] = false;
+                }
             }
         }
         printNotification();

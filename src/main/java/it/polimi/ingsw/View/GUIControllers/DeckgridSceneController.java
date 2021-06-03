@@ -5,6 +5,7 @@ import it.polimi.ingsw.Colour;
 import it.polimi.ingsw.Controller.Messages.BuyDevelopmentCardMessage;
 import it.polimi.ingsw.Controller.Server;
 import it.polimi.ingsw.DevelopmentCard;
+import it.polimi.ingsw.ResourceType;
 import it.polimi.ingsw.View.GUI;
 import it.polimi.ingsw.View.ModelPrinter;
 import it.polimi.ingsw.View.PrinterSingleton;
@@ -34,6 +35,8 @@ public class DeckgridSceneController implements Initializable {
     private final ArrayList<String> developmentCardsIndex = new ArrayList<>();
     private final Map<Integer,Integer> cardLevelsMap = new HashMap<>();
     private final Map<Integer, Colour> cardColoursMap = new HashMap<>();
+    private final Map<ResourceType, String> extraDepResourceMap = new HashMap<>();
+    private final Map<ResourceType, String> resourceImagesMap = new HashMap<>();
     private String lastChangedNickname;
     private final int[] payUsingExtraDeps = new int[]{0,0};
     private Colour cardColour = null;
@@ -57,6 +60,10 @@ public class DeckgridSceneController implements Initializable {
     @FXML
     private Button changementButton;
     @FXML
+    private ImageView dep1;
+    @FXML
+    private ImageView dep2;
+    @FXML
     private ImageView res1dep1;
     @FXML
     private ImageView res2dep1;
@@ -64,10 +71,6 @@ public class DeckgridSceneController implements Initializable {
     private ImageView res1dep2;
     @FXML
     private ImageView res2dep2;
-    @FXML
-    private Button confirmButtonDep1;
-    @FXML
-    private Button confirmButtonDep2;
     @FXML
     private Button button1dep1;
     @FXML
@@ -120,6 +123,14 @@ public class DeckgridSceneController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         GUI.setDeckgridSceneController(this);
         deckGrid.setDisable(true);
+        resourceImagesMap.put(ResourceType.STONES, "Images/stone.png");
+        resourceImagesMap.put(ResourceType.COINS, "Images/coin.png");
+        resourceImagesMap.put(ResourceType.SERVANTS, "Images/servant.png");
+        resourceImagesMap.put(ResourceType.SHIELDS, "Images/shield.png");
+        extraDepResourceMap.put(ResourceType.COINS,"Images/ExtraDeposits/COINS.PNG");
+        extraDepResourceMap.put(ResourceType.SERVANTS,"Images/ExtraDeposits/SERVANTS.PNG");
+        extraDepResourceMap.put(ResourceType.SHIELDS,"Images/ExtraDeposits/SHIELDS.PNG");
+        extraDepResourceMap.put(ResourceType.STONES,"Images/ExtraDeposits/STONES.PNG");
         developmentCardsIndex.add("Images/DevelopmentCardImages/Masters of Renaissance_Cards_FRONT_3mmBleed_1-1-1.png");
         developmentCardsIndex.add("Images/DevelopmentCardImages/Masters of Renaissance_Cards_FRONT_3mmBleed_1-2-1.png");
         developmentCardsIndex.add("Images/DevelopmentCardImages/Masters of Renaissance_Cards_FRONT_3mmBleed_1-3-1.png");
@@ -237,14 +248,109 @@ public class DeckgridSceneController implements Initializable {
     public void printScene(ModelPrinter modelPrinter) {
         GUI.setStatus("Deck");
         GUI.getDeckgridSceneController().getNotificationLabel().setFont(Font.font(15.0));
+        payUsingExtraDeps[0]=0;
+        payUsingExtraDeps[0]=0;
+        dep1.setVisible(false);
+        dep2.setVisible(false);
+        res1dep1.setVisible(false);
+        res2dep1.setVisible(false);
+        res1dep2.setVisible(false);
+        res2dep2.setVisible(false);
+        button1dep1.setOpacity(0);
+        button1dep1.setCursor(Cursor.DEFAULT);
+        button1dep1.setDisable(true);
+        button2dep1.setOpacity(0);
+        button2dep1.setCursor(Cursor.DEFAULT);
+        button2dep1.setDisable(true);
+        button1dep2.setOpacity(0);
+        button1dep2.setCursor(Cursor.DEFAULT);
+        button1dep2.setDisable(true);
+        button2dep2.setOpacity(0);
+        button2dep2.setCursor(Cursor.DEFAULT);
+        button2dep2.setDisable(true);
         notificationLabel.setVisible(false);
         changementButton.setDisable(true);
         changementButton.setVisible(false);
+        buyButton.setText("Buy development card");
+        buyButton.setDisable(false);
+        buyButton.setCursor(Cursor.HAND);
+        buttonSlot0.setDisable(true);
+        buttonSlot0.setOpacity(0.1);
+        buttonSlot0.setCursor(Cursor.DEFAULT);
+        buttonSlot1.setDisable(true);
+        buttonSlot1.setOpacity(0.1);
+        buttonSlot1.setCursor(Cursor.DEFAULT);
+        buttonSlot2.setDisable(true);
+        buttonSlot2.setOpacity(0.1);
+        buttonSlot2.setCursor(Cursor.DEFAULT);
         changementButton.setCursor(Cursor.DEFAULT);
         this.modelPrinter = modelPrinter;
         printCards();
         printPlayerButtons();
         printDeckgrid();
+        for(PersonalBoardPrinter p: modelPrinter.getPersonalBoards()){
+            if(p.getOwnerNickname().equals(GUI.getClientNickname()))
+                printExtraDeposits(p);
+        }
+    }
+
+    private void printExtraDeposits(PersonalBoardPrinter p ){
+        //Leggo il primo extra deposit
+        if (p.getExtraDeposit1().getResourceType() != null) {
+            dep1.setImage(new Image(extraDepResourceMap.get(p.getExtraDeposit1().getResourceType())));
+            if(p.getExtraDeposit1().getCurrentQuantity()==1) {
+                res1dep1.setImage(new Image(resourceImagesMap.get(p.getExtraDeposit1().getResourceType())));
+                res1dep1.setVisible(true);
+                res2dep1.setVisible(false);
+                button1dep1.setDisable(false);
+                button1dep1.setCursor(Cursor.HAND);
+                button1dep1.setOpacity(0);
+            }
+            else if(p.getExtraDeposit1().getCurrentQuantity()==2){
+                res1dep1.setImage(new Image(resourceImagesMap.get(p.getExtraDeposit1().getResourceType())));
+                res2dep1.setImage(new Image(resourceImagesMap.get(p.getExtraDeposit1().getResourceType())));
+                res1dep1.setVisible(true);
+                res2dep1.setVisible(true);
+                button1dep1.setDisable(false);
+                button1dep1.setCursor(Cursor.HAND);
+                button2dep1.setDisable(false);
+                button2dep1.setCursor(Cursor.HAND);
+                button1dep1.setOpacity(0);
+                button2dep1.setOpacity(0);
+            }
+            else{
+                res1dep1.setVisible(false);
+                res2dep1.setVisible(false);
+            }
+        }
+        //Leggo il secondo extra deposit
+        if (p.getExtraDeposit2().getResourceType() != null) {
+            dep2.setImage(new Image(extraDepResourceMap.get(p.getExtraDeposit2().getResourceType())));
+            if(p.getExtraDeposit2().getCurrentQuantity()==1) {
+                res1dep2.setImage(new Image(resourceImagesMap.get(p.getExtraDeposit2().getResourceType())));
+                res1dep2.setVisible(true);
+                res2dep2.setVisible(false);
+                button1dep2.setDisable(false);
+                button1dep2.setCursor(Cursor.HAND);
+                button1dep2.setOpacity(0);
+            }
+            else if(p.getExtraDeposit2().getCurrentQuantity()==2){
+                res1dep2.setImage(new Image(resourceImagesMap.get(p.getExtraDeposit2().getResourceType())));
+                res2dep2.setImage(new Image(resourceImagesMap.get(p.getExtraDeposit2().getResourceType())));
+                res1dep2.setVisible(true);
+                res2dep2.setVisible(true);
+                button1dep2.setDisable(false);
+                button1dep2.setCursor(Cursor.HAND);
+                button2dep2.setDisable(false);
+                button2dep2.setCursor(Cursor.HAND);
+                button1dep2.setOpacity(0);
+                button2dep2.setOpacity(0);
+            }
+            else{
+                res1dep2.setVisible(false);
+                res2dep2.setVisible(false);
+            }
+        }
     }
 
     private void printCards(){
@@ -327,6 +433,11 @@ public class DeckgridSceneController implements Initializable {
                 ImageView im = (ImageView) n;
                 im.setImage(new Image(developmentCardsIndex.get(modelPrinter.getDeckGridPrinter().getDeckgrid().readCard(cardLevelsMap.get(y), cardColoursMap.get(x)).getNumber() - 1)));
             }
+            else{
+                Button cardButton = (Button) n;
+                cardButton.setCursor(Cursor.DEFAULT);
+                cardButton.setOpacity(0);
+            }
         }
     }
 
@@ -361,12 +472,6 @@ public class DeckgridSceneController implements Initializable {
 
     public Label getNotificationLabel() {
         return notificationLabel;
-    }
-
-    public void confirmPayFromExtra1(ActionEvent actionEvent) {
-    }
-
-    public void confirmPayFromExtra2(ActionEvent actionEvent) {
     }
 
     private void buyCard(int cardLevel, Colour cardColour, Button cardButton){
@@ -437,16 +542,51 @@ public class DeckgridSceneController implements Initializable {
     }
 
     public void selectRes1dep1(ActionEvent actionEvent) {
-
+        if(button1dep1.getOpacity()==0.3){
+            //AVEVO GIA' SELEZIONATO
+            payUsingExtraDeps[0]--;
+            button1dep1.setOpacity(0);
+        }
+        else{
+            payUsingExtraDeps[0]++;
+            button1dep1.setOpacity(0.3);
+        }
     }
 
     public void selectRes2dep1(ActionEvent actionEvent) {
+        if(button2dep1.getOpacity()==0.3){
+            //AVEVO GIA' SELEZIONATO
+            payUsingExtraDeps[0]--;
+            button2dep1.setOpacity(0);
+        }
+        else{
+            payUsingExtraDeps[0]++;
+            button2dep1.setOpacity(0.3);
+        }
     }
 
     public void selectRes1dep2(ActionEvent actionEvent) {
+        if(button1dep2.getOpacity()==0.3){
+            //AVEVO GIA' SELEZIONATO
+            payUsingExtraDeps[1]--;
+            button1dep2.setOpacity(0);
+        }
+        else{
+            payUsingExtraDeps[1]++;
+            button1dep2.setOpacity(0.3);
+        }
     }
 
     public void selectRes2dep2(ActionEvent actionEvent) {
+        if(button2dep2.getOpacity()==0.3){
+            //AVEVO GIA' SELEZIONATO
+            payUsingExtraDeps[1]--;
+            button2dep2.setOpacity(0);
+        }
+        else{
+            payUsingExtraDeps[1]++;
+            button2dep2.setOpacity(0.3);
+        }
     }
 
     public void tryBuyCard(ActionEvent actionEvent) {
@@ -512,6 +652,4 @@ public class DeckgridSceneController implements Initializable {
     public void selectSlot0(ActionEvent actionEvent) {
         selectSlot(0,buttonSlot0);
     }
-
-    //TODO EXTRA DEPOSITS
 }

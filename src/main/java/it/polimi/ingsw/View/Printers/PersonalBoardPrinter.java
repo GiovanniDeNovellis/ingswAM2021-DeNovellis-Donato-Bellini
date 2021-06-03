@@ -793,4 +793,8 @@ public class PersonalBoardPrinter implements Printable{
     public DevelopmentCard[] getLevel3cards() {
         return level3cards;
     }
+
+    public ExtraDeposit getExtraDeposit1() { return extraDeposit1; }
+
+    public ExtraDeposit getExtraDeposit2() { return extraDeposit2; }
 }

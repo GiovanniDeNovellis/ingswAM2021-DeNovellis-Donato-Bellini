@@ -287,5 +287,9 @@
       <Button fx:id="basePayButton4" layoutX="538.0" layoutY="666.0" mnemonicParsing="false" onAction="#baseSetPayRes4" opacity="0.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: gold;" />
       <Button fx:id="basePayButton5" layoutX="596.0" layoutY="666.0" mnemonicParsing="false" onAction="#baseSetPayRes5" opacity="0.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: gold;" />
       <Button fx:id="basePayButton6" layoutX="646.0" layoutY="666.0" mnemonicParsing="false" onAction="#baseSetPayRes6" opacity="0.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: gold;" />
+      <Button fx:id="button1dep1" layoutX="812.0" layoutY="478.0" mnemonicParsing="false" onAction="#selectRes1dep1" opacity="0.0" prefHeight="51.0" prefWidth="65.0" />
+      <Button fx:id="button2dep1" layoutX="910.0" layoutY="478.0" mnemonicParsing="false" onAction="#selectRes2dep1" opacity="0.0" prefHeight="51.0" prefWidth="65.0" />
+      <Button fx:id="button1dep2" layoutX="812.0" layoutY="553.0" mnemonicParsing="false" onAction="#selectRes1dep2" opacity="0.0" prefHeight="51.0" prefWidth="65.0" />
+      <Button fx:id="button2dep2" layoutX="910.0" layoutY="553.0" mnemonicParsing="false" onAction="#selectRes2dep2" opacity="0.0" prefHeight="51.0" prefWidth="65.0" />
    </children>
 </Pane>
