@@ -174,7 +174,6 @@ public class MainSceneController implements Initializable {
     @FXML
     private Button button2dep2;
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         GUI.setMainSceneController(this);
@@ -356,9 +355,40 @@ public class MainSceneController implements Initializable {
             devCard1.setCursor(Cursor.HAND);
             devCard2.setDisable(false);
             devCard2.setCursor(Cursor.HAND);
-
+            setDepButtons();
         } else if (production.getText().equals("CONFIRM")) {
             PrinterSingleton.getPrinterSingleton().sendMessage(parseMessage());
+        }
+    }
+
+    private void setDepButtons(){
+        for(PersonalBoardPrinter p: modelPrinter.getPersonalBoards()){
+            if(p.getOwnerNickname().equals(GUI.getClientNickname())){
+                if(p.getExtraDeposit1()!=null){
+                    if(p.getExtraDeposit1().getCurrentQuantity()==2){
+                        button1dep1.setDisable(false);
+                        button1dep1.setCursor(Cursor.HAND);
+                        button2dep1.setDisable(false);
+                        button2dep1.setCursor(Cursor.HAND);
+                    }
+                    else if(p.getExtraDeposit1().getCurrentQuantity()==1){
+                        button1dep1.setDisable(false);
+                        button1dep1.setCursor(Cursor.HAND);
+                    }
+                }
+                if(p.getExtraDeposit2()!=null){
+                    if(p.getExtraDeposit2().getCurrentQuantity()==2){
+                        button1dep2.setDisable(false);
+                        button1dep2.setCursor(Cursor.HAND);
+                        button2dep2.setDisable(false);
+                        button2dep2.setCursor(Cursor.HAND);
+                    }
+                    else if(p.getExtraDeposit2().getCurrentQuantity()==1){
+                        button1dep2.setDisable(false);
+                        button1dep2.setCursor(Cursor.HAND);
+                    }
+                }
+            }
         }
     }
 
@@ -375,6 +405,8 @@ public class MainSceneController implements Initializable {
         message.setWhichLeaderCard(whichLeaderCard);
         return gson.toJson(message);
     }
+
+
 
     public void baseProdTrue(ActionEvent actionEvent) {
         if (!fromPersonalBoard) {

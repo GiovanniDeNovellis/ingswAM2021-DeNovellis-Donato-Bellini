@@ -3,6 +3,8 @@ package it.polimi.ingsw.View;
 import com.google.gson.Gson;
 import it.polimi.ingsw.Controller.Messages.LoginOkNotificationMessage;
 import it.polimi.ingsw.Controller.Messages.Message;
+import it.polimi.ingsw.View.UInotifiers.CLIInterface;
+import it.polimi.ingsw.View.UInotifiers.GUIInterface;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -22,42 +24,30 @@ public class ServerReader implements Runnable {
     public void run() {
         Gson gson = new Gson();
         String serverOutput;
+        UI interfaceToNotify;
+        if(cli!=null) //SONO IN CLI
+            interfaceToNotify= new CLIInterface(modelPrinter);
+        else //SONO IN GUI
+            interfaceToNotify = new GUIInterface(modelPrinter);
         try {
             while ((serverOutput = in.readLine()) != null) {
-                if(serverOutput.equals("end")){
+                if (serverOutput.equals("end"))
                     System.err.println("Hai mandato al server un messaggio non riconosciuto");
-                }
-                else if (!serverOutput.equals("Ping")) {
+                 else if (!serverOutput.equals("Ping")) {
                     //System.out.println(serverOutput);
-                    Message mex=gson.fromJson(serverOutput,Message.class);
-                    if(mex.getMessageType()==null){
+                    Message mex = gson.fromJson(serverOutput, Message.class);
+                    if (mex.getMessageType() == null)
                         System.err.println("Ricevuto messaggio senza tipo!");
-                    }
-                    else if(mex.getMessageType().equals("LoginOkNotification") && cli!=null ){
-                        LoginOkNotificationMessage log = gson.fromJson(serverOutput,LoginOkNotificationMessage.class);
-                        cli.setNickname(log.getSenderNickname());
-                        NotificationManager notificationManager = new NotificationManager(modelPrinter,true);
-                        notificationManager.manageNotification(serverOutput);
-                    }
-                    else if(cli!=null){
-                        NotificationManager notificationManager = new NotificationManager(modelPrinter,true);
-                        notificationManager.manageNotification(serverOutput);
-                    }
-                    //SONO IN MODALITA' GUI
-                    else if(mex.getMessageType().equals("LoginOkNotification")){
-                        LoginOkNotificationMessage log = gson.fromJson(serverOutput,LoginOkNotificationMessage.class);
-                        GUI.setClientNickname(log.getSenderNickname());
-                        NotificationManager notificationManager = new NotificationManager(modelPrinter,false);
-                        notificationManager.manageNotification(serverOutput);
-                    }
-                    else if(gui!=null){
-                        //System.out.println(serverOutput);
-                        NotificationManager notificationManager = new NotificationManager(modelPrinter,false);
-                        notificationManager.manageNotification(serverOutput);
-                    }
-                    else{
-                        System.err.println("GUI o CLI non trovati");
-                    }
+                     else if (mex.getMessageType().equals("LoginOkNotification")) {
+                        LoginOkNotificationMessage log = gson.fromJson(serverOutput, LoginOkNotificationMessage.class);
+                        if (cli != null)
+                            cli.setNickname(log.getSenderNickname());
+                        else
+                            GUI.setClientNickname(log.getSenderNickname());
+                        interfaceToNotify.notify(serverOutput);
+                    } else
+                        interfaceToNotify.notify(serverOutput);
+
                 }
             }
             System.err.println("Il server è crashato, la partita termina.");

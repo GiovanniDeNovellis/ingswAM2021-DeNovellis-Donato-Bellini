@@ -37,12 +37,12 @@ public class Client{
                 t1.start();
                 ServerReader serverReader = new ServerReader(in);
                 Thread t = new Thread(serverReader);
-                t.start();
                 if (type.equals("CLI")) {
                     CLI cli = new CLI();
                     serverReader.setCli(cli);
                     Thread thread = new Thread(cli);
                     thread.start();
+                    t.start();
                     while (true) {
                         if ((userInput = cli.getUserInput()) != null) {
                             if(userInput.equals("Invalid command."))
@@ -56,6 +56,7 @@ public class Client{
                     PrinterSingleton.getPrinterSingleton().setPrintWriter(out);
                     GUI gui = new GUI();
                     serverReader.setGui(gui);
+                    t.start();
                     GUI.main(args);
                 }
                 else{

@@ -508,8 +508,7 @@ public class Player {
         if ( !choosedLeaderCards.get(whichLeaderCard).isActive() )
             return false;
         else
-            choosedLeaderCards.get(whichLeaderCard).activateAbility();
-        return true;
+            return choosedLeaderCards.get(whichLeaderCard).activateAbility();
     }
 
     /**
