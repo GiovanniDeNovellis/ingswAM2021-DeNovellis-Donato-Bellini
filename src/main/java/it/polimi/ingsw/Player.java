@@ -217,9 +217,9 @@ public class Player {
 
     /**
      * Public method.
-     * @return True if the player has done the initial distribution.
+     * @return False if the player has done the initial distribution.
      */
-    public boolean doneInitialDistribution() {
+    public boolean notDoneInitialDistribution() {
         return !initialDistribution;
     }
 

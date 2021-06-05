@@ -18,6 +18,8 @@ public class ReconnectConfigurationMessage extends Message{
     private ArrayList<Integer> choosableLeaderCards = new ArrayList<>();
     private ArrayList<Integer> choosedLeaderCards = new ArrayList<>();
     private boolean[] activeLeaderCards;
+    private boolean hasChosenLeaderCards;
+    private String currentPlayerNickname;
 
     public String[][] getMarbleGridConfiguration() {
         return marbleGridConfiguration;
@@ -121,5 +123,17 @@ public class ReconnectConfigurationMessage extends Message{
 
     public void setPlayerNumber(int playerNumber) {
         this.playerNumber = playerNumber;
+    }
+
+    public boolean hasChosenLeaderCards() { return hasChosenLeaderCards; }
+
+    public void setHasChosenLeaderCards(boolean hasChosenLeaderCards) { this.hasChosenLeaderCards = hasChosenLeaderCards; }
+
+    public String getCurrentPlayerNickname() {
+        return currentPlayerNickname;
+    }
+
+    public void setCurrentPlayerNickname(String currentPlayerNickname) {
+        this.currentPlayerNickname = currentPlayerNickname;
     }
 }

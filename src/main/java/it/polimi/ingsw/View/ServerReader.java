@@ -47,7 +47,6 @@ public class ServerReader implements Runnable {
                         interfaceToNotify.notify(serverOutput);
                     } else
                         interfaceToNotify.notify(serverOutput);
-
                 }
             }
             System.err.println("Il server è crashato, la partita termina.");

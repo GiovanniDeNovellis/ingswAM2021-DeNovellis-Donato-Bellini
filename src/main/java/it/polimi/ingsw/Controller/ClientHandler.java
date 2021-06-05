@@ -106,10 +106,14 @@ public class ClientHandler implements Runnable {
                                         reconnectConfigurationMessage.setExtraDepositConfiguration(extraDeposits);
                                         reconnectConfigurationMessage.setNewFaithPoints(player.getFaithPoints());
                                         reconnectConfigurationMessage.setDevelopmentCardsConfiguration(player.getPersonalBoard().getDevelopmentCard());
+                                        reconnectConfigurationMessage.setHasChosenLeaderCards(player.hasChosenLeaderCards());
+                                        boolean[] actives = {false,false};
+                                        reconnectConfigurationMessage.setActiveLeaderCards(actives);
+                                        if(controller.getGame().getCurrentPlayer()!=null)
+                                            reconnectConfigurationMessage.setCurrentPlayerNickname(controller.getGame().getCurrentPlayer().getNickname());
                                         if(player.getNickname().equals(tempNickname)){
                                             if(player.hasChosenLeaderCards()){
                                                 int k=0;
-                                                boolean[] actives = {false,false};
                                                 for(LeaderCard l: player.getChoosedLeaderCards()){
                                                     actives[k]=l.isActive();
                                                     reconnectConfigurationMessage.getChoosedLeaderCards().add(l.getLeaderCardNumber());
@@ -125,7 +129,6 @@ public class ClientHandler implements Runnable {
                                         }
                                         else if(player.hasChosenLeaderCards()){
                                             int k=0;
-                                            boolean[] actives = {false,false};
                                            for(LeaderCard l: player.getChoosedLeaderCards()){
                                                     actives[k]=l.isActive();
                                                    reconnectConfigurationMessage.getChoosedLeaderCards().add(l.getLeaderCardNumber());
@@ -186,6 +189,10 @@ public class ClientHandler implements Runnable {
             System.err.println("IO chiamata dal client handler");
         }
         //GESTIONE DISCONNESSIONI
+        if(clientNickname==null) {
+            this.serverPing.setRunning(false);
+            return;
+        }
         synchronized (controller){
             Gson gson = new Gson();
             controller.getConnectedClients().remove(this);
@@ -198,7 +205,32 @@ public class ClientHandler implements Runnable {
             }
             //DISCONNESSO DURANTE IL SUO TURNO
             else if(clientNickname.equals(controller.getGame().getCurrentPlayer().getNickname())){
+                if(!controller.getGame().getCurrentPlayer().hasChosenLeaderCards()) {
+                    controller.getGame().chooseLeaderCards(0, 1);
+                    controller.getGame().getCurrentPlayer().setChosenLeaderCards(true);
+                    ChosenLeaderCardsMessage mex = new ChosenLeaderCardsMessage();
+                    mex.setSenderNickname(clientNickname);
+                    mex.setMessageType("ChosenLeaderCardsMessage");
+                    mex.setFirstChosenLeaderCardNumber(0);
+                    mex.setSecondChosenLeaderCardNumber(1);
+                    String notificationForAll = gson.toJson(mex);
+                    for(ClientHandler c : controller.getConnectedClients()){
+                        c.notifyInterface(notificationForAll);
+                    }
+                }
+                if(controller.getGame().getCurrentPlayer().notDoneInitialDistribution()){
+                    controller.getGame().distributionResourceSecondThird(ResourceType.STONES);
+                    controller.getGame().distributionResourceFourthPlayer(ResourceType.STONES,ResourceType.STONES);
+                    NotifyWarehouseChangedMessage mex = new NotifyWarehouseChangedMessage();
+                    mex.setWarehouseConfiguration(controller.getGame().getCurrentPlayer().getPersonalBoard().getWarehouseDepot());
+                    mex.setNickname(clientNickname);
+                    mex.setMessageType("NotifyWareHouseChangedMessage");
+                    for(ClientHandler c : controller.getConnectedClients()){
+                        c.notifyInterface(gson.toJson(mex));
+                    }
+                }
                 controller.getGame().getCurrentPlayer().setIsAFK(true);
+                controller.getGame().getCurrentPlayer().setCanEndTurn(true);
                 controller.getGame().endTurn();
                 String nickname;
                 String winnerNickname=null;
@@ -222,9 +254,37 @@ public class ClientHandler implements Runnable {
             }
             //DISCONNESSO MA NON ERA IL SUO TURNO
             else{
-                for(Player p: controller.getGame().getPlayers()){
-                    if(p.getNickname().equals(clientNickname))
+                for(Player p: controller.getGame().getPlayers()) {
+                    if (p.getNickname().equals(clientNickname)) {
                         p.setIsAFK(true);
+                        if (!p.hasChosenLeaderCards()) {
+                            p.chooseLeaderCards(0, 1);
+                            p.setChosenLeaderCards(true);
+                            ChosenLeaderCardsMessage mex = new ChosenLeaderCardsMessage();
+                            mex.setSenderNickname(clientNickname);
+                            mex.setMessageType("ChosenLeaderCardsMessage");
+                            mex.setFirstChosenLeaderCardNumber(0);
+                            mex.setSecondChosenLeaderCardNumber(1);
+                            String notificationForAll = gson.toJson(mex);
+                            for(ClientHandler c : controller.getConnectedClients()){
+                                c.notifyInterface(notificationForAll);
+                            }
+                        }
+                        if (p.notDoneInitialDistribution()) {
+                            if (p.getPlayerNumber() == 3)
+                                p.insertResourcesIntoWarehouse(ResourceType.STONES, 2, 2);
+                            else if (p.getPlayerNumber() == 1 || p.getPlayerNumber() == 2)
+                                p.insertResourcesIntoWarehouse(ResourceType.STONES, 1, 1);
+                            p.setInitialDistribution(true);
+                            NotifyWarehouseChangedMessage mex = new NotifyWarehouseChangedMessage();
+                            mex.setWarehouseConfiguration(p.getPersonalBoard().getWarehouseDepot());
+                            mex.setNickname(clientNickname);
+                            mex.setMessageType("NotifyWareHouseChangedMessage");
+                            for(ClientHandler c : controller.getConnectedClients()){
+                                c.notifyInterface(gson.toJson(mex));
+                            }
+                        }
+                    }
                 }
             }
             PlayerOutNotification mex = new PlayerOutNotification();

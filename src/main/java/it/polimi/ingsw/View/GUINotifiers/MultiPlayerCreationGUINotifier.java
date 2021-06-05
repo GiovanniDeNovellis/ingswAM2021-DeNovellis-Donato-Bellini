@@ -46,11 +46,16 @@ public class MultiPlayerCreationGUINotifier extends GUINotifier{
         for(LeaderCardsPrinter l : modelPrinter.getLeaderCardsPrinters() ){
             if( l.getOwnerNickname().equals(mex.getNickname())) {
                 l.setChoosableLeaderCards(mex.getChoosableLeaderCardsNumbers());
+                if(mex.getChoosedLeaderCardsNumbers()!=null)
+                    l.setChosenLeaderCards(mex.getChoosedLeaderCardsNumbers());
             }
         }
         for(PersonalBoardPrinter p: modelPrinter.getPersonalBoards() ){
-            if( p.getOwnerNickname().equals(mex.getNickname()))
+            if( p.getOwnerNickname().equals(mex.getNickname())) {
                 p.setPlayerNumber(mex.getPlayerNumber());
+                if(mex.getWarehouseConfiguration()!=null)
+                    p.setWareHouseDepot(mex.getWarehouseConfiguration());
+            }
         }
     }
 }

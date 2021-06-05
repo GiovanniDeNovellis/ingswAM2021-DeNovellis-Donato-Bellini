@@ -14,6 +14,7 @@ public class ModelPrinter {
     private String currentPlayerNickname;
     private boolean discardedFirstLeader = false;
 
+
     public void print(Printable p, String whatIHaveToPrint) {
         if (whatIHaveToPrint.equals("blackFaithPoints")) {
             printLorenzoTrack();

@@ -37,7 +37,6 @@ public class NotificationManager {
                 break;
             case "ReconnectOkNotification":
                 System.out.println("Successfully reconnected");
-                //TODO FARE UN CONTROLLO COI PLAYER NUMBERS(0 SE IL GAME NON E' INIZIATO DIVERSO SE E' INIZIATO) E PRINT SCENE SUL LOBBY CONTROLLER
                 break;
             case "InvalidLoginNotification":
                 if(isCli)

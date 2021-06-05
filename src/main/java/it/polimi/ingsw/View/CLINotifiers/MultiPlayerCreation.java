@@ -26,11 +26,16 @@ public class MultiPlayerCreation extends CLINotifier {
         for(LeaderCardsPrinter l : modelPrinter.getLeaderCardsPrinters() ){
             if( l.getOwnerNickname().equals(data.getNickname())) {
                 l.setChoosableLeaderCards(data.getChoosableLeaderCardsNumbers());
+                if(data.getChoosedLeaderCardsNumbers()!=null)
+                    l.setChosenLeaderCards(data.getChoosedLeaderCardsNumbers());
             }
         }
         for(PersonalBoardPrinter p: modelPrinter.getPersonalBoards() ){
-            if( p.getOwnerNickname().equals(data.getNickname()))
+            if( p.getOwnerNickname().equals(data.getNickname())) {
                 p.setPlayerNumber(data.getPlayerNumber());
+                if(data.getWarehouseConfiguration()!=null)
+                    p.setWareHouseDepot(data.getWarehouseConfiguration());
+            }
         }
     }
 

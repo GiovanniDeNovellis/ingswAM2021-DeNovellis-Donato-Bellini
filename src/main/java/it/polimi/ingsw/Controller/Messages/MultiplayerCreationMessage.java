@@ -1,9 +1,6 @@
 package it.polimi.ingsw.Controller.Messages;
 
-import it.polimi.ingsw.Deckgrid;
-import it.polimi.ingsw.LeaderCard;
-import it.polimi.ingsw.Marble;
-import it.polimi.ingsw.ResourceType;
+import it.polimi.ingsw.*;
 
 import java.util.ArrayList;
 
@@ -14,9 +11,8 @@ public class MultiplayerCreationMessage extends Message{
     private Deckgrid deckgridConfiguration;
     private String[][] marbleGridConfiguration;
     private String marbleOut;
-
-
-
+    private WareHouseDepot warehouseConfiguration;
+    private int[] choosedLeaderCardsNumbers;
 
     public void setPlayerNumber(int playerNumber) {
         this.playerNumber = playerNumber;
@@ -64,5 +60,21 @@ public class MultiplayerCreationMessage extends Message{
 
     public void setMarbleOut(String marbleOut) {
         this.marbleOut = marbleOut;
+    }
+
+    public WareHouseDepot getWarehouseConfiguration() {
+        return warehouseConfiguration;
+    }
+
+    public void setWarehouseConfiguration(WareHouseDepot warehouseConfiguration) {
+        this.warehouseConfiguration = warehouseConfiguration;
+    }
+
+    public int[] getChoosedLeaderCardsNumbers() {
+        return choosedLeaderCardsNumbers;
+    }
+
+    public void setChoosedLeaderCardsNumbers(int[] choosedLeaderCardsNumbers) {
+        this.choosedLeaderCardsNumbers = choosedLeaderCardsNumbers;
     }
 }

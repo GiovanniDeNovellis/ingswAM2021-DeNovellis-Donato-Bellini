@@ -19,6 +19,7 @@ public class PersonalBoardPrinter implements Printable{
     private final Map<ResourceType, Colours> resourceTypeColoursMap = new HashMap<>();
     private int[] faithCards = {2,3,4};
     private int faithPoints=0;
+    private boolean hasChosenLeaderCards = false;
 
     private final DevelopmentCard[] level1cards = new DevelopmentCard[3];
     private final DevelopmentCard[] level2cards = new DevelopmentCard[3];
@@ -797,4 +798,12 @@ public class PersonalBoardPrinter implements Printable{
     public ExtraDeposit getExtraDeposit1() { return extraDeposit1; }
 
     public ExtraDeposit getExtraDeposit2() { return extraDeposit2; }
+
+    public boolean hasChosenLeaderCards() {
+        return hasChosenLeaderCards;
+    }
+
+    public void setHasChosenLeaderCards(boolean hasChosenLeaderCards) {
+        this.hasChosenLeaderCards = hasChosenLeaderCards;
+    }
 }
