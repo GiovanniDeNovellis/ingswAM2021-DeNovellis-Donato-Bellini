@@ -27,7 +27,7 @@ public class DiscardLeaderGUINotifier extends GUINotifier{
                     break;
                 case "Deck":
                     GUI.getDeckgridSceneController().printScene(modelPrinter);
-                    GUI.getDeckgridSceneController().notifyChangement("has discarded a leader card.", data.getWhoDiscardedLeaderCard());
+                    GUI.getDeckgridSceneController().notifyChanged("has discarded a leader card.", data.getWhoDiscardedLeaderCard());
                     break;
                 case "Main":
                     GUI.getMainSceneController().printClientPlayer(modelPrinter);

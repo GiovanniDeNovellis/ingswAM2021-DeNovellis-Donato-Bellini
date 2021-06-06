@@ -27,13 +27,14 @@ public class ActivateDepositGUINotifier extends GUINotifier {
                     break;
                 case "Deck":
                     GUI.getDeckgridSceneController().printScene(modelPrinter);
-                    GUI.getDeckgridSceneController().notifyChangement("has built an extra deposit.", data.getSenderNickname());
+                    GUI.getDeckgridSceneController().notifyChanged("has built an extra deposit.", data.getSenderNickname());
                     break;
                 case "Main":
                     GUI.getMainSceneController().printClientPlayer(modelPrinter);
                     GUI.getMainSceneController().notifyChangement("has built an extra deposit.", data.getSenderNickname());
                     break;
             }
+
         });
     }
 

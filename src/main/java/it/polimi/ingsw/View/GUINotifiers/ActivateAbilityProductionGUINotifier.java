@@ -25,7 +25,7 @@ public class ActivateAbilityProductionGUINotifier extends GUINotifier{
                     break;
                 case "Deck":
                     GUI.getDeckgridSceneController().printScene(modelPrinter);
-                    GUI.getDeckgridSceneController().notifyChangement("has activated a production leader ability.", data.getSenderNickname());
+                    GUI.getDeckgridSceneController().notifyChanged("has activated a production leader ability.", data.getSenderNickname());
                     break;
                 case "Main":
                     GUI.getMainSceneController().printClientPlayer(modelPrinter);

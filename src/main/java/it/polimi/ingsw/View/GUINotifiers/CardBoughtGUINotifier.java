@@ -29,7 +29,7 @@ public class CardBoughtGUINotifier extends GUINotifier{
                         break;
                     case "Deck":
                         GUI.getDeckgridSceneController().printScene(modelPrinter);
-                        GUI.getDeckgridSceneController().notifyChangement("has bought a development card.", data.getNickname());
+                        GUI.getDeckgridSceneController().notifyChanged("has bought a development card.", data.getNickname());
                         break;
                     case "Main":
                         GUI.getMainSceneController().printClientPlayer(modelPrinter);

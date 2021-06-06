@@ -363,7 +363,9 @@ public class MarketSceneController implements Initializable {
         }
         if (modelPrinter.getPersonalBoards().size() == 1) {
             player1.setText(modelPrinter.getPersonalBoards().get(0).getOwnerNickname());
-            player2.setText("Lorenzo");
+            player2.setDisable(true);
+            player2.setOpacity(0);
+            player2.setCursor(Cursor.DEFAULT);
             player3.setDisable(true);
             player3.setOpacity(0);
             player3.setCursor(Cursor.DEFAULT);

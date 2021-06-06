@@ -267,17 +267,17 @@
          </cursor>
       </Button>
       <Button fx:id="basePayButton1" layoutX="596.0" layoutY="474.0" mnemonicParsing="false" onAction="#baseSetPayRes1" opacity="0.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: gold;" />
-      <Button fx:id="devCard0" disable="true" layoutX="1002.0" layoutY="463.0" mnemonicParsing="false" onAction="#selectDevCard0" opacity="0.0" prefHeight="525.0" prefWidth="267.0" style="-fx-background-color: gold;" text="Button">
+      <Button fx:id="devCard0" disable="true" layoutX="1002.0" layoutY="463.0" mnemonicParsing="false" onAction="#selectDevCard0" opacity="0.0" prefHeight="525.0" prefWidth="267.0" style="-fx-background-color: gold;">
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor>
       </Button>
-      <Button fx:id="devCard1" disable="true" layoutX="1293.0" layoutY="463.0" mnemonicParsing="false" onAction="#selectDevCard1" opacity="0.0" prefHeight="525.0" prefWidth="267.0" style="-fx-background-color: gold;" text="Button">
+      <Button fx:id="devCard1" disable="true" layoutX="1293.0" layoutY="463.0" mnemonicParsing="false" onAction="#selectDevCard1" opacity="0.0" prefHeight="525.0" prefWidth="267.0" style="-fx-background-color: gold;">
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor>
       </Button>
-      <Button fx:id="devCard2" disable="true" layoutX="1591.0" layoutY="469.0" mnemonicParsing="false" onAction="#selectDevCard2" opacity="0.0" prefHeight="519.0" prefWidth="267.0" style="-fx-background-color: gold;" text="Button">
+      <Button fx:id="devCard2" disable="true" layoutX="1591.0" layoutY="469.0" mnemonicParsing="false" onAction="#selectDevCard2" opacity="0.0" prefHeight="519.0" prefWidth="267.0" style="-fx-background-color: gold;">
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor>
@@ -291,5 +291,11 @@
       <Button fx:id="button2dep1" layoutX="910.0" layoutY="478.0" mnemonicParsing="false" onAction="#selectRes2dep1" opacity="0.0" prefHeight="51.0" prefWidth="65.0" />
       <Button fx:id="button1dep2" layoutX="812.0" layoutY="553.0" mnemonicParsing="false" onAction="#selectRes1dep2" opacity="0.0" prefHeight="51.0" prefWidth="65.0" />
       <Button fx:id="button2dep2" layoutX="910.0" layoutY="553.0" mnemonicParsing="false" onAction="#selectRes2dep2" opacity="0.0" prefHeight="51.0" prefWidth="65.0" />
+      <ImageView fx:id="lorenzosCross" fitHeight="63.0" fitWidth="51.0" layoutX="475.0" layoutY="215.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@Images/lorenzosCross.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="actionCardLabel" layoutX="-3.0" layoutY="228.0" prefHeight="17.0" prefWidth="420.0" textFill="RED" />
    </children>
 </Pane>

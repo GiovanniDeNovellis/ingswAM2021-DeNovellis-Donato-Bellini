@@ -29,7 +29,7 @@ public class ProductionActivatedGUINotifier extends GUINotifier{
                         break;
                     case "Deck":
                         GUI.getDeckgridSceneController().printScene(modelPrinter);
-                        GUI.getDeckgridSceneController().notifyChangement("has activated production.", nickname);
+                        GUI.getDeckgridSceneController().notifyChanged("has activated production.", nickname);
                         break;
                     case "Main":
                         GUI.getMainSceneController().printClientPlayer(modelPrinter);

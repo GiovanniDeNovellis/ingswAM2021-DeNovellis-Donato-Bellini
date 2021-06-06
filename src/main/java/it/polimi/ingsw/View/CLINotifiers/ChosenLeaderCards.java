@@ -19,7 +19,6 @@ public class ChosenLeaderCards extends CLINotifier {
         ChosenLeaderCardsMessage data = gson.fromJson(notification, ChosenLeaderCardsMessage.class);
 
         nickname = data.getSenderNickname();
-        printNotification();
         int[] num = new int[2];
         for(LeaderCardsPrinter l : modelPrinter.getLeaderCardsPrinters() ){
             if( l.getOwnerNickname().equals(nickname) ){
@@ -28,9 +27,5 @@ public class ChosenLeaderCards extends CLINotifier {
                 l.setChosenLeaderCards(num);
             }
         }
-    }
-
-    public void printNotification(){
-        System.out.println("Player " + nickname + " has chosen Leader cards!");
     }
 }

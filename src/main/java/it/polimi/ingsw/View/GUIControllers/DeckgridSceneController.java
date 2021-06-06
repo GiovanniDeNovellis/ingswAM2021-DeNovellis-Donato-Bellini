@@ -249,7 +249,7 @@ public class DeckgridSceneController implements Initializable {
         GUI.setStatus("Deck");
         GUI.getDeckgridSceneController().getNotificationLabel().setFont(Font.font(15.0));
         payUsingExtraDeps[0]=0;
-        payUsingExtraDeps[0]=0;
+        payUsingExtraDeps[1]=0;
         dep1.setVisible(false);
         dep2.setVisible(false);
         res1dep1.setVisible(false);
@@ -404,7 +404,9 @@ public class DeckgridSceneController implements Initializable {
         }
         if (modelPrinter.getPersonalBoards().size() == 1) {
             player1.setText(modelPrinter.getPersonalBoards().get(0).getOwnerNickname());
-            player2.setText("Lorenzo");
+            player2.setDisable(true);
+            player2.setOpacity(0);
+            player2.setCursor(Cursor.DEFAULT);
             player3.setDisable(true);
             player3.setOpacity(0);
             player3.setCursor(Cursor.DEFAULT);
@@ -441,7 +443,7 @@ public class DeckgridSceneController implements Initializable {
         }
     }
 
-    public void notifyChangement(String textToShow, String nickname){
+    public void notifyChanged(String textToShow, String nickname){
         notificationLabel.setText("Player " + nickname + " " + textToShow);
         notificationLabel.setVisible(true);
         changementButton.setDisable(false);

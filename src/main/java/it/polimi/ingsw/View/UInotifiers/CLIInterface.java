@@ -45,7 +45,7 @@ public class CLIInterface implements UI {
                 reader.notifyCLI(notification);
                 break;
             case"ExpectedLoginRequestNotification":
-                System.out.println("Expected login. Please log in before doing this action.");
+                System.out.println("Expected login. Please log in before doing this actionaction.");
                 break;
             case"DiscardLeaderCardSuccessNotification":
                 DiscardSuccessMessage mex = gson.fromJson(notification, DiscardSuccessMessage.class);

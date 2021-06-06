@@ -49,6 +49,8 @@ public class GUIInterface implements UI {
             case"ConnectionAcceptedPleaseLoginNotification":
                 break;
             case"PlayerInNotification":
+                notifier = new PlayerReconnectedGUINotifier(modelPrinter);
+                notifier.notifyGui(notification);
                 break;
             case"ConnectedPlayersMessage":
                 notifier = new ConnectedPlayersGUINotifier(modelPrinter);
@@ -57,20 +59,12 @@ public class GUIInterface implements UI {
             case"ExpectedLoginRequestNotification":
                 break;
             case"DiscardLeaderCardSuccessNotification":
-                DiscardSuccessMessage mex = gson.fromJson(notification, DiscardSuccessMessage.class);
-                if(mex.getPosition()==0){
-                    modelPrinter.setHasDiscardedFirstLeader(true);
-                    Platform.runLater(()->{
-                        GUI.getMainSceneController().printClientPlayer(modelPrinter);
-                    });
-                }
+                notifier = new DiscardLeaderSuccessGUINotifier(modelPrinter);
+                notifier.notifyGui(notification);
                 break;
             case"DiscardLeaderCardFailureNotification":
-                Platform.runLater(()->{
-                    GUI.getMainSceneController().printClientPlayer(modelPrinter);
-                    GUI.getMainSceneController().getNotificationLabel().setText("You can't discard this leader card.");
-                    GUI.getMainSceneController().getNotificationLabel().setVisible(true);
-                });
+                notifier = new DiscardLeadercCardFailureGUINotifier(modelPrinter);
+                notifier.notifyGui(notification);
                 break;
             case"NotifyDiscardLeaderCard":
                 notifier = new DiscardLeaderGUINotifier(modelPrinter);
@@ -81,14 +75,22 @@ public class GUIInterface implements UI {
                 notifier.notifyGui(notification);
                 break;
             case"PlayerOutNotification":
+                notifier = new PlayerOutGUINotifier(modelPrinter);
+                notifier.notifyGui(notification);
                 break;
             case"GameNotStartedNotification":
                 break;
             case"MoveLorenzo":
+                notifier = new LorenzoMovedGUINotifier(modelPrinter);
+                notifier.notifyGui(notification);
                 break;
             case"MoveAndShuffle":
+                notifier = new MovedAndShuffledGUINotifier(modelPrinter);
+                notifier.notifyGui(notification);
                 break;
             case"NotifyDeckgridChanged":
+                notifier = new DeckgridChangedGUINotifier(modelPrinter);
+                notifier.notifyGui(notification);
                 break;
             case"ActionCardActivationFailureNotification":
                 break;
@@ -158,6 +160,8 @@ public class GUIInterface implements UI {
                 notifier.notifyGui(notification);
                 break;
             case"InvalidPlayerAddNotification":
+                notifier = new MaxPlayerNumberExceededGUINotifier();
+                notifier.notifyGui(null);
                 break;
             case"BuyDevelopmentCardSuccessNotification":
                 notifier = new CardBoughtSuccessfullyGUINotifier(modelPrinter);

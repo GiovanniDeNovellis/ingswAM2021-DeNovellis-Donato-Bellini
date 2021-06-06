@@ -26,7 +26,7 @@ public class ActivateTransformationGUINotifier extends GUINotifier{
                     break;
                 case "Deck":
                     GUI.getDeckgridSceneController().printScene(modelPrinter);
-                    GUI.getDeckgridSceneController().notifyChangement("has transformed white marbles. Remaining: " + data.getRemainingWhiteMarbles(), data.getSenderNickname());
+                    GUI.getDeckgridSceneController().notifyChanged("has transformed white marbles. Remaining: " + data.getRemainingWhiteMarbles(), data.getSenderNickname());
                     break;
                 case "Main":
                     GUI.getMainSceneController().printClientPlayer(modelPrinter);

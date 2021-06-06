@@ -28,7 +28,7 @@ public class InsertedResGUINotifier extends GUINotifier{
                         break;
                     case "Deck":
                         GUI.getDeckgridSceneController().printScene(modelPrinter);
-                        GUI.getDeckgridSceneController().notifyChangement("has inserted resources.", data.getNickname());
+                        GUI.getDeckgridSceneController().notifyChanged("has inserted resources.", data.getNickname());
                         break;
                     case "Main":
                         GUI.getMainSceneController().printClientPlayer(modelPrinter);

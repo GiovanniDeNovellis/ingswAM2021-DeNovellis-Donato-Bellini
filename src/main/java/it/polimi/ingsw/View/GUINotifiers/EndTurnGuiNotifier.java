@@ -42,7 +42,6 @@ public class EndTurnGuiNotifier extends GUINotifier{
         else{
             Platform.runLater(()->{
                 try {
-                    //GUI.getPrimaryStage().setFullScreen(true);
                     GUI.setRoot("personalBoard_scene");
                     GUI.getMainSceneController().printClientPlayer(modelPrinter);
                     GUI.getMainSceneController().getNotificationLabel().setVisible(true);
@@ -55,10 +54,9 @@ public class EndTurnGuiNotifier extends GUINotifier{
     }
 
     private void updateModelPrinter(EndTurnNotificationMessage data) {
-        if (modelPrinter.getBlackFaithPoints() != -1) {
-            int diff = data.getBlackFaithPoints() - modelPrinter.getBlackFaithPoints();
+        if (modelPrinter.getBlackFaithPoints() != -1)
             modelPrinter.setBlackFaithPoints(data.getBlackFaithPoints());
-        }
+
         modelPrinter.setCurrentPlayerNickname(data.getActualCurrentPlayer());
         for (PersonalBoardPrinter p : modelPrinter.getPersonalBoards()) {
             oldValue = p.getFaithPoints();

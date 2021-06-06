@@ -2,7 +2,8 @@ package it.polimi.ingsw.View.CLINotifiers;
 
 import it.polimi.ingsw.View.ModelPrinter;
 
-public abstract class CLINotifier {
+public abstract class CLINotifier{
+
     public CLINotifier(ModelPrinter modelPrinter){
         this.modelPrinter = modelPrinter;
     }

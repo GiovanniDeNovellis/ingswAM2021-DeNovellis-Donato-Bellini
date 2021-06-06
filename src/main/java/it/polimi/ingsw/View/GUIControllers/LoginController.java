@@ -25,6 +25,8 @@ public class LoginController implements Initializable {
     private Label loginFailedReconnection;
     @FXML
     private Label gameStartedError;
+    @FXML
+    private Label playerNumberExceeded;
 
     public void login(ActionEvent actionEvent) {
         Gson gson = new Gson();
@@ -41,13 +43,21 @@ public class LoginController implements Initializable {
     }
 
     public void setLoginError(){
+        playerNumberExceeded.setVisible(false);
         gameStartedError.setVisible(false);
         loginFailedReconnection.setVisible(false);
         loginFailed.setVisible(true);
     }
     public void setGameStartedError(){
+        playerNumberExceeded.setVisible(false);
         loginFailed.setVisible(false);
         gameStartedError.setVisible(true);
         loginFailedReconnection.setVisible(true);
+    }
+    public void setPlayerNumberExceeded(){
+        loginFailed.setVisible(false);
+        gameStartedError.setVisible(false);
+        loginFailedReconnection.setVisible(false);
+        playerNumberExceeded.setVisible(true);
     }
 }

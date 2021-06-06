@@ -8,6 +8,7 @@ import it.polimi.ingsw.View.ModelPrinter;
 import it.polimi.ingsw.View.PrinterSingleton;
 import it.polimi.ingsw.View.Printers.LeaderCardsPrinter;
 import it.polimi.ingsw.View.Printers.PersonalBoardPrinter;
+import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,6 +18,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
@@ -173,6 +175,10 @@ public class MainSceneController implements Initializable {
     private Button button1dep2;
     @FXML
     private Button button2dep2;
+    @FXML
+    private ImageView lorenzosCross;
+    @FXML
+    private Label actionCardLabel;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -274,6 +280,8 @@ public class MainSceneController implements Initializable {
     }
 
     public void viewPlayer1(ActionEvent actionEvent) {
+        if(modelPrinter.getBlackFaithPoints()!=-1)
+            printClientPlayer(modelPrinter);
         viewPlayer(1);
     }
 
@@ -413,15 +421,13 @@ public class MainSceneController implements Initializable {
             fromPersonalBoard = true;
             activateBaseProdButtons();
             baseProd.setOpacity(0.3);
-            baseProd.setDisable(false);
-            baseProd.setCursor(Cursor.HAND);
         } else {
             fromPersonalBoard = false;
             deactivateBaseProdButtons();
             baseProd.setOpacity(0);
-            baseProd.setDisable(false);
-            baseProd.setCursor(Cursor.HAND);
         }
+        baseProd.setDisable(false);
+        baseProd.setCursor(Cursor.HAND);
     }
 
     private void activateBaseProdButtons() {
@@ -495,8 +501,8 @@ public class MainSceneController implements Initializable {
         basePayButton6.setCursor(Cursor.DEFAULT);
         basePayButton6.setOpacity(0);
         //svuoto array di risorse
-        for (int i = 0; i < 3; i++)
-            resourceBaseProduction[i] = null;
+        resourceBaseProduction = new ResourceType[]{null, null, null};
+        clicked = new boolean[]{false, false, false, false, false, false};
     }
 
     private void selectDevCard(Button devCard, int slot) {
@@ -587,6 +593,10 @@ public class MainSceneController implements Initializable {
         res2dep2.setVisible(false);
         currentPlayerLabel.setText(modelPrinter.getCurrentPlayerNickname());
         this.modelPrinter = modelPrinter;
+        if( modelPrinter.getPersonalBoards().size() == 1) {
+            printLorenzosCross();
+            actionCardLabel.setVisible(true);
+        }
         LeaderCardsPrinter leadToPrint = null;
         PersonalBoardPrinter personalToPrint = null;
         for (LeaderCardsPrinter l : modelPrinter.getLeaderCardsPrinters()) {
@@ -851,7 +861,9 @@ public class MainSceneController implements Initializable {
 
         if (modelPrinter.getPersonalBoards().size() == 1) {
             player1.setText(modelPrinter.getPersonalBoards().get(0).getOwnerNickname());
-            player2.setText("Lorenzo");
+            player2.setDisable(true);
+            player2.setOpacity(0);
+            player2.setCursor(Cursor.DEFAULT);
             player3.setDisable(true);
             player3.setOpacity(0);
             player3.setCursor(Cursor.DEFAULT);
@@ -1029,6 +1041,13 @@ public class MainSceneController implements Initializable {
         }
     }
 
+    private void printLorenzosCross(){
+        lorenzosCross.setVisible(true);
+        lorenzosCross.setImage(new Image("Images/lorenzosCross.png"));
+        lorenzosCross.setLayoutX(calcX((modelPrinter.getBlackFaithPoints())));
+        lorenzosCross.setLayoutY(calcY((modelPrinter.getBlackFaithPoints())));
+    }
+
     private void printFaithTrack(PersonalBoardPrinter p) {
         if (p.getFaithCards()[0] != 0)
             faithCard1.setImage(new Image("Images/FaithCards/quadratoGiallo.png"));
@@ -1075,6 +1094,7 @@ public class MainSceneController implements Initializable {
     }
 
     public void notifyChangement(String textToShow, String nickname) {
+        //actionCardLabel.setVisible(false);
         notificationLabel.setText("Player " + nickname + " " + textToShow);
         notificationLabel.setVisible(true);
         changementButton.setDisable(false);
@@ -1104,10 +1124,32 @@ public class MainSceneController implements Initializable {
     }
 
     public Label getNotificationLabel() {
+       // actionCardLabel.setVisible(false);
         return notificationLabel;
     }
 
+    private void takeActionToken(){
+        Gson gson = new Gson();
+        Message message = new Message();
+        message.setMessageType("ActionCardActivation");
+        PrinterSingleton.getPrinterSingleton().sendMessage(gson.toJson(message));
+    }
+
+    public void setActionCardLabel(String text){
+        actionCardLabel.setVisible(true);
+        actionCardLabel.setText(text);
+        /*PauseTransition visiblePause = new PauseTransition(
+                Duration.seconds(10)
+        );
+        visiblePause.setOnFinished(
+                event -> actionCardLabel.setVisible(false)
+        );
+        visiblePause.play();*/
+    }
+
     public void endTurn(ActionEvent actionEvent) {
+        if( modelPrinter.getPersonalBoards().size()==1)
+            takeActionToken();
         Gson gson = new Gson();
         EndTurnRequestMessage message = new EndTurnRequestMessage();
         message.setSenderNickname(GUI.getClientNickname());
@@ -1281,4 +1323,5 @@ public class MainSceneController implements Initializable {
             button2dep2.setOpacity(0.3);
         }
     }
+
 }

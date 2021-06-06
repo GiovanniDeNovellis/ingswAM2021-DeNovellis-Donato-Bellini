@@ -27,7 +27,7 @@ public class LeaderActivatedGUINotifier extends GUINotifier{
                     break;
                 case "Deck":
                     GUI.getDeckgridSceneController().printScene(modelPrinter);
-                    GUI.getDeckgridSceneController().notifyChangement("has activated a leader card.", data.getWhoActivatedLeaderCard());
+                    GUI.getDeckgridSceneController().notifyChanged("has activated a leader card.", data.getWhoActivatedLeaderCard());
                     break;
                 case "Main":
                     GUI.getMainSceneController().printClientPlayer(modelPrinter);
