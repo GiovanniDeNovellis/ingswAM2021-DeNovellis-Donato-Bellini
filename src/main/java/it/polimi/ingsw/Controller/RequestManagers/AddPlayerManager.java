@@ -5,6 +5,7 @@ import it.polimi.ingsw.Controller.ClientHandler;
 import it.polimi.ingsw.Controller.Controller;
 import it.polimi.ingsw.Controller.Messages.AddPlayerMessage;
 import it.polimi.ingsw.Controller.Messages.Message;
+import it.polimi.ingsw.Controller.NotifiableHandler;
 
 public class AddPlayerManager implements Manageable {
     private final Controller controller;
@@ -26,7 +27,7 @@ public class AddPlayerManager implements Manageable {
             AddPlayerMessage notification = new AddPlayerMessage();
             notification.setMessageType("AddPlayerNotificationForEveryone");
             notification.setSenderNickname(addMessage.getSenderNickname());
-                for (ClientHandler clientHandler : controller.getConnectedClients()) {
+                for (NotifiableHandler clientHandler : controller.getConnectedClients()) {
                     clientHandler.notifyInterface(gson.toJson(notification));
                 }
         } else {

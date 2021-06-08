@@ -36,7 +36,10 @@ public class EndTurnCLINotifier extends CLINotifier {
             if ((data.getWinnerPlayerNickname()!=null)) {
                 winner = data.getWinnerPlayerNickname();
                 printNotification1();
-            }else{
+            }
+            else if(data.getWinnerPlayerNumber()==5)
+                printNotification3();
+            else{
                 printNotification2();
             }
         }
@@ -50,5 +53,8 @@ public class EndTurnCLINotifier extends CLINotifier {
     }
     public void printNotification2(){
         System.out.println("This is the final turn, at the end game is over.");
+    }
+    public void printNotification3(){
+        System.out.println("GAME OVER. Lorenzo has won the game.");
     }
 }

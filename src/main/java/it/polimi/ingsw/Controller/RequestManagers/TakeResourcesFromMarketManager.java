@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import it.polimi.ingsw.Controller.ClientHandler;
 import it.polimi.ingsw.Controller.Controller;
 import it.polimi.ingsw.Controller.Messages.*;
+import it.polimi.ingsw.Controller.NotifiableHandler;
 import it.polimi.ingsw.Player;
 
 public class TakeResourcesFromMarketManager implements Manageable{
@@ -33,7 +34,7 @@ public class TakeResourcesFromMarketManager implements Manageable{
                 MarketGridChangedMessage notification1 = new MarketGridChangedMessage();
                 notification1.setMessageType("MarketGridChangedMessage");
                 notification1.setMarketGridConfiguration(controller.getGame().getMarketBoard().getMarketboardColours(),controller.getGame().getMarketBoard().getMarbleOut().getColour());
-                for (ClientHandler clientHandler : controller.getConnectedClients()) {
+                for (NotifiableHandler clientHandler : controller.getConnectedClients()) {
                     clientHandler.notifyInterface(gson.toJson(notification));
                     clientHandler.notifyInterface(gson.toJson(notification1));
                 }
@@ -62,7 +63,7 @@ public class TakeResourcesFromMarketManager implements Manageable{
                 vaticanReportMessage.setMessageType("VaticanReportMessage");
                 vaticanReportMessage.setOccurred(vaticanReportOccurred);
                 vaticanReportMessage.setWhichOne(whichReport);
-                for (ClientHandler clientHandler : controller.getConnectedClients()) {
+                for (NotifiableHandler clientHandler : controller.getConnectedClients()) {
                     for(Player p: controller.getGame().getPlayers()) {
                         vaticanReportMessage.setNickname(p.getNickname());
                         vaticanReportMessage.setNewFaithPoints(p.getFaithPoints());

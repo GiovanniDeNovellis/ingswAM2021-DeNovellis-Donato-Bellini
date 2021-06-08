@@ -1,11 +1,5 @@
 package it.polimi.ingsw.View;
 
-import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,12 +8,9 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
-import java.util.Objects;
 
 
 public class Client{
-
-    private static Scene scene;
 
     public static void main(String[] args) {
             String hostName = "127.0.0.1";

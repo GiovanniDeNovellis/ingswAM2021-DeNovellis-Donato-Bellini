@@ -17,7 +17,7 @@ public class MovedAndShuffledGUINotifier extends GUINotifier{
     public void notifyGui(String notification) {
         updateModel(notification);
         Platform.runLater(()->{
-            GUI.getMainSceneController().setActionCardLabel("ACTION TOKEN ACTIVATED: Lorenzo moved and shuffled action tokens deck.");
+            modelPrinter.setLastActionToken("ACTION TOKEN ACTIVATED: Lorenzo moved and shuffled action tokens deck.");
             GUI.getMainSceneController().printClientPlayer(modelPrinter);
         });
     }

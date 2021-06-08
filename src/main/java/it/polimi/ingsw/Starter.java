@@ -2,7 +2,7 @@ package it.polimi.ingsw;
 
         import it.polimi.ingsw.Controller.Server;
         import it.polimi.ingsw.View.Client;
-        import it.polimi.ingsw.View.GUI;
+        import it.polimi.ingsw.View.LocalNetwork.LocalClient;
 
         import java.io.FileNotFoundException;
         import java.util.Scanner;
@@ -15,17 +15,29 @@ public class Starter {
             Scanner input = new Scanner(System.in);
             start = input.nextLine();
         }while(!start.equals("CLI") && !start.equals("SERVER") && !start.equals("GUI"));
-        // if(start==null || args.length==0)
-        // Server.main(null);
+        String local=null;
+        if(start.equals("CLI")||start.equals("GUI")){
+            do {
+                System.out.println("Do you want to play a local single player game? Y N");
+                Scanner input = new Scanner(System.in);
+                local = input.nextLine();
+            }while(!local.equals("Y") && !local.equals("N"));
+        }
         switch(start){
             case "CLI":
-                Client.main(new String[]{"CLI"});
+                if(local.equals("Y"))
+                    LocalClient.main(new String[]{"CLI"});
+                else
+                    Client.main(new String[]{"CLI"});
                 break;
             case "SERVER":
                 Server.main(null);
                 break;
             default:
-                Client.main(new String[]{"GUI"});
+                if(local.equals("Y"))
+                    LocalClient.main(new String[]{"GUI"});
+                else
+                    Client.main(new String[]{"GUI"});
                 break;
         }
         System.out.println("Wrong start config");

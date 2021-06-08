@@ -6,6 +6,7 @@ import it.polimi.ingsw.Controller.Controller;
 import it.polimi.ingsw.Controller.Messages.InsertResourceMessage;
 import it.polimi.ingsw.Controller.Messages.Message;
 import it.polimi.ingsw.Controller.Messages.NotifyInsertedOkMessage;
+import it.polimi.ingsw.Controller.NotifiableHandler;
 import it.polimi.ingsw.ExtraDeposit;
 
 public class InsertResourcesIntoWarehouseManager implements Manageable {
@@ -38,7 +39,7 @@ public class InsertResourcesIntoWarehouseManager implements Manageable {
                 notification.setNickname(controller.getGame().getCurrentPlayer().getNickname());
                 notification.setTemporaryResourcesConfiguration(controller.getGame().getMarketBoard().getTemporaryResources());
                 notification.setWarehouseConfiguration(controller.getGame().getCurrentPlayer().getPersonalBoard().getWarehouseDepot());
-                for (ClientHandler clientHandler : controller.getConnectedClients()) {
+                for (NotifiableHandler clientHandler : controller.getConnectedClients()) {
                     clientHandler.notifyInterface(gson.toJson(notification));
                 }
                 return gson.toJson(mex);

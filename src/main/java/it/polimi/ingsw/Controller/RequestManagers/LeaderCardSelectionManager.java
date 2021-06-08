@@ -6,6 +6,7 @@ import it.polimi.ingsw.Controller.Controller;
 import it.polimi.ingsw.Controller.Messages.ChosenLeaderCardsMessage;
 import it.polimi.ingsw.Controller.Messages.LeaderCardSelectionMessage;
 import it.polimi.ingsw.Controller.Messages.Message;
+import it.polimi.ingsw.Controller.NotifiableHandler;
 import it.polimi.ingsw.LeaderCard;
 
 import java.util.ArrayList;
@@ -52,7 +53,7 @@ public class LeaderCardSelectionManager implements Manageable{
                 mex.setFirstChosenLeaderCardNumber(num1);
                 mex.setSecondChosenLeaderCardNumber(num2);
                 String notificationForAll = gson.toJson(mex);
-                    for(ClientHandler c : controller.getConnectedClients()){
+                    for(NotifiableHandler c : controller.getConnectedClients()){
                         c.notifyInterface(notificationForAll);
                     }
                 message.setMessageType("LeaderCardSelectionOkNotification");

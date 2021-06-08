@@ -6,6 +6,7 @@ import it.polimi.ingsw.Controller.Controller;
 import it.polimi.ingsw.Controller.Messages.Message;
 import it.polimi.ingsw.Controller.Messages.NotifyWarehouseChangedMessage;
 import it.polimi.ingsw.Controller.Messages.SwitchLevelMessage;
+import it.polimi.ingsw.Controller.NotifiableHandler;
 
 public class SwitchLevelsManager implements Manageable {
     private final Controller controller;
@@ -32,7 +33,7 @@ public class SwitchLevelsManager implements Manageable {
                 notification.setMessageType("NotifyWareHouseChangedMessage");
                 notification.setNickname(controller.getGame().getCurrentPlayer().getNickname());
                 notification.setWarehouseConfiguration(controller.getGame().getCurrentPlayer().getPersonalBoard().getWarehouseDepot());
-                for (ClientHandler clientHandler : controller.getConnectedClients()) {
+                for (NotifiableHandler clientHandler : controller.getConnectedClients()) {
                     clientHandler.notifyInterface(gson.toJson(notification));
                 }
                 return gson.toJson(mex);

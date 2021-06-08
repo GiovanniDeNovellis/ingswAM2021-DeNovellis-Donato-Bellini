@@ -13,6 +13,7 @@ public class ModelPrinter {
     private boolean multiplayerGameStarted = false;
     private String currentPlayerNickname;
     private boolean discardedFirstLeader = false;
+    private String lastActionToken;
 
 
     public void print(Printable p, String whatIHaveToPrint) {
@@ -143,5 +144,13 @@ public class ModelPrinter {
 
     public void setHasDiscardedFirstLeader(boolean discardedFirstLeader) {
         this.discardedFirstLeader = discardedFirstLeader;
+    }
+
+    public String getLastActionToken() {
+        return lastActionToken;
+    }
+
+    public void setLastActionToken(String lastActionToken) {
+        this.lastActionToken = lastActionToken;
     }
 }

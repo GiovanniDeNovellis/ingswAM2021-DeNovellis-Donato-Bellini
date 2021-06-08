@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import it.polimi.ingsw.Controller.ClientHandler;
 import it.polimi.ingsw.Controller.Controller;
 import it.polimi.ingsw.Controller.Messages.*;
+import it.polimi.ingsw.Controller.NotifiableHandler;
 import it.polimi.ingsw.ExtraDeposit;
 
 public class ActivateLeaderAbilityManager implements Manageable{
@@ -33,7 +34,7 @@ public class ActivateLeaderAbilityManager implements Manageable{
                         notification.setMessageType("ActivateLeaderAbilityDiscount");
                         notification.setPosition(activateLeaderAbilityMessage.getPosition());
                         notification.setSenderNickname(controller.getGame().getCurrentPlayer().getNickname());
-                        for (ClientHandler clientHandler : controller.getConnectedClients()) {
+                        for (NotifiableHandler clientHandler : controller.getConnectedClients()) {
                             clientHandler.notifyInterface(gson.toJson(notification));
                         }
                         break;
@@ -46,7 +47,7 @@ public class ActivateLeaderAbilityManager implements Manageable{
                         ExtraDeposit[] extraDep = {extraDep1, extraDep2};
                         notification2.setExtraDepositConfiguration(extraDep);
                         notification2.setSenderNickname(controller.getGame().getCurrentPlayer().getNickname());
-                        for (ClientHandler clientHandler : controller.getConnectedClients()) {
+                        for (NotifiableHandler clientHandler : controller.getConnectedClients()) {
                             clientHandler.notifyInterface(gson.toJson(notification2));
                         }
                         break;
@@ -55,7 +56,7 @@ public class ActivateLeaderAbilityManager implements Manageable{
                         notification3.setMessageType("ActivateLeaderAbilityProduction");
                         notification3.setPosition(activateLeaderAbilityMessage.getPosition());
                         notification3.setSenderNickname(controller.getGame().getCurrentPlayer().getNickname());
-                        for (ClientHandler clientHandler : controller.getConnectedClients()) {
+                        for (NotifiableHandler clientHandler : controller.getConnectedClients()) {
                             clientHandler.notifyInterface(gson.toJson(notification3));
                         }
                         break;
@@ -66,7 +67,7 @@ public class ActivateLeaderAbilityManager implements Manageable{
                         notification4.setTemporaryResourcesConfiguration(controller.getGame().getMarketBoard().getTemporaryResources());
                         notification4.setRemainingWhiteMarbles(controller.getGame().getMarketBoard().getWhiteMarblesSelected());
                         notification4.setSenderNickname(controller.getGame().getCurrentPlayer().getNickname());
-                        for (ClientHandler clientHandler : controller.getConnectedClients()) {
+                        for (NotifiableHandler clientHandler : controller.getConnectedClients()) {
                             clientHandler.notifyInterface(gson.toJson(notification4));
                         }
                         break;

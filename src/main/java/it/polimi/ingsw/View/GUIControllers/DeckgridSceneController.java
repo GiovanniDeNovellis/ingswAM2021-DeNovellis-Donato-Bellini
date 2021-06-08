@@ -433,7 +433,10 @@ public class DeckgridSceneController implements Initializable {
                 int x = GridPane.getColumnIndex(n);
                 int y = GridPane.getRowIndex(n);
                 ImageView im = (ImageView) n;
-                im.setImage(new Image(developmentCardsIndex.get(modelPrinter.getDeckGridPrinter().getDeckgrid().readCard(cardLevelsMap.get(y), cardColoursMap.get(x)).getNumber() - 1)));
+                if(modelPrinter.getDeckGridPrinter().getDeckgrid().readCard(cardLevelsMap.get(y),cardColoursMap.get(x))!=null)
+                    im.setImage(new Image(developmentCardsIndex.get(modelPrinter.getDeckGridPrinter().getDeckgrid().readCard(cardLevelsMap.get(y), cardColoursMap.get(x)).getNumber() - 1)));
+                else
+                    im.setImage(new Image("Images/LeaderCardBack.png"));
             }
             else{
                 Button cardButton = (Button) n;

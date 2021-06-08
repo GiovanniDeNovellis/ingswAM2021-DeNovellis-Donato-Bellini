@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import it.polimi.ingsw.Controller.ClientHandler;
 import it.polimi.ingsw.Controller.Controller;
 import it.polimi.ingsw.Controller.Messages.*;
+import it.polimi.ingsw.Controller.NotifiableHandler;
 
 public class ActivateLeaderCardManager implements Manageable{
     private final Controller controller;
@@ -30,7 +31,7 @@ public class ActivateLeaderCardManager implements Manageable{
                 notification.setMessageType("NotifyActivateLeaderCard");
                 notification.setActivatedLeaderCardPosition(activateLeaderCardMessage.getPosition());
                 notification.setWhoActivatedLeaderCard(activateLeaderCardMessage.getSenderNickname());
-                for (ClientHandler clientHandler : controller.getConnectedClients()) {
+                for (NotifiableHandler clientHandler : controller.getConnectedClients()) {
                     clientHandler.notifyInterface(gson.toJson(notification));
                 }
                 return gson.toJson(mex);

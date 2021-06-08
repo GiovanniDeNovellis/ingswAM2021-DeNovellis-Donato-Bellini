@@ -5,6 +5,7 @@ import it.polimi.ingsw.Controller.ClientHandler;
 import it.polimi.ingsw.Controller.Controller;
 import it.polimi.ingsw.Controller.Messages.Message;
 import it.polimi.ingsw.Controller.Messages.SinglePlayerCreationMessage;
+import it.polimi.ingsw.Controller.NotifiableHandler;
 
 public class StartSinglePlayerManager implements Manageable{
     private final Controller controller;
@@ -26,7 +27,7 @@ public class StartSinglePlayerManager implements Manageable{
             mex.setMarbleGridConfiguration(controller.getGame().getMarketBoard().getMarketboardColours());
             mex.setMarbleOut(controller.getGame().getMarketBoard().getMarbleOut().getColour());
             message.setMessageType("SinglePLayerCreationOkNotification");
-            for(ClientHandler c: controller.getConnectedClients()){
+            for(NotifiableHandler c: controller.getConnectedClients()){
                 c.notifyInterface(gson.toJson(mex));
             }
         } else {

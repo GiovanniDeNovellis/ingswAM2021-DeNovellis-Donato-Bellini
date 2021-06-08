@@ -45,6 +45,8 @@ public class EndTurnGuiNotifier extends GUINotifier{
                     GUI.setRoot("personalBoard_scene");
                     GUI.getMainSceneController().printClientPlayer(modelPrinter);
                     GUI.getMainSceneController().getNotificationLabel().setVisible(true);
+                    if(modelPrinter.getLastActionToken()!=null)
+                        GUI.getMainSceneController().setActionCardLabel(modelPrinter.getLastActionToken());
                     //GUI.getFirstTurnController().printScene(modelPrinter, mex.getNickname());
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -66,8 +68,12 @@ public class EndTurnGuiNotifier extends GUINotifier{
         if (data.isGameEnding()) {
             if ((data.getWinnerPlayerNickname() != null)) {
                 //winner = data.getWinnerPlayerNickname();
-                //TODO LOAD END GAME SCENE
-            } else {
+                //TODO LOAD END GAME SCENE HA VINTO UN GIOCATORE VERO
+            }
+            else if(data.getWinnerPlayerNumber()==5){
+                //TODO HA VINTO LORENZO
+            }
+            else {
                 //TODO NOTIFY THE GAME WILL END
             }
         }

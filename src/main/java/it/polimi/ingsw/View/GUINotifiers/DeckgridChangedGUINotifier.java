@@ -17,7 +17,7 @@ public class DeckgridChangedGUINotifier extends GUINotifier{
     public void notifyGui(String notification) {
         updateModel(notification);
         Platform.runLater(()->{
-            GUI.getMainSceneController().setActionCardLabel("ACTION TOKEN ACTIVATED: Discarded two development cards.");
+            modelPrinter.setLastActionToken("ACTION TOKEN ACTIVATED: Discarded two development cards.");
             GUI.getMainSceneController().printClientPlayer(modelPrinter);
         });
     }

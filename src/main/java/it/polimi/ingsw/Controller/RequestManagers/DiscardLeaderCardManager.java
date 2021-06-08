@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import it.polimi.ingsw.Controller.ClientHandler;
 import it.polimi.ingsw.Controller.Controller;
 import it.polimi.ingsw.Controller.Messages.*;
+import it.polimi.ingsw.Controller.NotifiableHandler;
 import it.polimi.ingsw.Player;
 
 public class DiscardLeaderCardManager implements Manageable{
@@ -33,7 +34,7 @@ public class DiscardLeaderCardManager implements Manageable{
                 notification.setMessageType("NotifyDiscardLeaderCard");
                 notification.setWhoDiscardedLeaderCard(controller.getGame().getCurrentPlayer().getNickname());
                 notification.setDiscardedPosition(discardLeaderMessage.getPosition());
-                for(ClientHandler c: controller.getConnectedClients()){
+                for(NotifiableHandler c: controller.getConnectedClients()){
                     c.notifyInterface(gson.toJson(notification));
                 }
                 int[] faithCardsAfter = controller.getVaticanReport();
@@ -61,7 +62,7 @@ public class DiscardLeaderCardManager implements Manageable{
                 vaticanReportMessage.setMessageType("VaticanReportMessage");
                 vaticanReportMessage.setOccurred(vaticanReportOccurred);
                 vaticanReportMessage.setWhichOne(whichReport);
-                for (ClientHandler clientHandler : controller.getConnectedClients()) {
+                for (NotifiableHandler clientHandler : controller.getConnectedClients()) {
                     for(Player p: controller.getGame().getPlayers()) {
                         vaticanReportMessage.setNickname(p.getNickname());
                         vaticanReportMessage.setNewFaithPoints(p.getFaithPoints());

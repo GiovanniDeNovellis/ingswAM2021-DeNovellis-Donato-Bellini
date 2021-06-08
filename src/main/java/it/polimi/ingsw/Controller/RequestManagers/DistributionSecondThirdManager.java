@@ -6,6 +6,7 @@ import it.polimi.ingsw.Controller.Controller;
 import it.polimi.ingsw.Controller.Messages.DistributionSecondThirdMessage;
 import it.polimi.ingsw.Controller.Messages.Message;
 import it.polimi.ingsw.Controller.Messages.NotifyWarehouseChangedMessage;
+import it.polimi.ingsw.Controller.NotifiableHandler;
 import it.polimi.ingsw.WareHouseDepot;
 
 public class DistributionSecondThirdManager implements Manageable{
@@ -45,7 +46,7 @@ public class DistributionSecondThirdManager implements Manageable{
                 mex.setNickname(nickname);
                 mex.setMessageType("NotifyWareHouseChangedMessage");
                 String notificationForAll = gson.toJson(mex);
-                    for(ClientHandler c : controller.getConnectedClients()){
+                    for(NotifiableHandler c : controller.getConnectedClients()){
                         c.notifyInterface(notificationForAll);
                     }
                 message.setMessageType("DistributionOkNotification");

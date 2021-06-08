@@ -15,7 +15,7 @@ import java.net.Socket;
 import java.net.SocketTimeoutException;
 import java.util.ArrayList;
 
-public class ClientHandler implements Runnable {
+public class ClientHandler implements Runnable, NotifiableHandler {
     private ServerPing serverPing;
     private final Controller controller;
     private final Socket socket;
@@ -88,7 +88,7 @@ public class ClientHandler implements Runnable {
                                     PlayerInNotification playerInNotification=new PlayerInNotification();
                                     playerInNotification.setMessageType("PlayerInNotification");
                                     playerInNotification.setSenderNickname(tempNickname);
-                                    for(ClientHandler c: controller.getConnectedClients())
+                                    for(NotifiableHandler c: controller.getConnectedClients())
                                         c.notifyInterface(gson.toJson(playerInNotification));
                                     for(Player player: controller.getGame().getPlayers()){
                                         ReconnectConfigurationMessage reconnectConfigurationMessage= new ReconnectConfigurationMessage();
@@ -214,7 +214,7 @@ public class ClientHandler implements Runnable {
                     mex.setFirstChosenLeaderCardNumber(0);
                     mex.setSecondChosenLeaderCardNumber(1);
                     String notificationForAll = gson.toJson(mex);
-                    for(ClientHandler c : controller.getConnectedClients()){
+                    for(NotifiableHandler c : controller.getConnectedClients()){
                         c.notifyInterface(notificationForAll);
                     }
                 }
@@ -225,7 +225,7 @@ public class ClientHandler implements Runnable {
                     mex.setWarehouseConfiguration(controller.getGame().getCurrentPlayer().getPersonalBoard().getWarehouseDepot());
                     mex.setNickname(clientNickname);
                     mex.setMessageType("NotifyWareHouseChangedMessage");
-                    for(ClientHandler c : controller.getConnectedClients()){
+                    for(NotifiableHandler c : controller.getConnectedClients()){
                         c.notifyInterface(gson.toJson(mex));
                     }
                 }
@@ -249,7 +249,7 @@ public class ClientHandler implements Runnable {
                 endTurnNotificationMessage.setNumResourcesDiscarded(tempResourcesDiscarded);
                 endTurnNotificationMessage.setWinnerPlayerNickname(winnerNickname);
                 endTurnNotificationMessage.setGameEnding(endGame);
-                for(ClientHandler c: controller.getConnectedClients())
+                for(NotifiableHandler c: controller.getConnectedClients())
                     c.notifyInterface(gson.toJson(endTurnNotificationMessage));
             }
             //DISCONNESSO MA NON ERA IL SUO TURNO
@@ -266,7 +266,7 @@ public class ClientHandler implements Runnable {
                             mex.setFirstChosenLeaderCardNumber(0);
                             mex.setSecondChosenLeaderCardNumber(1);
                             String notificationForAll = gson.toJson(mex);
-                            for(ClientHandler c : controller.getConnectedClients()){
+                            for(NotifiableHandler c : controller.getConnectedClients()){
                                 c.notifyInterface(notificationForAll);
                             }
                         }
@@ -280,7 +280,7 @@ public class ClientHandler implements Runnable {
                             mex.setWarehouseConfiguration(p.getPersonalBoard().getWarehouseDepot());
                             mex.setNickname(clientNickname);
                             mex.setMessageType("NotifyWareHouseChangedMessage");
-                            for(ClientHandler c : controller.getConnectedClients()){
+                            for(NotifiableHandler c : controller.getConnectedClients()){
                                 c.notifyInterface(gson.toJson(mex));
                             }
                         }
@@ -290,7 +290,7 @@ public class ClientHandler implements Runnable {
             PlayerOutNotification mex = new PlayerOutNotification();
             mex.setMessageType("PlayerOutNotification");
             mex.setSenderNickname(clientNickname);
-            for(ClientHandler c: controller.getConnectedClients()){
+            for(NotifiableHandler c: controller.getConnectedClients()){
                 c.notifyInterface(gson.toJson(mex));
             }
         }

@@ -7,6 +7,7 @@ import it.polimi.ingsw.Controller.Messages.EndTurnNotificationMessage;
 import it.polimi.ingsw.Controller.Messages.EndTurnRequestMessage;
 import it.polimi.ingsw.Controller.Messages.Message;
 import it.polimi.ingsw.Controller.Messages.VaticanReportMessage;
+import it.polimi.ingsw.Controller.NotifiableHandler;
 import it.polimi.ingsw.Player;
 import it.polimi.ingsw.ResourceType;
 
@@ -54,6 +55,7 @@ public class EndTurnManager implements Manageable{
                 mex.setActualCurrentPlayer(nickname);
                 mex.setNumResourcesDiscarded(tempResourcesDiscarded);
                 mex.setWinnerPlayerNickname(winnerNickname);
+                mex.setWinnerPlayerNumber(controller.getGame().getWinnerPlayerNumber());
                 mex.setGameEnding(endGame);
                 mex.setMessageType("EndTurnNotificationMessage");
                 mex.setTemporaryResources(controller.getGame().getMarketBoard().getTemporaryResources());
@@ -61,7 +63,7 @@ public class EndTurnManager implements Manageable{
                     mex.setBlackFaithPoints(controller.getGame().getLorenzo().getBlackFaithPoints());
                 }
                 String notificationForAll = gson.toJson(mex);
-                for(ClientHandler c : controller.getConnectedClients()){
+                for(NotifiableHandler c : controller.getConnectedClients()){
                         c.notifyInterface(notificationForAll);
                 }
                 int[] faithCardsAfter = controller.getVaticanReport();
@@ -89,7 +91,7 @@ public class EndTurnManager implements Manageable{
                 vaticanReportMessage.setMessageType("VaticanReportMessage");
                 vaticanReportMessage.setOccurred(vaticanReportOccurred);
                 vaticanReportMessage.setWhichOne(whichReport);
-                for (ClientHandler clientHandler : controller.getConnectedClients()) {
+                for (NotifiableHandler clientHandler : controller.getConnectedClients()) {
                     for(Player p: controller.getGame().getPlayers()) {
                         vaticanReportMessage.setNickname(p.getNickname());
                         vaticanReportMessage.setNewFaithPoints(p.getFaithPoints());

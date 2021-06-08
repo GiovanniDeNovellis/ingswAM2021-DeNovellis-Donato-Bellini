@@ -6,6 +6,7 @@ import it.polimi.ingsw.Controller.Controller;
 import it.polimi.ingsw.Controller.Messages.BuyDevelopmentCardMessage;
 import it.polimi.ingsw.Controller.Messages.Message;
 import it.polimi.ingsw.Controller.Messages.NotifyDevelopmentCardInsertedOKMessage;
+import it.polimi.ingsw.Controller.NotifiableHandler;
 import it.polimi.ingsw.DevelopmentCard;
 import it.polimi.ingsw.ExtraDeposit;
 
@@ -42,7 +43,7 @@ public class BuyDevelopmentCardManager implements Manageable{
                 extraDeposits[0] = controller.getGame().getCurrentPlayer().getPersonalBoard().getExtraDeposit1();
                 extraDeposits[1] = controller.getGame().getCurrentPlayer().getPersonalBoard().getExtraDeposit2();
                 notification.setExtraDepositsConfiguration(extraDeposits);
-                for (ClientHandler clientHandler : controller.getConnectedClients()) {
+                for (NotifiableHandler clientHandler : controller.getConnectedClients()) {
                     clientHandler.notifyInterface(gson.toJson(notification));
                 }
                 return gson.toJson(mex);

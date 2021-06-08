@@ -17,7 +17,7 @@ public class LorenzoMovedGUINotifier extends GUINotifier{
     public void notifyGui(String notification) {
         updateModel(notification);
         Platform.runLater(()->{
-            GUI.getMainSceneController().setActionCardLabel("ACTION TOKEN ACTIVATED: Lorenzo moved for two spaces.");
+            modelPrinter.setLastActionToken("ACTION TOKEN ACTIVATED: Lorenzo moved for two spaces.");
             GUI.getMainSceneController().printClientPlayer(modelPrinter);
         });
     }

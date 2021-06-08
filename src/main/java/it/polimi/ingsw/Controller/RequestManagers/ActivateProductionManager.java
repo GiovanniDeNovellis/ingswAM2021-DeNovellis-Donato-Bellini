@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import it.polimi.ingsw.Controller.ClientHandler;
 import it.polimi.ingsw.Controller.Controller;
 import it.polimi.ingsw.Controller.Messages.*;
+import it.polimi.ingsw.Controller.NotifiableHandler;
 import it.polimi.ingsw.ExtraDeposit;
 import it.polimi.ingsw.Player;
 
@@ -49,7 +50,7 @@ public class    ActivateProductionManager implements Manageable {
                 notification.setExtraDepositConfiguration(extraDep);
                 notification.setStrongboxConfiguration(controller.getGame().getCurrentPlayer().getPersonalBoard().getStrongbox().getResourcesContained());
                 notification.setNewFaithPoints(controller.getGame().getCurrentPlayer().getFaithPoints());
-                for (ClientHandler clientHandler : controller.getConnectedClients()) {
+                for (NotifiableHandler clientHandler : controller.getConnectedClients()) {
                     clientHandler.notifyInterface(gson.toJson(notification));
                 }
 
@@ -78,7 +79,7 @@ public class    ActivateProductionManager implements Manageable {
                 vaticanReportMessage.setMessageType("VaticanReportMessage");
                 vaticanReportMessage.setOccurred(vaticanReportOccurred);
                 vaticanReportMessage.setWhichOne(whichReport);
-                for (ClientHandler clientHandler : controller.getConnectedClients()) {
+                for (NotifiableHandler clientHandler : controller.getConnectedClients()) {
                     for(Player p: controller.getGame().getPlayers()) {
                         vaticanReportMessage.setNickname(p.getNickname());
                         vaticanReportMessage.setNewFaithPoints(p.getFaithPoints());

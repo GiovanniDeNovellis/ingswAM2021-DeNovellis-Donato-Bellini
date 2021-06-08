@@ -9,6 +9,7 @@ public class EndTurnNotificationMessage extends Message{
     private String actualCurrentPlayer;
     private int numResourcesDiscarded;
     private String winnerPlayerNickname;
+    private int winnerPlayerNumber;
     private boolean gameEnding;
     private Map<ResourceType,Integer> temporaryResources;
     private int blackFaithPoints;
@@ -58,5 +59,13 @@ public class EndTurnNotificationMessage extends Message{
 
     public void setBlackFaithPoints(int blackFaithPoints) {
         this.blackFaithPoints = blackFaithPoints;
+    }
+
+    public int getWinnerPlayerNumber() {
+        return winnerPlayerNumber;
+    }
+
+    public void setWinnerPlayerNumber(int winnerPlayerNumber) {
+        this.winnerPlayerNumber = winnerPlayerNumber;
     }
 }

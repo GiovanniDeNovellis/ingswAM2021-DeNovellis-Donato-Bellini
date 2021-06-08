@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class Controller {
     private final Game game;
-    private final ArrayList<ClientHandler> connectedClients = new ArrayList<>();
+    private final ArrayList<NotifiableHandler> connectedClients = new ArrayList<>();
 
     public int[] getVaticanReport() {
         return  game.getCurrentPlayer().getFaithCards();
@@ -93,7 +93,7 @@ public class Controller {
         return "end";
     }
 
-    public synchronized void addClientHandler(ClientHandler clientHandler){
+    public synchronized void addClientHandler(NotifiableHandler clientHandler){
             connectedClients.add(clientHandler);
     }
 
@@ -101,7 +101,7 @@ public class Controller {
         return game;
     }
 
-    public ArrayList<ClientHandler> getConnectedClients() {
+    public ArrayList<NotifiableHandler> getConnectedClients() {
         return connectedClients;
     }
 }

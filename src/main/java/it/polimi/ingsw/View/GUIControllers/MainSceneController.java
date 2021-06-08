@@ -1136,15 +1136,8 @@ public class MainSceneController implements Initializable {
     }
 
     public void setActionCardLabel(String text){
-        actionCardLabel.setVisible(true);
         actionCardLabel.setText(text);
-        /*PauseTransition visiblePause = new PauseTransition(
-                Duration.seconds(10)
-        );
-        visiblePause.setOnFinished(
-                event -> actionCardLabel.setVisible(false)
-        );
-        visiblePause.play();*/
+        actionCardLabel.setVisible(true);
     }
 
     public void endTurn(ActionEvent actionEvent) {
@@ -1324,4 +1317,7 @@ public class MainSceneController implements Initializable {
         }
     }
 
+    public Label getActionCardLabel() {
+        return actionCardLabel;
+    }
 }

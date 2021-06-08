@@ -36,6 +36,7 @@ public class SinglePlayerCreationGUINotifier extends GUINotifier {
             l.setBuilt(true);
             System.out.println(l.getOwnerNickname());
         }
+        modelPrinter.getPersonalBoards().get(0).setPlayerNumber(1);
         modelPrinter.getMarketBoardPrinter().setMarbleGrid(data.getMarbleGridConfiguration());
         modelPrinter.getMarketBoardPrinter().setMarbleOut(data.getMarbleOut());
         modelPrinter.setBlackFaithPoints(0);

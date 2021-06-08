@@ -5,6 +5,7 @@ import it.polimi.ingsw.Controller.ClientHandler;
 import it.polimi.ingsw.Controller.Controller;
 import it.polimi.ingsw.Controller.Messages.Message;
 import it.polimi.ingsw.Controller.Messages.MultiplayerCreationMessage;
+import it.polimi.ingsw.Controller.NotifiableHandler;
 import it.polimi.ingsw.Player;
 
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ public class StartMultiPlayerManager implements Manageable {
         ans=controller.getGame().startMultiplayer();
         if (ans) {
             players=controller.getGame().getPlayers();
-            for (ClientHandler clientHandler : controller.getConnectedClients()) {
+            for (NotifiableHandler clientHandler : controller.getConnectedClients()) {
                     for (Player player : players) {
                             MultiplayerCreationMessage multiplayerCreationMessage = new MultiplayerCreationMessage();
                             multiplayerCreationMessage.setMessageType("MultiPlayerCreationMessage");
