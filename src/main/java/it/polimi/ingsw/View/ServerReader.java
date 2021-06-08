@@ -5,6 +5,7 @@ import it.polimi.ingsw.Controller.Messages.LoginOkNotificationMessage;
 import it.polimi.ingsw.Controller.Messages.Message;
 import it.polimi.ingsw.View.UInotifiers.CLIInterface;
 import it.polimi.ingsw.View.UInotifiers.GUIInterface;
+import it.polimi.ingsw.View.UInotifiers.UI;
 
 import java.io.BufferedReader;
 import java.io.IOException;

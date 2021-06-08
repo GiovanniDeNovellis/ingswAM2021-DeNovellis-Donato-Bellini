@@ -40,10 +40,6 @@ public class LeaderCardProduction extends LeaderCards {
         return type;
     }
 
-    @Override
-    public int getLeaderCardNumber() {
-        return leaderCardNumber;
-    }
 
     @Override
     public Colour getSingleColour1() {
@@ -69,31 +65,5 @@ public class LeaderCardProduction extends LeaderCards {
     public Colour getSingleCardColour() {
         return null;
     }
-
-    /*@Override
-    public ResourceType getResourceType() {
-        return resourceType;
-    }
-
-    @Override
-    public String getLevel2CardColour() {
-        return level2CardColour;
-    }
-
-    @Override
-    public String getType() {
-        return type;
-    }
-
-    @Override
-    public int getLeaderCardNumber() {
-        return leaderCardNumber;
-    }
-
-    @Override
-    public int getVictoryPoints() {
-        return victoryPoints;
-    }
-    */
 
 }

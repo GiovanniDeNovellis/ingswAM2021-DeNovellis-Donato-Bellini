@@ -76,6 +76,9 @@ public class Game {
     /** Represent the score of the single player */
     private int singlePlayerScore;
 
+    /** True if all clients are disconnected */
+    private boolean allAFK = false;
+
     public Player getCurrentPlayer() {
         return currentPlayer;
     }
@@ -192,28 +195,55 @@ public class Game {
         return true;
     }
 
+
+    /**
+     * private method, finds next player on base of AFK's players.
+     * @param number is the current player's number.
+     * @return the new current player.
+     */
+    private Player findNextPlayer(int number){
+        for( Player p: players ){
+            if( p.getPlayerNumber() == number ){
+                for( int i = number; i<players.size(); i++ ){
+                    if( !players.get(i).isAFK() ){
+                        return players.get(i);
+                    }
+                }
+                for( int i=0; i<number; i++ ){
+                    if( !players.get(i).isAFK() ){
+                        return players.get(i);
+                    }
+                }
+            }
+        }
+        return currentPlayer;
+    }
+
     /**
      * Makes turn ends for the current player and starts the turn for the next player.
      * @return true if the player can end the turn.
      */
     public boolean endTurn(){
+        allAFK = true;
+        for( Player p: players ){
+            if (!p.isAFK()) {
+                allAFK = false;
+                break;
+            }
+        }
+        if( allAFK ){
+            return true;
+        }
         if( currentPlayer.notDoneInitialDistribution() || !currentPlayer.canEndTurn() || !currentPlayer.hasChosenLeaderCards()){
             return false;
         }
         int number = currentPlayer.getPlayerNumber();
-        if((number==players.size()&&players.get(0).isAFK())){
-            currentPlayer=players.get(1);
+        if( currentPlayer.isAFK() ){
+            currentPlayer = findNextPlayer(number);
             currentPlayer.setCanEndTurn(false);
-            return true;
-        }
-        else if(number!=players.size()&&players.get(number).isAFK()){
-            if(number+1==players.size()){
-                currentPlayer=players.get(0);
-                currentPlayer.setCanEndTurn(false);
-                return true;
-            }
-            currentPlayer=players.get(number+1);
-            currentPlayer.setCanEndTurn(false);
+            marketBoard.setWhiteMarblesSelected(0);
+            if( !marketBoard.getTemporaryResources().isEmpty() )
+                discardRemainingResources();
             return true;
         }
         if(currentPlayer.getNumTransformationAbility()>0&&marketBoard.getWhiteMarblesSelected()>0) return false;
@@ -228,13 +258,8 @@ public class Game {
         if( currentPlayer.getPlayerNumber()==players.size() ){
             if( isEndGame )
                 endGame();
-            currentPlayer = players.get(0);
         }
-        else {
-            int nextPlayer;
-            nextPlayer = currentPlayer.getPlayerNumber();
-            currentPlayer = players.get(nextPlayer);
-        }
+        currentPlayer = findNextPlayer(number);
         currentPlayer.setCanEndTurn(false);
         return true;
     }
@@ -623,5 +648,15 @@ public class Game {
         return gameStarted;
     }
 
+    public boolean isAllAFK() {
+        return allAFK;
+    }
 
+    public void setAllAFK(boolean allAFK) {
+        this.allAFK = allAFK;
+    }
+
+    public void setCurrentPlayer(Player currentPlayer) {
+        this.currentPlayer = currentPlayer;
+    }
 }

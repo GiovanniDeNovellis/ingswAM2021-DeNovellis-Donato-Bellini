@@ -6,7 +6,7 @@ import it.polimi.ingsw.Controller.Messages.Message;
 import it.polimi.ingsw.View.CLI;
 import it.polimi.ingsw.View.GUI;
 import it.polimi.ingsw.View.ModelPrinter;
-import it.polimi.ingsw.View.UI;
+import it.polimi.ingsw.View.UInotifiers.UI;
 import it.polimi.ingsw.View.UInotifiers.CLIInterface;
 import it.polimi.ingsw.View.UInotifiers.GUIInterface;
 

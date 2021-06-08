@@ -5,7 +5,6 @@ import it.polimi.ingsw.Controller.Messages.DiscardSuccessMessage;
 import it.polimi.ingsw.Controller.Messages.Message;
 import it.polimi.ingsw.View.CLINotifiers.*;
 import it.polimi.ingsw.View.ModelPrinter;
-import it.polimi.ingsw.View.UI;
 
 public class CLIInterface implements UI {
     private final ModelPrinter modelPrinter;

@@ -78,6 +78,11 @@ public class ClientHandler implements Runnable, NotifiableHandler {
                             for (Player p : controller.getGame().getPlayers()) {
                                 if (p.isAFK() && p.getNickname().equals(tempNickname)) {
                                     //Il player era disconnesso e si è riconnesso
+                                    if( controller.getGame().isAllAFK() ){
+                                                controller.getGame().setCurrentPlayer(p);
+                                                controller.getGame().setAllAFK(false);
+                                                controller.getGame().getCurrentPlayer().setCanEndTurn(false);
+                                    }
                                     LoginOkNotificationMessage me = new LoginOkNotificationMessage();
                                     me.setSenderNickname(tempNickname);
                                     me.setMessageType("LoginOkNotification");

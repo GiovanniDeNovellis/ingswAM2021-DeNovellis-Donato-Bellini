@@ -1,13 +1,11 @@
 package it.polimi.ingsw.View.UInotifiers;
 
 import com.google.gson.Gson;
-import it.polimi.ingsw.Controller.Messages.DiscardSuccessMessage;
 import it.polimi.ingsw.Controller.Messages.Message;
 import it.polimi.ingsw.View.CLINotifiers.*;
 import it.polimi.ingsw.View.GUI;
 import it.polimi.ingsw.View.GUINotifiers.*;
 import it.polimi.ingsw.View.ModelPrinter;
-import it.polimi.ingsw.View.UI;
 import javafx.application.Platform;
 
 import java.io.IOException;

@@ -41,11 +41,6 @@ public class LeaderCardTransformation extends LeaderCards{
     }
 
     @Override
-    public int getLeaderCardNumber() {
-        return leaderCardNumber;
-    }
-
-    @Override
     public Colour getSingleColour1() {
         return null;
     }
@@ -69,34 +64,4 @@ public class LeaderCardTransformation extends LeaderCards{
     public Colour getSingleCardColour() {
         return singleCardColour;
     }
-/*
-    @Override
-    public ResourceType getResourceType() {
-        return resourceType;
-    }
-
-    @Override
-    public Colour getDoubleCardColour() {
-        return doubleCardColour;
-    }
-
-    @Override
-    public Colour getSingleCardColour() {
-        return singleCardColour;
-    }
-
-    @Override
-    public String getType() {
-        return type;
-    }
-
-    @Override
-    public int getLeaderCardNumber() {
-        return leaderCardNumber;
-    }
-
-    @Override
-    public int getVictoryPoints() {
-        return victoryPoints;
-    }*/
 }

@@ -39,10 +39,6 @@ public class LeaderCardDiscount extends LeaderCards{
                 return type;
         }
 
-        @Override
-        public int getLeaderCardNumber() {
-                return leaderCardNumber;
-        }
 
         @Override
         public Colour getSingleColour1() {
@@ -68,33 +64,4 @@ public class LeaderCardDiscount extends LeaderCards{
         public Colour getSingleCardColour() {
                 return null;
         }
-/*
-        @Override
-        public ResourceType getResourceType() {
-                return resourceType;
-        }
-
-        @Override
-        public Colour getSingleColour1() {
-                return singleColour1;
-        }
-
-        @Override
-        public Colour getSingleColour2() {
-                return singleColour2;
-        }
-
-        @Override
-        public String getType() {
-                return type;
-        }
-
-        @Override
-        public int getLeaderCardNumber() {
-                return leaderCardNumber;
-        }
-        @Override
-        public int getVictoryPoints() {
-                return victoryPoints;
-        }*/
 }

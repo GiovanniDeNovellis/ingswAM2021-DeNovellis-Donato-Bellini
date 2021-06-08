@@ -1,5 +1,6 @@
 package it.polimi.ingsw.View;
 
+import javafx.scene.Scene;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,7 +9,6 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
-
 
 public class Client{
 
