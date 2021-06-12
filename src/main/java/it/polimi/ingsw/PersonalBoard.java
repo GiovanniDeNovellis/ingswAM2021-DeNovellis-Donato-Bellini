@@ -653,6 +653,14 @@ public class PersonalBoard {
 
     /**
      * Public method.
+     * to see if a player has actually done a production.
+     */
+    public boolean isTempStrongboxEmpty(){
+        return resourcesToAddToStrongbox.isEmpty();
+    }
+
+    /**
+     * Public method.
      * Called to swap the resources from two levels.
      * @param maxSlotsFirst The first level to swap.
      * @param maxSlotsSecond The second level to swap.

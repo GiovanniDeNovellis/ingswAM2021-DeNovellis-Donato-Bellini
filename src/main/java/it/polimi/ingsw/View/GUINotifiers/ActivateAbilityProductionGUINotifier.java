@@ -18,6 +18,8 @@ public class ActivateAbilityProductionGUINotifier extends GUINotifier{
         Gson gson = new Gson();
         ActivateLeaderAbilityProduction data = gson.fromJson(notification,ActivateLeaderAbilityProduction.class);
         Platform.runLater(()->{
+            if(data.getSenderNickname().equals(GUI.getClientNickname()))
+                updateController();
             switch (GUI.getStatus()) {
                 case "Market":
                     GUI.getMarketSceneController().printScene(modelPrinter);
@@ -33,5 +35,9 @@ public class ActivateAbilityProductionGUINotifier extends GUINotifier{
                     break;
             }
         });
+    }
+
+    private void updateController(){
+        GUI.getMainSceneController().setLeaderProductions();
     }
 }

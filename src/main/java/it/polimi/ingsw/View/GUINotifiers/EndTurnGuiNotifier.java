@@ -39,19 +39,22 @@ public class EndTurnGuiNotifier extends GUINotifier{
                 });
             }
         }
-        else{
-            Platform.runLater(()->{
-                try {
-                    GUI.setRoot("personalBoard_scene");
-                    GUI.getMainSceneController().printClientPlayer(modelPrinter);
-                    GUI.getMainSceneController().getNotificationLabel().setVisible(true);
-                    if(modelPrinter.getLastActionToken()!=null)
-                        GUI.getMainSceneController().setActionCardLabel(modelPrinter.getLastActionToken());
-                    //GUI.getFirstTurnController().printScene(modelPrinter, mex.getNickname());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            });
+        else {
+            if (GUI.getWinnerSceneController() == null) {
+                Platform.runLater(() -> {
+                    try {
+                        GUI.setRoot("personalBoard_scene");
+                        GUI.getMainSceneController().printClientPlayer(modelPrinter);
+                        GUI.getMainSceneController().getNotificationLabel().setVisible(true);
+                        GUI.getMainSceneController().resetLeaderProductions();
+                        if (modelPrinter.getLastActionToken() != null)
+                            GUI.getMainSceneController().setActionCardLabel(modelPrinter.getLastActionToken());
+                        //GUI.getFirstTurnController().printScene(modelPrinter, mex.getNickname());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
+            }
         }
     }
 
@@ -67,15 +70,47 @@ public class EndTurnGuiNotifier extends GUINotifier{
         modelPrinter.getMarketBoardPrinter().setTemporaryResources(data.getTemporaryResources());
         if (data.isGameEnding()) {
             if ((data.getWinnerPlayerNickname() != null)) {
-                //winner = data.getWinnerPlayerNickname();
-                //TODO LOAD END GAME SCENE HA VINTO UN GIOCATORE VERO
+                loadEndGame(data.getWinnerPlayerNickname(),data.getWinnerPoints());
             }
             else if(data.getWinnerPlayerNumber()==5){
-                //TODO HA VINTO LORENZO
+                loadEndGame("Lorenzo", data.getWinnerPoints());
             }
             else {
-                //TODO NOTIFY THE GAME WILL END
+                notifyGameWillEnd();
             }
         }
+    }
+
+    private void loadEndGame(String winner, int points){
+        Platform.runLater(()->{
+            try {
+                GUI.setRoot("winner_scene");
+                GUI.getWinnerSceneController().setText("GAME OVER.\n Player " + winner + " has won the game with " + points + " points.");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+    private void notifyGameWillEnd(){
+        Platform.runLater(()->{
+            switch (GUI.getStatus()) {
+                case "Market":
+                    GUI.getMarketSceneController().printScene(modelPrinter);
+                    GUI.getMarketSceneController().getNotificationLabel().setText("A player has done an end game action. The game will end after this round.");
+                    GUI.getMarketSceneController().getNotificationLabel().setVisible(true);
+                    break;
+                case "Deck":
+                    GUI.getDeckgridSceneController().printScene(modelPrinter);
+                    GUI.getDeckgridSceneController().getNotificationLabel().setText("A player has done an end game action. The game will end after this round.");
+                    GUI.getDeckgridSceneController().getNotificationLabel().setVisible(true);
+                    break;
+                case "Main":
+                    GUI.getMainSceneController().printClientPlayer(modelPrinter);
+                    GUI.getMainSceneController().getNotificationLabel().setText("A player has done an end game action. The game will end after this round.");
+                    GUI.getMainSceneController().getNotificationLabel().setVisible(true);
+                    break;
+            }
+        });
     }
 }

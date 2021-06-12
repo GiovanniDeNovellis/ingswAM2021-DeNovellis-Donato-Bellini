@@ -56,6 +56,10 @@ public class EndTurnManager implements Manageable{
                 mex.setNumResourcesDiscarded(tempResourcesDiscarded);
                 mex.setWinnerPlayerNickname(winnerNickname);
                 mex.setWinnerPlayerNumber(controller.getGame().getWinnerPlayerNumber());
+                if(controller.getGame().getWinnerPlayerNumber()==5)
+                    mex.setWinnerPoints(controller.getGame().getPlayers().get(0).getVictoryPoints());
+                else if(controller.getGame().getWinnerPlayer()!=null)
+                    mex.setWinnerPoints(controller.getGame().getWinnerPlayer().getVictoryPoints());
                 mex.setGameEnding(endGame);
                 mex.setMessageType("EndTurnNotificationMessage");
                 mex.setTemporaryResources(controller.getGame().getMarketBoard().getTemporaryResources());

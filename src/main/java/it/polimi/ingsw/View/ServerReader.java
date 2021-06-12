@@ -54,11 +54,29 @@ public class ServerReader implements Runnable {
             System.exit(1);
         }
          catch (SocketTimeoutException e) {
+            if(cli!=null) {
                 System.err.println("Il server non risponde, la partita termina.");
                 System.exit(1);
+            }
+            else {
+                try {
+                    GUI.setRoot("server_crash_scene");
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
+            }
         } catch (IOException e) {
+            if(cli!=null) {
                 System.err.println("Il server è crashato, la partita termina.");
                 System.exit(1);
+            }
+            else {
+                try {
+                    GUI.setRoot("server_crash_scene");
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
+            }
         }
     }
 

@@ -5,6 +5,8 @@ import it.polimi.ingsw.Controller.Messages.EndTurnNotificationMessage;
 import it.polimi.ingsw.View.ModelPrinter;
 import it.polimi.ingsw.View.Printers.PersonalBoardPrinter;
 
+import java.util.Scanner;
+
 public class EndTurnCLINotifier extends CLINotifier {
     String winner,nextPlayer;
     int oldValue = 0;
@@ -35,10 +37,10 @@ public class EndTurnCLINotifier extends CLINotifier {
         if(data.isGameEnding()) {
             if ((data.getWinnerPlayerNickname()!=null)) {
                 winner = data.getWinnerPlayerNickname();
-                printNotification1();
+                printNotification1(data.getWinnerPoints());
             }
             else if(data.getWinnerPlayerNumber()==5)
-                printNotification3();
+                printNotification3(data.getWinnerPoints());
             else{
                 printNotification2();
             }
@@ -48,13 +50,25 @@ public class EndTurnCLINotifier extends CLINotifier {
         System.out.println("Turn ended." +
                 "\nIt is " + nextPlayer + " turn.");
     }
-    public void printNotification1(){
-        System.out.println("GAME OVER.\n Player " + winner + " has won the game.");
+    public void printNotification1(int points){
+        System.out.println("GAME OVER.\n Player " + winner + " has won the game with " + points + " points.");
+        forceQuit();
     }
     public void printNotification2(){
         System.out.println("This is the final turn, at the end game is over.");
     }
-    public void printNotification3(){
-        System.out.println("GAME OVER. Lorenzo has won the game.");
+    public void printNotification3(int points){
+        System.out.println("GAME OVER. Lorenzo has won the game. You obtained " + points + " points.");
+        forceQuit();
+    }
+
+    private void forceQuit(){
+        String exit;
+        Scanner in = new Scanner(System.in);
+        do{
+            System.out.println("Game ended. Please write \"QUIT\" to close the game." );
+            exit=in.nextLine();
+        }while(!exit.equals("QUIT"));
+        System.exit(1);
     }
 }

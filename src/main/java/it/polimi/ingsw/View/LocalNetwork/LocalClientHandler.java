@@ -3,7 +3,6 @@ package it.polimi.ingsw.View.LocalNetwork;
 import com.google.gson.Gson;
 import it.polimi.ingsw.Controller.Controller;
 import it.polimi.ingsw.Controller.Messages.AddPlayerMessage;
-import it.polimi.ingsw.Controller.Messages.ConnectedPlayersMessage;
 import it.polimi.ingsw.Controller.Messages.LoginOkNotificationMessage;
 import it.polimi.ingsw.Controller.Messages.Message;
 import it.polimi.ingsw.Controller.NotifiableHandler;

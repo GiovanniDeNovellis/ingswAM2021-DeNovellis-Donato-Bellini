@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.paint.*?>
+<?import java.lang.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
-<?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.View.GUIControllers.WinnerSceneController">
    <children>
       <ImageView fitHeight="900.0" fitWidth="1200.0">
          <image>
             <Image url="@Images/winner_scene.jpg" />
          </image>
       </ImageView>
-      <Button layoutX="496.0" layoutY="759.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="208.0" text="QUIT">
+      <Button layoutX="496.0" layoutY="759.0" mnemonicParsing="false" onAction="#exit" prefHeight="66.0" prefWidth="208.0" text="QUIT">
          <font>
             <Font name="Candara Bold Italic" size="34.0" />
          </font>
@@ -35,7 +34,7 @@
             <Reflection />
          </effect>
       </Label>
-      <Label layoutX="600.0" layoutY="239.0" text="is the WINNER" textFill="#a81313">
+      <Label fx:id="notificationLabel" layoutX="600.0" layoutY="239.0" text="is the WINNER" textFill="#a81313">
          <font>
             <Font name="Candara Bold Italic" size="46.0" />
          </font>

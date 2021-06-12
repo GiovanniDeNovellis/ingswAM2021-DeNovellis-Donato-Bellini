@@ -19,6 +19,7 @@ public class GUI extends Application {
     private static MainSceneController mainSceneController;
     private static MarketSceneController marketSceneController;
     private static DeckgridSceneController deckgridSceneController;
+    private static WinnerSceneController winnerSceneController;
     private static String status;
 
     @Override
@@ -103,5 +104,13 @@ public class GUI extends Application {
 
     public static void setStatus(String status) {
         GUI.status = status;
+    }
+
+    public static WinnerSceneController getWinnerSceneController() {
+        return winnerSceneController;
+    }
+
+    public static void setWinnerSceneController(WinnerSceneController winnerSceneController) {
+        GUI.winnerSceneController = winnerSceneController;
     }
 }

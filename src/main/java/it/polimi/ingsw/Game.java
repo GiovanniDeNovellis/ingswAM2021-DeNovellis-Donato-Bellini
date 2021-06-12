@@ -232,6 +232,8 @@ public class Game {
             }
         }
         if( allAFK ){
+            currentPlayer.getPersonalBoard().setRequirementForLeaderProduction1(null);
+            currentPlayer.getPersonalBoard().setRequirementForLeaderProduction2(null);
             return true;
         }
         if( currentPlayer.notDoneInitialDistribution() || !currentPlayer.canEndTurn() || !currentPlayer.hasChosenLeaderCards()){
@@ -239,6 +241,8 @@ public class Game {
         }
         int number = currentPlayer.getPlayerNumber();
         if( currentPlayer.isAFK() ){
+            currentPlayer.getPersonalBoard().setRequirementForLeaderProduction1(null);
+            currentPlayer.getPersonalBoard().setRequirementForLeaderProduction2(null);
             currentPlayer = findNextPlayer(number);
             currentPlayer.setCanEndTurn(false);
             marketBoard.setWhiteMarblesSelected(0);
@@ -259,6 +263,8 @@ public class Game {
             if( isEndGame )
                 endGame();
         }
+        currentPlayer.getPersonalBoard().setRequirementForLeaderProduction1(null);
+        currentPlayer.getPersonalBoard().setRequirementForLeaderProduction2(null);
         currentPlayer = findNextPlayer(number);
         currentPlayer.setCanEndTurn(false);
         return true;
@@ -407,7 +413,6 @@ public class Game {
 
         if( currentPlayer.notDoneInitialDistribution() || currentPlayer.canEndTurn() || !currentPlayer.hasChosenLeaderCards()  )
             return false;
-
         if (payUsingExtraDep1 < 0 || payUsingExtraDep1 > 2 || (payUsingExtraDep1 > 0 && currentPlayer.getPersonalBoard().getExtraDeposit1() == null))
             return false;
         if (payUsingExtraDep2 < 0 || payUsingExtraDep2 > 2 || (payUsingExtraDep2 > 0 && currentPlayer.getPersonalBoard().getExtraDeposit2() == null))
@@ -437,6 +442,9 @@ public class Game {
             if( whichLeaderCard[j] && currentPlayer.getChoosedLeaderCards().get(j).isActive() && resourceObtainedFromLeader[j]!=null ){
                 currentPlayer.getPersonalBoard().activateProductionFromLeaderCard(resourceObtainedFromLeader[j]);
             }
+        }
+        if(currentPlayer.getPersonalBoard().isTempStrongboxEmpty()) {
+            return false;
         }
         currentPlayer.getPersonalBoard().fromStrongboxTempToStrongbox();
         currentPlayer.setCanEndTurn(true);
