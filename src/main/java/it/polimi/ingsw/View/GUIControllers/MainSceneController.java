@@ -44,6 +44,8 @@ public class MainSceneController implements Initializable {
     private boolean[] clicked = new boolean[]{false, false, false, false, false, false};
     private boolean[] leaderProductions = new boolean[]{false,false};
 
+    private String lastChangedNickname;
+
     @FXML
     private ImageView personalBoard;
     @FXML
@@ -130,7 +132,6 @@ public class MainSceneController implements Initializable {
     private Label notificationLabel;
     @FXML
     private Button changementButton;
-    private String lastChangedNickname;
     @FXML
     private Button endTurnButton;
     @FXML
@@ -189,6 +190,23 @@ public class MainSceneController implements Initializable {
     private Label baseShieldLabel;
     @FXML
     private Label baseServantLabel;
+    @FXML
+    private Button stonesButtonPayable;
+    @FXML
+    private Button coinsButtonPayable;
+    @FXML
+    private Button servantsButtonPayable;
+    @FXML
+    private Button shieldsButtonPayable;
+    @FXML
+    private Label stonesLabelPayable;
+    @FXML
+    private Label coinsLabelPayable;
+    @FXML
+    private Label shieldsLabelPayable;
+    @FXML
+    private Label servantsLabelPayable;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -485,6 +503,27 @@ public class MainSceneController implements Initializable {
     }
 
     private void activateBaseProdButtons() {
+        //Risorse da pagare( from Strongbox )
+        if( !stonesLabel.getText().equals("x0")){
+            stonesButtonPayable.setCursor(Cursor.HAND);
+            stonesButtonPayable.setDisable(false);
+            stonesLabelPayable.setOpacity(1);
+        }
+        if( !shieldsLabel.getText().equals("x0")){
+            shieldsButtonPayable.setCursor(Cursor.HAND);
+            shieldsButtonPayable.setDisable(false);
+            shieldsLabelPayable.setOpacity(1);
+        }
+        if( !servantsLabel.getText().equals("x0")){
+            servantsButtonPayable.setCursor(Cursor.HAND);
+            servantsButtonPayable.setDisable(false);
+            servantsLabelPayable.setOpacity(1);
+        }
+        if( !coinsLabel.getText().equals("x0")){
+            coinsButtonPayable.setCursor(Cursor.HAND);
+            coinsButtonPayable.setDisable(false);
+            coinsLabelPayable.setOpacity(1);
+        }
         //Risorse da ottenere
         baseObtainStoneButton.setDisable(false);
         baseObtainStoneButton.setCursor(Cursor.HAND);
@@ -522,19 +561,71 @@ public class MainSceneController implements Initializable {
     }
 
     private void deactivateBaseProdButtons() {
+        //Risorse da pagare( from Strongbox )
+        coinsButtonPayable.setCursor(Cursor.DEFAULT);
+        coinsButtonPayable.setDisable(true);
+        coinsLabelPayable.setOpacity(0);
+        coinsLabelPayable.setText("x0");
+
+        stonesButtonPayable.setCursor(Cursor.DEFAULT);
+        stonesButtonPayable.setDisable(true);
+        stonesLabelPayable.setOpacity(0);
+        stonesLabelPayable.setText("x0");
+
+        servantsButtonPayable.setCursor(Cursor.DEFAULT);
+        servantsButtonPayable.setDisable(true);
+        servantsLabelPayable.setOpacity(0);
+        servantsLabelPayable.setText("x0");
+
+        shieldsButtonPayable.setCursor(Cursor.DEFAULT);
+        shieldsButtonPayable.setDisable(true);
+        shieldsLabelPayable.setOpacity(0);
+        shieldsLabelPayable.setText("x0");
         //Risorse da ottenere
-        baseObtainStoneButton.setDisable(true);
-        baseObtainStoneButton.setCursor(Cursor.DEFAULT);
-        baseObtainStoneButton.setOpacity(0);
-        baseObtainShieldButton.setDisable(true);
-        baseObtainShieldButton.setCursor(Cursor.DEFAULT);
-        baseObtainShieldButton.setOpacity(0);
-        baseObtainServantButton.setDisable(true);
-        baseObtainServantButton.setCursor(Cursor.DEFAULT);
-        baseObtainServantButton.setOpacity(0);
-        baseObtainCoinButton.setDisable(true);
-        baseObtainCoinButton.setCursor(Cursor.DEFAULT);
-        baseObtainCoinButton.setOpacity(0);
+        if( leaderProductions[0] ){
+            baseObtainStoneButton.setDisable(false);
+            baseObtainStoneButton.setCursor(Cursor.HAND);
+            baseObtainStoneButton.setOpacity(0);
+            baseStoneLabel.setText("x0");
+            baseStoneLabel.setOpacity(0);
+            baseObtainShieldButton.setDisable(false);
+            baseObtainShieldButton.setCursor(Cursor.HAND);
+            baseObtainShieldButton.setOpacity(0);
+            baseShieldLabel.setText("x0");
+            baseShieldLabel.setOpacity(0);
+            baseObtainServantButton.setDisable(false);
+            baseObtainServantButton.setCursor(Cursor.HAND);
+            baseObtainServantButton.setOpacity(0);
+            baseServantLabel.setText("x0");
+            baseServantLabel.setOpacity(0);
+            baseObtainCoinButton.setDisable(false);
+            baseObtainCoinButton.setCursor(Cursor.HAND);
+            baseObtainCoinButton.setOpacity(0);
+            baseCoinLabel.setText("x0");
+            baseCoinLabel.setOpacity(0);
+        }
+        else {
+            baseObtainStoneButton.setDisable(true);
+            baseObtainStoneButton.setCursor(Cursor.DEFAULT);
+            baseObtainStoneButton.setOpacity(0);
+            baseStoneLabel.setText("x0");
+            baseStoneLabel.setOpacity(0);
+            baseObtainShieldButton.setDisable(true);
+            baseObtainShieldButton.setCursor(Cursor.DEFAULT);
+            baseObtainShieldButton.setOpacity(0);
+            baseShieldLabel.setText("x0");
+            baseShieldLabel.setOpacity(0);
+            baseObtainServantButton.setDisable(true);
+            baseObtainServantButton.setCursor(Cursor.DEFAULT);
+            baseObtainServantButton.setOpacity(0);
+            baseServantLabel.setText("x0");
+            baseServantLabel.setOpacity(0);
+            baseObtainCoinButton.setDisable(true);
+            baseObtainCoinButton.setCursor(Cursor.DEFAULT);
+            baseObtainCoinButton.setOpacity(0);
+            baseCoinLabel.setText("x0");
+            baseCoinLabel.setOpacity(0);
+        }
         //Risorse da pagare
         basePayButton1.setDisable(true);
         basePayButton1.setCursor(Cursor.DEFAULT);
@@ -558,6 +649,7 @@ public class MainSceneController implements Initializable {
         resourceFromLeader = new ResourceType[]{null, null};
         resourceBaseProduction = new ResourceType[]{null, null, null};
         clicked = new boolean[]{false, false, false, false, false, false};
+        checkConfirmButton();
     }
 
     private void selectDevCard(Button devCard, int slot) {
@@ -683,6 +775,7 @@ public class MainSceneController implements Initializable {
         baseProd.setOpacity(0);
         baseProd.setDisable(true);
         production.setText("ACTIVATE PRODUCTION");
+        production.setCursor(Cursor.HAND);
     }
 
     public void printOtherPlayer(String playerNickname) {
@@ -815,6 +908,8 @@ public class MainSceneController implements Initializable {
                 activateLeadCard1.setText("IS ACTIVE");
                 discard1.setCursor(Cursor.DEFAULT);
                 activateLeadCard1.setCursor(Cursor.DEFAULT);
+                activateAbility1.setCursor(Cursor.HAND);
+                activateAbility1.setOpacity(1);
             } else {
                 //La carta esiste ma non è stata attivata
                 activateAbility1.setDisable(true);
@@ -845,6 +940,8 @@ public class MainSceneController implements Initializable {
                 activateLeadCard2.setText("IS ACTIVE");
                 discard2.setCursor(Cursor.DEFAULT);
                 activateLeadCard2.setCursor(Cursor.DEFAULT);
+                activateAbility2.setCursor(Cursor.HAND);
+                activateAbility2.setOpacity(1);
             } else {
                 //La carta esiste ma non è stata attivata
                 activateAbility2.setDisable(true);
@@ -1110,8 +1207,13 @@ public class MainSceneController implements Initializable {
             faithCard2.setImage(new Image("Images/FaithCards/quadratoArancione.png"));
         if (p.getFaithCards()[2] != 0)
             faithCard3.setImage(new Image("Images/FaithCards/quadratoRosso.png"));
-        redCross.setLayoutX(calcX(p.getFaithPoints()));
-        redCross.setLayoutY(calcY(p.getFaithPoints()));
+        if( p.getFaithPoints()>24){
+            redCross.setLayoutX(calcX(24));
+            redCross.setLayoutY(calcY(24));
+        } else {
+            redCross.setLayoutX(calcX(p.getFaithPoints()));
+            redCross.setLayoutY(calcY(p.getFaithPoints()));
+        }
     }
 
     private int calcX(int position) {
@@ -1346,32 +1448,31 @@ public class MainSceneController implements Initializable {
     }
 
     private void checkConfirmButton() {
-        if (fromPersonalBoard && (resourceBaseProduction[0] == null || resourceBaseProduction[1] == null || resourceBaseProduction[2] == null)) {
-            production.setDisable(true);
-            production.setCursor(Cursor.DEFAULT);
-        }
-        else if(leaderProductions[0] && leaderProductions[1] && resourceFromLeader[0] != null && resourceFromLeader[1] != null){
-            production.setDisable(false);
-            production.setCursor(Cursor.HAND);
-        }
-        else if(leaderProductions[0] && resourceFromLeader[0] != null){
-            production.setDisable(false);
-            production.setCursor(Cursor.HAND);
-        }
-        else if (fromPersonalBoard&&resourceFromLeader[0]==null&&resourceFromLeader[1]==null) {
-            production.setDisable(false);
-            production.setCursor(Cursor.HAND);
-        } else if (whichDevCardSlot[0] || whichDevCardSlot[1] || whichDevCardSlot[2]) {
-            production.setDisable(false);
-            production.setCursor(Cursor.HAND);
-        }
-         if(leaderProductions[0]&&leaderProductions[1]&&(resourceFromLeader[0]==null||resourceFromLeader[1]==null)){
-            production.setDisable(true);
-            production.setCursor(Cursor.DEFAULT);
-        }
-         if(leaderProductions[0]&&resourceFromLeader[0]==null){
-            production.setDisable(true);
-            production.setCursor(Cursor.DEFAULT);
+        if( production.getText().equals("CONFIRM")) {
+            if (fromPersonalBoard && (resourceBaseProduction[0] == null || resourceBaseProduction[1] == null || resourceBaseProduction[2] == null)) {
+                production.setDisable(true);
+                production.setCursor(Cursor.DEFAULT);
+            } else if (leaderProductions[0] && leaderProductions[1] && resourceFromLeader[0] != null && resourceFromLeader[1] != null) {
+                production.setDisable(false);
+                production.setCursor(Cursor.HAND);
+            } else if (leaderProductions[0] && resourceFromLeader[0] != null) {
+                production.setDisable(false);
+                production.setCursor(Cursor.HAND);
+            } else if (fromPersonalBoard && resourceFromLeader[0] == null && resourceFromLeader[1] == null) {
+                production.setDisable(false);
+                production.setCursor(Cursor.HAND);
+            } else if (whichDevCardSlot[0] || whichDevCardSlot[1] || whichDevCardSlot[2]) {
+                production.setDisable(false);
+                production.setCursor(Cursor.HAND);
+            }
+            if (leaderProductions[0] && leaderProductions[1] && (resourceFromLeader[0] == null || resourceFromLeader[1] == null)) {
+                production.setDisable(true);
+                production.setCursor(Cursor.DEFAULT);
+            }
+            if (leaderProductions[0] && resourceFromLeader[0] == null) {
+                production.setDisable(true);
+                production.setCursor(Cursor.DEFAULT);
+            }
         }
     }
 
@@ -1446,5 +1547,59 @@ public class MainSceneController implements Initializable {
 
     public void resetLeaderProductions(){
         leaderProductions=new boolean[]{false,false};
+    }
+
+    private void payFromStrongbox(ResourceType resource, Button button, Label label, Label quantity){
+        if( resourceBaseProduction[0]!=null &&resourceBaseProduction[1]!=null ){
+            //Se la risorsa era stata selezionata, la deseleziono
+            if(resourceBaseProduction[0]==resource && !label.getText().equals("x0")){
+                resourceBaseProduction[0]=null;
+                if( label.getText().equals("x1")) {
+                    label.setText("x0");
+                    button.setOpacity(0);
+                }
+                else if( label.getText().equals("x2"))
+                    label.setText("x1");
+            } else if(resourceBaseProduction[1]==resource && !label.getText().equals("x0")){
+                resourceBaseProduction[1]=null;
+                if( label.getText().equals("x1")) {
+                    label.setText("x0");
+                    button.setOpacity(0);
+                }
+                else if( label.getText().equals("x2"))
+                    label.setText("x1");
+            }
+        }
+        //La risorsa deve essere aggiunta
+        else{
+            if( resourceBaseProduction[0]==null ){
+                resourceBaseProduction[0] = resource;
+            } else {
+                resourceBaseProduction[1] = resource;
+            }
+            if( label.getText().equals("x0")){
+                label.setText("x1");
+                button.setOpacity(0.3);
+            } else if( label.getText().equals("x1") && !quantity.getText().equals("x1"))
+                label.setText("x2");
+        }
+
+        checkConfirmButton();
+    }
+
+    public void baseStrongboxStones(ActionEvent actionEvent) {
+        payFromStrongbox(ResourceType.STONES, stonesButtonPayable, stonesLabelPayable, stonesLabel);
+    }
+
+    public void baseStrongboxCoins(ActionEvent actionEvent) {
+        payFromStrongbox(ResourceType.COINS, coinsButtonPayable, coinsLabelPayable, coinsLabel);
+    }
+
+    public void baseStrongboxServants(ActionEvent actionEvent) {
+        payFromStrongbox(ResourceType.SERVANTS, servantsButtonPayable, servantsLabelPayable, servantsLabel);
+    }
+
+    public void baseStrongboxShields(ActionEvent actionEvent) {
+        payFromStrongbox(ResourceType.SHIELDS, shieldsButtonPayable, shieldsLabelPayable, shieldsLabel);
     }
 }

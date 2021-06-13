@@ -14,6 +14,7 @@ public class ActivateLeaderSuccessGUINotifier extends GUINotifier{
     @Override
     public void notifyGui(String notification) {
         Platform.runLater(()->{
+
             GUI.getMainSceneController().printClientPlayer(modelPrinter);
         });
     }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.text.*?>
@@ -296,9 +297,17 @@
          </image>
       </ImageView>
       <Label fx:id="actionCardLabel" layoutX="-3.0" layoutY="228.0" prefHeight="17.0" prefWidth="420.0" textFill="RED" />
-      <Label fx:id="baseStoneLabel" layoutX="770.0" layoutY="980.0" />
-      <Label fx:id="baseCoinLabel" layoutX="823.0" layoutY="980.0" />
-      <Label fx:id="baseShieldLabel" layoutX="882.0" layoutY="980.0" />
-      <Label fx:id="baseServantLabel" layoutX="938.0" layoutY="980.0" />
+      <Label fx:id="baseStoneLabel" layoutX="780.0" layoutY="954.0" opacity="0.0" prefHeight="21.0" prefWidth="15.0" text="x0" textFill="RED" />
+      <Label fx:id="baseCoinLabel" layoutX="833.0" layoutY="954.0" opacity="0.0" text="x0" textFill="RED" />
+      <Label fx:id="baseShieldLabel" layoutX="892.0" layoutY="954.0" opacity="0.0" text="x0" textFill="RED" />
+      <Label fx:id="baseServantLabel" layoutX="948.0" layoutY="954.0" opacity="0.0" text="x0" textFill="RED" />
+      <Button fx:id="stonesButtonPayable" disable="true" layoutX="475.0" layoutY="840.0" mnemonicParsing="false" onAction="#baseStrongboxStones" opacity="0.0" prefHeight="60.0" prefWidth="60.0" />
+      <Button fx:id="coinsButtonPayable" disable="true" layoutX="591.0" layoutY="842.0" mnemonicParsing="false" onAction="#baseStrongboxCoins" opacity="0.0" prefHeight="60.0" prefWidth="60.0" />
+      <Button fx:id="servantsButtonPayable" disable="true" layoutX="591.0" layoutY="919.0" mnemonicParsing="false" onAction="#baseStrongboxServants" opacity="0.0" prefHeight="60.0" prefWidth="60.0" />
+      <Button fx:id="shieldsButtonPayable" disable="true" layoutX="479.0" layoutY="920.0" mnemonicParsing="false" onAction="#baseStrongboxShields" opacity="0.0" prefHeight="60.0" prefWidth="60.0" />
+      <Label fx:id="stonesLabelPayable" layoutX="531.0" layoutY="821.0" opacity="0.0" text="x0" textFill="RED" />
+      <Label fx:id="coinsLabelPayable" layoutX="644.0" layoutY="821.0" opacity="0.0" text="x0" textFill="RED" />
+      <Label fx:id="shieldsLabelPayable" layoutX="532.0" layoutY="905.0" opacity="0.0" text="x0" textFill="RED" />
+      <Label fx:id="servantsLabelPayable" layoutX="644.0" layoutY="905.0" opacity="0.0" text="x0" textFill="RED" />
    </children>
 </Pane>

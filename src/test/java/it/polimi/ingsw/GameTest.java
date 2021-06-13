@@ -327,7 +327,7 @@ class GameTest {
         assertTrue(game.endTurn());
         boolean[] dev1  = {false,false,false};
         boolean[] lead1  = {false,false};
-        assertTrue(game.activateProduction(dev1,true,lead1,ResourceType.COINS,ResourceType.STONES,ResourceType.SERVANTS, obtainedFromLeader,0,0));
+        assertFalse(game.activateProduction(dev1,true,lead1,ResourceType.COINS,ResourceType.STONES,ResourceType.SERVANTS, obtainedFromLeader,0,0));
         assertEquals(0,game.getCurrentPlayer().getPersonalBoard().getStrongbox().getNumOf(ResourceType.SERVANTS));
         assertEquals(1,game.getCurrentPlayer().getPersonalBoard().getWarehouseDepot().getLevel(1).getCurrNumResources());
         assertEquals(ResourceType.COINS,game.getCurrentPlayer().getPersonalBoard().getWarehouseDepot().getLevel(1).getResourceType());
