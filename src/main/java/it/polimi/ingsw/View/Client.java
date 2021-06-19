@@ -1,7 +1,5 @@
 package it.polimi.ingsw.View;
 
-import javafx.scene.Scene;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -15,6 +13,10 @@ public class Client{
     public static void main(String[] args) {
             String hostName = "127.0.0.1";
             int portNumber = 1234;
+            if(args.length==3){
+                hostName=args[1];
+                portNumber=Integer.parseInt(args[2]);
+            }
             String type = args[0];
             try (
                     Socket socket = new Socket(hostName, portNumber);
