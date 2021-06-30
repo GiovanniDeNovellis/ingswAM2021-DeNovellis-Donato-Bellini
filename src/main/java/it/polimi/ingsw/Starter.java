@@ -29,15 +29,23 @@ public class Starter {
                     LocalClient.main(new String[]{"CLI"});
                 else
                     Client.main(new String[]{"CLI"});
+
+                System.out.println("Client closed.");
+                System.exit(0);
                 break;
             case "SERVER":
                 Server.main(null);
+                System.out.println("Server closed.");
+                System.exit(0);
                 break;
             default:
                 if(local.equals("Y"))
                     LocalClient.main(new String[]{"GUI"});
                 else
                     Client.main(new String[]{"GUI"});
+
+                System.out.println("Client closed.");
+                System.exit(0);
                 break;
         }
         System.out.println("Wrong start config");
