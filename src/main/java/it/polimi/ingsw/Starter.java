@@ -27,23 +27,32 @@ public class Starter {
             case "CLI":
                 if(local.equals("Y"))
                     LocalClient.main(new String[]{"CLI"});
-                else
-                    Client.main(new String[]{"CLI"});
-
+                else {
+                    if( args!=null && args.length == 2 )
+                        Client.main(new String[]{"CLI",args[0],args[1]});
+                    else
+                        Client.main(new String[]{"CLI"});
+                }
                 System.out.println("Client closed.");
                 System.exit(0);
                 break;
             case "SERVER":
-                Server.main(null);
+                if( args!=null && args.length == 2 )
+                    Server.main(args);
+                else
+                    Server.main(null);
                 System.out.println("Server closed.");
                 System.exit(0);
                 break;
             default:
                 if(local.equals("Y"))
                     LocalClient.main(new String[]{"GUI"});
-                else
-                    Client.main(new String[]{"GUI"});
-
+                else {
+                    if (args != null && args.length == 2)
+                        Client.main(new String[]{"GUI",args[0],args[1]});
+                    else
+                        Client.main(new String[]{"GUI"});
+                }
                 System.out.println("Client closed.");
                 System.exit(0);
                 break;
