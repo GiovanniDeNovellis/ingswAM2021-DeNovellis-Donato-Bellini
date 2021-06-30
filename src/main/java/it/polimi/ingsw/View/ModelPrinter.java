@@ -4,6 +4,11 @@ import it.polimi.ingsw.View.Printers.*;
 
 import java.util.ArrayList;
 
+/**
+ * This class represents the part of the model that all clients have locally.
+ * It is used by the cli and the gui for drawing.
+ * The various methods are mainly used by the CLI since the GUI mainly takes the data
+ */
 public class ModelPrinter {
     private MarketBoardPrinter marketBoardPrinter = new MarketBoardPrinter();
     private DeckGridPrinter deckGridPrinter = new DeckGridPrinter();
@@ -16,6 +21,10 @@ public class ModelPrinter {
     private String lastActionToken;
 
 
+    /**
+     * @param p indicates the printer
+     * @param whatIHaveToPrint represent the object or data to print
+     */
     public void print(Printable p, String whatIHaveToPrint) {
         if (whatIHaveToPrint.equals("blackFaithPoints")) {
             printLorenzoTrack();

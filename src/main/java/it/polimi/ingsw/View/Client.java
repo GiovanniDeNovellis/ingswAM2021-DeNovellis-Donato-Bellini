@@ -8,6 +8,11 @@ import java.net.Socket;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 
+/**
+ * It starts all client threads depending on whether it is cli or gui
+ * and also starts listening or message threads;
+ * finally in the background it performs ping pong between client and server
+ */
 public class Client{
 
     public static void main(String[] args) {

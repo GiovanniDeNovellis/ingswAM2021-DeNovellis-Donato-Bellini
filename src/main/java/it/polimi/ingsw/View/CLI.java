@@ -4,11 +4,19 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+/**
+ * This class represents the Command Unit Interface of the game, with the different
+ * command written on the terminal where the player can play the game.
+ */
 public class CLI implements Runnable{
     private String userInput=null;
     private  ModelPrinter modelPrinter;
     private String nickname;
 
+    /**
+     * This method start the CLI with the input of the users, catch and manage
+     * the error of the users if it miss some command.
+     */
     public void run(){
         BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
         String userInput;

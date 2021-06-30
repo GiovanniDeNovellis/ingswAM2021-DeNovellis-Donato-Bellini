@@ -11,6 +11,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.net.SocketTimeoutException;
 
+/**
+ * When the server has to respond to the client, it calls the method
+ * "notifyClient" that updates it with the messages
+ * that is required in the local game.
+ */
+
 public class ServerReader implements Runnable {
     private final BufferedReader in;
     private CLI cli;
@@ -21,6 +27,10 @@ public class ServerReader implements Runnable {
         this.in = in;
     }
 
+    /**
+     * This method read how to start the server and crete the different interface
+     * of GUI and CLI
+     */
     @Override
     public void run() {
         Gson gson = new Gson();

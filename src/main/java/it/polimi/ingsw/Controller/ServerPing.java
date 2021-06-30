@@ -4,6 +4,11 @@ import java.io.PrintWriter;
 
 import static java.lang.Thread.sleep;
 
+/**
+ * Every 5 seconds they send a keep alive ping message,
+ * which takes advantage of the fact that client-side and server-side
+ * sockets after 15 seconds without receiving, throw an exception
+ */
 public class ServerPing implements Runnable{
     private final PrintWriter out;
     private boolean running = true;

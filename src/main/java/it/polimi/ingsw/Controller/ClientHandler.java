@@ -15,6 +15,12 @@ import java.net.Socket;
 import java.net.SocketTimeoutException;
 import java.util.ArrayList;
 
+/**
+ * This class represents the handler of the local game mode.
+ * Read the input of the game and execute the different command.
+ * At the end, notify the different interface with the data.
+ * Manage the phase of the login and the different disconnections.
+ */
 public class ClientHandler implements Runnable, NotifiableHandler {
     private ServerPing serverPing;
     private final Controller controller;

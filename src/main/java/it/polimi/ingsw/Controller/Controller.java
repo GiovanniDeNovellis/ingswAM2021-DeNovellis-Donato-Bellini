@@ -7,6 +7,11 @@ import it.polimi.ingsw.Game;
 
 import java.util.ArrayList;
 
+/**
+ * This class reads as input what arrives from the client and calls the different managers to perform the actions on the model,
+ * it can also return messages to be sent to the clients to the various client handlers.
+ * Based on "Strategy Pattern"
+ */
 public class Controller {
     private final Game game;
     private final ArrayList<NotifiableHandler> connectedClients = new ArrayList<>();

@@ -9,6 +9,12 @@ import it.polimi.ingsw.View.PrinterSingleton;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+/**
+ * This class represents the main part to manages the
+ * local game (advanced functionality). So the server
+ * is not "online" and the game start in local.
+ */
+
 public class LocalClient {
     public static void main(String[] args) {
         LocalClientHandler localClientHandler = null;
@@ -51,6 +57,11 @@ public class LocalClient {
         }
     }
 
+    /**
+     * This class represents the "builder" of the login,
+     * the method set the standards variable for the player
+     * @return the message to send
+     */
     private static String buildLogin(){
         String nickname;
         Gson gson = new Gson();

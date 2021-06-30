@@ -9,6 +9,10 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
 
+/**
+ * This class represents the Graphic Unit Interface of the game, contains the
+ * different attributes of the multiple scene and the setting of the JavaFX scene
+ */
 public class GUI extends Application {
     private static Scene scene;
     private static Stage primaryStage;
@@ -22,6 +26,12 @@ public class GUI extends Application {
     private static WinnerSceneController winnerSceneController;
     private static String status;
 
+
+    /**
+     * This method initialize the first scene of the game
+     * @param primaryStage is the first stage to load
+     * @throws Exception
+     */
     @Override
     public void start(Stage primaryStage) throws Exception {
         scene = new Scene(loadFXML("login_scene"));

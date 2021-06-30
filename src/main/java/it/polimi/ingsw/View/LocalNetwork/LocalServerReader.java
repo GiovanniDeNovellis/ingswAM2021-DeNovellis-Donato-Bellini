@@ -10,6 +10,11 @@ import it.polimi.ingsw.View.UInotifiers.UI;
 import it.polimi.ingsw.View.UInotifiers.CLIInterface;
 import it.polimi.ingsw.View.UInotifiers.GUIInterface;
 
+/**
+ * When the server has to respond to the client, it calls the method
+ * "notifyClient" that updates it with the messages
+ * that is required in the local game.
+ */
 public class LocalServerReader {
     private CLI cli;
     private GUI gui;

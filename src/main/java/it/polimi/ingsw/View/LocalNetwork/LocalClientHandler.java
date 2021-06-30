@@ -9,6 +9,12 @@ import it.polimi.ingsw.Controller.NotifiableHandler;
 import it.polimi.ingsw.Game;
 import java.io.FileNotFoundException;
 
+/**
+ * This class represents the handler of the local game mode.
+ * Read the input of the game and execute the different command.
+ * At the end, notify the different interface with the data.
+ * Manage the phase of the login.
+ */
 public class LocalClientHandler implements NotifiableHandler {
     private final Controller controller;
     private  LocalServerReader localServerReader;
