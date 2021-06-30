@@ -220,14 +220,14 @@ public class PersonalBoardPrinter implements Printable{
 
     private void printExtraDeposits(){
         System.out.println(ownerNickname + "'s first extra deposit:");
-        if(extraDeposit1.getResourceType()==null){
+        if(extraDeposit1==null||extraDeposit1.getResourceType()==null){
             System.out.println("\u2550\u2550\u2550\u2550\u2550\u2550 First deposit not activated \u2550\u2550\u2550\u2550\u2550\u2550 ");
         }
         else{
             System.out.println(resourceTypeColoursMap.get(extraDeposit1.getResourceType()).escape()+"\u2550\u2550\u2550\u2550\u2550\u2550 "+ extraDeposit1.getResourceType()+":"+extraDeposit1.getCurrentQuantity()+"\u2550\u2550\u2550\u2550\u2550\u2550"+Colours.RESET);
         }
         System.out.println(ownerNickname + "'s second extra deposit:");
-        if(extraDeposit2.getResourceType()==null){
+        if(extraDeposit2==null||extraDeposit2.getResourceType()==null){
             System.out.println("\u2550\u2550\u2550\u2550\u2550\u2550 Second deposit not activated \u2550\u2550\u2550\u2550\u2550\u2550 ");
         }
         else{
