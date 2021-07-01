@@ -1,0 +1,14 @@
+it.polimi.ingsw
+it.polimi.ingsw.Controller
+it.polimi.ingsw.Controller.Messages
+it.polimi.ingsw.Controller.RequestManagers
+it.polimi.ingsw.MarbleTypes
+it.polimi.ingsw.View
+it.polimi.ingsw.View.CLINotifiers
+it.polimi.ingsw.View.GUIControllers
+it.polimi.ingsw.View.GUINotifiers
+it.polimi.ingsw.View.LeaderCardsBuilder
+it.polimi.ingsw.View.LocalNetwork
+it.polimi.ingsw.View.MessageBuilders
+it.polimi.ingsw.View.Printers
+it.polimi.ingsw.View.UInotifiers

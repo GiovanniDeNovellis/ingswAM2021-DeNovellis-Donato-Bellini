@@ -12,8 +12,6 @@ public class NotifyActivateProductionMessage extends Message{
     private int newFaithPoints;
     private String whoActivatesProduction;
 
-
-
     public String getWhoActivatesProduction() {
         return whoActivatesProduction;
     }
