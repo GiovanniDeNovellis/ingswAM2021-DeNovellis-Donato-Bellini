@@ -6,6 +6,9 @@ import it.polimi.ingsw.View.ModelPrinter;
 import it.polimi.ingsw.View.Printers.LeaderCardsPrinter;
 import it.polimi.ingsw.View.Printers.PersonalBoardPrinter;
 
+/**
+ * Notifies the CLI of a player addition
+ */
 public class AddPlayerCLINotifier extends CLINotifier {
     String nickname;
     public AddPlayerCLINotifier(ModelPrinter modelPrinter){super(modelPrinter);}

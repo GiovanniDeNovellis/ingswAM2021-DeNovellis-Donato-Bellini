@@ -6,6 +6,9 @@ import it.polimi.ingsw.View.GUI;
 import it.polimi.ingsw.View.ModelPrinter;
 import javafx.application.Platform;
 
+/**
+ * Notifies the GUI of the disconnection of a player
+ */
 public class PlayerOutGUINotifier extends GUINotifier{
     private final ModelPrinter modelPrinter;
     public PlayerOutGUINotifier(ModelPrinter modelPrinter) {

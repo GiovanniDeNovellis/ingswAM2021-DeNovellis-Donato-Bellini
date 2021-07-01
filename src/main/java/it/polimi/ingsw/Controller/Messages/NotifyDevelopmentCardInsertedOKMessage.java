@@ -5,6 +5,9 @@ import it.polimi.ingsw.*;
 import java.util.ArrayList;
 import java.util.Map;
 
+/**
+ * Message used to communicate the insertion of a development card
+ */
 public class NotifyDevelopmentCardInsertedOKMessage extends Message{
     private DevelopmentCard[] developmentCardsConfiguration;
     private ArrayList<DevelopmentCard> insertedDevelopmentCard;

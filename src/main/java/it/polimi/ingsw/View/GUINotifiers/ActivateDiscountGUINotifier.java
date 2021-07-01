@@ -6,6 +6,9 @@ import it.polimi.ingsw.View.GUI;
 import it.polimi.ingsw.View.ModelPrinter;
 import javafx.application.Platform;
 
+/**
+ * Notifies the GUI of the activation of a discount ability
+ */
 public class ActivateDiscountGUINotifier extends GUINotifier{
     private ModelPrinter modelPrinter;
 

@@ -3,6 +3,9 @@ package it.polimi.ingsw.View.GUINotifiers;
 import it.polimi.ingsw.View.GUI;
 import javafx.application.Platform;
 
+/**
+ * Notifies the GUI of the fail to login
+ */
 public class LoginErrorGUINotifier extends GUINotifier{
 
     @Override

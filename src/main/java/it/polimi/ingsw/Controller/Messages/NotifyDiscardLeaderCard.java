@@ -1,5 +1,8 @@
 package it.polimi.ingsw.Controller.Messages;
 
+/**
+ * Message used to communicate the discard of a leader card
+ */
 public class NotifyDiscardLeaderCard extends Message{
     private int discardedPosition;
     private String whoDiscardedLeaderCard;

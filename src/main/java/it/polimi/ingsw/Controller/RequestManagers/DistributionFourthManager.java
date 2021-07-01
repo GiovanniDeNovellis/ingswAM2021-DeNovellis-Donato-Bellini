@@ -9,6 +9,9 @@ import it.polimi.ingsw.Controller.Messages.NotifyWarehouseChangedMessage;
 import it.polimi.ingsw.Controller.NotifiableHandler;
 import it.polimi.ingsw.WareHouseDepot;
 
+/**
+ * This manager handles a first distribution request
+ */
 public class DistributionFourthManager implements Manageable {
     private final Controller controller;
 

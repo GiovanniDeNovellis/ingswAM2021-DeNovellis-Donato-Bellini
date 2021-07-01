@@ -8,6 +8,9 @@ import javafx.application.Platform;
 
 import java.io.IOException;
 
+/**
+ * Notifies the GUI of the changement of the temporary resources
+ */
 public class TempResChangeGUINotifier extends GUINotifier{
     private ModelPrinter modelPrinter;
 

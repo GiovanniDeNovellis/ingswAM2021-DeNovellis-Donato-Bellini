@@ -6,6 +6,9 @@ import it.polimi.ingsw.Controller.Messages.Message;
 import it.polimi.ingsw.View.CLINotifiers.*;
 import it.polimi.ingsw.View.ModelPrinter;
 
+/**
+ * Reads the message type and activates the right CLI notifier
+ */
 public class CLIInterface implements UI {
     private final ModelPrinter modelPrinter;
 

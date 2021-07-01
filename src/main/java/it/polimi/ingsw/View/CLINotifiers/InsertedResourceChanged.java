@@ -5,6 +5,9 @@ import it.polimi.ingsw.Controller.Messages.NotifyInsertedOkMessage;
 import it.polimi.ingsw.View.Printers.PersonalBoardPrinter;
 import it.polimi.ingsw.View.ModelPrinter;
 
+/**
+ * Notifies the CLI of a resource insertion
+ */
 public class InsertedResourceChanged extends CLINotifier {
     String nickname;
 

@@ -5,6 +5,9 @@ import it.polimi.ingsw.Controller.Messages.EndTurnRequestMessage;
 
 import java.util.Scanner;
 
+/**
+ * Used to build an end turn request
+ */
 public class EndTurnRequestMessageBuilder extends MessageBuilder{
     private final String nickname;
 

@@ -1,5 +1,8 @@
 package it.polimi.ingsw.Controller.Messages;
 
+/**
+ * Message used to communicate the activation of a leader ability production
+ */
 public class ActivateLeaderAbilityProduction extends Message{
     private int position;
 

@@ -1,5 +1,8 @@
 package it.polimi.ingsw.Controller.Messages;
 
+/**
+ * Message used to request to take resources
+ */
     public class TakeResourceFromMarketMessage extends Message {
 
 

@@ -11,6 +11,9 @@ import it.polimi.ingsw.LeaderCard;
 
 import java.util.ArrayList;
 
+/**
+ * This manager handles a leader card selection request
+ */
 public class LeaderCardSelectionManager implements Manageable{
     private final Controller controller;
 

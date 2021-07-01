@@ -1,5 +1,8 @@
 package it.polimi.ingsw.Controller.Messages;
 
+/**
+ * Message used to communicate the success of the discard of a leader card
+ */
 public class DiscardSuccessMessage extends Message{
     private int position;
 

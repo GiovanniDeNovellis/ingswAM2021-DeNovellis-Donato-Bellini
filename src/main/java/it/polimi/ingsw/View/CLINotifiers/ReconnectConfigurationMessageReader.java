@@ -6,6 +6,9 @@ import it.polimi.ingsw.View.ModelPrinter;
 import it.polimi.ingsw.View.Printers.LeaderCardsPrinter;
 import it.polimi.ingsw.View.Printers.PersonalBoardPrinter;
 
+/**
+ * Notifies the CLI of the data for the reconnection
+ */
 public class ReconnectConfigurationMessageReader extends CLINotifier {
     public ReconnectConfigurationMessageReader(ModelPrinter modelPrinter) {
         super(modelPrinter);

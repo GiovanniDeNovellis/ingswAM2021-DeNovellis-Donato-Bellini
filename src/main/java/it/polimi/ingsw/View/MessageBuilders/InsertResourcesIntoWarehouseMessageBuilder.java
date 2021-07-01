@@ -9,6 +9,9 @@ import javax.naming.spi.ResolveResult;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * Used to build an insert resource request
+ */
 public class InsertResourcesIntoWarehouseMessageBuilder extends MessageBuilder {
     private final String nickname;
     public InsertResourcesIntoWarehouseMessageBuilder(String nickname) {

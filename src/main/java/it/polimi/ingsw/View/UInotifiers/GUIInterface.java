@@ -10,6 +10,9 @@ import javafx.application.Platform;
 
 import java.io.IOException;
 
+/**
+ * Reads the message type and activates the right GUI notifier
+ */
 public class GUIInterface implements UI {
     private final ModelPrinter modelPrinter;
 

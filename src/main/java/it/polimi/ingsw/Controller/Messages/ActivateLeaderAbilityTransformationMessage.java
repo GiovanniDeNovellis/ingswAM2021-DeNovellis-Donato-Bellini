@@ -4,6 +4,9 @@ import it.polimi.ingsw.ResourceType;
 
 import java.util.Map;
 
+/**
+ * Message used to communicate the activation of a leader ability transformation
+ */
 public class ActivateLeaderAbilityTransformationMessage extends Message{
     private int position;
     private Map<ResourceType,Integer> temporaryResourcesConfiguration;

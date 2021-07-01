@@ -7,6 +7,9 @@ import it.polimi.ingsw.Controller.Messages.*;
 
 import java.util.ArrayList;
 
+/**
+ * This manager handles an action card activation request
+ */
 public class ActionCardActivationManager implements Manageable{
     private final Controller controller;
 

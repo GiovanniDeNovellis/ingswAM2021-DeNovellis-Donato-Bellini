@@ -8,6 +8,9 @@ import it.polimi.ingsw.View.Printers.LeaderCardsPrinter;
 import it.polimi.ingsw.View.Printers.PersonalBoardPrinter;
 import javafx.application.Platform;
 
+/**
+ * Notifies the GUI of the connected players
+ */
 public class ConnectedPlayersGUINotifier extends GUINotifier{
     private final ModelPrinter modelPrinter;
 

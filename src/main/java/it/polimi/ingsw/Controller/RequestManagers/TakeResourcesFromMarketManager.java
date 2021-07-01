@@ -7,6 +7,9 @@ import it.polimi.ingsw.Controller.Messages.*;
 import it.polimi.ingsw.Controller.NotifiableHandler;
 import it.polimi.ingsw.Player;
 
+/**
+ * This manager handles a resource from market taking request
+ */
 public class TakeResourcesFromMarketManager implements Manageable{
     private final Controller controller;
 

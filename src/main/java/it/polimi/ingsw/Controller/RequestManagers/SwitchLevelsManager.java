@@ -8,6 +8,9 @@ import it.polimi.ingsw.Controller.Messages.NotifyWarehouseChangedMessage;
 import it.polimi.ingsw.Controller.Messages.SwitchLevelMessage;
 import it.polimi.ingsw.Controller.NotifiableHandler;
 
+/**
+ * This manager handles a switch levels request
+ */
 public class SwitchLevelsManager implements Manageable {
     private final Controller controller;
 

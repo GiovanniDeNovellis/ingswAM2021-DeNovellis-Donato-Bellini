@@ -6,6 +6,9 @@ import it.polimi.ingsw.View.ModelPrinter;
 import it.polimi.ingsw.View.Printers.LeaderCardsPrinter;
 import it.polimi.ingsw.View.Printers.PersonalBoardPrinter;
 
+/**
+ * Notifies the GUI of the data for the reconnection
+ */
 public class ReconnectConfigurationGUINotifier extends GUINotifier{
     private ModelPrinter modelPrinter;
 

@@ -2,6 +2,9 @@ package it.polimi.ingsw.Controller.Messages;
 
 import it.polimi.ingsw.ResourceType;
 
+/**
+ * Message used to communicate the activation of a production
+ */
 public class ActivateProductionMessage extends Message{
     private String senderNickname;
     private boolean[] whichDevCardSlot;

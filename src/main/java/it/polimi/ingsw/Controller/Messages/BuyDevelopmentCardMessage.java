@@ -2,6 +2,9 @@ package it.polimi.ingsw.Controller.Messages;
 
 import it.polimi.ingsw.Colour;
 
+/**
+ * Message used to communicate the purchase of a development card
+ */
 public class BuyDevelopmentCardMessage extends Message{
     public void setLevel(int level) {
         this.level = level;

@@ -6,6 +6,9 @@ import it.polimi.ingsw.Controller.Messages.LeaderCardSelectionMessage;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * Used to build a leader card selection request
+ */
 public class LeaderCardSelectionMessageBuilder extends MessageBuilder{
 
     private final String nickname;

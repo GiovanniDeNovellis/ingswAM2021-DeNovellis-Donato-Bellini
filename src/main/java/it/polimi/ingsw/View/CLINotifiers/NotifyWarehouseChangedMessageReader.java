@@ -5,6 +5,9 @@ import it.polimi.ingsw.Controller.Messages.NotifyWarehouseChangedMessage;
 import it.polimi.ingsw.View.ModelPrinter;
 import it.polimi.ingsw.View.Printers.PersonalBoardPrinter;
 
+/**
+ * Notifies the CLI of the changement of a warehouse
+ */
 public class NotifyWarehouseChangedMessageReader extends CLINotifier {
     public NotifyWarehouseChangedMessageReader(ModelPrinter modelPrinter) {
         super(modelPrinter);

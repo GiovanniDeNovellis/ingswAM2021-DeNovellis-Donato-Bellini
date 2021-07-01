@@ -6,6 +6,9 @@ import it.polimi.ingsw.View.GUI;
 import it.polimi.ingsw.View.ModelPrinter;
 import javafx.application.Platform;
 
+/**
+ * Notifies the GUI of a discard of a leader card
+ */
 public class DiscardLeaderSuccessGUINotifier extends GUINotifier{
 
     private final ModelPrinter modelPrinter;

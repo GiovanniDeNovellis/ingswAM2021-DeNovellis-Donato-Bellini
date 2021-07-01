@@ -3,6 +3,9 @@ package it.polimi.ingsw.View.LeaderCardsBuilder;
 import it.polimi.ingsw.Colour;
 import it.polimi.ingsw.ResourceType;
 
+/**
+ * Used to print a discount leader card
+ */
 public class LeaderCardDiscount extends LeaderCards{
         ResourceType resourceType;
         Colour singleColour1;

@@ -8,6 +8,9 @@ import it.polimi.ingsw.View.Printers.MarketBoardPrinter;
 import it.polimi.ingsw.View.Printers.PersonalBoardPrinter;
 import java.util.Scanner;
 
+/**
+ * Class used in the CLI to read the command and activate the right message builder
+ */
 public class CommandManager {
     private ModelPrinter modelPrinter;
     private String nickname;

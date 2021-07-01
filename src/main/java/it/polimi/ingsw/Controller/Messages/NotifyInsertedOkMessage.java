@@ -6,7 +6,9 @@ import it.polimi.ingsw.WareHouseDepot;
 
 import java.util.HashMap;
 import java.util.Map;
-
+/**
+ * Message used to communicate the insertion of a resource
+ */
 public class NotifyInsertedOkMessage extends Message {
     private Map<ResourceType,Integer> temporaryResourcesConfiguration;
     private WareHouseDepot warehouseConfiguration;

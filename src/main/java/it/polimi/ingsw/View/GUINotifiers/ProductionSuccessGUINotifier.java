@@ -5,6 +5,9 @@ import it.polimi.ingsw.View.ModelPrinter;
 import javafx.application.Platform;
 
 
+/**
+ * Notifies the GUI of the success to activate a production
+ */
 public class ProductionSuccessGUINotifier extends GUINotifier{
 
     ModelPrinter modelPrinter;

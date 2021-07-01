@@ -6,6 +6,9 @@ import it.polimi.ingsw.Controller.Messages.TakeResourceFromMarketMessage;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * Used to build a take resource from market request
+ */
 public class TakeResourceFromMarketMessageBuilder extends MessageBuilder {
     private final String nickname;
 

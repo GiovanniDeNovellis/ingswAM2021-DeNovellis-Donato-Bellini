@@ -1,5 +1,8 @@
 package it.polimi.ingsw.View.MessageBuilders;
 
+/**
+ * Used to check all available commands
+ */
 public class HelpMessageBuilder extends MessageBuilder{
     @Override
     public String buildMessage() {

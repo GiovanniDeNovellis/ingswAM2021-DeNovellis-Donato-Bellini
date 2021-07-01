@@ -11,6 +11,9 @@ import it.polimi.ingsw.Controller.NotifiableHandler;
 import it.polimi.ingsw.Player;
 import it.polimi.ingsw.ResourceType;
 
+/**
+ * This manager handles an end turn request
+ */
 public class EndTurnManager implements Manageable{
     private final Controller controller;
 

@@ -7,6 +7,9 @@ import it.polimi.ingsw.View.ModelPrinter;
 import it.polimi.ingsw.View.Printers.LeaderCardsPrinter;
 import javafx.application.Platform;
 
+/**
+ * Notifies the GUI of the activation of a laeder card
+ */
 public class LeaderActivatedGUINotifier extends GUINotifier{
     private final ModelPrinter modelPrinter;
 

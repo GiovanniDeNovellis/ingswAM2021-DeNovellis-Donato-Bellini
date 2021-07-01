@@ -9,6 +9,9 @@ import java.util.Scanner;
 
 import static it.polimi.ingsw.ResourceType.*;
 
+/**
+ * Used to build a free distribution request
+ */
 public class DistributionFourthMessageBuilder extends MessageBuilder{
     String nickname;
     String resourceType;

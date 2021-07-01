@@ -6,6 +6,9 @@ import it.polimi.ingsw.Controller.Messages.SwitchLevelMessage;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * Used to build a switch level request
+ */
 public class SwitchLevelMessageBuilder extends MessageBuilder {
     private final String nickname;
     public SwitchLevelMessageBuilder(String nickname) {

@@ -7,6 +7,9 @@ import it.polimi.ingsw.View.ModelPrinter;
 import it.polimi.ingsw.View.Printers.PersonalBoardPrinter;
 import javafx.application.Platform;
 
+/**
+ * Notifies the GUI of the changement of the warehouse
+ */
 public class WarehouseChangedGUINotifier extends GUINotifier {
     private ModelPrinter modelPrinter;
 

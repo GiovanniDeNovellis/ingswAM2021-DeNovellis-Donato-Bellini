@@ -9,6 +9,9 @@ import it.polimi.ingsw.Controller.Messages.NotifyInsertedOkMessage;
 import it.polimi.ingsw.Controller.NotifiableHandler;
 import it.polimi.ingsw.ExtraDeposit;
 
+/**
+ * This manager handles a resource insertion request
+ */
 public class InsertResourcesIntoWarehouseManager implements Manageable {
     private final Controller controller;
 

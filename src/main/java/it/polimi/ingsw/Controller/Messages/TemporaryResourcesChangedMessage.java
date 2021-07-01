@@ -5,6 +5,9 @@ import it.polimi.ingsw.ResourceType;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Message used to communicate the changement of the temporary resources
+ */
 public class TemporaryResourcesChangedMessage extends Message{
 
     private String senderNickname;

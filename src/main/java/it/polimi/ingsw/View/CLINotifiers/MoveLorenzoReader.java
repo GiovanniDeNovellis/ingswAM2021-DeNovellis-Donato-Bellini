@@ -4,6 +4,9 @@ import com.google.gson.Gson;
 import it.polimi.ingsw.Controller.Messages.MoveLorenzoMessage;
 import it.polimi.ingsw.View.ModelPrinter;
 
+/**
+ * Notifies the CLI of a move action card activation
+ */
 public class MoveLorenzoReader extends CLINotifier {
     public MoveLorenzoReader(ModelPrinter modelPrinter) {
         super(modelPrinter);

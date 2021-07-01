@@ -6,6 +6,9 @@ import it.polimi.ingsw.Controller.Controller;
 import it.polimi.ingsw.Controller.Messages.*;
 import it.polimi.ingsw.Controller.NotifiableHandler;
 
+/**
+ * This manager handles a leader card activation request
+ */
 public class ActivateLeaderCardManager implements Manageable{
     private final Controller controller;
 

@@ -2,6 +2,9 @@ package it.polimi.ingsw.Controller.Messages;
 
 import it.polimi.ingsw.LeaderCard;
 
+/**
+ * Message used to communicate the activation of a leader card
+ */
 public class NotifyActivateLeaderCard extends Message{
     private int activatedLeaderCardPosition;
     private String whoActivatedLeaderCard;

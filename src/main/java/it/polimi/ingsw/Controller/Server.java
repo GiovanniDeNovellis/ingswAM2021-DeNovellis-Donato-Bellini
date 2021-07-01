@@ -9,6 +9,10 @@ import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+ * This class represent the server. It launches and contains a instance of the model and the controller of the game
+ * and accepts all the connections.
+ */
 public class Server {
 
     private int portNumber;

@@ -4,6 +4,9 @@ import com.google.gson.Gson;
 import it.polimi.ingsw.Controller.Messages.MoveAndShuffleMessage;
 import it.polimi.ingsw.View.ModelPrinter;
 
+/**
+ * Notifies the CLI of move and shuffle action card activation
+ */
 public class MoveAndShuffleReader extends CLINotifier {
     public MoveAndShuffleReader(ModelPrinter modelPrinter) {
         super(modelPrinter);

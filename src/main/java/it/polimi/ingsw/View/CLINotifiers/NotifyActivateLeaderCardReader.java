@@ -5,6 +5,9 @@ import it.polimi.ingsw.Controller.Messages.NotifyActivateLeaderCard;
 import it.polimi.ingsw.View.ModelPrinter;
 import it.polimi.ingsw.View.Printers.LeaderCardsPrinter;
 
+/**
+ * Notifies the CLI of a leader card activation
+ */
 public class NotifyActivateLeaderCardReader extends CLINotifier {
     public NotifyActivateLeaderCardReader(ModelPrinter modelPrinter) {
         super(modelPrinter);

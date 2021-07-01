@@ -5,6 +5,9 @@ import it.polimi.ingsw.ResourceType;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Message used to communicate the end turn
+ */
 public class EndTurnNotificationMessage extends Message{
     private String actualCurrentPlayer;
     private int numResourcesDiscarded;

@@ -7,6 +7,9 @@ import it.polimi.ingsw.Controller.Messages.AddPlayerMessage;
 import it.polimi.ingsw.Controller.Messages.Message;
 import it.polimi.ingsw.Controller.NotifiableHandler;
 
+/**
+ * This manager handles an add player request
+ */
 public class AddPlayerManager implements Manageable {
     private final Controller controller;
 

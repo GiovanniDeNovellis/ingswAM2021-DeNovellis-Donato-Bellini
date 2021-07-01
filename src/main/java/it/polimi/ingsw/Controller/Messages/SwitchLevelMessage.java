@@ -1,5 +1,8 @@
 package it.polimi.ingsw.Controller.Messages;
 
+/**
+ * Message used to request the switch level
+ */
 public class SwitchLevelMessage extends Message {
     public void setSenderNickname(String senderNickname) {
         this.senderNickname = senderNickname;

@@ -5,6 +5,9 @@ import it.polimi.ingsw.Controller.Messages.ActivateLeaderAbilityDepositMessage;
 import it.polimi.ingsw.View.ModelPrinter;
 import it.polimi.ingsw.View.Printers.PersonalBoardPrinter;
 
+/**
+ * Notifies the CLI of a leader ability deposit activation
+ */
 public class ActivateLeaderAbilityDepositReader extends CLINotifier {
     public ActivateLeaderAbilityDepositReader(ModelPrinter modelPrinter) {
         super(modelPrinter);

@@ -4,6 +4,9 @@ import com.google.gson.Gson;
 import it.polimi.ingsw.Controller.Messages.ActivateLeaderAbilityTransformationMessage;
 import it.polimi.ingsw.View.ModelPrinter;
 
+/**
+ * Notifies the CLI of a leader ability transformation activation
+ */
 public class ActivateLeaderAbilityTransformationReader extends CLINotifier {
     public ActivateLeaderAbilityTransformationReader(ModelPrinter modelPrinter) {
         super(modelPrinter);

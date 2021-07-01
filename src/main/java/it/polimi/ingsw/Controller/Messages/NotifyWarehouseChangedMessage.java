@@ -2,6 +2,9 @@ package it.polimi.ingsw.Controller.Messages;
 
 import it.polimi.ingsw.WareHouseDepot;
 
+/**
+ * Message used to communicate the changement of the warehouse
+ */
 public class NotifyWarehouseChangedMessage extends Message {
     private WareHouseDepot warehouseConfiguration;
     private String senderNickname;

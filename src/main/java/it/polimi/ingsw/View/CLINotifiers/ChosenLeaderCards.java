@@ -5,6 +5,9 @@ import it.polimi.ingsw.Controller.Messages.ChosenLeaderCardsMessage;
 import it.polimi.ingsw.View.ModelPrinter;
 import it.polimi.ingsw.View.Printers.LeaderCardsPrinter;
 
+/**
+ * Notifies the CLI of a leader card selection.
+ */
 public class ChosenLeaderCards extends CLINotifier {
 
     String nickname;

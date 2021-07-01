@@ -10,6 +10,9 @@ import javafx.application.Platform;
 
 import java.io.IOException;
 
+/**
+ * Notifies the GUI of the creation of a multi player game
+ */
 public class MultiPlayerCreationGUINotifier extends GUINotifier{
     private final ModelPrinter modelPrinter;
 

@@ -7,6 +7,9 @@ import it.polimi.ingsw.View.Printers.PersonalBoardPrinter;
 
 import java.util.Scanner;
 
+/**
+ * Notifies the CLI of an end turn
+ */
 public class EndTurnCLINotifier extends CLINotifier {
     String winner,nextPlayer;
     int oldValue = 0;

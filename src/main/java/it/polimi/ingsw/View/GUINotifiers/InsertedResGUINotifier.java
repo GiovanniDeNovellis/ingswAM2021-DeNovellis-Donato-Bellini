@@ -7,6 +7,9 @@ import it.polimi.ingsw.View.ModelPrinter;
 import it.polimi.ingsw.View.Printers.PersonalBoardPrinter;
 import javafx.application.Platform;
 
+/**
+ * Notifies the GUI of the insertion of a resource
+ */
 public class InsertedResGUINotifier extends GUINotifier{
     private final ModelPrinter modelPrinter;
 

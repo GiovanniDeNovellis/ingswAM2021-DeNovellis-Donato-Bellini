@@ -9,6 +9,9 @@ import javafx.application.Platform;
 
 import java.io.IOException;
 
+/**
+ * Notifies the GUI of the creation of a single player game
+ */
 public class SinglePlayerCreationGUINotifier extends GUINotifier {
     private ModelPrinter modelPrinter;
 

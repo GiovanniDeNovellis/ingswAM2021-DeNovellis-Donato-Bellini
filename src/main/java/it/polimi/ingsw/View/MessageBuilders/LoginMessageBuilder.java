@@ -5,6 +5,9 @@ import it.polimi.ingsw.Controller.Messages.AddPlayerMessage;
 
 import java.util.Scanner;
 
+/**
+ * Used to build a login request
+ */
 public class LoginMessageBuilder extends MessageBuilder{
     @Override
     public String buildMessage() {

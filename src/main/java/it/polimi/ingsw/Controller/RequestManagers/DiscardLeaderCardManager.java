@@ -7,6 +7,9 @@ import it.polimi.ingsw.Controller.Messages.*;
 import it.polimi.ingsw.Controller.NotifiableHandler;
 import it.polimi.ingsw.Player;
 
+/**
+ * This manager handles a discard leader card request
+ */
 public class DiscardLeaderCardManager implements Manageable{
     private final Controller controller;
 

@@ -7,6 +7,9 @@ import it.polimi.ingsw.View.ModelPrinter;
 import it.polimi.ingsw.View.Printers.PersonalBoardPrinter;
 import javafx.application.Platform;
 
+/**
+ * Notifies the GUI of the activation of a deposit ability
+ */
 public class ActivateDepositGUINotifier extends GUINotifier {
     private ModelPrinter modelPrinter;
 

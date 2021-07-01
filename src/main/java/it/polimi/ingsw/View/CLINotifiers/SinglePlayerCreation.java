@@ -5,6 +5,9 @@ import it.polimi.ingsw.Controller.Messages.SinglePlayerCreationMessage;
 import it.polimi.ingsw.View.ModelPrinter;
 import it.polimi.ingsw.View.Printers.LeaderCardsPrinter;
 
+/**
+ * Notifies the CLI of the start of a single player game
+ */
 public class SinglePlayerCreation extends CLINotifier {
     public SinglePlayerCreation(ModelPrinter modelPrinter) {
         super(modelPrinter);

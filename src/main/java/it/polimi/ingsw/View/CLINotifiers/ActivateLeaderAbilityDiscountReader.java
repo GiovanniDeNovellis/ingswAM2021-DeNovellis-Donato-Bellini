@@ -5,6 +5,9 @@ import it.polimi.ingsw.Controller.Messages.ActivateLeaderAbilityDiscountMessage;
 import it.polimi.ingsw.Controller.Messages.ActivateLeaderAbilityMessage;
 import it.polimi.ingsw.View.ModelPrinter;
 
+/**
+ * Notifies the CLI of a leader ability discount activation
+ */
 public class ActivateLeaderAbilityDiscountReader extends CLINotifier {
     public ActivateLeaderAbilityDiscountReader(ModelPrinter modelPrinter) {
         super(modelPrinter);

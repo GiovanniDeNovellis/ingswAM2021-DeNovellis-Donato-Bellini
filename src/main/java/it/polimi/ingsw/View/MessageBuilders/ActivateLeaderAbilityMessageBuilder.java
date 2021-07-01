@@ -7,6 +7,9 @@ import it.polimi.ingsw.View.ModelPrinter;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * Used to build a leader ability activation request
+ */
 public class ActivateLeaderAbilityMessageBuilder extends MessageBuilder{
     private String nickname;
     private final ModelPrinter modelPrinter;

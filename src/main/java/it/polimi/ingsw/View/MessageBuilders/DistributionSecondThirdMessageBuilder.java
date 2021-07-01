@@ -8,6 +8,9 @@ import it.polimi.ingsw.ResourceType;
 
 import java.util.*;
 
+/**
+ * Used to build a free distribution request
+ */
 public class DistributionSecondThirdMessageBuilder extends MessageBuilder{
 
     String nickname;

@@ -6,6 +6,9 @@ import it.polimi.ingsw.View.ModelPrinter;
 import it.polimi.ingsw.View.Printers.LeaderCardsPrinter;
 import it.polimi.ingsw.View.Printers.PersonalBoardPrinter;
 
+/**
+ * Notifies the CLI of the list of the connected players
+ */
 public class ConnectedPlayersMessageReader extends CLINotifier {
     public ConnectedPlayersMessageReader(ModelPrinter modelPrinter) {
         super(modelPrinter);

@@ -4,6 +4,9 @@ import it.polimi.ingsw.*;
 
 import java.util.ArrayList;
 
+/**
+ * Message used to communicate the creation of a multiplayer game
+ */
 public class MultiplayerCreationMessage extends Message{
     private int playerNumber;
     private String nickname;

@@ -7,6 +7,9 @@ import javafx.application.Platform;
 
 import java.io.IOException;
 
+/**
+ * Notifies the GUI of the success of the reconnection
+ */
 public class ReconnectOkGUINotifier extends GUINotifier{
     private final ModelPrinter modelPrinter;
 

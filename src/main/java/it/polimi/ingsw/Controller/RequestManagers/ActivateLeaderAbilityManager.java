@@ -7,6 +7,9 @@ import it.polimi.ingsw.Controller.Messages.*;
 import it.polimi.ingsw.Controller.NotifiableHandler;
 import it.polimi.ingsw.ExtraDeposit;
 
+/**
+ * This manager handles a leader ability activation request
+ */
 public class ActivateLeaderAbilityManager implements Manageable{
     private final Controller controller;
 

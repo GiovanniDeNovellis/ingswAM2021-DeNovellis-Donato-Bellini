@@ -6,6 +6,9 @@ import it.polimi.ingsw.View.GUI;
 import it.polimi.ingsw.View.ModelPrinter;
 import javafx.application.Platform;
 
+/**
+ * Notifies the GUI of the activation of a move action card
+ */
 public class LorenzoMovedGUINotifier extends GUINotifier{
     private final ModelPrinter modelPrinter;
 

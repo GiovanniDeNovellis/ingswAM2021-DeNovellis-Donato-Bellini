@@ -2,6 +2,9 @@ package it.polimi.ingsw.View.LeaderCardsBuilder;
 import it.polimi.ingsw.Colour;
 import it.polimi.ingsw.ResourceType;
 
+/**
+ * Used to print a deposit leader card
+ */
 public class LeaderCardDeposit extends LeaderCards{
     ResourceType resourceType;
     ResourceType resourceRequired;

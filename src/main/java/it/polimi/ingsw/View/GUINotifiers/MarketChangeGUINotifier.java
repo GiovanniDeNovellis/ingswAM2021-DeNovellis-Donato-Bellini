@@ -8,6 +8,9 @@ import javafx.application.Platform;
 
 import java.io.IOException;
 
+/**
+ * Notifies the GUI of the changement of the market grid
+ */
 public class MarketChangeGUINotifier extends GUINotifier{
     private final ModelPrinter modelPrinter;
 

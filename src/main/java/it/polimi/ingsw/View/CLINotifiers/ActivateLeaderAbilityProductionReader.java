@@ -4,6 +4,9 @@ import com.google.gson.Gson;
 import it.polimi.ingsw.Controller.Messages.ActivateLeaderAbilityProduction;
 import it.polimi.ingsw.View.ModelPrinter;
 
+/**
+ * Notifies the CLI of a leader ability production activation
+ */
 public class ActivateLeaderAbilityProductionReader extends CLINotifier {
     public ActivateLeaderAbilityProductionReader(ModelPrinter modelPrinter) {
         super(modelPrinter);

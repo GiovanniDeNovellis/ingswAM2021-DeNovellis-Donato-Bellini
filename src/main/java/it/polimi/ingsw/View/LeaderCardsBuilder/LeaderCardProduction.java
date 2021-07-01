@@ -3,6 +3,9 @@ package it.polimi.ingsw.View.LeaderCardsBuilder;
 import it.polimi.ingsw.Colour;
 import it.polimi.ingsw.ResourceType;
 
+/**
+ * Used to print a production leader card
+ */
 public class LeaderCardProduction extends LeaderCards {
 
     ResourceType resourceType;

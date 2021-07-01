@@ -10,6 +10,9 @@ import it.polimi.ingsw.Player;
 
 import java.util.ArrayList;
 
+/**
+ * This manager handles a multi player game creation request
+ */
 public class StartMultiPlayerManager implements Manageable {
     private final Controller controller;
 

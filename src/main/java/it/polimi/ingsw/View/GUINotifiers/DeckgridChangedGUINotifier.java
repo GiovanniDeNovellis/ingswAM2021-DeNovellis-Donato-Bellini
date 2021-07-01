@@ -6,6 +6,9 @@ import it.polimi.ingsw.View.GUI;
 import it.polimi.ingsw.View.ModelPrinter;
 import javafx.application.Platform;
 
+/**
+ * Notifies the GUI of the changement of the deckgrid
+ */
 public class DeckgridChangedGUINotifier extends GUINotifier{
     private final ModelPrinter modelPrinter;
 

@@ -10,6 +10,9 @@ import it.polimi.ingsw.Controller.NotifiableHandler;
 import it.polimi.ingsw.DevelopmentCard;
 import it.polimi.ingsw.ExtraDeposit;
 
+/**
+ * This manager handles a buy development card request
+ */
 public class BuyDevelopmentCardManager implements Manageable{
     private final Controller controller;
 

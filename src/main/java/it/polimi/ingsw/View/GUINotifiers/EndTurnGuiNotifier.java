@@ -10,6 +10,9 @@ import javafx.application.Platform;
 
 import java.io.IOException;
 
+/**
+ * Notifies the GUI of an end turn
+ */
 public class EndTurnGuiNotifier extends GUINotifier{
     private final ModelPrinter modelPrinter;
     int oldValue=0;

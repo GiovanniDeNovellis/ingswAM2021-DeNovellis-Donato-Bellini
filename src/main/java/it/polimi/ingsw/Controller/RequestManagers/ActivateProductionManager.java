@@ -8,6 +8,9 @@ import it.polimi.ingsw.Controller.NotifiableHandler;
 import it.polimi.ingsw.ExtraDeposit;
 import it.polimi.ingsw.Player;
 
+/**
+ * This manager handles an activate production request
+ */
 public class    ActivateProductionManager implements Manageable {
     private final Controller controller;
 

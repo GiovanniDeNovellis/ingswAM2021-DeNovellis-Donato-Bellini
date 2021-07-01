@@ -5,6 +5,9 @@ import it.polimi.ingsw.Controller.Messages.VaticanReportMessage;
 import it.polimi.ingsw.View.ModelPrinter;
 import it.polimi.ingsw.View.Printers.PersonalBoardPrinter;
 
+/**
+ * Notifies the CLI of a vatican report
+ */
 public class VaticanReportMessageReader extends CLINotifier {
     public VaticanReportMessageReader(ModelPrinter modelPrinter) {
         super(modelPrinter);

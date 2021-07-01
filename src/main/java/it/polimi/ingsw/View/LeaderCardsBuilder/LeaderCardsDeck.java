@@ -5,7 +5,9 @@ import it.polimi.ingsw.ResourceType;
 
 import java.util.ArrayList;
 
-
+/**
+ * Used to print the leader cards
+ */
 public class LeaderCardsDeck {
 
     ArrayList<LeaderCards> leaderCards = new ArrayList<>();

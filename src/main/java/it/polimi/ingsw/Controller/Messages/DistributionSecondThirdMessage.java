@@ -2,6 +2,9 @@ package it.polimi.ingsw.Controller.Messages;
 
 import it.polimi.ingsw.ResourceType;
 
+/**
+ * Message used to communicate the first distribution for the second or the third player
+ */
 public class DistributionSecondThirdMessage extends Message {
     private String senderNickname;
     private ResourceType resourceToDistribute;

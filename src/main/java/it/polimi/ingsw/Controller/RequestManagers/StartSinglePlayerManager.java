@@ -7,6 +7,9 @@ import it.polimi.ingsw.Controller.Messages.Message;
 import it.polimi.ingsw.Controller.Messages.SinglePlayerCreationMessage;
 import it.polimi.ingsw.Controller.NotifiableHandler;
 
+/**
+ * This manager handles a single player game creation request
+ */
 public class StartSinglePlayerManager implements Manageable{
     private final Controller controller;
 

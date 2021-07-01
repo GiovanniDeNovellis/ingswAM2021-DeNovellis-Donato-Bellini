@@ -4,6 +4,9 @@ import com.google.gson.Gson;
 import it.polimi.ingsw.Controller.Messages.MarketGridChangedMessage;
 import it.polimi.ingsw.View.ModelPrinter;
 
+/**
+ * Notifies the CLI of a market grid change
+ */
 public class MarketGridChanged extends CLINotifier {
     public MarketGridChanged(ModelPrinter modelPrinter) {
         super(modelPrinter);

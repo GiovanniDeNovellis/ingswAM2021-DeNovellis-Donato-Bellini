@@ -4,6 +4,9 @@ import com.google.gson.Gson;
 import it.polimi.ingsw.Controller.Messages.PlayerOutNotification;
 import it.polimi.ingsw.View.ModelPrinter;
 
+/**
+ * Notifies the CLI of the disconnection of a player
+ */
 public class PlayerOutCLINotifier extends CLINotifier {
     public PlayerOutCLINotifier(ModelPrinter modelPrinter) {
         super(modelPrinter);

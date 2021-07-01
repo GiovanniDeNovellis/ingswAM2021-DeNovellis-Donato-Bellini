@@ -5,6 +5,9 @@ import it.polimi.ingsw.Controller.Messages.NotifyActivateProductionMessage;
 import it.polimi.ingsw.View.ModelPrinter;
 import it.polimi.ingsw.View.Printers.PersonalBoardPrinter;
 
+/**
+ * Notifies the CLI of the activation of a production
+ */
 public class NotifyActivateProductionReader extends CLINotifier {
     public NotifyActivateProductionReader(ModelPrinter modelPrinter) {
         super(modelPrinter);

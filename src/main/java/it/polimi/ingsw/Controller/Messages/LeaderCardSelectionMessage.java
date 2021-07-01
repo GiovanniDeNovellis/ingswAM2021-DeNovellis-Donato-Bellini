@@ -1,5 +1,8 @@
 package it.polimi.ingsw.Controller.Messages;
 
+/**
+ * Message used to communicate the selection of a leader card
+ */
 public class LeaderCardSelectionMessage extends Message {
     private String senderNickname;
     private int leaderCardPosition1;

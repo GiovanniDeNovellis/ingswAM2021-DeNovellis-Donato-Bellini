@@ -6,6 +6,9 @@ import javafx.application.Platform;
 
 import java.io.IOException;
 
+/**
+ * Notifies the GUI of the success to switch levels
+ */
 public class SwitchSuccessGUINotifier extends GUINotifier {
     private ModelPrinter modelPrinter;
 

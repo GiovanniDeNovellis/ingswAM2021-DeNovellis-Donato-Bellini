@@ -7,6 +7,9 @@ import it.polimi.ingsw.View.ModelPrinter;
 import it.polimi.ingsw.View.Printers.PersonalBoardPrinter;
 import javafx.application.Platform;
 
+/**
+ * Notifies the GUI of the purchase of a card by a general player
+ */
 public class CardBoughtGUINotifier extends GUINotifier{
 
     public CardBoughtGUINotifier(ModelPrinter modelPrinter) {

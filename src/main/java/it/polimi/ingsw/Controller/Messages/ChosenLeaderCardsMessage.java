@@ -4,6 +4,9 @@ import it.polimi.ingsw.LeaderCard;
 
 import java.util.ArrayList;
 
+/**
+ * Message used to communicate the selection of a leader card
+ */
 public class ChosenLeaderCardsMessage extends Message{
     private String messageContent;
     private int firstChosenLeaderCardNumber;

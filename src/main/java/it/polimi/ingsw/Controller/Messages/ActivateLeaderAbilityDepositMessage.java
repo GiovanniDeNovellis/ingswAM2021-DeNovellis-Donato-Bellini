@@ -2,6 +2,9 @@ package it.polimi.ingsw.Controller.Messages;
 
 import it.polimi.ingsw.ExtraDeposit;
 
+/**
+ * Message used to communicate the activation of a leader ability deposit
+ */
 public class ActivateLeaderAbilityDepositMessage extends Message{
     private int position;
     private ExtraDeposit[] extraDepositConfiguration;

@@ -7,6 +7,9 @@ import it.polimi.ingsw.Controller.Messages.BuyDevelopmentCardMessage;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * Used to build a development card purchase request
+ */
 public class BuyDevelopmentCardMessageBuilder extends MessageBuilder {
 
     private final String nickname;

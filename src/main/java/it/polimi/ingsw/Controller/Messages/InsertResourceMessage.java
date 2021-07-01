@@ -2,6 +2,9 @@ package it.polimi.ingsw.Controller.Messages;
 
 import it.polimi.ingsw.ResourceType;
 
+/**
+ * Message used to communicate the insertion of a resource
+ */
 public class InsertResourceMessage extends Message {
 
     private int quantityToInsert;

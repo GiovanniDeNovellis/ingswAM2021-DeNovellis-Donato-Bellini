@@ -7,6 +7,9 @@ import it.polimi.ingsw.View.GUI;
 import it.polimi.ingsw.View.ModelPrinter;
 import javafx.application.Platform;
 
+/**
+ * Notifies the GUI of the reconnection of a player
+ */
 public class PlayerReconnectedGUINotifier extends GUINotifier {
     private final ModelPrinter modelPrinter;
     public PlayerReconnectedGUINotifier(ModelPrinter modelPrinter) {

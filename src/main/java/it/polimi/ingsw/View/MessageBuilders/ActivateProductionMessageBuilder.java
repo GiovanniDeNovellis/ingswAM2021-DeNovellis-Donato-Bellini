@@ -8,6 +8,9 @@ import it.polimi.ingsw.ResourceType;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * Used to build a produtcion activation request
+ */
 public class ActivateProductionMessageBuilder extends MessageBuilder{
     private String nickname;
 

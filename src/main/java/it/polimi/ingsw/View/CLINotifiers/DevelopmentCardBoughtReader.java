@@ -5,6 +5,9 @@ import it.polimi.ingsw.Controller.Messages.NotifyDevelopmentCardInsertedOKMessag
 import it.polimi.ingsw.View.ModelPrinter;
 import it.polimi.ingsw.View.Printers.PersonalBoardPrinter;
 
+/**
+ * Notifies the CLI of a development card purchase
+ */
 public class DevelopmentCardBoughtReader extends CLINotifier {
     String nickname;
     public DevelopmentCardBoughtReader(ModelPrinter modelPrinter) {

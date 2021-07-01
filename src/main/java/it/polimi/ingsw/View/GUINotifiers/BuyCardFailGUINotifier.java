@@ -5,6 +5,9 @@ import it.polimi.ingsw.View.ModelPrinter;
 import javafx.application.Platform;
 import javafx.scene.text.Font;
 
+/**
+ * Notifies the GUI of the failure of a card purchase
+ */
 public class BuyCardFailGUINotifier extends GUINotifier{
 
     public BuyCardFailGUINotifier(ModelPrinter modelPrinter) {

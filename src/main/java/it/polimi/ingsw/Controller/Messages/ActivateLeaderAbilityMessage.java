@@ -1,5 +1,8 @@
 package it.polimi.ingsw.Controller.Messages;
 
+/**
+ * Message used to communicate the activation of a leader ability
+ */
 public class ActivateLeaderAbilityMessage extends Message{
     private String senderNickname;
     private int position;

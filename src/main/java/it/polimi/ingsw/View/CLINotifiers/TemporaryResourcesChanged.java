@@ -4,6 +4,9 @@ import com.google.gson.Gson;
 import it.polimi.ingsw.Controller.Messages.TemporaryResourcesChangedMessage;
 import it.polimi.ingsw.View.ModelPrinter;
 
+/**
+ * Notifies the CLI of the changement of the temporary resources
+ */
 public class TemporaryResourcesChanged extends CLINotifier {
 
     public TemporaryResourcesChanged(ModelPrinter modelPrinter){

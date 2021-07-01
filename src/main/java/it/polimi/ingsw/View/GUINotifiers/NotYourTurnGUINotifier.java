@@ -4,6 +4,9 @@ import it.polimi.ingsw.View.GUI;
 import it.polimi.ingsw.View.ModelPrinter;
 import javafx.application.Platform;
 
+/**
+ * Notifies the GUI that it's not your turn
+ */
 public class NotYourTurnGUINotifier extends GUINotifier{
     private ModelPrinter modelPrinter;
 

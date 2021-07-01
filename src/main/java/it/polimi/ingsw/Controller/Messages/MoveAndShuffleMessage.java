@@ -5,6 +5,9 @@ import it.polimi.ingsw.ActionCardStack;
 
 import java.util.ArrayList;
 
+/**
+ * Message used to communicate the move and shuffle action card
+ */
 public class MoveAndShuffleMessage extends Message{
     private int newBlackFaithPoints;
     private ArrayList<String> actionCardConfiguration;

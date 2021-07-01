@@ -4,6 +4,9 @@ import it.polimi.ingsw.*;
 
 import java.util.ArrayList;
 
+/**
+ * Message used to communicate the data for a reconnected player
+ */
 public class ReconnectConfigurationMessage extends Message{
     private String senderNickname;
     private String[][] marbleGridConfiguration;

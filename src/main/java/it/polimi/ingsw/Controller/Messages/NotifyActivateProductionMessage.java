@@ -5,6 +5,9 @@ import it.polimi.ingsw.ResourceType;
 import it.polimi.ingsw.WareHouseDepot;
 import java.util.Map;
 
+/**
+ * Message used to communicate the activation of a production
+ */
 public class NotifyActivateProductionMessage extends Message{
     private WareHouseDepot warehouseConfiguration;
     private ExtraDeposit[] extraDepositConfiguration;

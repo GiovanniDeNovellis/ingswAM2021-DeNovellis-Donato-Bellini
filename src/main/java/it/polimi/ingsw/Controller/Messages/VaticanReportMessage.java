@@ -1,5 +1,8 @@
 package it.polimi.ingsw.Controller.Messages;
 
+/**
+ * Message used to communicate a vatican report
+ */
 public class VaticanReportMessage extends Message {
     boolean occurred;
     int whichOne;

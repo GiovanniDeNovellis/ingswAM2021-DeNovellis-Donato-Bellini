@@ -5,6 +5,9 @@ import it.polimi.ingsw.Controller.Messages.NotifyDiscardLeaderCard;
 import it.polimi.ingsw.View.ModelPrinter;
 import it.polimi.ingsw.View.Printers.LeaderCardsPrinter;
 
+/**
+ * Notifies the CLI of the discard of a leader card
+ */
 public class NotifyDiscardLeaderCardReader extends CLINotifier {
     private int position;
     private String nickname;

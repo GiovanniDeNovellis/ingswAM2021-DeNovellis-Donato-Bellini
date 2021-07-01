@@ -2,6 +2,9 @@ package it.polimi.ingsw.Controller.Messages;
 
 import it.polimi.ingsw.Deckgrid;
 
+/**
+ * Message used to communicate the creation of a single player game
+ */
 public class SinglePlayerCreationMessage extends Message{
     private int[] choosableLeaderCardsNumbers;
     private Deckgrid deckgridConfiguration;

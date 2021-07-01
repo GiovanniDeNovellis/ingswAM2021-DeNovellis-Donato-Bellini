@@ -1,5 +1,8 @@
 package it.polimi.ingsw.Controller.Messages;
 
+/**
+ * Message used to request the discard of a leader ability card
+ */
 public class DiscardLeaderMessage extends Message{
     private String SenderNickname;
     private int position;

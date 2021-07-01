@@ -1,5 +1,8 @@
 package it.polimi.ingsw.Controller.Messages;
 
+/**
+ * Message used to communicate the change of the market grid
+ */
 public class MarketGridChangedMessage extends Message{
     private String[][] marketGridConfiguration;
 
