@@ -2,7 +2,6 @@ package it.polimi.ingsw;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.TreeMap;
 
 public class Strongbox {
 
