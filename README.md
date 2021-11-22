@@ -1,7 +1,7 @@
 # ingswAM2021-DeNovellis-Donato-Bellini
 ## Software engineering project 20/21.
 ### Contributors 
-Emanuele bellini, Giovanni De Novellis, Roberto Donato.
+Emanuele Bellini, Giovanni De Novellis, Roberto Donato.
 ### Implemented functionalities
 - Complete rules
 - Socket 
