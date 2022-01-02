@@ -1,5 +1,7 @@
 # ingswAM2021-DeNovellis-Donato-Bellini
 ## Software engineering project 20/21.
+### Project
+A java implementation of the [Master of Renaissance](https://craniointernational.com/products/masters-of-renaissance/) board game. 
 ### Contributors 
 Emanuele Bellini, Giovanni De Novellis, Roberto Donato.
 ### Implemented functionalities
