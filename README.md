@@ -3,7 +3,7 @@
 ### Project
 A java implementation of the [Master of Renaissance](https://craniointernational.com/products/masters-of-renaissance/) board game. 
 ### Contributors 
-Emanuele Bellini, Giovanni De Novellis, Roberto Donato.
+[Emanuele Bellini](https://github.com/EmanueleBellini99), [Giovanni De Novellis](https://github.com/GiovanniDeNovellis), [Roberto Donato](https://github.com/drob05).
 ### Implemented functionalities
 - Complete rules
 - Socket 
