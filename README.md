@@ -15,15 +15,15 @@ A java implementation of the [Master of Renaissance](https://craniointernational
 ### Setup
 - In the [Deliverables](Deliverables) folder there is the jar file of the game. To run the jar with default IP and port please type:
 ```shell
-java -jar .\AM43.jar 
+java -jar AM43.jar 
 ```
 - If you want to specify IP and port please type:
 ``` shell
-java -jar .\AM43.jar "ip" "port"
+java -jar AM43.jar ip port
 ```
 - For example:
 ``` shell
-java -jar .\AM43.jar "127.0.0.2" "1235"
+java -jar .\AM43.jar 127.0.0.2 1234
 ```
 - The console will ask you if you want to start in Server, CLI or GUI mode and if you want to play a local game or not.
 - CLI tested on WSL. 
