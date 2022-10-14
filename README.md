@@ -23,7 +23,7 @@ java -jar AM43.jar ip port
 ```
 - For example:
 ``` shell
-java -jar .\AM43.jar 127.0.0.2 1234
+java -jar AM43.jar 127.0.0.2 1234
 ```
 - The console will ask you if you want to start in Server, CLI or GUI mode and if you want to play a local game or not.
 - CLI tested on WSL. 
